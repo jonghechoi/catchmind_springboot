@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.find">
+
+	<update id="passUpdate" parameterType="map">
+		update member
+		set mpass = #{mpass}
+		where mid = #{mid}
+	</update>
+	
+	<select id="findPassUpdateInfo" parameterType="String" resultType="com.springboot.catchmind.vo.MemberVo">
+		select mid, BEFOREMPASS
+		from member
+		where mid = #{mid}
+	</select>
+	
+	<update id="beforeMpassUpdate" parameterType="String">
+		update member
+		set beforemPass = mpass
+		where mid = #{mid}
+	</update>
+	
+	<select id="findPassInfo" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
+		SELECT MID, MEMBERID, MEMAIL, MPASS, BEFOREMPASS
+		FROM MEMBER
+		WHERE memberId = #{memberId} and
+			  memail = #{memail}
+	</select>
+	
+	<select id="findId" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
+		select mid, mname, memail, memberId, mphone  
+		from member
+		where mname = #{mname} and
+		memail = #{memail} and
+		mphone = #{mphone}
+	</select>
+
+</mapper> 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mydining">
+	<select id="fcount" parameterType="map" resultType="int">
+		select count(*) fcheck
+		from favorites
+		where mid = #{mid} and sid = #{sid}
+	</select>
+
+	<delete id="deleteBookmark" parameterType="map">
+		delete from favorites
+		where mid = #{mid} and sid = #{sid}
+	</delete>
+
+	<insert id="insertBookmark" parameterType="map">
+		insert into favorites(fid, sid, mid, fcheck)
+		VALUES('F_'||LTRIM(TO_CHAR(SEQU_FAVORITES_FID.NEXTVAL,'0000')),
+				#{sid},
+				#{mid},
+				'Y')
+	</insert>
+
+	<select id="bookmarkResult" parameterType="map" resultType="int">
+		select count(*) count
+		from favorites
+		where mid = #{mid} and sid = #{sid}
+	</select>
+
+
+	<update id="updateDeleteYN" parameterType="String">
+		UPDATE RESERVATION 
+		SET DELETEYN = 'Y'
+		WHERE RID = #{rid}
+	</update>
+
+	<update id="updateStatus">
+		UPDATE RESERVATION 
+		SET RSTATUS = 'COMPLETED' 
+		WHERE to_date(rdate,'yyyy-mm-dd') &lt;	to_date(sysdate,'yyyy-mm-dd') AND RSTATUS = 'ACTIVE'
+	</update>
+
+	<select id="visited" parameterType="String" resultType="com.springboot.catchmind.vo.ScheduledVo">
+		select MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
+				  from(select M.MID MID,S.SID SID,R.RID RID, M.MEMBERID MEMBERID, M.MNAME MNAME, M.TEL TEL, M.MPHONE MPHONE, S.SNAME SNAME,
+				      S.SLOCSHORT SLOCSHORT, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER, R.RPHONE RPHONE,
+				      R.RSTATUS RSTATUS, R.REVIEWYN, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
+				      from MEMBER M, SHOP S, RESERVATION R
+				      WHERE R.MID = M.MID AND R.SID = S.SID
+				      ORDER BY RDATE DESC, RTIME desc) 
+				 WHERE MID = #{mid} AND RSTATUS = 'COMPLETED' AND DELETEYN = 'N'
+	</select>
+
+	<select id="information" parameterType="map" resultType="com.springboot.catchmind.vo.ScheduledVo">
+		select SID, RID, MID, RDATE, RTIME, GUESTNUMBER, MNAME, SNAME, SLOC, SLOCSHORT, SINTRO, SPHONE, SOPENINGHOUR, SCLOSINGHOUR, SCLOSINGDATE, SDEPOSIT, MPHONE, SMPHOTO 
+		  from(select S.SID SID, R.RID RID, M.MID MID, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER,
+		        M.MNAME MNAME, S.SNAME SNAME, S.SLOC SLOC, S.SLOCSHORT SLOCSHORT, S.SINTRO SINTRO, S.SPHONE SPHONE,
+		        S.SOPENINGHOUR SOPENINGHOUR, S.SCLOSINGHOUR SCLOSINGHOUR, S.SCLOSINGDATE SCLOSINGDATE, S.SDEPOSIT SDEPOSIT,  M.MPHONE MPHONE, S.SMPHOTO SMPHOTO
+		        from SHOP S, RESERVATION R, MEMBER M
+		        WHERE R.SID = S.SID AND R.MID = M.MID)
+         where MID = #{mid} AND SID = #{sid} AND RID = #{rid}
+	</select>
+
+	<select id="scheduled" parameterType="String" resultType="com.springboot.catchmind.vo.ScheduledVo">
+		select MID,SID,RID, MEMBERID , MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, SMPHOTO, DELETEYN
+				  from(select M.MID MID,S.SID SID,R.RID RID, M.MEMBERID MEMBERID, M.MNAME MNAME, M.TEL TEL, M.MPHONE MPHONE, S.SNAME SNAME, 
+				      S.SLOCSHORT SLOCSHORT, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER, R.RPHONE RPHONE,
+				       R.RSTATUS RSTATUS, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
+				      from MEMBER M, SHOP S, RESERVATION R
+				      WHERE R.MID = M.MID AND R.SID = S.SID 
+				      ORDER BY RDATE DESC, RTIME desc) 
+		WHERE MID = #{mid} AND RSTATUS = 'ACTIVE' AND DELETEYN = 'N'
+	</select>
+</mapper>
