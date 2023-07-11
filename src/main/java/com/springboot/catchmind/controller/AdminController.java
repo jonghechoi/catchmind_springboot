@@ -47,6 +47,7 @@ public class AdminController {
 	@RequestMapping(value = "/member_list_paging.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String admin_member_list_paging(String page) {
+		System.out.println("member page -------> " + page);
 		return adminService.getMemberSelectGson(page);
 	}
 	

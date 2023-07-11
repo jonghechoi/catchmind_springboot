@@ -5,10 +5,10 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>Catch Mind</title>
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script src="/js/jonghe.js"></script>
 	<script>
 		$(document).ready(function() {
 			

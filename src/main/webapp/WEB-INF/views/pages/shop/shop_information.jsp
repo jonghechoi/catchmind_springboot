@@ -7,14 +7,14 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="resources/image/catchcon.png" type="image/png">
+        <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
-        <link rel="stylesheet" href="resources/css/style.css">
-        <link rel="stylesheet" href="resources/css/style_jonghe.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/style_jonghe.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
     	<!-- js -->
-    	<script src="resources/js/jquery-3.6.4.min.js"></script>
+    	<script src="/js/jquery-3.6.4.min.js"></script>
     </head>
     <script>
 	    $(document).ready(function() {
@@ -167,7 +167,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="resources/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index.do"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -328,15 +328,15 @@
 								<li>
  									<span>Image  :  </span>
 								    <input type="file" name="images1" class="real-upload1" required multiple style="display: none;">
-								    <div class="upload1"><img class="upload_img1" src="resources/content/img/image_icon.png" alt=""></div>
+								    <div class="upload1"><img class="upload_img1" src="/content/img/image_icon.png" alt=""></div>
 								    <input type="file" name="images2" class="real-upload2" required multiple style="display: none;">
-								    <div class="upload2"><img class="upload_img2" src="resources/content/img/image_icon.png" alt=""></div>
+								    <div class="upload2"><img class="upload_img2" src="/content/img/image_icon.png" alt=""></div>
 								    <input type="file" name="images3" class="real-upload3" required multiple style="display: none;">
-								    <div class="upload3"><img class="upload_img3" src="resources/content/img/image_icon.png" alt=""></div>
+								    <div class="upload3"><img class="upload_img3" src="/content/img/image_icon.png" alt=""></div>
 								    <input type="file" name="images4" class="real-upload4" required multiple style="display: none;">
-								    <div class="upload4"><img class="upload_img4" src="resources/content/img/image_icon.png" alt=""></div>
+								    <div class="upload4"><img class="upload_img4" src="/content/img/image_icon.png" alt=""></div>
 								    <input type="file" name="images5" class="real-upload5" required multiple style="display: none;">
-								    <div class="upload5"><img class="upload_img5" src="resources/content/img/image_icon.png" alt=""></div>
+								    <div class="upload5"><img class="upload_img5" src="/content/img/image_icon.png" alt=""></div>
 								</li>								
 								<li>																	
 									<input type="hidden" name="sid" id="sid" value="${ShopVo.sid}"> 
@@ -355,18 +355,18 @@
         </footer> 
 		<!--================ End footer Area  =================-->
         <!-- Optional JavaScript -->
-        <script src="resources/js/jonghe.js"></script>
+        <script src="/js/jonghe.js"></script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-        <script src="resources/js/popper.js"></script>
-        <script src="resources/js/bootstrap.min.js"></script>
-        <script src="resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="resources/js/jquery.ajaxchimp.min.js"></script>
-        <script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-        <!-- <script src="resources/vendors/nice-select/js/jquery.nice-select.js"></script> -->
-        <script src="resources/js/mail-script.js"></script>
-        <script src="resources/js/stellar.js"></script>
-        <script src="resources/vendors/lightbox/simpleLightbox.min.js"></script>
-        <script src="resources/js/custom.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+        <!-- <script src="/vendors/nice-select/js/jquery.nice-select.js"></script> -->
+        <script src="/js/mail-script.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/js/custom.js"></script>
     </body>
 </html>

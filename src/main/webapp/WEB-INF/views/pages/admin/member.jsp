@@ -9,13 +9,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="../image/favicon.png" type="image/png">
 	<title>CatchMind</title>
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<!-- <link rel="stylesheet" href="resources/css/responsive.css"> -->
-	<link rel="stylesheet" href="resources/css/am-pagination.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
-	<script src="resources/js/am-pagination.js"></script>
-	<script src="resources/js/paging_member.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<!-- <link rel="stylesheet" href="/css/responsive.css"> -->
+	<link rel="stylesheet" href="/css/am-pagination.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script src="/js/am-pagination.js"></script>
+	<script src="/js/paging_member.js"></script>
 </head>
 <body>
 	<!-- <div id="memberDetail" style="display:none">

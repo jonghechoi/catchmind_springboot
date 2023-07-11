@@ -6,15 +6,15 @@
 <head>
 	<meta charset="utf-8">
 	<title>Catch Minde</title>
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-	<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
-	<link rel="stylesheet" href="resources/css/am-pagination.css">
-	<script src="resources/js/am-pagination.js"></script>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/vendors/linericon/style.css">
+	<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script src="/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/am-pagination.css">
+	<script src="/js/am-pagination.js"></script>
 	<script>
 		function adminReviewDatail(rid) {
 			$(document).on("click", "#btnReviewMainDetail_" + rid, function() {

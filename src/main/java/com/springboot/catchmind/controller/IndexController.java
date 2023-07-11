@@ -21,7 +21,7 @@ public class IndexController {
 	private MapServiceImpl mapService;
 	
 	/**
-	 *	���������� - index.do
+	 *	index
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -29,7 +29,7 @@ public class IndexController {
 	}
 
 	/**
-	 *	���������� - ��� ���� ������Ʈ
+	 *	index_review
 	 */
 	@RequestMapping(value = "/index_review.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
@@ -38,7 +38,7 @@ public class IndexController {
 	}	
 	
 	/**
-	 *	���������� - ��Ŀ ���� ����
+	 *	index_mapMarker
 	 */
 	@RequestMapping(value = "/index_mapMarker.do", method = RequestMethod.GET)
 	@ResponseBody

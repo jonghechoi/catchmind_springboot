@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "notice_list_paging/"+page+"/",
+			url: "notice_list_paging.do?page="+page,
 			success: function(result){
 				let jdata = JSON.parse(result);
 				

@@ -5,8 +5,8 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>ICatch Mind</title>
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$(".toList").click(function() {

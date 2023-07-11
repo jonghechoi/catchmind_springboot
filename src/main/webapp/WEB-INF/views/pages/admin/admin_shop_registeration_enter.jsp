@@ -6,20 +6,20 @@
 	<meta charset="utf-8">
 	<title>Catch Mind</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="resources/image/catchcon.png" type="image/png">
+	<link rel="icon" href="/image/catchcon.png" type="image/png">
 	<title>Royal Hotel</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-	<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-	<link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/vendors/linericon/style.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
 	<!-- main css -->
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script src="/js/jonghe.js"></script>
 </head>
 <body>
 	<section class="s1">
@@ -68,19 +68,19 @@
 	</section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="resources/js/jquery-3.2.1.min.js"></script>
-    <script src="resources/js/popper.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="resources/js/jquery.ajaxchimp.min.js"></script>
-    <script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-    <script src="resources/vendors/nice-select/js/jquery.nice-select.js"></script>
-    <script src="resources/js/mail-script.js"></script>
-    <script src="resources/js/stellar.js"></script>
-    <script src="resources/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="resources/vendors/isotope/isotope-min.js"></script>
-    <script src="resources/js/stellar.js"></script>
-    <script src="resources/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="/vendors/nice-select/js/jquery.nice-select.js"></script>
+    <script src="/js/mail-script.js"></script>
+    <script src="/js/stellar.js"></script>
+    <script src="/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="/vendors/isotope/isotope-min.js"></script>
+    <script src="/js/stellar.js"></script>
+    <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb&libraries=services"></script>
 	<script>

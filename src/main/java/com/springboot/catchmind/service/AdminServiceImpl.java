@@ -38,6 +38,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public String getNoticeSelectGson(String page) {
+		System.out.println("getNoticeSelectGson page ----> " +  page);
 		Map<String, Integer> param = (HashMap<String, Integer>)pagingService.getPageResult(page, "notice");
 		ArrayList<NoticeVo> list = noticeDao.select(param.get("startCount"), param.get("endCount"));
 		
