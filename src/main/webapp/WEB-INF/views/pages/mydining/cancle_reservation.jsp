@@ -6,14 +6,14 @@
 		<meta charset="UTF-8">
 		<title>CatchMind</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" href="resources/image/catchcon.png" type="image/png">
-        <script src="resources/js/jquery-3.6.4.min.js"></script>
-        <script src="resources/js/catchmind_hyeonsoo.js"></script>
+		<link rel="icon" href="/image/catchcon.png" type="image/png">
+        <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="/js/catchmind_hyeonsoo.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <!-- main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
-		<link rel="stylesheet" href="resources/css/jhsStyle.css">
-		<link rel="stylesheet" href="resources/css/hyeonsoo_join_consent.css">
+        <link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/jhsStyle.css">
+		<link rel="stylesheet" href="/css/hyeonsoo_join_consent.css">
 </head>
 <body>
 	<form name="cancelReservationForm" action="cancle_reservation_proc.do" method="post" id="joinConsentForm">
