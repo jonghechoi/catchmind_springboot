@@ -6,20 +6,20 @@
 
 <mapper namespace="com.springboot.catchmind.repository.FavoritesRepository">
 
-	<select id="getFavorites" parameterType="map" resultType="Favorites">
+	<select id="getFavorites" parameterType="com.springboot.catchmind.vo.FavoritesVo" resultType="int">
 		select count(*)
 		from favorites
 		where mid = #{mid} and sid = #{sid};
 	</select>
+
 	<delete id="deleteFavorites" parameterType="string">
 		delete from favorites where fid=#{fid}
 	</delete>
-	<select id="select" parameterType="string" resultType="FavoritesVo">
+
+	<select id="select" parameterType="string" resultType="int">
 		select f.fid, f.sid, f.fmemo, f.mid, s.sname, s.smphoto, s.lunch, s.dinner
 		from favorites f, shop s
 		where f.sid = S.sid  and mid = #{mid}
 	</select>
-
-
 
 </mapper>
