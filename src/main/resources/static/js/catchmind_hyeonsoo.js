@@ -26,7 +26,7 @@ $("#btn_cancleReservation").click(function(){
 **************************/
 	$('.btn_cancel').click(function() {
 	    var value = $(this).val();
-	    window.open('cancle_reservation.do?rid=' + value, '_blank', 'width=460,height=700');
+	    window.open('cancle_reservation?rid=' + value, '_blank', 'width=460,height=700');
 	});
 
 /***************************
@@ -78,7 +78,7 @@ $("#btn_cancleReservation").click(function(){
 				
 				$.ajax({
 					type : 'get',
-					url : "find_pass_emailCheck.do?memail="+memail,
+					url : "find_pass_emailCheck?memail="+memail,
 					success : function (data) {
 						console.log("data : " +  data);
 						checkInput.attr('disabled',false);
@@ -239,16 +239,16 @@ $("#btn_cancleReservation").click(function(){
 	회원가입,아이디,비밀번호 찾기 창 띄우기
 ******************************/
 	$("#btnFindID").click(function(){
-		window.open("find_id.do", "_blank", "width=800,height=600");
+		window.open("find_id", "_blank", "width=800,height=600");
 	});
 	$("#btnFindPass").click(function(){
-		window.open("find_pass.do", "_blank", "width=800,height=650");
+		window.open("find_pass", "_blank", "width=800,height=650");
 	});
 	$("#btnSignUp").click(function(){
-   	 	window.open("join_consent.do", "_blank", "width=460,height=700");
+   	 	window.open("join_consent", "_blank", "width=460,height=700");
 	});
 	$("#btnFindPass1").click(function(){
-		window.open("find_pass.do", "_self", "width=800,height=650");
+		window.open("find_pass", "_self", "width=800,height=650");
 	});
 	$(".a_find_ownerIdPass").click(function(){
 		alert("Contact the manager");
@@ -533,7 +533,7 @@ $(".review_label").click(function() {
 			return false;
 		}else{
 			window.close();
-			window.open("join.do", "_blank", "width=900,height=800");
+			window.open("join", "_blank", "width=900,height=800");
 		}
 	});
 	$("#conset_disagree").click(function(){

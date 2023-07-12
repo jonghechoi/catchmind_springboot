@@ -53,10 +53,10 @@
                             <li class="nav-item"><a class="nav-link" href="index.do">Home</a></li> 
                             <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
                             <li class="nav-item submenu dropdown active">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
@@ -90,7 +90,7 @@
                     <h2 class="page-cover-tittle">My Dining</h2>
                     <ol class="breadcrumb">
                         <li class="active">Visited</li>
-                        <li><a href="mydining_scheduled.do">Scheduled</a></li> <!-- 링크로 넘어갈때 mid 가져가야함  -->
+                        <li><a href="mydining_scheduled">Scheduled</a></li> <!-- 링크로 넘어갈때 mid 가져가야함  -->
                     </ol>
                 </div>
             </div>

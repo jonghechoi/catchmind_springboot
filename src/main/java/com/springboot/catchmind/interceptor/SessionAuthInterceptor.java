@@ -18,7 +18,7 @@ public class SessionAuthInterceptor extends HandlerInterceptorAdapter {
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
 
 		if(sessionVo == null) {
-			response.sendRedirect("/login.do");
+			response.sendRedirect("/login");
 			return false;
 		}
 		

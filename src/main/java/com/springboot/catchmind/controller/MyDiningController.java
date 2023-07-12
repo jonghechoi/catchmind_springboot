@@ -1,5 +1,7 @@
 package com.springboot.catchmind.controller;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +37,7 @@ public class MyDiningController {
 	/**
 	 *	�湮 �Ϸ��� �Ĵ� ����Ʈ ����¡ó�� - mydining_visited_paging.do
 	 */
-	@RequestMapping(value = "/mydining_visited_paging.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@RequestMapping(value = "/mydining_visited_paging", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String mydining_visited_paging(String page, HttpSession session) {
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
@@ -82,7 +84,7 @@ public class MyDiningController {
 		return new Gson().toJson(jlist);
 	}
     
-	@RequestMapping(value = "/mydining_visited.do", method = RequestMethod.GET)
+	@GetMapping("mydining_visited")
 	public String mydining_visited() {
 		return "mydining_visited";
 	}
@@ -91,19 +93,16 @@ public class MyDiningController {
 	/**
 	 * ���� ���� ������ - mydining_scheduled.do
 	 */
-	@RequestMapping(value = "/mydining_scheduled.do", method = RequestMethod.GET)
-	public ModelAndView mydining_scheduled(HttpSession session) {
-		ModelAndView model = new ModelAndView();
+	@GetMapping("mydining_scheduled")
+	public String mydining_scheduled(HttpSession session, Model model) {
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
 		
 		String mid = sessionVo.getMid();
 		
 		ArrayList<ScheduledVo> list = myDiningService.getScheduled(mid);
 //		myDiningService.getUpdateStatus();
-		model.addObject("list", list);
-		model.setViewName("mydining_scheduled");
-			
-		
-		return model;
+		model.addAttribute("list", list);
+
+		return "mydining_scheduled";
 	}
 }

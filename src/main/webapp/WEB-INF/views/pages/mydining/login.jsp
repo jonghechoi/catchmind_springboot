@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                         <form name="loginForm" action="login_proc.do" method="post">
+                         <form name="loginForm" action="login" method="post">
                            <ul class="loginUl">
 								<li>
 									<!-- <label>ID(Email)</label> -->
@@ -160,7 +160,7 @@
          <footer class="footer-area section_gap" style="padding:50px 0 0 0; background:rgb(255, 61, 0)">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3  col-md-6 col-sm-6 footer-widget1" style="padding-right:50px width:370px">
+                    <div class="col-lg-3  col-md-6 col-sm-6 footer-widget1" style="padding-right:50px; width:370px">
                         <div class="single-footer-widget single-footer-widget-left">
                             <h6 class="footer_title">About Agency</h6>
                             <p style="color:white">WAD Corp.
@@ -183,7 +183,7 @@
                             <p style="color:white">02-123-1234</p>
                         </div>
                         <div class="login_type_ao">
-                        	<a href="login_role.do" class="login_type_style">Admin / Shop</a>
+                        	<a href="login_role" class="login_type_style">Admin / Shop</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-widget3"  style="width:300px">

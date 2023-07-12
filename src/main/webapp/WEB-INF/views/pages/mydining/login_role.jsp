@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                         <form name="loginRoleForm" action="login_role_proc.do" method="post">
+                         <form name="loginRoleForm" action="login_role" method="post">
 	                         <div class="loginTypeCheck">
 								<input type="radio" name="roleid" value="SHOP" id="shopLogin"><span>Shop</span>
 								<input type="radio" name="roleid" value="ADMIN" id="adminLogin"><span>Admin</span>
@@ -156,7 +156,7 @@
                             <p style="color:white">02-123-1234</p>
                         </div>
                         <div class="login_type_ao">
-                        	<a href="login.do" class="login_type_style">User</a>
+                        	<a href="login" class="login_type_style">User</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-widget3"  style="width:300px">

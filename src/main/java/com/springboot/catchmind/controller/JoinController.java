@@ -2,9 +2,7 @@ package com.springboot.catchmind.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.catchmind.dao.MemberDao;
@@ -19,7 +17,7 @@ public class JoinController {
 	/**
 	 * ȸ������ ������� ������ - join_consent.do
 	 */
-	@RequestMapping(value = "/join_consent.do", method = RequestMethod.GET)
+	@GetMapping("join_consent")
 	public String join_consent() {
 		return "pages/mydining/join_consent";
 	}
@@ -27,7 +25,7 @@ public class JoinController {
 	/**
 	 * ȸ������ ó�� - join_proc.do
 	 */
-	@RequestMapping(value = "/join_proc.do", method = RequestMethod.POST)
+	@PostMapping("join")
 	public ModelAndView join_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
@@ -54,7 +52,7 @@ public class JoinController {
 	/**
 	 * ȸ������ ������ - join.do
 	 */
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	@GetMapping("join")
 	public String join() {
 		
 		return "pages/mydining/join";

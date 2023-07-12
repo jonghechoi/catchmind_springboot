@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="/css/hyeonsoo_join_consent.css">
 </head>
 <body>
-	<form name="cancelReservationForm" action="cancle_reservation_proc.do" method="post" id="joinConsentForm">
+	<form name="cancelReservationForm" action="cancle_reservation" method="post" id="joinConsentForm">
     	<input type="hidden" name="rid" value="${rid}">
 	    <ul class="join_box">
 	    	<li class="cancle_check">

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +25,7 @@ public class ReviewController {
 	/**
 	 * write_review_proc.do
 	 */
-	@RequestMapping(value = "write_review_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "write_review_proc", method = RequestMethod.POST)
 	public String write_review_proc(ReviewVo reviewVo, HttpServletRequest request, 
 											RedirectAttributes redirectAttributes)
 											throws Exception{
@@ -54,7 +56,7 @@ public class ReviewController {
 				reviewVo.getReviewfile1().transferTo(saveFile);
 				
 				redirectAttributes.addFlashAttribute("reviewWrite", "ok");
-				return "redirect:/mydining_visited.do";
+				return "redirect:/mydining_visited";
 			}
 		}else {
 			
@@ -66,15 +68,11 @@ public class ReviewController {
 	/**
 	 *  write_review.do
 	 */
-	@RequestMapping(value = "/write_review.do", method = RequestMethod.GET)
-	public ModelAndView write_review(String rid) {
-		ModelAndView model = new ModelAndView();
-		
+	@GetMapping("write_review")
+	public String write_review(String rid, Model model) {
 		ReviewVo reviewVo = reviewService.getReviewSelect(rid);
-		
-		model.addObject("reviewVo", reviewVo);
-		model.setViewName("pages/mydining/write_review");
-		
-		return model;
+		model.addAttribute("reviewVo", reviewVo);
+
+		return "/pages/mydining/write_review";
 	}
 }
