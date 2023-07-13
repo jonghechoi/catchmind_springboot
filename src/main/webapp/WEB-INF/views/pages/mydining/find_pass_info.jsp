@@ -26,7 +26,7 @@
 		<div>
 			<p class="find_Pass3">Password</p>
 		</div>
-		<form name="findPassUpdateForm" action="find_pass_update_proc.do" method="post">
+		<form name="findPassUpdateForm" action="find_pass_update" method="post">
 			<div>
 				<input type="password" name="mpass" class="findText" id="updatePass" placeholder="Password">
 			</div>

@@ -10,6 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.springboot.catchmind.vo.SessionVo;
 @Slf4j
 public class SessionAuthInterceptor extends HandlerInterceptorAdapter {
+	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 		throws Exception {
 		

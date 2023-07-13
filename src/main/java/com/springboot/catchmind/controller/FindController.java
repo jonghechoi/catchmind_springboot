@@ -38,9 +38,9 @@ public class FindController {
 		return mailSendService.findEmail(memail);
 	}
 	/**
-	 * ��й�ȣ �缳�� - find_pass_update_proc.do
+	 *  Find Pass Update process
 	 */
-	@RequestMapping(value="/find_pass_update_proc.do", method = RequestMethod.POST)
+	@PostMapping("find_pass_update")
 	public ModelAndView find_pass_update_proc(MemberVo memberVo, RedirectAttributes redirectAttributes, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
@@ -73,19 +73,22 @@ public class FindController {
 	}
 	
 	/**
-	 * ��й�ȣ ã�� ó�� - find_pass_proc.do
+	 * find_pass_proc
 	 */
-	@RequestMapping(value="/find_pass_proc", method = RequestMethod.POST)
+	@PostMapping(value="find_pass")
 	public ModelAndView find_pass_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
-		
-		MemberVo findPassInfo = findService.getFindPassInfo(memberVo);
-		
-		if(findPassInfo.getMid() != null) {
+		log.info("memberVo.getMemberId() -> {}" ,memberVo.getMemberId());
+		log.info("memberVo.getMemail -> {}", memberVo.getMemail());
+
+		int findPassResult = findService.getFindPassCheck(memberVo);
+
+		if(findPassResult == 1) {
+			MemberVo findPassInfo = findService.getFindPassInfo(memberVo);
+
 			int result = findService.getBeforeMpassUpdate(findPassInfo.getMid());
 			
 			if(result == 1) {
-//				session.setAttribute("findPassInfo", findPassInfo);
 				model.addObject("findPassInfo", findPassInfo);
 				model.setViewName("pages/mydining/find_pass_info");
 				
@@ -102,7 +105,7 @@ public class FindController {
 		return model;
 	}
 	/**
-	 * find_id_proc.do
+	 * Find id process
 	 */
 	@PostMapping("find_id")
 	public String find_id_proc(MemberVo memberVo, Model model) {

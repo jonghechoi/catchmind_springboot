@@ -5,10 +5,13 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.springboot.catchmind.service.FileServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,42 +22,27 @@ import com.springboot.catchmind.service.ReviewService;
 import com.springboot.catchmind.vo.ReviewVo;
 
 @Controller
+@Slf4j
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+
+	@Autowired
+	private FileServiceImpl fileService;
 	/**
-	 * write_review_proc.do
+	 * write_review_proc
 	 */
-	@RequestMapping(value = "write_review_proc", method = RequestMethod.POST)
-	public String write_review_proc(ReviewVo reviewVo, HttpServletRequest request, 
-											RedirectAttributes redirectAttributes)
-											throws Exception{
-		String viewName = "";
-		
-		String root_path = request.getSession().getServletContext().getRealPath("/");
-		String attach_path = "\\resources\\upload\\";
-		
-		if(reviewVo.getReviewfile1().getOriginalFilename() != null
-				&& !reviewVo.getReviewfile1().getOriginalFilename().equals("")) {
-			
-			UUID uuid = UUID.randomUUID();
-			String reviewphoto = reviewVo.getReviewfile1().getOriginalFilename();
-			String reviewsphoto = uuid +"_"+ reviewphoto;
-			
-			reviewVo.setReviewphoto(reviewphoto);
-			reviewVo.setReviewsphoto(reviewsphoto);
-		}else {
-			System.out.println("���Ͼ���");
-		}
-		
+	@PostMapping("write_review")
+	public String write_review_proc(ReviewVo reviewVo, RedirectAttributes redirectAttributes) throws Exception{
+
+		reviewVo = (ReviewVo)fileService.fileCheck(reviewVo);
+
 		int result = reviewService.getWriteReview(reviewVo);
 		int reviewYN = reviewService.getUpdateReviewYN(reviewVo.getRid());
 
 		if (result == 1) {
 			if(reviewYN == 1) {
-				File saveFile = new File(root_path + attach_path + reviewVo.getReviewsphoto());
-				reviewVo.getReviewfile1().transferTo(saveFile);
-				
+				fileService.fileSave(reviewVo);
 				redirectAttributes.addFlashAttribute("reviewWrite", "ok");
 				return "redirect:/mydining_visited";
 			}
@@ -62,7 +50,7 @@ public class ReviewController {
 			
 		}
 
-		return viewName;
+		return "redirect:/mydining_visited";
 	}
 	
 	/**

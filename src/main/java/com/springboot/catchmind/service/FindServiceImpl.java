@@ -20,7 +20,12 @@ public class FindServiceImpl implements FindService  {
 	public MemberVo getFindPassInfo(MemberVo memberVo) {
 		return memberDao.findPassInfo(memberVo);
 	}
-	
+
+	@Override
+	public int getFindPassCheck(MemberVo memberVo) {
+		return memberDao.findPassCheck(memberVo);
+	}
+
 	@Override
 	public int getBeforeMpassUpdate(String mid) {
 		return memberDao.beforeMpassUpdate(mid);

@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.springboot.catchmind.vo.ReviewVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -16,13 +18,52 @@ import com.springboot.catchmind.dao.ShopPhotoDao;
 import com.springboot.catchmind.vo.ShopPhotoVo;
 
 @Service("fileService")
+@Slf4j
 public class FileServiceImpl {
 	
 	@Autowired
 	private ShopServiceImpl shopService;
 	@Autowired
 	private ShopPhotoDao shopPhotoDao;
-	
+
+	/**
+	 * FileSave
+	 */
+	public void fileSave(ReviewVo reviewVo) throws Exception {
+		String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\upload\\";
+
+		if(reviewVo.getReviewfile1().getOriginalFilename() != null && !reviewVo.getReviewfile1().getOriginalFilename().equals("")) {
+			File saveFile = new File(projectPath + reviewVo.getReviewsphoto());
+			reviewVo.getReviewfile1().transferTo(saveFile);
+		}
+	}
+
+
+	/**
+	 * FileChecK
+	 */
+	public Object fileCheck(ReviewVo reviewVo) throws Exception {
+
+		if(reviewVo.getReviewfile1().getOriginalFilename() != null
+				&& !reviewVo.getReviewfile1().getOriginalFilename().equals("")) {
+
+			UUID uuid = UUID.randomUUID();
+			String reviewphoto = reviewVo.getReviewfile1().getOriginalFilename();
+			String reviewsphoto = uuid +"_"+ reviewphoto;
+
+			reviewVo.setReviewphoto(reviewphoto);
+			reviewVo.setReviewsphoto(reviewsphoto);
+
+			log.info("reviewVo.getReviewphoto() -> {}", reviewVo.getReviewphoto());
+			log.info("reviewVo.getReviewsphoto() -> {}", reviewVo.getReviewsphoto());
+		}else {
+			System.out.println("No File Upload");
+		}
+
+		return reviewVo;
+	}
+
+
 	/**
 	 *	multiFileCheck - ��Ƽ���� üũ ���
 	 */

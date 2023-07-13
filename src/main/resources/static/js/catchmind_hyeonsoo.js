@@ -87,62 +87,43 @@ $("#btn_cancleReservation").click(function(){
 					}			
 		}); // ajax
 	});
+
 /**************************
-	비밀번호 찾기 이메일 인증 값 체크
-***************************/
-	/*$("#btnRequestCheck").click(function () {
+ 비밀번호 찾기 폼 - 유효성 체크
+ **************************/
+$("#btnFindPass_p").click(function(){
+	if($("#textId").val() === ""){
+		alert("Please enter your ID");
+		$("#textId").focus();
+		return false;
+
+	}else if($("#email1").val() == ""){
+		alert("Please enter your Email");
+		$("#email1").focus();
+		return false;
+
+	}else if($("#email2").val() == ""){
+		alert("Please enter your Email");
+		$("#email2").focus();
+		return false;
+
+	}else if($("#find_request").val() === ""){
+		alert("Please enter Request Number");
+		$("#find_request").focus();
+		return false;
+
+	}else if($("#find_request").val() != code) {
 		const inputCode = $("#find_request").val();
 		const $resultMsg = $('#mail-check-warn');
-		if(inputCode === code){
-			$resultMsg.html('인증번호가 일치합니다.');
-			$resultMsg.css('color','green');
-			$('#mail-Check-Btn').attr('disabled',true);
-			$('#email1').attr('readonly',true);
-			$('#email1').attr('readonly',true);
-			$('#email2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
-	        $('#email2').attr('onChange', 'this.selectedIndex = this.initialSelect');
-	        
-		}else{
-			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-			$resultMsg.css('color','red');
-			return false;
-		}
-	});*/
-/**************************
-	비밀번호 찾기 폼 - 유효성 체크
-**************************/
-	$("#btnFindPass_p").click(function(){
-		if($("#textId").val() === ""){
-			alert("Please enter your ID");
-			$("#textId").focus();
-			return false;
-				
-		}else if($("#email1").val() == ""){
-			alert("Please enter your Email");
-			$("#email1").focus();
-			return false;
-			
-		}else if($("#email2").val() == ""){
-			alert("Please enter your Email");
-			$("#email2").focus();
-			return false;
-		
-		}else if($("#find_request").val() === ""){
-			alert("Please enter Request Number");
-			$("#find_request").focus();
-			return false;
-			
-		}else if($("#find_request").val() != code) {
-			const inputCode = $("#find_request").val();
-			const $resultMsg = $('#mail-check-warn');
-			$resultMsg.html('The authentication number does not match. Please check again');
-			$resultMsg.css('color','red');
-			return false;
-			
-		}else {
-			findPassForm.submit();
-		}
-	});
+		$resultMsg.html('The authentication number does not match. Please check again');
+		$resultMsg.css('color','red');
+		return false;
+
+	}else {
+		findPassForm.submit();
+	}
+});
+
 /**************************
 	아이디 찾기 폼 - 유효성 체크
 **************************/
@@ -458,31 +439,36 @@ $(document).ready(function(){
 	리뷰 유효성 체크
 *********************************/
 	$("#review_registe").click(function(){
-		if($("#reviewcontent").val() === ""){
+		if($("#reviewcontent").val() === "") {
 			alert("Please enter your Contents");
 			$("#reviewcontent").focus();
 			return false;
-			
-		}else if($("input[name='tasteStar']:checked").val() === ""){
+		}
+
+		if($("input[name='tasteStar']:checked").val() === "") {
 			alert("Please enter your TasteField Check");
 			return false;
-			
-		}else if($("input[name='moodStar']:checked").val() === ""){
+		}
+
+		if($("input[name='moodStar']:checked").val() === "") {
 			alert("Please enter your MoodField Check");
 			return false;
-			
-		}else if($("input[name='serviceStar']:checked").val() === ""){
+		}
+
+		if($("input[name='serviceStar']:checked").val() === "") {
 			alert("Please enter your SeviceField Check");
 			return false;
-		}else {
+		}
+		if($("#reviewcontent").val() === "" &&$("input[name='tasteStar']:checked").val() != "" &&
+			$("input[name='moodStar']:checked").val() === "" && $("input[name='serviceStar']:checked").val() === ""){
 			var tasteRating = $("input[name='tasteStar']:checked").val();
-		    var moodRating = $("input[name='moodStar']:checked").val();
-		    var serviceRating = $("input[name='serviceStar']:checked").val();
-		
-		    console.log("맛 별점: " + tasteRating);
-		    console.log("분위기 별점: " + moodRating);
-		    console.log("서비스 별점: " + serviceRating);
-		    
+			var moodRating = $("input[name='moodStar']:checked").val();
+			var serviceRating = $("input[name='serviceStar']:checked").val();
+
+			console.log("맛 별점: " + tasteRating);
+			console.log("분위기 별점: " + moodRating);
+			console.log("서비스 별점: " + serviceRating);
+
 			writeReviewForm.submit();
 		}
 	});

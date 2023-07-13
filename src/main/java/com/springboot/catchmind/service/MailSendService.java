@@ -1,27 +1,28 @@
 package com.springboot.catchmind.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.Random;
-
-@Component
+@Service
 public class MailSendService {
-	JavaMailSender mailSender;
-	private int authNumber; 
-	
+
+	@Autowired
+	private JavaMailSender mailSender;
+	private int authNumber;
+
 		public void makeRandomNumber() {
 			Random r = new Random();
 			int checkNum = r.nextInt(888888) + 111111;
-			System.out.println("Random Number : " + checkNum);
 			authNumber = checkNum;
 		}
-		
-		public String findEmail(String memail) {
-			System.out.println(memail);
+				public String findEmail(String memail) {
 			makeRandomNumber();
 			String setFrom = "uo1992@naver.com";
 			String toMail = memail;
@@ -33,12 +34,11 @@ public class MailSendService {
 				    "<br>" + 
 				    "Please enter the verification number in the verification code box.";
 			mailSend(setFrom, toMail, title, content);
-			System.out.println(mailSender);
 			return Integer.toString(authNumber);
 		}
 
 
-		public void mailSend(String setFrom, String toMail, String title, String content) { 
+		public void mailSend(String setFrom, String toMail, String title, String content) {
 			MimeMessage message = mailSender.createMimeMessage();
 			try {
 				MimeMessageHelper helper = new MimeMessageHelper(message,true,"utf-8");
