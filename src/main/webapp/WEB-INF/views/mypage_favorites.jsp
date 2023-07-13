@@ -158,20 +158,20 @@
                     <h2 class="title_color">Favorites</h2>
                 </div>
                 <div class="row mb_30">
-                    <c:forEach var="favoritesVo" items="${favoritesList}">
+                    <c:forEach var="favorites" items="${favoritesList}">
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img sang">
-                           <button type="button" id = "bookmark" onclick = "bookmark('${favoritesVo.fid}')" class="btnMark"><img src="resources/image/catch/free-icon-bookmark-4436444.png"></button>
+                           <button type="button" id = "bookmark" onclick = "bookmark('${favorites.fid}')" class="btnMark"><img src="resources/image/catch/free-icon-bookmark-4436444.png"></button>
                            <a id="kakao-share-btn" href="javascript:;" onclick="shareKakao()"><img src="/image/catch/free-icon-kakao-talk-3669973 (1).png" alt="카카오 공유하기" style="float: right;"></a>
-                            <img src="${favoritesVo.smphoto}" width="262px"; height="272px"; alt="">
+                            <img src="${favorites.smphoto}" width="262px"; height="272px"; alt="">
                             </div>
-                            <a href="#"><h4 class="sec_h4">${favoritesVo.sname}</h4></a>
+                            <a href="#"><h4 class="sec_h4">${favorites.sname}</h4></a>
                             <div>
-                            <h5>${favoritesVo.fmemo}</h5>
+                            <h5>${favorites.fmemo}</h5>
                             </div>
-                            <span>Lunch ${favoritesVo.lunch}</span><br>
-                            <span>Dinner ${favoritesVo.dinner}</span>
+                            <span>Lunch ${favorites.lunch}</span><br>
+                            <span>Dinner ${favorites.dinner}</span>
                             
                             
                         </div>

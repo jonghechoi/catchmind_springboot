@@ -141,7 +141,7 @@ public class LoginController {
 			if(sessionVo != null && sessionVo.getLoginResult() == 1) {
 				session.setAttribute("sessionVo", sessionVo);
 				redirectAttributes.addFlashAttribute("login_complete", "ok");
-				return "redirect:/index";
+				return "redirect:/mypage";
 			}
 			
 		}else {
