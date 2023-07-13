@@ -18,7 +18,7 @@
 	<script>
 		function adminReviewDatail(rid) {
 			$(document).on("click", "#btnReviewMainDetail_" + rid, function() {
-				window.open("admin_review_detail.do?goMain=false&rid=" + rid, 'Review Detail', 'width=700px,height=900px, scrollbars=yes');
+				window.open("admin_review_detail?goMain=false&rid=" + rid, 'Review Detail', 'width=700px,height=900px, scrollbars=yes');
 			});		
 		}			
 	</script>

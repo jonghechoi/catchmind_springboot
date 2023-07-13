@@ -43,7 +43,7 @@
 					<td>${memberVo.memberid}</td>
 					<td>${memberVo.memail}</td>
 					<td>${memberVo.mphone}</td>
-					<td><button type="button" name="name" id="btnMemberDetail${memberVo.rno}"><a href="member_info.do?mid=${memberVo.mid}">Detail</a></button></td>
+					<td><button type="button" name="name" id="btnMemberDetail${memberVo.rno}"><a href="member_info?mid=${memberVo.mid}">Detail</a></button></td>
 				</tr>
 				</c:forEach>
 				<tr>

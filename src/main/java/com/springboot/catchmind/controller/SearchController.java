@@ -22,7 +22,7 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
-	@RequestMapping(value="/search_list_proc.do", method=RequestMethod.GET)
+	@RequestMapping(value="/search_list_proc", method=RequestMethod.GET)
 	@ResponseBody
 	public String search_list_proc(String searchQuery) {
 		ArrayList<SearchVo> list = searchService.getSelect(searchQuery);
@@ -51,7 +51,7 @@ public class SearchController {
 		return new Gson().toJson(jlist);
 	}
 	
-	@RequestMapping(value="/search_list_book_now_proc.do", method=RequestMethod.GET)
+	@RequestMapping(value="/search_list_book_now_proc", method=RequestMethod.GET)
 	@ResponseBody
 	public String search_list_book_now_proc(String date, String location, String cuisine) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -87,7 +87,7 @@ public class SearchController {
 	/**
 	 *  �˻�
 	 */
-	@RequestMapping(value="search.do", method=RequestMethod.GET)
+	@RequestMapping(value="search", method=RequestMethod.GET)
 	public String search() {
 		return "/search";
 	}

@@ -13,7 +13,7 @@
 	<div class="content">
 		<section class="notice_update">
 			<h1 class="title">Notice</h1>
-			<form name="adminNoticeModificationForm" action="notice_update_proc.do" method="post">
+			<form name="adminNoticeModificationForm" action="notice_update_proc" method="post">
 				<input type="hidden" name="nid" id="titleInputHidden" value="${noticeDto.nid}">
 				<table>
 					<tr>

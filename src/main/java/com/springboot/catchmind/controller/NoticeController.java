@@ -31,17 +31,17 @@ public class NoticeController {
 	
 	
 	/**
-	 *	 notice.do
+	 *	 notice
 	 */
-	@RequestMapping(value = "/notice.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String notice() {
 		return "pages/notice/notice";
 	}
 	
 	/**
-	 *	notice_list_paging.do
+	 *	notice_list_paging
 	 */
-	@RequestMapping(value = "/notice_list_paging.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice_list_paging", method = RequestMethod.GET)
 	@ResponseBody
 	public String notice(String page) {
 		Map<String, Integer> param = (HashMap<String, Integer>)pagingService.getPageResult(page, "notice");
@@ -72,16 +72,16 @@ public class NoticeController {
 
 	
 	/**
-	 *	notice_content.do
+	 *	notice_content
 	 */
-	@RequestMapping(value = "/notice_content.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/notice_content", method = RequestMethod.GET)
 	public String notice_content(String nid, Model model) {
 		model.addAttribute("noticeVo", adminService.getNoticeSelect(nid));
 		return "pages/notice/notice_content";
 	}
 	
 	/**
-	 *	notice_upload.do
+	 *	notice_upload
 	 */
 	@RequestMapping(value = "/notice_upload", method = RequestMethod.POST)
 	@ResponseBody

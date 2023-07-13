@@ -100,7 +100,7 @@ public class MyDiningDao extends DBConn {
 //	}
 	
 	/**
-	 * �湮 �Ϸ��� �Ĵ� ����Ʈ ����¡ ó�� - mydining_visited.do
+	 * �湮 �Ϸ��� �Ĵ� ����Ʈ ����¡ ó�� - mydining_visited
 	 */
 	public ArrayList<ScheduledVo> visitedSelect(Map<String,String> param) {
 		ArrayList<ScheduledVo> list = new ArrayList<ScheduledVo>();
@@ -153,7 +153,7 @@ public class MyDiningDao extends DBConn {
 	}
 	
 	/**
-	 * �湮 �Ϸ��� �Ĵ� ����Ʈ ������ - mydining_visited.do
+	 * �湮 �Ϸ��� �Ĵ� ����Ʈ ������ - mydining_visited
 	 */
 	public ArrayList<ScheduledVo> visited(String mid) {
 		
@@ -206,7 +206,7 @@ public class MyDiningDao extends DBConn {
 //	}	
 	
 	/**
-	 * ���� ������ �Ĵ� ���� ������ - information.do
+	 * ���� ������ �Ĵ� ���� ������ - information
 	 */
 	public ScheduledVo information(String mid, String sid, String rid) {
 		Map<String, String> param = new HashMap<String, String>();
@@ -272,7 +272,7 @@ public class MyDiningDao extends DBConn {
 //	}
 	
 	/**
-	 * ���� ������ �Ĵ� ����Ʈ ��� - mydining_scheduled.do
+	 * ���� ������ �Ĵ� ����Ʈ ��� - mydining_scheduled
 	 */
 	public ArrayList<ScheduledVo> scheduled(String mid) {
 		List<ScheduledVo> list = sqlSession.selectList("mapper.mydining.scheduled", mid);

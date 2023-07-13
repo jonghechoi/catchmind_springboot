@@ -79,7 +79,7 @@
 		</div>
 	</section>
 	<section class="s2">
-		<button type="button" id="shopRegisterButton" onclick="location.href='admin_shop_registeration_enter.do'">Do you want to register a shop?</button>
+		<button type="button" id="shopRegisterButton" onclick="location.href='admin_shop_registeration_enter'">Do you want to register a shop?</button>
 	</section>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -103,7 +103,7 @@
     <script src="resources/js/jquery.form.js"></script>
     <script src="resources/js/jquery.validate.min.js"></script>
     <script src="resources/js/contact.js"></script>
-    <script src="resources/js/custom.js"></script>	
+    <script src="resources/js/custom.js"></script>
 	<!-- 달력 사용위한 소스 -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

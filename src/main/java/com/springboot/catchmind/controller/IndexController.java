@@ -21,7 +21,7 @@ public class IndexController {
 	private MapServiceImpl mapService;
 	
 	/**
-	 *	���������� - index.do
+	 *	���������� - index
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -31,7 +31,7 @@ public class IndexController {
 	/**
 	 *	���������� - ��� ���� ������Ʈ
 	 */
-	@RequestMapping(value = "/index_review.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@RequestMapping(value = "/index_review", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String index_review(Model model) {
 		return reviewSchedulerService.reviewMainChange();
@@ -40,7 +40,7 @@ public class IndexController {
 	/**
 	 *	���������� - ��Ŀ ���� ����
 	 */
-	@RequestMapping(value = "/index_mapMarker.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/index_mapMarker", method = RequestMethod.GET)
 	@ResponseBody
 	public String index_mapMarker(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
 		return mapService.mapMainToSearch(lat, lng);

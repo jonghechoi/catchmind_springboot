@@ -98,7 +98,7 @@ $(document).ready(function() {
         
         
         $.ajax({
-            url: "search_list_proc.do?searchQuery=" + searchQuery,
+            url: "search_list_proc?searchQuery=" + searchQuery,
             async:false,
             success: function(result) {
             fdata = result;
@@ -108,7 +108,7 @@ $(document).ready(function() {
 
                 for (const obj of jdata.jlist) {
                 	//console.log(obj.sid);
-                    output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+                    output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -169,7 +169,7 @@ $(document).ready(function() {
                 let output = "";
 
                 for (const obj of searchData) {
-					output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+					output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -231,7 +231,7 @@ $(document).ready(function() {
                 let output = "";
 
                 for (const obj of searchData) {
-               		output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+               		output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -334,7 +334,7 @@ $(document).ready(function() {
                 let output = "";
 				
                 for (const obj of searchData) {
-               		output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+               		output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";

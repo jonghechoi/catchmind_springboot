@@ -41,11 +41,11 @@
 				
 				document.getElementById(btnUpdateId).addEventListener("click", function() {
 					$.ajax({
-						url: "admin_review_detail_data.do?rid=" + reviewRidStr,
+						url: "admin_review_detail_data?rid=" + reviewRidStr,
 						success: function(result) {
 							if(result == 1) {
 								alert("Success Upload to Main.")
-								window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+								window.open("admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 							}else {
 								alert("Fail Upload to Main.")
 							}
@@ -58,14 +58,14 @@
 				
 				document.getElementById(btnDeleteId).addEventListener("click", function() {
 					$.ajax({
-						url: "admin_review_detail_delete_data.do?rid=" + reviewRidStr,
+						url: "admin_review_detail_delete_data?rid=" + reviewRidStr,
 						success: function(result) {
 							if(result == 1) {
 								alert("Success Review Delete From Main");
-								window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+								window.open("admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 							}else {
 								alert("Fail to Delete Review From Main");
-								window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+								window.open("admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 							}
 						}
 					})
@@ -78,7 +78,7 @@
 	<div id="memberDetailModification">
 		<div class="memberInfo">
 			<h3 style="border-bottom:2px solid lightgray"> Review Detail </h3>
-			<form name="memberDetailModificationForm" action="member_modify_update.do" method="post">
+			<form name="memberDetailModificationForm" action="member_modify_update" method="post">
 				<ul class="memberDetail">
 					<li>
 						<span>No  :  </span>

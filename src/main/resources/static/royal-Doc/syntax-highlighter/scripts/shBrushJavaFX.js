@@ -40,7 +40,7 @@
 			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'comments' },
 			{ regex: SyntaxHighlighter.regexLib.multiLineCComments,		css: 'comments' },
 			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,		css: 'string' },
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string' },
+			{ regex: SyntaxHighlighter.regexLibubleQuotedString,		css: 'string' },
 			{ regex: /(-?\.?)(\b(\d*\.?\d+|\d+\.?\d*)(e[+-]?\d+)?|0x[a-f\d]+)\b\.?/gi, css: 'color2' },	// numbers
 			{ regex: new RegExp(this.getKeywords(datatypes), 'gm'),		css: 'variable' },	// datatypes
 			{ regex: new RegExp(this.getKeywords(keywords), 'gm'),		css: 'keyword' }

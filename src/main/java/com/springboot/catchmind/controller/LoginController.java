@@ -2,8 +2,11 @@ package com.springboot.catchmind.controller;
 
 import javax.servlet.http.HttpSession;
 
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,7 +48,7 @@ public class LoginController {
 	/**
 	 *  login_role_proc.do
 	 */
-	@RequestMapping(value = "/login_role_proc.do", method = RequestMethod.POST)
+	@PostMapping("login_role")
 	public ModelAndView login_role_proc(MemberVo memberVo, HttpSession session, ShopVo shopVo, RedirectAttributes redirectAttributes) 
 															throws Exception{
 		ModelAndView model = new ModelAndView();
@@ -58,10 +61,10 @@ public class LoginController {
 				session.setAttribute("sessionVo", sessionVo);
 				
 				redirectAttributes.addFlashAttribute("loginRole_complete", "ok");
-				model.setViewName("redirect:/index.do");
+				model.setViewName("redirect:/index");
 			}else {
 				redirectAttributes.addFlashAttribute("loginRole_fail", "no");
-				model.setViewName("redirect:/login_role.do");
+				model.setViewName("redirect:/login_role");
 			}
 			
 		}else if(shopVo.getSid() != null && memberVo.getMid() == null) {
@@ -73,14 +76,14 @@ public class LoginController {
 				session.setAttribute("sessionVo", sessionVo);
 				
 				redirectAttributes.addFlashAttribute("loginRole_complete", "ok");
-				model.setViewName("redirect:/index.do");
+				model.setViewName("redirect:/index");
 			}else {
 				redirectAttributes.addFlashAttribute("loginRole_fail", "no");
-				model.setViewName("redirect:/login_role.do");
+				model.setViewName("redirect:/login_role");
 			}
 		}else {
 			redirectAttributes.addFlashAttribute("loginRole_fail", "no");
-			model.setViewName("redirect:/login_role.do");
+			model.setViewName("redirect:/login_role");
 		}
 		return model;
 	}
@@ -88,7 +91,7 @@ public class LoginController {
 	/**
 	 *  login_role.do 
 	 */
-	@RequestMapping(value = "/login_role.do", method = RequestMethod.GET)
+	@GetMapping("login_role")
 	public String login_role() {
 		return "pages/mydining/login_role";
 	}
@@ -107,14 +110,14 @@ public class LoginController {
 			SessionVo sessionVo = memberService.getKakaoLogin(memberVo);
 			session.setAttribute("sessionVo", sessionVo);
 			redirectAttributes.addFlashAttribute("kakoLogin_complete", "ok");
-			viewName = "redirect:/index.do";
+			viewName = "redirect:/index";
 			
 		}else if(idCheck == 0) {
 			int joinCheck = memberService.getKakaoJoin(memberVo);
 			
 			if(joinCheck == 1) {
 				redirectAttributes.addFlashAttribute("kakoLogin_complete", "ok");
-				viewName = "redirect:/index.do";
+				viewName = "redirect:/index";
 				
 			}else {
 				System.out.println("Error");
@@ -128,7 +131,7 @@ public class LoginController {
 	/**
 	 *  login_proc.do
 	 */
-	@RequestMapping(value = "/login_proc.do", method = RequestMethod.POST)
+	@PostMapping("login")
 	public String login_proc(MemberVo memberVo, HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		int result = memberService.getLoginIdCheck(memberVo);
@@ -138,24 +141,23 @@ public class LoginController {
 			if(sessionVo != null && sessionVo.getLoginResult() == 1) {
 				session.setAttribute("sessionVo", sessionVo);
 				redirectAttributes.addFlashAttribute("login_complete", "ok");
-				return "redirect:/index.do";
+				return "redirect:/index";
 			}
 			
 		}else {
 			redirectAttributes.addFlashAttribute("login_fail", "no");
-			return"redirect:/login.do";
+			return"redirect:/login";
 		}
 		
-		return "redirect:/index.do";
+		return "redirect:/index";
 	}
 
 	/**
 	 *  login.do
 	 */
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@GetMapping("login")
 	public String login() {
-		
-		return "pages/mydining/login";
+		return "/pages/mydining/login";
 	}
 
 }

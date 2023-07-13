@@ -57,7 +57,7 @@
 			{ regex: /#.*$/gm,										css: 'comments' },  // one line comments
 			{ regex: /\$[a-zA-Z0-9]+\b/g,							css: 'value'   },   // variables $Computer1
 			{ regex: /\-[a-zA-Z]+\b/g,								css: 'keyword' },   // Operators    -not  -and  -eq
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,	css: 'string' },    // strings
+			{ regex: SyntaxHighlighter.regexLibubleQuotedString,	css: 'string' },    // strings
 			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,	css: 'string' },    // strings
 			{ regex: new RegExp(this.getKeywords(keywords), 'gmi'),	css: 'keyword' },
 			{ regex: new RegExp(this.getKeywords(alias), 'gmi'),	css: 'keyword' }

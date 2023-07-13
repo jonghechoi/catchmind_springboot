@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,9 +30,10 @@ public class MyPageController {
 	@Autowired
 	private MemberDao memberDao;
 	/**
-	 * mypage.do
+	 * mypage
 	 */
-	@RequestMapping(value = "/mypage.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView mypage(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
@@ -46,46 +48,39 @@ public class MyPageController {
 	}
 	
 	/**
-	 *  mypage_favorites.do
+	 *  mypage_favorites
 	 */
-	@RequestMapping(value = "/mypage_favorites.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_favorites", method = RequestMethod.GET)
 	public ModelAndView mypage_favorites(String mid) {
 		ModelAndView model = new ModelAndView();
 		ArrayList<FavoritesVo> favoritesList = favoritesDao.select(mid);
-		
-        
+
+
         model.addObject("favoritesList", favoritesList);
         model.addObject("mid", mid);
         model.setViewName("mypage_favorites");
-        
-        return model;  
+
+        return model;
 	}
 	
 	/**
-	 * bookmark_delete_proc.do
+	 * bookmark_delete_proc
 	 */
-	@RequestMapping(value = "/bookmark_delete_proc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/bookmark_delete_proc", method = RequestMethod.GET)
 	public String bookmark_delete_proc(String fid, String mid) {
 		
 		String viewName = "";
 		int result = favoritesDao.deleteFavorites(fid);
 		if(result == 1) {
-			viewName = "redirect:/mypage_favorites.do?mid="+mid;
+			viewName = "redirect:/mypage_favorites?mid="+mid;
 		}
         return viewName;  
 	}
-	
-	/**
-	 *  mypage_editprofile.do
-	 */
-	/*
-	 * @RequestMapping(value = "/mypage_editprofile.do", method = RequestMethod.GET)
-	 * public String mypage_editprofile() { return "/mypage_editprofile"; }
-	 */
+
 	/** 
-	 * mypage_review.do
+	 * mypage_review
 	 */
-	@RequestMapping(value = "/mypage_review.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_review", method = RequestMethod.GET)
 	public ModelAndView mypage_review(String mid, String sid) {
 		ModelAndView model = new ModelAndView();
 		ArrayList<ReviewVo> reviewList = reviewDao.selectMid(mid);
@@ -95,34 +90,13 @@ public class MyPageController {
         
         return model;
 	}
-	
-	 
-	
-	
-//	  @RequestMapping(value = "/mypage_review.do", method = RequestMethod.POST) 
-//	  public String mypageReview(@RequestParam("uploadImgNum") String uploadImgNum,
-//			  					 @RequestParam("imageFile") MultipartFile imageFile, 
-//			  					 HttpServletRequest request) { 
-//		  String rootPath = request.getSession().getServletContext().getRealPath("/"); 
-//		  String attachPath = "\\resources\\upload\\"; 
-//		  String imgPath = rootPath + attachPath;
-//	  
-//		  if (!imageFile.isEmpty()) { 
-//			  try { 
-//				  String originalFilename = imageFile.getOriginalFilename();
-//		  
-//				  String savedFilePath = imgPath + originalFilename;
-//				  System.out.println(">>>>>>>"+savedFilePath); imageFile.transferTo(new
-//				  File(savedFilePath));
-//			  } 
-//			  catch (Exception e) {
-//				  e.printStackTrace(); 
-//			  } 
-//		  }
-//	  
-//		  return "redirect:/mypage"; 
-//	  }
-	 
+
+
+	//@GetMapping("mypage")
+	//public String mypage(){
+		//return "/mypage/mypage";
+	//}
+
 }
 
 	

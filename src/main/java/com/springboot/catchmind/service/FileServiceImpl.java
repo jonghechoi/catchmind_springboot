@@ -148,7 +148,7 @@ public class FileServiceImpl {
 	 */
 	public void multiFileDelete(String sid, HashMap<String, Integer> map, HttpServletRequest request) {
 		String root_path = request.getSession().getServletContext().getRealPath("/"); 
-		String attach_path = "\\resources\\upload\\";	
+		String attach_path = "\\resources\\upload\\";
 		
 		// ������Ʈ �Ǹ鼭 ��������� �̹��� ���� ����
 		ShopPhotoVo shopPhotoVo = shopService.getShopPhotoSelect(sid);

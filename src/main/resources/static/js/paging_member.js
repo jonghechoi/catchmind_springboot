@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "member_list_paging.do?page="+page,
+			url: "member_list_paging?page="+page,
 			success: function(result){
 				let jdata = JSON.parse(result);
 			
@@ -27,7 +27,7 @@ $(document).ready(function() {
 					output += "<td>" + obj.memberid + "</td>";
 					output += "<td>" + obj.memail + "</td>";
 					output += "<td>" + obj.mphone + "</td>";
-					output += "<td><button type='button' name='name' id='btnMemberDetail" + obj.rno + "'><a href='member_info.do?mid=" + obj.mid + "'>Detail</a></button></td>";
+					output += "<td><button type='button' name='name' id='btnMemberDetail" + obj.rno + "'><a href='member_info?mid=" + obj.mid + "'>Detail</a></button></td>";
 					output += "</tr>";
 				}			
 			

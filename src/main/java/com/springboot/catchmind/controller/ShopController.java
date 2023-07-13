@@ -49,9 +49,9 @@ public class ShopController {
 	private FileServiceImpl fileService;
 	
 	/**
-	 *	����������Ȯ�������� - shop_information.do 
+	 *	����������Ȯ�������� - shop_information 
 	 */
-	@RequestMapping(value = "/shop_information.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/shop_information", method = RequestMethod.GET)
 	public String shop_information(HttpSession session, String sid, Model model) {
 		String destination = "";
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
@@ -68,15 +68,15 @@ public class ShopController {
 			
 			destination = "pages/shop/shop_information"; 
 		}else {
-			destination = "redirect:/login_role.do";
+			destination = "redirect:/login_role";
 		}
 		return destination;
 	}
 
 	/**
-	 *	�������̹������ε� �� ������Ʈ - shop_imformation.do *** form ���� ***
+	 *	�������̹������ε� �� ������Ʈ - shop_imformation *** form ���� ***
 	 */
-	@RequestMapping(value = "/shop_information_photo.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shop_information_photo", method = RequestMethod.POST)
 	@ResponseBody
 	public String shop_information_photo(@RequestParam("sid") String sid,
 										 @RequestParam("files") String files,
@@ -109,9 +109,9 @@ public class ShopController {
 	}
 
 	/**
-	 *	�������̹��� preview - shop_information_photoBring.do
+	 *	�������̹��� preview - shop_information_photoBring
 	 */
-	@RequestMapping(value = "/shop_information_photoBring.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/shop_information_photoBring", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<String> shop_information_photoBring(@RequestParam("sid") String sid,
 															  @RequestParam("count") int count,
@@ -180,18 +180,18 @@ public class ShopController {
 	}
 	
 	/**
-	 *	�����������Է� - shop_information_proc.do 
+	 *	�����������Է� - shop_information_proc 
 	 */
-	@RequestMapping(value = "/shop_information_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shop_information_proc", method = RequestMethod.POST)
 	@ResponseBody
 	public String shop_information_proc(ShopVo shopVo) {
 		// SCONFIRMYN�� 'N'�̸� ù����̹Ƿ� INSERT, 'Y'�̸� �����̹Ƿ� UPDATE
 		int InsertOrUpdate = shopService.getRegistrationCheck(shopVo);
 		if(InsertOrUpdate == 0) {
-			System.out.println("shop_information_proc.do�� InsertOrUpdate�� 0�϶� --> " + InsertOrUpdate);
+			System.out.println("shop_information_proc�� InsertOrUpdate�� 0�϶� --> " + InsertOrUpdate);
 			String.valueOf(shopService.getDetailInsert(shopVo));
 		}else {
-			System.out.println("shop_information_proc.do�� InsertOrUpdate�� 1�϶� --> " + InsertOrUpdate);
+			System.out.println("shop_information_proc�� InsertOrUpdate�� 1�϶� --> " + InsertOrUpdate);
 			String.valueOf(shopService.getDetailUpdate(shopVo));
 		}
 		
@@ -199,9 +199,9 @@ public class ShopController {
 	}
 	
 	/**
-	 *	�����������Է�(facility) - shop_information_facility_proc.do 
+	 *	�����������Է�(facility) - shop_information_facility_proc 
 	 */
-	@RequestMapping(value = "/shop_information_facility_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/shop_information_facility_proc", method = RequestMethod.POST)
 	@ResponseBody
 	public String shop_information_facility_proc(FacilityVo facilityVo) {
 		return String.valueOf(shopService.getDetailFacilityUpdate(facilityVo));
@@ -210,7 +210,7 @@ public class ShopController {
 	/**
 	 *	�����������Է� - �� facility �Է� �˾�
 	 */
-	@RequestMapping(value = "/shop_information_facility.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/shop_information_facility", method = RequestMethod.GET)
 	public String shop_information_facility(HttpSession session, String sid, Model model) {
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
 		FacilityVo facilityVo = shopService.getShopFacilitySelect(sid);
@@ -219,9 +219,9 @@ public class ShopController {
 	}
 	
 	/**
-	 *	��������������Ȯ�������� - shop_reservation.do
+	 *	��������������Ȯ�������� - shop_reservation
 	 */
-	@RequestMapping(value = "/shop_reservation.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/shop_reservation", method = RequestMethod.GET)
 	public String shop_reservation(HttpSession session, String sid, Model model) {
 		String destination = "";
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
@@ -230,15 +230,15 @@ public class ShopController {
 			model.addAttribute("shopVo", shopService.getShopInfoSelect(sessionVo.getSid()));
 			destination = "pages/shop/shop_reservation";
 		}else {
-			destination = "redirect:/login_role.do";
+			destination = "redirect:/login_role";
 		}
 		return destination;
 	}
 	
 	/**
-	 *	��������������Ȯ�������� ������ - shop_reservation_proc.do
+	 *	��������������Ȯ�������� ������ - shop_reservation_proc
 	 */
-	@RequestMapping(value = "/shop_reservation_proc.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@RequestMapping(value = "/shop_reservation_proc", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String shop_reservation_proc(@RequestParam("sid") String sid,
 	                                    @RequestParam("startDate") String startDate,

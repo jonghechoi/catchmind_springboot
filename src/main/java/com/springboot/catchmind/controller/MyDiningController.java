@@ -33,9 +33,9 @@ public class MyDiningController {
 	
 	
 	/**
-	 *	�湮 �Ϸ��� �Ĵ� ����Ʈ ����¡ó�� - mydining_visited_paging.do
+	 *	�湮 �Ϸ��� �Ĵ� ����Ʈ ����¡ó�� - mydining_visited_paging
 	 */
-	@RequestMapping(value = "/mydining_visited_paging.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
+	@RequestMapping(value = "/mydining_visited_paging", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String mydining_visited_paging(String page, HttpSession session) {
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
@@ -82,16 +82,16 @@ public class MyDiningController {
 		return new Gson().toJson(jlist);
 	}
     
-	@RequestMapping(value = "/mydining_visited.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mydining_visited", method = RequestMethod.GET)
 	public String mydining_visited() {
 		return "mydining_visited";
 	}
 	
 	
 	/**
-	 * ���� ���� ������ - mydining_scheduled.do
+	 * ���� ���� ������ - mydining_scheduled
 	 */
-	@RequestMapping(value = "/mydining_scheduled.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/mydining_scheduled", method = RequestMethod.GET)
 	public ModelAndView mydining_scheduled(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");

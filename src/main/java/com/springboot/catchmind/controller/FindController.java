@@ -28,18 +28,18 @@ public class FindController {
 	private MailSendService mailSendService;
 	
 	/**
-	 * ��й�ȣ ã�� �̸��� Ȯ�� �� ���� - find_pass_emailCheck.do
+	 * ��й�ȣ ã�� �̸��� Ȯ�� �� ���� - find_pass_emailCheck
 	 */
-	@RequestMapping(value="/find_pass_emailCheck.do", method = RequestMethod.GET)
+	@RequestMapping(value="/find_pass_emailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String find_pass_emailCheck(String memail) {
 		System.out.println("�̸��� ���� �̸��� : " + memail);
 		return mailSendService.findEmail(memail);
 	}
 	/**
-	 * ��й�ȣ �缳�� - find_pass_update_proc.do
+	 * ��й�ȣ �缳�� - find_pass_update_proc
 	 */
-	@RequestMapping(value="/find_pass_update_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value="/find_pass_update_proc", method = RequestMethod.POST)
 	public ModelAndView find_pass_update_proc(MemberVo memberVo, RedirectAttributes redirectAttributes, HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
@@ -52,7 +52,7 @@ public class FindController {
 			
 			if(passUpdate == 1) {
 				redirectAttributes.addFlashAttribute("pass_update", "ok");
-				model.setViewName("redirect:/login.do");
+				model.setViewName("redirect:/login");
 			}
 			
 		}else if(memberVo.getMpass().equals(beforemPass.getBeforemPass())) {
@@ -72,9 +72,9 @@ public class FindController {
 	}
 	
 	/**
-	 * ��й�ȣ ã�� ó�� - find_pass_proc.do
+	 * ��й�ȣ ã�� ó�� - find_pass_proc
 	 */
-	@RequestMapping(value="/find_pass_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value="/find_pass_proc", method = RequestMethod.POST)
 	public ModelAndView find_pass_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
@@ -101,9 +101,9 @@ public class FindController {
 		return model;
 	}
 	/**
-	 * ���̵� ã�� ó�� - find_id_proc.do
+	 * ���̵� ã�� ó�� - find_id_proc
 	 */
-	@RequestMapping(value="/find_id_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value="/find_id_proc", method = RequestMethod.POST)
 	public ModelAndView find_id_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		MemberVo findMember = findService.getFindId(memberVo);
@@ -120,17 +120,17 @@ public class FindController {
 	}
 	
 	/**
-	 * ��й�ȣ ã�� ������ - find_pass.do
+	 * ��й�ȣ ã�� ������ - find_pass
 	 */
-	@RequestMapping(value = "/find_pass.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/find_pass", method = RequestMethod.GET)
 	public String find_pass() {
 		
 		return "pages/mydining/find_pass";
 	}
 	/**
-	 * ���̵� ã�� ������ - find_id.do
+	 * ���̵� ã�� ������ - find_id
 	 */
-	@RequestMapping(value = "/find_id.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/find_id", method = RequestMethod.GET)
 	public String find_id() {
 		
 		return "pages/mydining/find_id";

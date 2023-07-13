@@ -39,9 +39,9 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<a href="notice_update.do?nid=${noticeDto.nid}">
+						<a href="notice_update?nid=${noticeDto.nid}">
 							<button type="button">Revise</button></a>
-						<a href="notice_delete.do?nid=${noticeDto.nid}">
+						<a href="notice_delete?nid=${noticeDto.nid}">
 							<button type="button">Remove</button></a> 
 						<button type="button" class="toList">List</button>
 					</td>

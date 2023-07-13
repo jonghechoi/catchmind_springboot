@@ -22,7 +22,7 @@ public class InformationController {
 	/**
 	 * �ϸ�ũ üũ �� �߰� ����
 	 */
-	@RequestMapping(value = "/information_bookmark_proc.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/information_bookmark_proc", method = RequestMethod.GET)
 	public String information_bookmark_proc(HttpSession session, String sid, String rid, RedirectAttributes redirectAttributes) {
 		String viewName = "";
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
@@ -35,7 +35,7 @@ public class InformationController {
 			
 			if(deleteBookmark == 1) {
 				redirectAttributes.addFlashAttribute("information_bookmark","delete");
-				viewName = "redirect:/information.do?sid="+sid+"&rid="+rid;
+				viewName = "redirect:/information?sid="+sid+"&rid="+rid;
 			}
 			
 		}else {
@@ -43,7 +43,7 @@ public class InformationController {
 			
 			if(insertBookmark == 1) {
 				redirectAttributes.addFlashAttribute("information_bookmark","insert");
-				viewName = "redirect:/information.do?sid="+sid+"&rid="+rid;
+				viewName = "redirect:/information?sid="+sid+"&rid="+rid;
 			}
 		}
 		
@@ -54,9 +54,9 @@ public class InformationController {
 	
 	
 	/**
-	 * ���� ��� ó�� - cancle_reservation_proc.do
+	 * ���� ��� ó�� - cancle_reservation_proc
 	 */
-	@RequestMapping(value = "/cancle_reservation_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/cancle_reservation_proc", method = RequestMethod.POST)
 	public ModelAndView cancle_reservation_proc(String rid, RedirectAttributes redirectAttributes) {
 		ModelAndView model = new ModelAndView();
 		
@@ -64,7 +64,7 @@ public class InformationController {
 		
 		if(result == 1) {
 			redirectAttributes.addFlashAttribute("cancle_reservation", "ok");
-			model.setViewName("redirect:/mydining_scheduled.do");
+			model.setViewName("redirect:/mydining_scheduled");
 		}
 		
 		return model;
@@ -72,9 +72,9 @@ public class InformationController {
 	
 	
 	/**
-	 * ���� ��� - cancle_reservation.do
+	 * ���� ��� - cancle_reservation
 	 */
-	@RequestMapping(value = "/cancle_reservation.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/cancle_reservation", method = RequestMethod.GET)
 	public ModelAndView cancle_reservation(String rid) {
 		ModelAndView model = new ModelAndView();
 		model.addObject("rid", rid);
@@ -83,9 +83,9 @@ public class InformationController {
 	}
 	
 	/**
-	 * ���� �Ĵ� ���� - information.do
+	 * ���� �Ĵ� ���� - information
 	 */
-	@RequestMapping(value = "/information.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/information", method = RequestMethod.GET)
 	public ModelAndView information(HttpSession session, String sid, String rid) {
 		ModelAndView model = new ModelAndView();
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");

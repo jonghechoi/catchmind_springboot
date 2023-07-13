@@ -13,11 +13,11 @@
 		$(document).ready(function() {
 			
 /* 		  $("#btnMemberModification").click(function() {
-	   		const popup = window.open('member_modify.do', 'Member Modification', 'width=700px,height=700px,scrollbars=yes');
+	   		const popup = window.open('member_modify', 'Member Modification', 'width=700px,height=700px,scrollbars=yes');
 		  }); */
 		  
 		  // 다른 페이지의 URL
-		  /* let url = "member.do";
+		  /* let url = "member";
 		  $.get(url, function(data) {
      	    // 다른 페이지의 HTML에서 원하는 요소 가져오기
      	    let spanObjArr = $(data).find(".memberDetail div span:last-child");

@@ -21,9 +21,9 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	/**
-	 * write_review_proc.do
+	 * write_review_proc
 	 */
-	@RequestMapping(value = "write_review_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "write_review_proc", method = RequestMethod.POST)
 	public String write_review_proc(ReviewVo reviewVo, HttpServletRequest request, 
 											RedirectAttributes redirectAttributes)
 											throws Exception{
@@ -54,7 +54,7 @@ public class ReviewController {
 				reviewVo.getReviewfile1().transferTo(saveFile);
 				
 				redirectAttributes.addFlashAttribute("reviewWrite", "ok");
-				return "redirect:/mydining_visited.do";
+				return "redirect:/mydining_visited";
 			}
 		}else {
 			
@@ -64,9 +64,9 @@ public class ReviewController {
 	}
 	
 	/**
-	 *  write_review.do
+	 *  write_review
 	 */
-	@RequestMapping(value = "/write_review.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
 	public ModelAndView write_review(String rid) {
 		ModelAndView model = new ModelAndView();
 		

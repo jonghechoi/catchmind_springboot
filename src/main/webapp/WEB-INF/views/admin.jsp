@@ -6,22 +6,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="resources/image/catchcon.png" type="image/png">
+	<link rel="icon" href="/image/catchcon.png" type="image/png">
 	<title>Catch Mind</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-	<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-	<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-	<link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/vendors/linericon/style.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
 	<!-- main css -->
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<link rel="stylesheet" href="resources/css/responsive.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<link rel="stylesheet" href="/css/responsive.css">
     <!--================수정사항 스크립트, 스타일 ================-->
-    <script src="resources/js/jquery-3.2.1.min.js"></script>
-    <script src="resources/js/jonghe.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="/js/jonghe.js"></script>
 </head>
 	<body>
         <!--================Header Area =================-->
@@ -29,7 +29,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="resources/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,28 +39,28 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
         				<!--================ 변경하는 부분 =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index.do">Home</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
                             <li class="nav-item submenu dropdown">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information.do">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do">Reservation</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="shop_information">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation">Reservation</a></li>
 	                                </ul>
 	                            </li>                     
                             </c:if>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item active"><a class="nav-link" href="admin.do">Admin</a></li>                      
+                            	<li class="nav-item active"><a class="nav-link" href="admin">Admin</a></li>
                         	</c:if>
                         <!--================ 변경하는 부분 =================-->
                         </ul>
@@ -97,23 +97,23 @@
 					</ul>
            		</div>
  	           	<div class="member">
- 	           		<iframe src="admin_member_list.do" id="memberIframe"
+ 	           		<iframe src="admin_member_list" id="memberIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>
 	           	<div class="shopInformation">
-	           		<iframe src="admin_shop_information.do" id="shopInformationIframe"
+	           		<iframe src="admin_shop_information" id="shopInformationIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>
 	           	<div class="reservation">
-	           		<iframe src="admin_shop_registeration_check.do" id="reserveIframe"
+	           		<iframe src="admin_shop_registeration_check" id="reserveIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>	           	
 	           	<div class="review">
-	           		<iframe src="admin_review.do" id="reviewIframe"
+	           		<iframe src="admin_review" id="reviewIframe"
 				    	scrolling="yes" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>
 	           	<div class="notice">
-	           		<iframe src="notice_list.do" id="noticeIframe"
+	           		<iframe src="notice_list" id="noticeIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div> 
            	</div>
@@ -151,14 +151,14 @@
                         <div class="single-footer-widget instafeed">
                             <h6 class="footer_title">InstaFeed</h6>
                             <ul class="list_style instafeed d-flex flex-wrap">
-                                <li><img src="resources/image/instagram/Image-01.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-02.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-03.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-04.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-05.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-06.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-07.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-08.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-01.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-02.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-03.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-04.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-05.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-06.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-07.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-08.jpg" alt=""></li>
                             </ul>
                         </div>
                     </div>						
@@ -201,26 +201,26 @@
         <!--================End Contact Success and Error message Area =================-->
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="resources/js/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/popper.js"></script>
-        <script src="resources/js/bootstrap.min.js"></script>
-        <script src="resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="resources/js/jquery.ajaxchimp.min.js"></script>
-        <script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-        <script src="resources/vendors/nice-select/js/jquery.nice-select.js"></script>
-        <script src="resources/js/mail-script.js"></script>
-        <script src="resources/js/stellar.js"></script>
-        <script src="resources/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
-        <script src="resources/vendors/isotope/isotope-min.js"></script>
-        <script src="resources/js/stellar.js"></script>
-        <script src="resources/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="/vendors/nice-select/js/jquery.nice-select.js"></script>
+        <script src="/js/mail-script.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="/vendors/isotope/isotope-min.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
         <!--gmaps Js-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-        <script src="resources/js/gmaps.min.js"></script>
+        <script src="/js/gmaps.min.js"></script>
         <!-- contact js -->
-        <script src="resources/js/jquery.form.js"></script>
-        <script src="resources/js/jquery.validate.min.js"></script>
-        <script src="resources/js/contact.js"></script>
-        <script src="resources/js/custom.js"></script>	
+        <script src="/js/jquery.form.js"></script>
+        <script src="/js/jquery.validate.min.js"></script>
+        <script src="/js/contact.js"></script>
+        <script src="/js/custom.js"></script>
 	</body>
 </html>

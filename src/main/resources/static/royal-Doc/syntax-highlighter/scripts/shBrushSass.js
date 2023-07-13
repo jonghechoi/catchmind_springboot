@@ -71,7 +71,7 @@
 		this.regexList = [
 			{ regex: r.multiLineCComments,								css: 'comments' },		// multiline comments
 			{ regex: r.singleLineCComments,								css: 'comments' },		// singleline comments
-			{ regex: r.doubleQuotedString,								css: 'string' },		// double quoted strings
+			{ regex: rubleQuotedString,								css: 'string' },		// double quoted strings
 			{ regex: r.singleQuotedString,								css: 'string' },		// single quoted strings
 			{ regex: /\#[a-fA-F0-9]{3,6}/g,								css: 'value' },			// html colors
 			{ regex: /\b(-?\d+)(\.\d+)?(px|em|pt|\:|\%|)\b/g,			css: 'value' },			// sizes

@@ -17,17 +17,17 @@ public class JoinController {
 	@Autowired
 	private MemberService memberService;
 	/**
-	 * ȸ������ ������� ������ - join_consent.do
+	 * ȸ������ ������� ������ - join_consent
 	 */
-	@RequestMapping(value = "/join_consent.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/join_consent", method = RequestMethod.GET)
 	public String join_consent() {
 		return "pages/mydining/join_consent";
 	}
 	
 	/**
-	 * ȸ������ ó�� - join_proc.do
+	 * ȸ������ ó�� - join_proc
 	 */
-	@RequestMapping(value = "/join_proc.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/join_proc", method = RequestMethod.POST)
 	public ModelAndView join_proc(MemberVo memberVo) {
 		ModelAndView model = new ModelAndView();
 		
@@ -42,9 +42,9 @@ public class JoinController {
 	}
 		
 	/**
-	 * ȸ������ ID �ߺ�üũ - id_check.do
+	 * ȸ������ ID �ߺ�üũ - id_check
 	 */
-	@RequestMapping(value = "/id_check.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/id_check", method = RequestMethod.GET)
 	@ResponseBody
 	public String id_check(String memberId) {
 		int result = memberService.getIdCheck(memberId);
@@ -52,9 +52,9 @@ public class JoinController {
 	}
 	
 	/**
-	 * ȸ������ ������ - join.do
+	 * ȸ������ ������ - join
 	 */
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {
 		
 		return "pages/mydining/join";

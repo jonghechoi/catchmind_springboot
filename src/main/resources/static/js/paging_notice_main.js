@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "notice_list_paging.do?page="+page,
+			url: "notice_list_paging?page="+page,
 			success: function(result){
 				let jdata = JSON.parse(result);
 				
@@ -22,7 +22,7 @@ $(document).ready(function() {
 				for(obj of jdata.jlist) {
 					output += "<tr>";
 					output += "<td>" + obj.rno + "</td>";
-					output += "<td><a href='notice_content.do?nid=" + obj.nid + "'>" + obj.ntitle + "</a></td>";
+					output += "<td><a href='notice_content?nid=" + obj.nid + "'>" + obj.ntitle + "</a></td>";
 					output += "<td>" + obj.ncreatedate + "</td>";
 					output += "</tr>";
 				}				
@@ -40,7 +40,7 @@ $(document).ready(function() {
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           		//$(location).attr('href', "notice_list_paging.do?page="+e.page);
+	           		//$(location).attr('href', "notice_list_paging?page="+e.page);
 	           		
 	           		initAjax(e.page); 
 	           	});

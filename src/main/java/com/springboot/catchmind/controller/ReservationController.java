@@ -26,9 +26,9 @@ import com.springboot.catchmind.vo.ShopVo;
 @Controller
 public class ReservationController {
 	/*
-	 * booking_with_payment.do  
+	 * booking_with_payment  
 	 */
-	@RequestMapping(value="/booking_with_payment.do", method=RequestMethod.POST)
+	@RequestMapping(value="/booking_with_payment", method=RequestMethod.POST)
 	public String booking_with_payment(@RequestParam(value="sid") String sid, 
 									   @RequestParam(value="rdate") String rdate, 
 									   @RequestParam(value="rtime") String rtime, 
@@ -61,7 +61,7 @@ public class ReservationController {
 		int result = reservationDao.insert_payment(param, param2);
 		
 		if(result == 1) {
-			route = "redirect:/mydining_scheduled.do"; 		
+			route = "redirect:/mydining_scheduled"; 		
 		}
 		else {
 			//예약 실패 - 에러페이지 호출 필요
@@ -74,9 +74,9 @@ public class ReservationController {
 	
 	
 	/*
-	 * booking_without_payment.do 
+	 * booking_without_payment 
 	 */
-	@RequestMapping(value="/booking_without_payment.do", method=RequestMethod.POST)
+	@RequestMapping(value="/booking_without_payment", method=RequestMethod.POST)
 	public String booking_without_payment(String sid, String rdate, String rtabletype, int guestnumber, 
 										  String rtime, String rrequest, String contact, HttpSession session) 
 												  throws ParseException {
@@ -99,7 +99,7 @@ public class ReservationController {
 		int result = reservationDao.insert(param, guestnumber);
 		
 		if(result == 1) {
-			route = "redirect:/mydining_scheduled.do"; 		
+			route = "redirect:/mydining_scheduled"; 		
 		}
 		else {
 			//예약 실패 - 에러페이지 호출 필요
@@ -111,9 +111,9 @@ public class ReservationController {
 	
 	
 	/**
-	 * reservation_proc.do - reservation values sending 
+	 * reservation_proc - reservation values sending 
 	 */
-	@RequestMapping(value="/reservation_proc.do", method=RequestMethod.POST)
+	@RequestMapping(value="/reservation_proc", method=RequestMethod.POST)
 	public ModelAndView reservation_proc(String sid, String rdate, String rtabletype, int guestnumber, 
 										 String rtime, HttpSession session) throws ParseException {
 		

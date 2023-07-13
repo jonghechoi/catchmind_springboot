@@ -351,8 +351,8 @@ $.fn.ajaxSubmit = function(options) {
                 this.aborted = 1;
 
                 try { // #214, #257
-                    if (io.contentWindow.document.execCommand) {
-                        io.contentWindow.document.execCommand('Stop');
+                    if (io.contentWindowcument.execCommand) {
+                        io.contentWindowcument.execCommand('Stop');
                     }
                 }
                 catch(ignore) {}
@@ -409,7 +409,7 @@ $.fn.ajaxSubmit = function(options) {
         function getDoc(frame) {
             /* it looks like contentWindow or contentDocument do not
              * carry the protocol property in ie8, when running under ssl
-             * frame.document is the only valid response document, since
+             * framecument is the only valid response document, since
              * the protocol is know but not on the other two objects. strange?
              * "Same origin policy" http://en.wikipedia.org/wiki/Same_origin_policy
              */
@@ -419,7 +419,7 @@ $.fn.ajaxSubmit = function(options) {
             // IE8 cascading access check
             try {
                 if (frame.contentWindow) {
-                    doc = frame.contentWindow.document;
+                    doc = frame.contentWindowcument;
                 }
             } catch(err) {
                 // IE8 access denied under ssl & missing protocol
@@ -431,11 +431,11 @@ $.fn.ajaxSubmit = function(options) {
             }
 
             try { // simply checking may throw in ie8 under ssl or mismatched protocol
-                doc = frame.contentDocument ? frame.contentDocument : frame.document;
+                doc = frame.contentDocument ? frame.contentDocument : framecument;
             } catch(err) {
                 // last attempt
                 log('cannot get iframe.contentDocument: ' + err);
-                doc = frame.document;
+                doc = framecument;
             }
             return doc;
         }
@@ -604,7 +604,7 @@ $.fn.ajaxSubmit = function(options) {
                 }
 
                 //log('response detected');
-                var docRoot = doc.body ? doc.body : doc.documentElement;
+                var docRoot = doc.body ? doc.body : doccumentElement;
                 xhr.responseText = docRoot ? docRoot.innerHTML : null;
                 xhr.responseXML = doc.XMLDocument ? doc.XMLDocument : doc;
                 if (isXml)
@@ -718,7 +718,7 @@ $.fn.ajaxSubmit = function(options) {
             else {
                 doc = (new DOMParser()).parseFromString(s, 'text/xml');
             }
-            return (doc && doc.documentElement && doc.documentElement.nodeName != 'parsererror') ? doc : null;
+            return (doc && doccumentElement && doccumentElement.nodeName != 'parsererror') ? doc : null;
         };
         var parseJSON = $.parseJSON || function(s) {
             /*jslint evil:true */
@@ -731,7 +731,7 @@ $.fn.ajaxSubmit = function(options) {
                 xml = type === 'xml' || !type && ct.indexOf('xml') >= 0,
                 data = xml ? xhr.responseXML : xhr.responseText;
 
-            if (xml && data.documentElement.nodeName === 'parsererror') {
+            if (xml && datacumentElement.nodeName === 'parsererror') {
                 if ($.error)
                     $.error('parsererror');
             }

@@ -12,7 +12,7 @@
 	<script>
 		$(document).ready(function() {
 		  // 다른 페이지의 URL
-/* 		  let url = "member.do";
+/* 		  let url = "member";
 
 		  $.get(url, function(data) {
      	    // 다른 페이지의 HTML에서 원하는 요소 가져오기
@@ -30,7 +30,7 @@
 	<div id="memberDetailModification">
 		<div class="memberInfo">
 			<h3 style="border-bottom:2px solid lightgray"> Member Information </h3>
-			<form name="memberDetailModificationForm" action="member_modify_update.do" method="post">
+			<form name="memberDetailModificationForm" action="member_modify_update" method="post">
 				<ul class="memberDetail">
 					<li>
 						<span>M_ID  :  </span>

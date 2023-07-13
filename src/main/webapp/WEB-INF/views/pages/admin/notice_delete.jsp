@@ -15,14 +15,14 @@
 			
 			$("#noticeDelete").click(function() {
 				$.ajax({
-					url:"notice_delete_proc.do?nid="+$("#noticeDeleteHiddenNid").val(),
+					url:"notice_delete_proc?nid="+$("#noticeDeleteHiddenNid").val(),
 					success: function(result) {
 						if(result == 1) {
 							alert("삭제 되었습니다");
 						}else {
 							alert("삭제에 실패했습니다\n관리자에게 문의하세요");
 						}
-						window.location.href = "notice_list.do";
+						window.location.href = "notice_list";
 					}
 				});
 			});
