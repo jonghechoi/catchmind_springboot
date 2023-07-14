@@ -1,20 +1,28 @@
 package com.springboot.catchmind.controller;
 
+import com.springboot.catchmind.dto.SearchDto;
 import com.springboot.catchmind.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class SearchRestController {
 
 	@Autowired
 	SearchService searchService;
+	private String searchValue;
 
 	@GetMapping("search_list_proc/{searchQuery}")
-	public String search_list_proc(@PathVariable String searchQuery) {
-		return String.valueOf(searchService.select(searchQuery));
+	public List<SearchDto> search_list_proc(@PathVariable String searchQuery) {
+		//List<SearchDto> list = searchService.select(searchQuery);
+		//System.out.println(searchQuery);
+
+		//System.out.println(searchService.select(searchQuery));
+		return searchService.select(searchQuery);
 	}
 
 

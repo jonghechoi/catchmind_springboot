@@ -14,7 +14,7 @@ public class SearchService {
 	SearchMapper searchMapper;
 
 	public List<SearchDto> select(String searchValue) {
-		System.out.println(searchValue);
+		//System.out.println(searchValue);
 		return searchMapper.select(searchValue);
 	}
 
