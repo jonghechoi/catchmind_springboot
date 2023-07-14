@@ -92,11 +92,20 @@ public class MyPageController {
 	}
 
 
-	//@GetMapping("mypage")
-	//public String mypage(){
-		//return "/mypage/mypage";
-	//}
-
+//	@GetMapping("mypage")
+//	public String mypage(){
+//		return "/mypage/mypage";
+//	}
+//
+//	@GetMapping("mypage_favorites")
+//	public String mypage_favorites(){
+//		return "mypage_favorites/mypage_favorites";
+//	}
+//
+//	@GetMapping("mypage_review")
+//	public String mypage_review(){
+//		return "mypage_review/mypage_review";
+//	}
 }
 
 	

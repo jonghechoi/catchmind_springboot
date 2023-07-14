@@ -162,7 +162,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img sang">
-                           <button type="button" id = "bookmark" onclick = "bookmark('${favorites.fid}')" class="btnMark"><img src="resources/image/catch/free-icon-bookmark-4436444.png"></button>
+                           <button type="button" id = "bookmark" onclick = "bookmark('${favorites.fid}')" class="btnMark"><img src="/image/catch/free-icon-bookmark-4436444.png"></button>
                            <a id="kakao-share-btn" href="javascript:;" onclick="shareKakao()"><img src="/image/catch/free-icon-kakao-talk-3669973 (1).png" alt="카카오 공유하기" style="float: right;"></a>
                             <img src="${favorites.smphoto}" width="262px"; height="272px"; alt="">
                             </div>

@@ -99,7 +99,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="http://localhost:9000/catchmind/resources/upload/${reviewVo.reviewsphoto }" width="262px"; height="272px"; alt="">
+                                <img src="http://localhost:9000/upload/${reviewVo.reviewsphoto }" width="262px"; height="272px"; alt="">
                             </div>
                             <a href="#"><h4 class="sec_h4">${reviewVo.sname}</h4></a>
                             <span class="__date">${reviewVo.reviewcreatedate}</span><span class="star">${reviewVo.reviewstar }</span>
