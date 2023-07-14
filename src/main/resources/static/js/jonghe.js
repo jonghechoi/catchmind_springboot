@@ -27,7 +27,7 @@ $(document).ready(function() {
 			}
 			
 			var newIframe = document.createElement("iframe");
-			newIframe.src = "admin_member_list.do";
+			newIframe.src = "admin_member_list";
 			newIframe.id = "memberIframe";
 			newIframe.scrolling = "no";
 			newIframe.width = "100%";
@@ -71,7 +71,7 @@ $(document).ready(function() {
 	});			
 	
 	// review
-	$("#li_ReviewAdmin").click(function() {	
+	$("#li_ReviewAdmin").click(function() {
 		$("#memberIframe").css("display", "none");
 		$("#shopInformationIframe").css("display", "none");
 		$("#reserveIframe").css("display", "none");
@@ -96,17 +96,21 @@ $(document).ready(function() {
 		activeFunc(this);
 	});
 	/*======================= 네비게이션-바에서 메뉴 클릭시 관련 페이지 가져오기 =======================*/
+
+
 	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/
 	$("#btnMemberModification").click(function() {
 		$.ajax({
-			url:"member_modify_data.do?mid="+$("#memberId").text(),
+			url:"/admin_member_modify_data/"+$("#memberId").text(),
 			success: function(result) {
-			  const popup = window.open("member_modify.do?mid="+result, 'Member Modification', 'width=700px,height=700px, scrollbars=yes');
+			  const popup = window.open("/admin_member_modify/"+result, 'Member Modification', 'width=700px,height=700px, scrollbars=yes');
 			}
 		});
   	});
 	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/
-	
+
+
+
 	/*======================= member_modify에서 버튼 누르면 정보 업데이트 =======================*/
 	$("#btnMemberModificationUpdate").click(function() {
 		if($("#inputName").val() == "") {
@@ -151,19 +155,6 @@ $(document).ready(function() {
 	/*======================= member_modify에서 버튼 누르면 정보 업데이트 =======================*/
 
 
-
-	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/
-//	$("#btnNoticeModificationUpdate").click(function() {
-//		$.ajax({
-//			url:"notice_update_data.do?nid="+$("#titleInputHidden").val(),
-//			success: function(result) {
-//			  const popup = window.open("member_modify.do?mid="+result, 'Member Modification', 'width=700px,height=700px, scrollbars=yes');
-//			}
-//		});
-// 	});
-	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/	
-	
-	
 	
 	/*======================= admin 페이지의 notice_update에서 업데이트 성공적으로 되면 확인 alert추가 =======================*/
 	$("#btnNoticeModificationUpdate").click(function() {
@@ -177,8 +168,9 @@ $(document).ready(function() {
 			return false;		
 		}else { 
 			var queryString = $("form[name=adminNoticeModificationForm]").serialize() ;
+			alert(queryString);
 			$.ajax({
-	            url: "notice_update_proc.do",
+	            url: "/admin_notice_update_proc",
 	            method: "POST",
 	            data: queryString,
 //	            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -186,7 +178,7 @@ $(document).ready(function() {
 	            success: function(result) {
 	                if (result == 1) {
 	                    alert("Success!! - Notice Update");
-	                    $(location).attr('href', 'notice_list.do');
+	                    $(location).attr('href', '/admin_notice_list');
 	                } else {
 	                    alert("Fail!! - Notice Update");
 	                }
@@ -197,7 +189,6 @@ $(document).ready(function() {
         	});
 		}
 	});	
-	
 	/*======================= admin 페이지의 notice_update에서 업데이트 성공적으로 되면 확인 alert추가 =======================*/
 
 
@@ -693,7 +684,7 @@ $(document).ready(function() {
 
 	/*======================= admin_review_detail.do 페이지에서 'selected review' 버튼 처리 =======================*/
 	$("#adminReviewSelected").click(function() {
-	    window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+	    window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 	});
 	/*======================= admin_review_detail.do 페이지에서 'selected review' 버튼 처리 =======================*/
 });

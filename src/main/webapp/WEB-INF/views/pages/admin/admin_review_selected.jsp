@@ -18,7 +18,7 @@
 	<script>
 		function adminReviewDatail(rid) {
 			$(document).on("click", "#btnReviewMainDetail_" + rid, function() {
-				window.open("admin_review_detail.do?goMain=false&rid=" + rid, 'Review Detail', 'width=700px,height=900px, scrollbars=yes');
+				window.open("/admin_review_detail/false/" + rid, 'Review Detail', 'width=700px,height=900px, scrollbars=yes');
 			});		
 		}			
 	</script>
@@ -40,15 +40,15 @@
 				<th>Date</th>
 				<th></th>
 			</tr>
- 			<c:forEach var="ReviewVo" items="${reviewVo}">
+ 			<c:forEach var="ReviewDto" items="${review}">
 				<tr>
-					<td>${ReviewVo.rno}</td>
-					<td>${ReviewVo.mname}</td> 
-					<td>${ReviewVo.sid}</td>
-					<td>${ReviewVo.reviewcontent}</td>
-					<td>${ReviewVo.reviewstar}</td>
-					<td>${ReviewVo.reviewcreatedate}</td>
-					<td><button type="button" name="name" id="btnReviewMainDetail_${ReviewVo.rid}" onclick="adminReviewDatail('${ReviewVo.rid}')">Detail</button></td>
+					<td>${ReviewDto.rno}</td>
+					<td>${ReviewDto.mname}</td>
+					<td>${ReviewDto.sid}</td>
+					<td>${ReviewDto.reviewcontent}</td>
+					<td>${ReviewDto.reviewstar}</td>
+					<td>${ReviewDto.reviewcreatedate}</td>
+					<td><button type="button" name="name" id="btnReviewMainDetail_${ReviewDto.rid}" onclick="adminReviewDatail('${ReviewDto.rid}')">Detail</button></td>
 				</tr>
 			</c:forEach>	
 	 	 	<tr>

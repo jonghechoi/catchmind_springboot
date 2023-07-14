@@ -9,22 +9,6 @@
 	<link rel="stylesheet" href="/css/style_jonghe.css">
 	<script src="/js/jquery-3.6.4.min.js"></script>
 	<script src="/js/jonghe.js"></script>
-	<script>
-		$(document).ready(function() {
-		  // 다른 페이지의 URL
-/* 		  let url = "member.do";
-
-		  $.get(url, function(data) {
-     	    // 다른 페이지의 HTML에서 원하는 요소 가져오기
-     	    let spanObjArr = $(data).find(".memberDetail div span:last-child");
-     	    $(spanObjArr).each(function(idx, element) {
-     	    	let input = ".memberDetail li:nth-child(" + (idx+1) + ") input";
-     	    	$(input).val($(element).text());
-     	    });
-		    // 가져온 값을 현재 페이지의 input 요소에 할당
-		  });	 */		
-		});
-	</script>
 </head>
 <body>
 	<div id="memberDetailModification">
@@ -34,23 +18,23 @@
 				<ul class="memberDetail">
 					<li>
 						<span>M_ID  :  </span>
-						<input type="text" name="mid" id="inputName" value="${memberVo.mid}">
+						<input type="text" name="mid" id="inputName" value="${member.mid}">
 					</li>
 					<li>
 						<span>Name  :  </span>
-						<input type="text" name="mname" id="inputName" value="${memberVo.mname}">
+						<input type="text" name="mname" id="inputName" value="${member.mname}">
 					</li>
 					<li>
 						<span>ID :  </span>
-						<input type="text" name="memberId" id="inputId" value="${memberVo.memberId}">
+						<input type="text" name="memberId" id="inputId" value="${member.memberId}">
 					</li>
 					<li>
 						<span>E-mail  :  </span>
-						<input type="text" name="memail" id="inputEmail" value="${memberVo.memail}">
+						<input type="text" name="memail" id="inputEmail" value="${member.memail}">
 					</li>
 					<li>
 						<span>CellPhone  :  </span>
-						<input type="text" name="mphone" id="inputPhone" value="${memberVo.mphone}">
+						<input type="text" name="mphone" id="inputPhone" value="${member.mphone}">
 					</li>
 					<li>
 						<button type="button" id="btnMemberModificationUpdate">modification</button>

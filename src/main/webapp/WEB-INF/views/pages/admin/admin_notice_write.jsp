@@ -16,7 +16,7 @@
 			$("#btnNoticeWrite").click(function() {
 				var data = $("form[name=writeForm]").serialize() ;
 				$.ajax({
-					url: "notice_upload",
+					url: "/admin_notice_upload",
 					method: "POST",
 					data: data,
 		            contentType: "application/x-www-form-urlencoded; charset=UTF-8",

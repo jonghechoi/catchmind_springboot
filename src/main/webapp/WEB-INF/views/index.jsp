@@ -138,7 +138,7 @@
 	                            </li>
                             <%--</c:if>--%>
                             <%--<c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
-                            	<li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                         	<%--</c:if>--%>
                         </ul>
                     </div> 

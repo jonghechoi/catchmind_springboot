@@ -3,12 +3,9 @@ package com.springboot.catchmind.vo;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class ReviewVo {
-	String reviewid, reviewcontent, reviewcreatedate, reviewmodifydate, sid, mid, rid, 
-		reviewphoto, reviewsphoto, sname, mname;
+	String reviewid, reviewcontent, reviewcreatedate, reviewmodifydate, sid, mid, rid, reviewphoto, reviewsphoto, sname, mname;
 	double reviewstar, tasteStar, moodStar, serviceStar;
-
 	int rno;
-
 	CommonsMultipartFile reviewfile1;
 
 	public String getReviewid() {

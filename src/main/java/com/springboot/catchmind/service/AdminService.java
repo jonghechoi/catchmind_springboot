@@ -1,23 +1,30 @@
 package com.springboot.catchmind.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.springboot.catchmind.dto.MemberDto;
+import com.springboot.catchmind.dto.NoticeDto;
+import com.springboot.catchmind.dto.PageDto;
+import com.springboot.catchmind.dto.ReviewDto;
 import com.springboot.catchmind.vo.MemberVo;
 import com.springboot.catchmind.vo.NoticeVo;
 import com.springboot.catchmind.vo.ReviewVo;
 
 public interface AdminService {
 	
-	public String getNoticeSelectGson(String page);
+	public List<NoticeDto> getNoticeSelectJson(PageDto pageDto);
 
-	public MemberVo getCertainMemberSelect(String mid);
-	public String getMemberSelectGson(String page);
+	public MemberDto getCertainMemberSelect(String mid);
+	public List<MemberDto> getMemberSelectJson(PageDto pageDto);
 	
-	public NoticeVo getNoticeSelect(String nid);
+	public NoticeDto getNoticeSelect(String nid);
 	
-	public int getNoticeUpdate(NoticeVo noticeVo);
+	public int getNoticeUpdate(NoticeDto noticeDto);
 	
 	public int getNoticeDelete(String nid);
+
+	public int getNoticeUpload(NoticeDto noticeDto);
 	
 	public String getShopSelectGson(boolean sconfirm, boolean aconfirmfinal);
 	
@@ -25,13 +32,13 @@ public interface AdminService {
 	
 	public int getCancelUpdate(String sid);
 	
-	public String getReviewSelectGson(String page);
+	public List<ReviewDto> getReviewSelectJson(PageDto pageDto);
 	
-	public String getReviewDetailSelectGson(String rid);
+	public ReviewDto getReviewDetailSelectJson(String rid);
 	
 	public int getReviewMainUpdate(String rid);
 	
-	public ArrayList<ReviewVo> getReviewMainList();
+	public List<ReviewDto> getReviewMainList();
 	
 	public int getReviewMainDelete(String rid);
 }
