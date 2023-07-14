@@ -2,14 +2,22 @@ package com.springboot.catchmind.controller;
 
 import com.springboot.catchmind.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-public class SearchController {
+@RestController
+public class SearchRestController {
 
 	@Autowired
 	SearchService searchService;
+
+	@GetMapping("search_list_proc/{searchQuery}")
+	public String search_list_proc(@PathVariable String searchQuery) {
+		return String.valueOf(searchService.select(searchQuery));
+	}
+
+
 
 
 //	@RequestMapping(value="/search_list_book_now_proc.do", method=RequestMethod.GET)
@@ -45,12 +53,6 @@ public class SearchController {
 //		return new Gson().toJson(jlist);
 //	}
 	
-	/**
-	 *  �˻�
-	 */
-	@GetMapping("search")
-	public String search() {
-		return "/search";
-	}
+
 
 }
