@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.springboot.catchmind.service.MapServiceImpl;
 import com.springboot.catchmind.service.Scheduler;
@@ -21,7 +18,7 @@ public class IndexController {
 	private MapServiceImpl mapService;
 	
 	/**
-	 *	index
+	 *	Index
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
@@ -29,16 +26,7 @@ public class IndexController {
 	}
 
 	/**
-	 *	index_review
-	 */
-	@RequestMapping(value = "/index_review.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
-	@ResponseBody
-	public String index_review(Model model) {
-		return reviewSchedulerService.reviewMainChange();
-	}	
-	
-	/**
-	 *	index_mapMarker
+	 *	Index mapMarker
 	 */
 	@RequestMapping(value = "/index_mapMarker.do", method = RequestMethod.GET)
 	@ResponseBody

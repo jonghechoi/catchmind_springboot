@@ -1,8 +1,14 @@
 package com.springboot.catchmind.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
+import com.springboot.catchmind.dto.FacilityDto;
+import com.springboot.catchmind.dto.ShopDto;
+import com.springboot.catchmind.dto.ShopPhotoDto;
+import com.springboot.catchmind.repository.ShopMapper;
+import com.springboot.catchmind.repository.ShopPhotoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +26,27 @@ import com.google.gson.JsonObject;
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
 	
-//	private ShopDao shopDao = new ShopDao();
 	@Autowired
 	private ShopDao shopDao;
 	@Autowired
 	private ShopPhotoDao shopPhotoDao;
+	@Autowired
+	private ShopMapper shopMapper;
+	@Autowired
+	private ShopPhotoMapper shopPhotoMapper;
 	
 	@Override
-	public int getInsert(ShopVo shopVo) {
-		return shopDao.insert(shopVo);
+	public int getInsert(ShopDto shopDto) {
+		int result = 0;
+
+		String spass = shopMapper.selectSpass();
+		int spassCheck = shopMapper.selectSpassCheck(spass);
+
+		if(spassCheck == 0) {
+			shopDto.setSpass(spass);
+			result = shopMapper.insert(shopDto);
+		}
+		return result;
 	}
 	
 	@Override
@@ -47,8 +65,13 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public FacilityVo getShopFacilitySelect(String sid) {
-		return shopDao.facilitySelect(sid);
+	public FacilityDto getShopFacilitySelect(String sid) {
+		return shopMapper.facilitySelect(sid);
+	}
+
+	@Override
+	public ShopPhotoDto getShopPhotoSelect(String sid) {
+		return shopMapper.photoSelect(sid);
 	}
 	
 	@Override
@@ -57,8 +80,9 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public ShopVo getShopInfoSelect(String sid) {
-		return shopDao.select(sid);
+	public ShopDto getShopInfoSelect(String sid) {
+		return shopMapper.shopInfoSelect(sid);
+		//return shopDao.select(sid);
 	}
 	
 	@Override
@@ -90,20 +114,21 @@ public class ShopServiceImpl implements ShopService {
 	public int getPhotoSelectCheck(String sid) {
 		return shopPhotoDao.selectCheck(sid);
 	}
-	
+
 	@Override
-	public ShopPhotoVo getShopPhotoSelect(String sid) {
-		return shopPhotoDao.select(sid);
+	public int getPhotoInsert(String sid, ShopPhotoDto shopPhotoDto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sid", sid);
+		map.put("shopPhotoDto", shopPhotoDto);
+		return shopPhotoMapper.insert(map);
 	}
 	
 	@Override
-	public int getPhotoInsert(String sid, ShopPhotoVo shopPhotoVo) {
-		return shopPhotoDao.insert(sid, shopPhotoVo);
-	}
-	
-	@Override
-	public int getPhotoUpdate(String sid, ShopPhotoVo shopPhotoVo) {
-		return shopPhotoDao.update(sid, shopPhotoVo);
+	public int getPhotoUpdate(String sid, ShopPhotoDto shopPhotoDto) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sid", sid);
+		map.put("shopPhotoDto", shopPhotoDto);
+		return shopPhotoMapper.update(map);
 	}
 	
 	@Override

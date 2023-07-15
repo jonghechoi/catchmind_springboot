@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.springboot.catchmind.dto.FacilityDto;
+import com.springboot.catchmind.dto.ShopDto;
+import com.springboot.catchmind.dto.ShopPhotoDto;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,11 +28,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.springboot.catchmind.service.FileServiceImpl;
 import com.springboot.catchmind.service.ShopServiceImpl;
@@ -47,66 +46,41 @@ public class ShopController {
 	private ShopServiceImpl shopService;
 	@Autowired
 	private FileServiceImpl fileService;
-	
-	/**
-	 *	����������Ȯ�������� - shop_information.do 
-	 */
-	@RequestMapping(value = "/shop_information.do", method = RequestMethod.GET)
-	public String shop_information(HttpSession session, String sid, Model model) {
+
+	@GetMapping("shop_information/{sid}")
+	public String shop_information(HttpSession session,@PathVariable String sid, Model model) {
 		String destination = "";
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
-		System.out.println("sessionVo.getSid() --> " + sessionVo.getSid());
-		
-		if(sessionVo.getSid() != null && String.valueOf(sessionVo.getSid().charAt(0)).equals("S")) {
-			ShopVo shopVo = shopService.getShopInfoSelect(sessionVo.getSid());
-			FacilityVo facilityVo = shopService.getShopFacilitySelect(sessionVo.getSid());
-			ShopPhotoVo shopPhotoVo = shopService.getShopPhotoSelect(sessionVo.getSid());
-			
-			model.addAttribute("FacilityVo", facilityVo);
-			model.addAttribute("ShopVo", shopVo);
-			model.addAttribute("ShopPhotoVo", shopPhotoVo);
-			
-			destination = "pages/shop/shop_information"; 
-		}else {
-			destination = "redirect:/login_role.do";
-		}
+
+		model.addAttribute("ShopVo", shopService.getShopInfoSelect(sid));
+		model.addAttribute("FacilityVo", shopService.getShopFacilitySelect(sid));
+		model.addAttribute("ShopPhotoVo", shopService.getShopPhotoSelect(sid));
+
+		destination = "/pages/shop/shop_information";
+
 		return destination;
+
+// 	스프링부터 전환 작업하면서 현수꺼 합쳐지고 세션 인터셉터 적용 되면 아래 로직대로 다시 구성해야함!!!
+//		String destination = "";
+//		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+//		System.out.println("sessionVo.getSid() --> " + sessionVo.getSid());
+//
+//		if(sessionVo.getSid() != null && String.valueOf(sessionVo.getSid().charAt(0)).equals("S")) {
+//			ShopVo shopVo = shopService.getShopInfoSelect(sessionVo.getSid());
+//			FacilityVo facilityVo = shopService.getShopFacilitySelect(sessionVo.getSid());
+//			ShopPhotoVo shopPhotoVo = shopService.getShopPhotoSelect(sessionVo.getSid());
+//
+//			model.addAttribute("FacilityVo", facilityVo);
+//			model.addAttribute("ShopVo", shopVo);
+//			model.addAttribute("ShopPhotoVo", shopPhotoVo);
+//
+//			destination = "pages/shop/shop_information";
+//		}else {
+//			destination = "redirect:/login_role.do";
+//		}
+//		return destination;
 	}
 
-	/**
-	 *	�������̹������ε� �� ������Ʈ - shop_imformation.do *** form ���� ***
-	 */
-	@RequestMapping(value = "/shop_information_photo.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String shop_information_photo(@RequestParam("sid") String sid,
-										 @RequestParam("files") String files,
-									     @ModelAttribute ShopPhotoVo shopPhotoVo, 
-			                             HttpServletRequest request) throws Exception {
 
-		Gson gson = new Gson();
-		Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
-		HashMap<String, Integer> map = gson.fromJson(files, type);
-		
-		int result = -1;
-		int insertOrUpdate = shopService.getPhotoSelectCheck(sid);
-		if(insertOrUpdate == 0) {
-			result = shopService.getPhotoInsert(sid, fileService.multiFileCheck(shopPhotoVo));
-		}else {
-			fileService.multiFileDelete(sid, map, request);
-			result = shopService.getPhotoUpdate(sid, fileService.multiFileUpdateCheck(shopPhotoVo, map));
-		}
-		
-		if(result == 1) {
-			if(!shopPhotoVo.getPhotos()[0].equals("")) {
-				fileService.multiFilesave(shopPhotoVo, request);
-			}else {
-				result = 0;
-			}
-		}else {
-			result = 0;
-		}
-		return String.valueOf(result);
-	}
 
 	/**
 	 *	�������̹��� preview - shop_information_photoBring.do
@@ -130,7 +104,8 @@ public class ShopController {
 			System.out.println("key: " + entry.getKey() + ", value : " + entry.getValue());
 		}
 		
-		ShopPhotoVo shopPhotoVo = shopService.getShopPhotoSelect(sid);
+		//ShopPhotoVo shopPhotoVo = shopService.getShopPhotoSelect(sid);
+		ShopPhotoDto shopPhotoVo = shopService.getShopPhotoSelect(sid);
 		
 		List<File> imageFiles = new ArrayList<File>();
 		if(photosMap.get("photo1") == 1) {
@@ -199,27 +174,25 @@ public class ShopController {
 	}
 	
 	/**
-	 *	�����������Է�(facility) - shop_information_facility_proc.do 
+	 *	Facility
 	 */
 	@RequestMapping(value = "/shop_information_facility_proc.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String shop_information_facility_proc(FacilityVo facilityVo) {
 		return String.valueOf(shopService.getDetailFacilityUpdate(facilityVo));
 	}
-	
-	/**
-	 *	�����������Է� - �� facility �Է� �˾�
-	 */
-	@RequestMapping(value = "/shop_information_facility.do", method = RequestMethod.GET)
-	public String shop_information_facility(HttpSession session, String sid, Model model) {
+
+	@GetMapping("shop_information_facility/{sid}")
+	public String shop_information_facility(HttpSession session,@PathVariable String sid, Model model) {
 		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
-		FacilityVo facilityVo = shopService.getShopFacilitySelect(sid);
-		model.addAttribute("FacilityVo", facilityVo);
-		return "pages/shop/shop_information_facility";
+		//FacilityVo facilityVo = shopService.getShopFacilitySelect(sid);
+		FacilityDto facilityDto = shopService.getShopFacilitySelect(sid);
+		model.addAttribute("FacilityVo", facilityDto);
+		return "/pages/shop/shop_information_facility";
 	}
 	
 	/**
-	 *	��������������Ȯ�������� - shop_reservation.do
+	 *	Reservation
 	 */
 	@RequestMapping(value = "/shop_reservation.do", method = RequestMethod.GET)
 	public String shop_reservation(HttpSession session, String sid, Model model) {
@@ -234,10 +207,7 @@ public class ShopController {
 		}
 		return destination;
 	}
-	
-	/**
-	 *	��������������Ȯ�������� ������ - shop_reservation_proc.do
-	 */
+
 	@RequestMapping(value = "/shop_reservation_proc.do", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	@ResponseBody
 	public String shop_reservation_proc(@RequestParam("sid") String sid,

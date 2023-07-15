@@ -81,8 +81,8 @@
     <script src="/vendors/isotope/isotope-min.js"></script>
     <script src="/js/stellar.js"></script>
     <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb&libraries=services"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb&libraries=services"></script>
 	<script>
 	$(document).ready(function() {
 	    document.getElementById("inputShopAddress").addEventListener("click", function(){

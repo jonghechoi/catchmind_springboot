@@ -11,20 +11,4 @@ public class MemberDto {
 	String memail, mphone, kemail;
 
 	int rno, loginResult;
-	
-	public String getMemailAdmin() {
-		return memail;
-	}
-
-	public String getMphoneAdmin() {
-		return mphone;
-	}	
-
-	public String getMemail() {
-		return memail = memail1 + "@" + memail2;
-	}
-
-	public String getMphone() {
-		return mphone = mphone1 + "-" + mphone2 + "-" + mphone3;
-	}
 }

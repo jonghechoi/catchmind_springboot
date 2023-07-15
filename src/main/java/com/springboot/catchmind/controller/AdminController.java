@@ -61,43 +61,25 @@ public class AdminController {
 	/**
 	 *	Admin shop
 	 */
-	@RequestMapping(value = "/admin_shop_information.do", method = RequestMethod.GET)
+	@GetMapping("admin_shop_information")
 	public String admin_shop_information() {
-		return "pages/admin/admin_shop_information";
+		return "/pages/admin/admin_shop_information";
 	}
-	
-	@RequestMapping(value = "/admin_shop_information_List.do", method = RequestMethod.GET)
-	@ResponseBody
-	public String admin_shop_information_waiting_List(@RequestParam("sconfirm") boolean sconfirm, @RequestParam("aconfirmfinal") boolean aconfirmfinal) {
-		return adminService.getShopSelectGson(sconfirm, aconfirmfinal);
-	}
-	
-	@RequestMapping(value = "/admin_shop_information_waiting_confirm.do", method = RequestMethod.GET)
-	@ResponseBody
-	public String admin_shop_information_waiting_confirm(String sid) {
-		return String.valueOf(adminService.getConfirmUpdate(sid));
-	}
-	
+
 	@RequestMapping(value = "/admin_shop_information_waiting_cancel.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String admin_shop_information_waiting_cancel(String sid) {
 		return String.valueOf(adminService.getCancelUpdate(sid));
 	}
 
-	@RequestMapping(value = "/admin_shop_registeration_check.do", method = RequestMethod.GET)
+	@GetMapping("admin_shop_registeration_check")
 	public String admin_shop_registeration_check() {
-		return "pages/admin/admin_shop_registeration_check";
+		return "/pages/admin/admin_shop_registeration_check";
 	}	
-	
-	@RequestMapping(value = "/admin_shop_registeration_enter.do", method = RequestMethod.GET)
-	public String admin_shop_registeration_enter() {
-		return "pages/admin/admin_shop_registeration_enter";
-	}
 
-	@RequestMapping(value = "/admin_shop_registeration_proc.do", method = RequestMethod.POST)
-	@ResponseBody 
-	public String admin_shop_registeration_proc(ShopVo shopVo) {
-		return String.valueOf(shopService.getInsert(shopVo));
+	@GetMapping("admin_shop_registeration_enter")
+	public String admin_shop_registeration_enter() {
+		return "/pages/admin/admin_shop_registeration_enter";
 	}
 
 	/**

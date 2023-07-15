@@ -1,16 +1,21 @@
-package com.springboot.catchmind.controller;
+package com.springboot.catchmind.restcontroller;
 
+import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.NoticeDto;
 import com.springboot.catchmind.dto.PageDto;
+import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.service.AdminServiceImpl;
 import com.springboot.catchmind.service.NoticeServiceImpl;
 import com.springboot.catchmind.service.PagingServiceImpl;
+import com.springboot.catchmind.service.ShopServiceImpl;
 import com.springboot.catchmind.vo.NoticeVo;
+import com.springboot.catchmind.vo.ShopVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,6 +26,8 @@ public class AdminRestController {
     private AdminServiceImpl adminService;
     @Autowired
     private NoticeServiceImpl noticeService;
+    @Autowired
+    private ShopServiceImpl shopService;
 
     /**
      *	Admin paging - Member, Review
@@ -79,5 +86,23 @@ public class AdminRestController {
     @GetMapping("admin_review_detail_delete_data/{rid}")
     public String admin_review_detail_delete_data(@PathVariable String rid) {
         return String.valueOf(adminService.getReviewMainDelete(rid));
+    }
+
+    /**
+     *  Admin shop
+     */
+    @GetMapping("admin_shop_information_List/{sconfirm}/{aconfirmfinal}")
+    public List<ShopDto> admin_shop_information_waiting_List(@PathVariable boolean sconfirm, @PathVariable boolean aconfirmfinal) {
+        return adminService.getShopSelectJson(sconfirm, aconfirmfinal);
+    }
+
+    @GetMapping("admin_shop_information_waiting_confirm/{sid}")
+    public String admin_shop_information_waiting_confirm(@PathVariable String sid) {
+        return String.valueOf(adminService.getConfirmUpdate(sid));
+    }
+
+    @PostMapping("admin_shop_registeration_proc")
+    public String admin_shop_registeration_proc(ShopDto shopDto) {
+        return String.valueOf(shopService.getInsert(shopDto));
     }
 }

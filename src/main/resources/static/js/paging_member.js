@@ -22,7 +22,7 @@ $(document).ready(function() {
 					output += "<td>" + obj.rno + "</td>";
 					output += "<td>" + obj.mid + "</td>";
 					output += "<td>" + obj.mname + "</td>";
-					output += "<td>" + obj.memberid + "</td>";
+					output += "<td>" + obj.memberId + "</td>";
 					output += "<td>" + obj.memail + "</td>";
 					output += "<td>" + obj.mphone + "</td>";
 					output += "<td><button type='button' name='name' id='btnMemberDetail" + obj.rno + "'><a href='/admin_member_info/" + obj.mid + "'>Detail</a></button></td>";

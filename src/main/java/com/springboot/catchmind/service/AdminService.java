@@ -3,10 +3,7 @@ package com.springboot.catchmind.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.springboot.catchmind.dto.MemberDto;
-import com.springboot.catchmind.dto.NoticeDto;
-import com.springboot.catchmind.dto.PageDto;
-import com.springboot.catchmind.dto.ReviewDto;
+import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.vo.MemberVo;
 import com.springboot.catchmind.vo.NoticeVo;
 import com.springboot.catchmind.vo.ReviewVo;
@@ -26,7 +23,7 @@ public interface AdminService {
 
 	public int getNoticeUpload(NoticeDto noticeDto);
 	
-	public String getShopSelectGson(boolean sconfirm, boolean aconfirmfinal);
+	public List<ShopDto> getShopSelectJson(boolean sconfirm, boolean aconfirmfinal);
 	
 	public int getConfirmUpdate(String sid);
 	

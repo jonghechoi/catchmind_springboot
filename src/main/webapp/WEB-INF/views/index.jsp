@@ -64,14 +64,14 @@
 	     	});
 	    	function updateData() {
 	    		$.ajax({
-	    			url: "index_review.do",
+	    			url: "/index_review",
 	    			success: function(dataList) {
 	    				$(".testimonial_slider.owl-carousel").empty();
 	    				
-	    				var jdata = JSON.parse(dataList);
+	    				//var jdata = JSON.parse(dataList);
 	    				var output = "";
 	    				
-	    				for(obj of jdata.jlist) {
+	    				for(obj of dataList) {
 	    			        output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
 	    			        
 	    			        output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>"; 
@@ -132,8 +132,10 @@
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <%--<li class="nav-item active"><a class="nav-link" href="/shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>--%>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/S_0041">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/S_0041">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             <%--</c:if>--%>

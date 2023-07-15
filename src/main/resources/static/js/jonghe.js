@@ -168,7 +168,6 @@ $(document).ready(function() {
 			return false;		
 		}else { 
 			var queryString = $("form[name=adminNoticeModificationForm]").serialize() ;
-			alert(queryString);
 			$.ajax({
 	            url: "/admin_notice_update_proc",
 	            method: "POST",
@@ -230,15 +229,14 @@ $(document).ready(function() {
 		}else { 
 			var queryString = $("form[name=shopRegisterationForm]").serialize() ;
 			$.ajax({
-	            url: "admin_shop_registeration_proc.do",
+	            url: "/admin_shop_registeration_proc",
 	            method: "POST",
 	            data: queryString,
-//	            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 	            dataType: "text",
 	            success: function(result) {
 	                if (result == 1) {
 	                    alert("Success!! - Shop Registered");
-	                    $(location).attr('href', 'admin_shop_registeration_enter.do');
+	                    $(location).attr('href', '/admin_shop_registeration_enter');
 	                } else {
 	                    alert("Fail!! - Shop Registered Failed");
 	                }
@@ -398,7 +396,7 @@ $(document).ready(function() {
 			formData.append("sid", $('#sid').val());
 			
         	$.ajax({
-        		url: "shop_information_photo.do",
+        		url: "/shop_information_photo",
         		method: "POST",
         		data: formData,
         		contentType: false,
@@ -456,8 +454,8 @@ $(document).ready(function() {
 	/*======================= shop_information 페이지에서 shop facility 진입 버튼  =======================*/	
 	$("#btnShopFacilityDetail").click(function() {
 		const sidValue = $('#sid').val();
-  		const queryString = "?sid=" + encodeURIComponent(sidValue);
-		const popup = window.open("shop_information_facility.do" + queryString, 'Facility Information', 'width=700px,height=1200px, scrollbars=yes');
+  		const queryString = encodeURIComponent(sidValue);
+		const popup = window.open("/shop_information_facility/" + queryString, 'Facility Information', 'width=700px,height=1200px, scrollbars=yes');
 	});
 	/*======================= shop_information 페이지에서 shop facility 진입 버튼  =======================*/	
 	
@@ -466,15 +464,13 @@ $(document).ready(function() {
 	/*======================= admin_shop_information.do 페이지에서 (waiting)  =======================*/	
 	function adminShopWaiting() {
 		$.ajax({
-			url: "admin_shop_information_List.do?sconfirm=true&aconfirmfinal=false",
+			url: "/admin_shop_information_List/true/false",
 			success: function(result) {
-				let jdata = JSON.parse(result);
-				
 				$("section.s2").empty();
 				
 				let output = "";
 				output += "<div class='shopInfoList' style='height:300px; overflow:auto'>";
-				for(obj of jdata.jlist) {
+				for(obj of result) {
 					output += "<div class='restaurantList " + obj.sid + "'>"; 
 					output += "<div class='restaurantInfo admin'>"; 
 					output += "<span>" + obj.sname + "</span>";
@@ -565,7 +561,7 @@ $(document).ready(function() {
 	function adminShopConfirm(sid) {
 		$(document).on("click", "#btnConfirm_" + sid, function() {
 			$.ajax({
-				url: "admin_shop_information_waiting_confirm.do?sid=" + sid,
+				url: "/admin_shop_information_waiting_confirm/" + sid,
 				success: function(result) {
 					if(result == 1) {
 						alert("Shop Register Completed.");
@@ -597,15 +593,13 @@ $(document).ready(function() {
 	/*======================= admin_shop_information.do 페이지에서 (completed) =======================*/
 	$("#adminShopCompleted").click(function() {
 		$.ajax({
-			url: "admin_shop_information_List.do?sconfirm=true&aconfirmfinal=true",
+			url: "/admin_shop_information_List/true/true",
 			success: function(result) {
-				let jdata = JSON.parse(result);
-				
 				$("section.s2").empty();
 				
 				let output = "";
 				output += "<div class='shopInfoList' style='height:300px; overflow:auto'>";
-				for(obj of jdata.jlist) {
+				for(obj of result) {
 					output += "<div class='restaurantList " + obj.sid + "'>"; 
 					output += "<div class='restaurantInfo admin'>"; 
 					output += "<span>" + obj.sname + "</span>";
@@ -661,11 +655,7 @@ $(document).ready(function() {
 					outputDetail += "<span>" + obj.dinner + "</span>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";
-					outputDetail += "<div class='confirm'>";					
-					//outputDetail += "<form name='confirmForm' action='#' method='get'>";
-					//outputDetail += "<button type='button' class='btnConfirm'>confirm</button>";
-					//outputDetail += "<button type='button' class='btnCancel'>cancel</button>";
-					//outputDetail += "</form>";
+					outputDetail += "<div class='confirm'>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";	

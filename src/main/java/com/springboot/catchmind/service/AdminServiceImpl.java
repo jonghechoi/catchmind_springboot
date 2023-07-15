@@ -5,13 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.springboot.catchmind.dto.MemberDto;
-import com.springboot.catchmind.dto.NoticeDto;
-import com.springboot.catchmind.dto.PageDto;
-import com.springboot.catchmind.dto.ReviewDto;
-import com.springboot.catchmind.repository.MemberMapper;
-import com.springboot.catchmind.repository.NoticeMapper;
-import com.springboot.catchmind.repository.ReviewMapper;
+import com.springboot.catchmind.dto.*;
+import com.springboot.catchmind.repository.*;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +46,10 @@ public class AdminServiceImpl implements AdminService {
 	private NoticeMapper noticeMapper;
 	@Autowired
 	private ReviewMapper reviewMapper;
+	@Autowired
+	private ShopMapper shopMapper;
+	@Autowired
+	private AdminMapper adminMapper;
 
 	/**
 	 *	Admin paging - Member, Notice, Review
@@ -124,43 +123,18 @@ public class AdminServiceImpl implements AdminService {
 	 *	Shop
 	 */
 	@Override
-	public String getShopSelectGson(boolean sconfirm, boolean aconfirmfinal) {
-		ArrayList<ShopVo> list = shopDao.select(sconfirm, aconfirmfinal);
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();			
-		
-		for(ShopVo shopVo : list) {
-			JsonObject jobj = new JsonObject();
-			jobj.addProperty("sid", shopVo.getSid());
-			jobj.addProperty("roleid", shopVo.getRoleid());
-			jobj.addProperty("screatedate", shopVo.getScreatedate());
-			jobj.addProperty("aconfirmyn", shopVo.getAconfirmyn());
-			jobj.addProperty("sconfirmyn", shopVo.getSconfirmyn());
-			jobj.addProperty("spass", shopVo.getSpass());
-			jobj.addProperty("sname", shopVo.getSname());
-			jobj.addProperty("sphone", shopVo.getSphone());
-			jobj.addProperty("sloc", shopVo.getSloc());
-			jobj.addProperty("slocshort", shopVo.getSlocshort());
-			jobj.addProperty("sintro", shopVo.getSintro());
-			jobj.addProperty("smodifydate", shopVo.getSmodifydate());
-			jobj.addProperty("sopeninghour", shopVo.getSopeninghour());
-			jobj.addProperty("sclosinghour", shopVo.getSclosinghour());
-			jobj.addProperty("sclosingdate", shopVo.getSclosingdate());
-			jobj.addProperty("sdeposit", shopVo.getSdeposit());
-			jobj.addProperty("smealfee", shopVo.getSmealfee());
-			jobj.addProperty("lunch", shopVo.getLunch());
-			jobj.addProperty("dinner", shopVo.getDinner());
-			
-			jarray.add(jobj);
-		}
-		jlist.add("jlist", jarray);
-		
-		return new Gson().toJson(jlist);
+	public List<ShopDto> getShopSelectJson(boolean sconfirm, boolean aconfirmfinal) {
+		Map<String, String> map = new HashMap<String, String>();
+		String sconfirmCheck = sconfirm ? String.valueOf('Y') : String.valueOf('N');
+		String aconfirmfinalCheck = aconfirmfinal ? String.valueOf('Y') : String.valueOf('N');
+		map.put("sconfirm", sconfirmCheck);
+		map.put("aconfirmfinal", aconfirmfinalCheck);
+		return shopMapper.select(map);
 	}
 	
 	@Override
 	public int getConfirmUpdate(String sid) {
-		return adminDao.update(sid);
+		return adminMapper.update(sid);
 	}
 	
 	@Override
