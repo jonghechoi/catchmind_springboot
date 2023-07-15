@@ -3,6 +3,7 @@ package com.springboot.catchmind.service;
 import java.util.Map;
 
 
+import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.vo.FacilityVo;
 import com.springboot.catchmind.vo.SessionVo;
 import com.springboot.catchmind.vo.ShopPhotoVo;
@@ -36,7 +37,7 @@ public interface ShopService {
 		
 		public int getShopIdCheck(ShopVo shopVo);
 		
-		public SessionVo getShopLogin(ShopVo shopVo);
+		public SessionDto getShopLogin(ShopVo shopVo);
 		
 		public int getRegistrationCheck(ShopVo shopVo);
 }

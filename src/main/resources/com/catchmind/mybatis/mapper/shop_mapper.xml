@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="mapper.shop">
-	<select id="shopLogin" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="com.springboot.catchmind.vo.SessionVo">
+	<select id="shopLogin" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="com.springboot.catchmind.dto.SessionDto">
 		select count(*) loginResult, SID, SPASS, ROLEID
 		from shop
 		where SID = #{sid} and

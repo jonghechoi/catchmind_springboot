@@ -1,19 +1,18 @@
 package com.springboot.catchmind.controller;
 
+import com.springboot.catchmind.dto.MemberDto;
+import com.springboot.catchmind.service.MemberServiceImpl;
+import com.springboot.catchmind.vo.MemberVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springboot.catchmind.dao.MemberDao;
-import com.springboot.catchmind.service.MemberService;
-import com.springboot.catchmind.vo.MemberVo;
-
 @Controller
 public class JoinController {
 	
 	@Autowired
-	private MemberService memberService;
+	private MemberServiceImpl memberService;
 	/**
 	 * ȸ������ ������� ������ - join_consent.do
 	 */
@@ -26,10 +25,10 @@ public class JoinController {
 	 * ȸ������ ó�� - join_proc.do
 	 */
 	@PostMapping("join")
-	public ModelAndView join_proc(MemberVo memberVo) {
+	public ModelAndView join_proc(MemberDto memberDto) {
 		ModelAndView model = new ModelAndView();
 		
-		int result = memberService.getJoin(memberVo);
+		int result = memberService.getJoin(memberDto);
 		
 		if(result == 1) {
 			model.addObject("SignUp_Complete", "ok");

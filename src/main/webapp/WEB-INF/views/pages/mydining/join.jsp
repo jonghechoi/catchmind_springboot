@@ -24,9 +24,9 @@
 				<ul>
 					<li>
 						<label>ID</label>
-						<input type="text" name="memberId" 
-							placeholder="Please enter at least 6 English characters and numbers" class="input1"
-							id="id1">
+						<input type="text" name="memberId"
+							   placeholder="Please enter at least 6 English characters and numbers" class="input1"
+							   id="id1">
 						<button type="button" class="btn_style2" id="btnIdCheck">Check</button>
 						<span id="idCheck_msg1"></span>
 						<span id="idCheck_msg"></span>
@@ -44,6 +44,7 @@
 					<li>
 						<label>Name</label>
 						<input type="text" name="mname" class="input1" id="name">
+						<span id="nameCheck"></span>
 					</li>
 					<li>
 						<label>Email</label>
@@ -56,6 +57,7 @@
 							<option value="daum.net">Daum</option>
 							<option value="self">Self</option>
 						</select>
+						<span id="emailCheck"></span>
 					</li>
 					<li>
 						<label>Phone</label>
@@ -70,10 +72,11 @@
 						</select>
 						- <input type="text" name="mphone2" id="phone2" maxlength="4">
 						- <input type="text" name="mphone3" id="phone3" maxlength="4">
+						<span id="phoneCheck"></span>
 					</li>
 					<li>
-					<button type="button" class="btn_style" id="btnJoin">Sign Up</button>
-					<button type="reset" class="btn_style">Reset</button>
+						<button type="button" class="btn_style" id="btnJoin">Sign Up</button>
+						<button type="reset" class="btn_style">Reset</button>
 					</li>
 				</ul>
 			</form>

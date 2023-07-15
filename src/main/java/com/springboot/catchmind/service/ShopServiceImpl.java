@@ -3,6 +3,7 @@ package com.springboot.catchmind.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.springboot.catchmind.dto.SessionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -112,7 +113,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public SessionVo getShopLogin(ShopVo shopVo) {
+	public SessionDto getShopLogin(ShopVo shopVo) {
 		return shopDao.shopLogin(shopVo);
 	}
 	

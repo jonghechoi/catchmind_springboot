@@ -1,13 +1,12 @@
 package com.springboot.catchmind.interceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.springboot.catchmind.dto.SessionDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.springboot.catchmind.vo.SessionVo;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 @Slf4j
 public class SessionAuthInterceptor extends HandlerInterceptorAdapter {
 	@Override
@@ -16,7 +15,7 @@ public class SessionAuthInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 
 		if(sessionVo == null) {
 			response.sendRedirect("/login");

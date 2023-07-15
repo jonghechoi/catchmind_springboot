@@ -51,7 +51,7 @@ public class PagingServiceImpl implements PagingService {
 		}else if(serviceName.equals("member")) {
 			dbCount = memberService.getTotalRowCount();
 		}else if(serviceName.equals("review")) {
-			dbCount = reviewService.getTotalRowCount();
+//			dbCount = reviewService.getTotalRowCount();
 		}
 		//�� ������ �� ���
 		if(dbCount % pageSize == 0){

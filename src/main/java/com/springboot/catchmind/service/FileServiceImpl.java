@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.springboot.catchmind.dto.ReviewDto;
 import com.springboot.catchmind.vo.ReviewVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,12 @@ public class FileServiceImpl {
 	/**
 	 * FileSave
 	 */
-	public void fileSave(ReviewVo reviewVo) throws Exception {
+	public void fileSave(ReviewDto reviewDto) throws Exception {
 		String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\upload\\";
 
-		if(reviewVo.getReviewfile1().getOriginalFilename() != null && !reviewVo.getReviewfile1().getOriginalFilename().equals("")) {
-			File saveFile = new File(projectPath + reviewVo.getReviewsphoto());
-			reviewVo.getReviewfile1().transferTo(saveFile);
+		if(reviewDto.getReviewfile1().getOriginalFilename() != null && !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
+			File saveFile = new File(projectPath + reviewDto.getReviewsphoto());
+			reviewDto.getReviewfile1().transferTo(saveFile);
 		}
 	}
 
@@ -42,25 +43,25 @@ public class FileServiceImpl {
 	/**
 	 * FileChecK
 	 */
-	public Object fileCheck(ReviewVo reviewVo) throws Exception {
+	public Object fileCheck(ReviewDto reviewDto) throws Exception {
 
-		if(reviewVo.getReviewfile1().getOriginalFilename() != null
-				&& !reviewVo.getReviewfile1().getOriginalFilename().equals("")) {
+		if(reviewDto.getReviewfile1().getOriginalFilename() != null
+				&& !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
 
 			UUID uuid = UUID.randomUUID();
-			String reviewphoto = reviewVo.getReviewfile1().getOriginalFilename();
+			String reviewphoto = reviewDto.getReviewfile1().getOriginalFilename();
 			String reviewsphoto = uuid +"_"+ reviewphoto;
 
-			reviewVo.setReviewphoto(reviewphoto);
-			reviewVo.setReviewsphoto(reviewsphoto);
+			reviewDto.setReviewphoto(reviewphoto);
+			reviewDto.setReviewsphoto(reviewsphoto);
 
-			log.info("reviewVo.getReviewphoto() -> {}", reviewVo.getReviewphoto());
-			log.info("reviewVo.getReviewsphoto() -> {}", reviewVo.getReviewsphoto());
+			log.info("reviewVo.getReviewphoto() -> {}", reviewDto.getReviewphoto());
+			log.info("reviewVo.getReviewsphoto() -> {}", reviewDto.getReviewsphoto());
 		}else {
 			System.out.println("No File Upload");
 		}
 
-		return reviewVo;
+		return reviewDto;
 	}
 
 

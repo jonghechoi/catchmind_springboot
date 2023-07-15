@@ -35,7 +35,7 @@
 function sendUserData(userInfo) {
   var form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'kakao_login_proc.do';
+  form.action = 'kakao_login';
 
   // 폼 데이터 추가
   for (var key in userInfo) {

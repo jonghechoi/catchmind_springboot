@@ -1,28 +1,23 @@
 package com.springboot.catchmind.controller;
 
 
-import javax.servlet.http.HttpSession;
-
+import com.springboot.catchmind.dto.ScheduledDto;
+import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.service.MyDiningServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.springboot.catchmind.service.MyDiningService;
-import com.springboot.catchmind.vo.ScheduledVo;
-import com.springboot.catchmind.vo.SessionVo;
-import retrofit2.http.GET;
+import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class InformationController {
 	@Autowired
-	private MyDiningService myDiningService;
+	private MyDiningServiceImpl myDiningService;
 	
 	/**
 	 * information - Bookmark insert and delete
@@ -30,7 +25,7 @@ public class InformationController {
 	@GetMapping("information_bookmark_proc")
 	public String information_bookmark_proc(HttpSession session, String sid, String rid, RedirectAttributes redirectAttributes) {
 		String viewName = "";
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
 
 		int count = myDiningService.getBookmarkResult(mid, sid);
@@ -90,11 +85,11 @@ public class InformationController {
 	 */
 	@GetMapping("information")
 	public String information(HttpSession session, String sid, String rid, Model model) {
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
-		
-		ScheduledVo scheduledVo = myDiningService.getInformation(mid, sid, rid);
-		model.addAttribute("scheduledVo", scheduledVo);
+
+		ScheduledDto scheduledDto = myDiningService.getInformation(mid, sid, rid);
+		model.addAttribute("scheduledVo", scheduledDto);
 
 		return "/pages/mydining/information";
 	}
