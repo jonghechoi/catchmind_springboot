@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "/notice_list_paging.do?page="+page,
+			url: "/notice_list_paging/"+page,
 			success: function(result){
 				let output = "<table class='board_list'>";
 				output += "<tr>";
@@ -20,7 +20,7 @@ $(document).ready(function() {
 				for(obj of result.list) {
 					output += "<tr>";
 					output += "<td>" + obj.rno + "</td>";
-					output += "<td><a href='notice_content/" + obj.nid + "'>" + obj.ntitle + "</a></td>";
+					output += "<td><a href='/notice_content/" + obj.nid + "'>" + obj.ntitle + "</a></td>";
 					output += "<td>" + obj.ncreatedate + "</td>";
 					output += "</tr>";
 				}				

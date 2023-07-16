@@ -1,9 +1,9 @@
 package com.springboot.catchmind.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
+import com.springboot.catchmind.dto.BookingDto;
 import com.springboot.catchmind.dto.FacilityDto;
 import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.dto.ShopPhotoDto;
@@ -50,18 +50,27 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int getDetailInsert(ShopVo shopVo) {
-		return shopDao.detailInsert(shopVo);
+	public int getDetailInsert(ShopDto shopDto) {
+		return shopMapper.detailInsert(shopDto);
 	}
 	
 	@Override
-	public int getDetailUpdate(ShopVo shopVo) {
-		return shopDao.detailUpdate(shopVo);
+	public int getDetailUpdate(ShopDto shopDto) {
+		return shopMapper.detailUpdate(shopDto);
 	}
 	
 	@Override
-	public int getDetailFacilityUpdate(FacilityVo facilityVo) {
-		return shopDao.facilityUpdate(facilityVo);
+	public int getDetailFacilityUpdate(FacilityDto facilityDto) {
+
+		int facilityExisting = shopMapper.facilityCheck(facilityDto.getSid());
+
+		int result = 0;
+		if(facilityExisting == 0) {
+			result = shopMapper.facilityInsert(facilityDto);
+		}else {
+			result = shopMapper.facilityUpdate(facilityDto);
+		}
+		return result;
 	}
 	
 	@Override
@@ -82,37 +91,41 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ShopDto getShopInfoSelect(String sid) {
 		return shopMapper.shopInfoSelect(sid);
-		//return shopDao.select(sid);
 	}
 	
 	@Override
-	public String getShopReservationSelectGson(Map<String, String> map) {
-		ArrayList<BookingVo> list = shopDao.reservationSelect(map);
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();		
-		
-		for(BookingVo bookingVo : list) {
-			JsonObject jobj = new JsonObject();
-			jobj.addProperty("rid", bookingVo.getRID());
-			jobj.addProperty("rmodifydate", bookingVo.getRMODIFYDATE());
-			jobj.addProperty("rmodifytime", bookingVo.getRMODIFYTIME());
-			jobj.addProperty("rtabletype", bookingVo.getRTABLETYPE());
-			jobj.addProperty("guestnumber", bookingVo.getGUESTNUMBER());
-			jobj.addProperty("rrequest", bookingVo.getRREQUEST());
-			jobj.addProperty("rphone", bookingVo.getRPHONE());
-			jobj.addProperty("mid", bookingVo.getMID());
-			jobj.addProperty("mname", bookingVo.getMNAME());
-			
-			jarray.add(jobj);
-		}
-		jlist.add("jlist", jarray);
-		
-		return new Gson().toJson(jlist);
+	public List<BookingDto> getShopReservationSelectJson(String sid, String startDate, String endDate) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("sid", sid);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		return shopMapper.reservationSelect(map);
+		//ArrayList<BookingVo> list = shopDao.reservationSelect(map);
+//		JsonObject jlist = new JsonObject();
+//		JsonArray jarray = new JsonArray();
+//
+//		for(BookingVo bookingVo : list) {
+//			JsonObject jobj = new JsonObject();
+//			jobj.addProperty("rid", bookingVo.getRID());
+//			jobj.addProperty("rmodifydate", bookingVo.getRMODIFYDATE());
+//			jobj.addProperty("rmodifytime", bookingVo.getRMODIFYTIME());
+//			jobj.addProperty("rtabletype", bookingVo.getRTABLETYPE());
+//			jobj.addProperty("guestnumber", bookingVo.getGUESTNUMBER());
+//			jobj.addProperty("rrequest", bookingVo.getRREQUEST());
+//			jobj.addProperty("rphone", bookingVo.getRPHONE());
+//			jobj.addProperty("mid", bookingVo.getMID());
+//			jobj.addProperty("mname", bookingVo.getMNAME());
+//
+//			jarray.add(jobj);
+//		}
+//		jlist.add("jlist", jarray);
+//
+//		return new Gson().toJson(jlist);
 	}
 	
 	@Override
 	public int getPhotoSelectCheck(String sid) {
-		return shopPhotoDao.selectCheck(sid);
+		return shopMapper.photoSelectCheck(sid);
 	}
 
 	@Override
@@ -142,7 +155,18 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int getRegistrationCheck(ShopVo shopVo) {
-		return shopDao.shopRegistrationCheck(shopVo);
+	public int getRegistrationCheck(ShopDto shopDto) {
+		return shopMapper.shopRegistrationCheck(shopDto);
+	}
+
+	@Override
+	public void dateCheck(String startDate, String endDate) throws Exception {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date startDateForm = dateFormat.parse(startDate);
+		Date endDateForm = dateFormat.parse(endDate);
+
+		if (startDateForm.compareTo(endDateForm) > 0) {
+			throw new Exception("���ᳯ¥�� ���۳�¥���� �����ϴ�. ������ �߻���ŵ�ϴ�.");
+		}
 	}
 }

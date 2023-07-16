@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.springboot.catchmind.dto.ShopPhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springboot.catchmind.dao.ShopPhotoDao;
 import com.springboot.catchmind.vo.ShopPhotoVo;
@@ -25,7 +25,7 @@ public class FileServiceImpl {
 	private ShopPhotoDao shopPhotoDao;
 
 	public ShopPhotoDto multiFileCheck(ShopPhotoDto shopPhotoDto) throws Exception {
-		for(CommonsMultipartFile file : shopPhotoDto.getPhotos()) {
+		for(MultipartFile file : shopPhotoDto.getPhotos()) {
 			if(!file.getOriginalFilename().equals("")) {
 				UUID uuid = UUID.randomUUID();
 				shopPhotoDto.getSphotos().add(file.getOriginalFilename());
@@ -76,7 +76,7 @@ public class FileServiceImpl {
 	}
 
 	public ShopPhotoDto multiFileUpdateCheck(ShopPhotoDto shopPhotoDto,HashMap<String, Integer> map) throws Exception {
-		for(CommonsMultipartFile file : shopPhotoDto.getPhotos()) {
+		for(MultipartFile file : shopPhotoDto.getPhotos()) {
 			if(!file.getOriginalFilename().equals("")) {
 				UUID uuid = UUID.randomUUID();
 				shopPhotoDto.getSphotos().add(file.getOriginalFilename());
@@ -117,25 +117,26 @@ public class FileServiceImpl {
 	}
 
 	public void multiFilesave(ShopPhotoDto shopPhotoDto, HttpServletRequest request) throws Exception {
-		String root_path = request.getSession().getServletContext().getRealPath("/"); 
-		String attach_path = "\\resources\\upload\\";
+		//String root_path = request.getSession().getServletContext().getRealPath("/");
+		//String attach_path = "\\resources\\upload\\";
+		//String attach_path = "\\upload\\";
 		
 		int count = 0;
-		for(CommonsMultipartFile file : shopPhotoDto.getPhotos()) {
+		for(MultipartFile file : shopPhotoDto.getPhotos()) {
 			if(file.getOriginalFilename() != null && !file.getOriginalFilename().equals("")) {
-				File saveFile = new File(root_path + attach_path + shopPhotoDto.getSUuidPhotos().get(count));
-				file.transferTo(saveFile); 
+				//File saveFile = new File(root_path + attach_path + shopPhotoDto.getSUuidPhotos().get(count));
+				File saveFile = new File(shopPhotoDto.getSUuidPhotos().get(count));
+				file.transferTo(saveFile);
 			}
 			count++;
 		}
 	}
 
 	public void multiFileDelete(String sid, HashMap<String, Integer> map, HttpServletRequest request) {
-		String root_path = request.getSession().getServletContext().getRealPath("/"); 
-		String attach_path = "\\resources\\upload\\";	
+		//String root_path = request.getSession().getServletContext().getRealPath("/");
+		//String attach_path = "\\resources\\upload\\";
+		//String attach_path = "\\upload\\";
 		
-		// ������Ʈ �Ǹ鼭 ��������� �̹��� ���� ����
-		//ShopPhotoVo shopPhotoVo = shopService.getShopPhotoSelect(sid);
 		ShopPhotoDto shopPhotoVo = shopService.getShopPhotoSelect(sid);
 		Map<String, String> mapDelete = new HashMap<String, String>();
 		
@@ -157,7 +158,8 @@ public class FileServiceImpl {
 		
 		for (Map.Entry<String, String> entry : mapDelete.entrySet()) {
 		    String fileName = entry.getValue();
-		    String imgPath = root_path + attach_path + fileName;
+		    //String imgPath = root_path + attach_path + fileName;
+			String imgPath = fileName;
 		    File file = new File(imgPath);
 		    
 		    if(file.exists()) {

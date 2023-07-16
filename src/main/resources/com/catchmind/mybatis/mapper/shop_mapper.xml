@@ -52,4 +52,117 @@
 		    from shop_photo
 			where sid=#{sid}
     </select>
+
+    <select id="photoSelectCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+            FROM SHOP_PHOTO
+            WHERE SID=#{sid}
+    </select>
+
+    <select id="shopRegistrationCheck" parameterType="com.springboot.catchmind.dto.ShopDto" resultType="int">
+        SELECT COUNT(*)
+            FROM SHOP
+            WHERE SID = #{sid}
+    </select>
+
+    <update id="detailInsert" parameterType="com.springboot.catchmind.dto.ShopDto">
+        UPDATE SHOP SET
+            SCONFIRMYN='Y',
+            ACONFIRMFINALYN='N',
+            SINTRO=#{sintro},
+            SOPENINGHOUR=#{sopeninghour},
+            SCLOSINGHOUR=#{sclosinghour},
+            SCLOSINGDATE=#{sclosingdate},
+            SDEPOSIT=#{sdeposit},
+            SMEALFEE=#{smealfee},
+            LUNCH=#{lunch},
+            DINNER=#{dinner}
+        WHERE SID=#{sid}
+    </update>
+
+    <update id="detailUpdate" parameterType="com.springboot.catchmind.dto.ShopDto">
+        UPDATE SHOP SET
+            SCONFIRMYN='Y',
+            ACONFIRMFINALYN='N',
+            SINTRO=#{sintro},
+            SOPENINGHOUR=#{sopeninghour},
+            SCLOSINGHOUR=#{sclosinghour},
+            SCLOSINGDATE=#{sclosingdate},
+            SDEPOSIT=#{sdeposit},
+            SMEALFEE=#{smealfee},
+            LUNCH=#{lunch},
+            DINNER=#{dinner}
+        WHERE SID=#{sid}
+    </update>
+
+    <select id="facilityCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+            FROM FACILITY
+            WHERE SID=#{sid}
+    </select>
+
+    <insert id="facilityInsert" parameterType="com.springboot.catchmind.dto.FacilityDto">
+        INSERT INTO FACILITY(
+        SID,
+        PARKING,
+        VALET,
+        CORKAGE,
+        ADULTONLY,
+        SOMMELIER,
+        LETTERING,
+        RENTALS
+        <if test='parkingdesc != null'>,PARKINGDESC</if>
+        <if test='valetdesc != null'>,VALETDESC </if>
+        <if test='corkagedesc != null'>,CORKAGEDESC</if>
+        <if test='adultonlydesc != null'>,ADULTONLYDESC</if>
+        <if test='sommelierdesc != null'>,SOMMELIERDESC</if>
+        <if test='letteringdesc != null'>,LETTERINGDESC</if>
+        <if test='rentalsdesc != null'>,RENTALSDESC</if>
+        )
+        VALUES(
+        #{sid},
+        #{parking},
+        #{valet},
+        #{corkage},
+        #{adultonly},
+        #{sommelier},
+        #{lettering},
+        #{rentals}
+        <if test='parkingdesc != null'>,#{parkingdesc}</if>
+        <if test='valetdesc != null'>,#{valetdesc}</if>
+        <if test='corkagedesc != null'>,#{corkagedesc}</if>
+        <if test='adultonlydesc != null'>,#{adultonlydesc}</if>
+        <if test='sommelierdesc != null'>,#{sommelierdesc}</if>
+        <if test='letteringdesc != null'>,#{letteringdesc}</if>
+        <if test='rentalsdesc != null'>,#{rentalsdesc}</if>
+        )
+    </insert>
+
+    <update id="facilityUpdate" parameterType="com.springboot.catchmind.dto.FacilityDto">
+        UPDATE FACILITY SET
+        PARKING=#{parking},
+        VALET=#{valet},
+        CORKAGE=#{corkage},
+        ADULTONLY=#{adultonly},
+        SOMMELIER=#{sommelier},
+        LETTERING=#{lettering},
+        RENTALS=#{rentals}
+        <if test='parkingdesc != null'>,PARKINGDESC=#{parkingdesc}</if>
+        <if test='valetdesc != null'>,VALETDESC=#{valetdesc}</if>
+        <if test='corkagedesc != null'>,CORKAGEDESC=#{corkagedesc}</if>
+        <if test='adultonlydesc != null'>,ADULTONLYDESC=#{adultonlydesc}</if>
+        <if test='sommelierdesc != null'>,SOMMELIERDESC=#{sommelierdesc}</if>
+        <if test='letteringdesc != null'>,LETTERINGDESC=#{letteringdesc}</if>
+        <if test='rentalsdesc != null'>,RENTALSDESC=#{rentalsdesc}</if>
+        WHERE SID=#{sid}
+    </update>
+
+    <select id="reservationSelect" parameterType="map" resultType="com.springboot.catchmind.dto.BookingDto">
+        SELECT R.RID, R.RMODIFYDATE, R.RMODIFYTIME, R.RTABLETYPE, R.GUESTNUMBER, R.RREQUEST, R.RPHONE, R.MID, M.MNAME
+        FROM RESERVATION R, MEMBER M
+        WHERE R.MID = M.MID
+          AND R.SID = #{sid}
+          AND R.RMODIFYDATE BETWEEN TO_DATE(#{startDate}, 'YY-MM-DD')
+            AND TO_DATE(#{endDate}, 'YY-MM-DD')+1
+    </select>
 </mapper>

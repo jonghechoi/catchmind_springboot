@@ -415,7 +415,7 @@ $(document).ready(function() {
         	/*======= shop photo =======*/
         	
 			$.ajax({
-	            url: "shop_information_proc.do",
+	            url: "/shop_information_proc",
 	            method: "POST",
 	            data: shopData,
 	            dataType: "text",
@@ -429,7 +429,7 @@ $(document).ready(function() {
         	});
 
 			$.ajax({
-	            url: "shop_information_facility_proc.do",
+	            url: "/shop_information_facility_proc",
 	            method: "POST",
 	            data: storedFacilityData,
 	            dataType: "text",
@@ -881,19 +881,18 @@ function mapMainToSearch() {
 /*======================= shop_reservation.jsp 페이지에서 'datepicker'로 날짜 선택시 리스팅 =======================*/
 function reservationListing() {
 	$.ajax({
-		url: "shop_reservation_proc.do",
+		url: "/shop_reservation_proc",
+		method: "POST",
 		data: {
 			sid : $("#shopReservationSid").val(),
 			startDate :  $("#startDate").val(),
 			endDate : $("#endDate").val()
 		},
 		success: function(result) {
-			let jdata = JSON.parse(result);
-			
 			$("#reserveDetail").empty();
-			
+			console.log(result);
 			let output = "";	
-			for(obj of jdata.jlist) {
+			for(obj of result) {
 				output += "<div>"; 
 				output += "<div class='reserveDetail'>";
 				output += "<div>";
@@ -964,9 +963,11 @@ function createPhotoElement(e, file, lastChar) {
 	
 function bringPhoto(sid, count, photos) {
 	$.ajax({
-		url:"shop_information_photoBring.do",
+		url:"/shop_information_photoBring",
+		method: "POST",
 		data: {
-			sid : sid,
+			//sid : sid,
+			sid : 'S_0041',
 			count : count,
 			photos : JSON.stringify(photos) 
 		},

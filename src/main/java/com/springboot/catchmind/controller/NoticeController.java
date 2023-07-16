@@ -7,9 +7,7 @@ import com.springboot.catchmind.service.PagingServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.springboot.catchmind.service.AdminServiceImpl;
 import com.springboot.catchmind.service.NoticeServiceImpl;
@@ -28,22 +26,15 @@ public class NoticeController {
 	private AdminServiceImpl adminService;
 	@Autowired
 	private PagingServiceImpl pagingService;
-	
-	
-	/**
-	 *	 notice.do
-	 */
-	@RequestMapping(value = "/notice.do", method = RequestMethod.GET)
+
+	@GetMapping("notice")
 	public String notice() {
-		return "pages/notice/notice";
+		return "/pages/notice/notice";
 	}
 
-	/**
-	 *	notice_content.do
-	 */
-	@RequestMapping(value = "/notice_content.do", method = RequestMethod.GET)
-	public String notice_content(String nid, Model model) {
-		model.addAttribute("noticeVo", adminService.getNoticeSelect(nid));
-		return "pages/notice/notice_content";
+	@GetMapping("notice_content/{nid}")
+	public String notice_content(@PathVariable String nid, Model model) {
+		model.addAttribute("noticeDto", adminService.getNoticeSelect(nid));
+		return "/pages/notice/notice_content";
 	}
 }
