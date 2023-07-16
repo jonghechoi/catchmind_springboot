@@ -26,7 +26,7 @@ $("#btn_cancleReservation").click(function(){
 **************************/
 	$('.btn_cancel').click(function() {
 	    var value = $(this).val();
-	    window.open('cancle_reservation?rid=' + value, '_blank', 'width=460,height=700');
+	    window.open('/cancle_reservation/'+value, '_blank', 'width=460,height=700');
 	});
 
 /***************************
@@ -78,7 +78,7 @@ $("#btn_cancleReservation").click(function(){
 				
 				$.ajax({
 					type : 'get',
-					url : "find_pass_emailCheck?memail="+memail,
+					url : "/find_pass_emailCheck/"+memail,
 					success : function (data) {
 						console.log("data : " +  data);
 						checkInput.attr('disabled',false);
@@ -320,7 +320,7 @@ $(document).ready(function(){
 		}else {
 			//ajax
 			$.ajax({
-				url :"id_check.do?memberId="+ inputId ,
+				url :"/id_check/"+inputId ,
 				success : function(result) {
 					if(result == 0){
 						$("#idCheck_msg1").text("O").css("color","mediumseagreen")

@@ -46,10 +46,10 @@
 	<select id="totalRowCount" parameterType="String" resultType="int">
 		select count(*)
 		from reservation
-		where mid = #{mid} and rstatus = 'COMPLETED'
+		where mid = #{mid} and rstatus = 'COMPLETED' AND DELETEYN = 'N'
 	</select>
 
-	<select id="visitedSelect" parameterType="map" resultType="com.springboot.catchmind.dto.ScheduledDto">
+	<select id="visitedSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ScheduledDto">
 		select MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
 		from(select M.MID MID,S.SID SID,R.RID RID, M.MEMBERID MEMBERID, M.MNAME MNAME, M.TEL TEL, M.MPHONE MPHONE, S.SNAME SNAME,
 					S.SLOCSHORT SLOCSHORT, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER, R.RPHONE RPHONE,

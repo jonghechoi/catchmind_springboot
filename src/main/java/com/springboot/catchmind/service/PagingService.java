@@ -2,6 +2,7 @@ package com.springboot.catchmind.service;
 
 import java.util.Map;
 
+import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.vo.MemberVo;
 
 public interface PagingService {
@@ -12,5 +13,5 @@ public interface PagingService {
 	
 	public Map<String, Integer> getPageResult(String page, String serviceName);
 	
-	public Map<String, String> getVisitedResult(String page, String serviceName, String mid);
+	public PageDto getVisitedResult(PageDto pageDto);
 }

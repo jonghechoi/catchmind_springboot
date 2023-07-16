@@ -43,12 +43,11 @@ public class MyDiningServiceImpl{
 	}
 
 	public int getTotalRowCount(String mid) {
-
 		return myDiningMapper.totalRowCount(mid);
 	}
 
-	public ArrayList<ScheduledDto> getVisitedSelect(Map<String, String> param) {
-		return myDiningMapper.visitedSelect(param);
+	public ArrayList<ScheduledDto> getVisitedSelect(String mid) {
+		return myDiningMapper.visitedSelect(mid);
 	}
 
 	public int getUpdateDeleteYN(String rid) {

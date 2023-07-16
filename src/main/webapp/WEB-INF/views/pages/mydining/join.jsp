@@ -16,7 +16,7 @@
 	<div class="content">
 		<section class="join">
 			<h1 class="title" style="margin-left:40px">Sign Up</h1>
-			<form name="joinForm" action="join_proc.do" method="post">
+			<form name="joinForm" action="/join" method="post">
 				<!-- <div class="joinTypeCheck">
                      <input type="radio" name="joinType" value="user"><span>User</span>
 					 <input type="radio" name="joinType" value="owner"><span>Owner</span>

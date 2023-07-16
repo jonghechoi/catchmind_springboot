@@ -39,16 +39,6 @@ public class JoinController {
 	}
 		
 	/**
-	 * ȸ������ ID �ߺ�üũ - id_check.do
-	 */
-	@RequestMapping(value = "/id_check.do", method = RequestMethod.GET)
-	@ResponseBody
-	public String id_check(String memberId) {
-		int result = memberService.getIdCheck(memberId);
-		return String.valueOf(result);
-	}
-	
-	/**
 	 * ȸ������ ������ - join.do
 	 */
 	@GetMapping("join")

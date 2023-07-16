@@ -42,7 +42,7 @@ public interface MyDiningMapper {
 	/**
 	 * mydining_visited - paging
 	 */
-	ArrayList<ScheduledDto> visitedSelect(Map<String,String> param);
+	ArrayList<ScheduledDto> visitedSelect(String mid);
 
 	/**
 	 * information.do
