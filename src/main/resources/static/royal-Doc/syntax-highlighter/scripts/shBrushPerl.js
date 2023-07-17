@@ -52,7 +52,7 @@
 		this.regexList = [
 			{ regex: new RegExp('#[^!].*$', 'gm'),					css: 'comments' },
 			{ regex: new RegExp('^\\s*#!.*$', 'gm'),				css: 'preprocessor' }, // shebang
-			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,	css: 'string' },
+			{ regex: SyntaxHighlighter.regexLibubleQuotedString,	css: 'string' },
 			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,	css: 'string' },
 			{ regex: new RegExp('(\\$|@|%)\\w+', 'g'),				css: 'variable' },
 			{ regex: new RegExp(this.getKeywords(funcs), 'gmi'),	css: 'functions' },

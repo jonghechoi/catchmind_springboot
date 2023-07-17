@@ -14,7 +14,7 @@ public class JoinController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	/**
-	 * ȸ������ ������� ������ - join_consent.do
+	 * ȸ������ ������� ������ - join_consent
 	 */
 	@GetMapping("join_consent")
 	public String join_consent() {
@@ -22,7 +22,7 @@ public class JoinController {
 	}
 	
 	/**
-	 * ȸ������ ó�� - join_proc.do
+	 * ȸ������ ó�� - join_proc
 	 */
 	@PostMapping("join")
 	public ModelAndView join_proc(MemberDto memberDto) {

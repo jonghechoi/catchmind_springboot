@@ -107,7 +107,7 @@ $(document).ready(function() {
                 //alert(result);
                 for (const obj of result) {
                 	//console.log(obj.sid);
-                    output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+                    output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -168,7 +168,7 @@ $(document).ready(function() {
                 let output = "";
 
                 for (const obj of searchData) {
-					output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+					output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -229,7 +229,7 @@ $(document).ready(function() {
                 let output = "";
 
                 for (const obj of searchData) {
-               		output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+               		output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -331,7 +331,7 @@ $(document).ready(function() {
                 let output = "";
 				
                 for (const obj of searchData) {
-               		output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+               		output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";

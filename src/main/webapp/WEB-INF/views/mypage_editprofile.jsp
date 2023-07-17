@@ -27,7 +27,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="resources/image/jhs_img/KakaoTalk_20230507_132927423.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="resources/image/jhs_img/KakaoTalk_20230507_132927423.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -36,18 +36,18 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.do">HOME</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">SEARCH</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index">HOME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search">SEARCH</a></li>
                              <li class="nav-item submenu dropdown">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MYDINING</a>
+                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MYDINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li> 
-                            <li class="nav-item active"><a class="nav-link" href="mypage.do">MYPAGE</a></li>
-                             <li class="nav-item"><a class="nav-link" href="notice.do">NOTICE</a></li>
-                            <li class="nav-item"><a class="nav-link" href="admin.do">ADMIN</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="mypage">MYPAGE</a></li>
+                             <li class="nav-item"><a class="nav-link" href="notice">NOTICE</a></li>
+                            <li class="nav-item"><a class="nav-link" href="admin">ADMIN</a></li>
                         </ul>
                     </div> 
                 </nav>
@@ -126,7 +126,7 @@
 
       // AJAX 요청을 통해 서버에 데이터 전송
       $.ajax({
-        url: 'mypage_editprofile.do', // 서버의 저장 기능을 처리하는 URL로 변경해야 합니다.
+        url: 'mypage_editprofile', // 서버의 저장 기능을 처리하는 URL로 변경해야 합니다.
         type: 'POST',
         data: formData, // 저장할 데이터를 전달합니다.
         contentType: false,

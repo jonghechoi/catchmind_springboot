@@ -35,7 +35,7 @@ public class MyDiningController {
 	
 	
 	/**
-	 * ���� ���� ������ - mydining_scheduled.do
+	 * ���� ���� ������ - mydining_scheduled
 	 */
 	@GetMapping("mydining_scheduled")
 	public String mydining_scheduled(HttpSession session, Model model) {

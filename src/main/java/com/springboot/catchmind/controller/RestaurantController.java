@@ -35,9 +35,9 @@ import com.google.gson.JsonObject;
 @Controller
 public class RestaurantController {
 	/*
-	 * select_guestnumber.do -  select guest number
+	 * select_guestnumber -  select guest number
 	 * */
-	@RequestMapping(value="/select_rtime.do", method=RequestMethod.POST)
+	@RequestMapping(value="/select_rtime", method=RequestMethod.POST)
 	@ResponseBody
 	public String select_rtime(@RequestParam(value="sid") String sid,
 							   @RequestParam(value="rdate") String rdate,
@@ -73,9 +73,9 @@ public class RestaurantController {
 	
 	
 	/*
-	 * select_guestnumber.do -  select guest number
+	 * select_guestnumber -  select guest number
 	 * */
-	@RequestMapping(value="/select_guestnumber.do", method=RequestMethod.POST)
+	@RequestMapping(value="/select_guestnumber", method=RequestMethod.POST)
 	@ResponseBody
 	public String select_guestnumber(@RequestParam(value="sid") String sid,
 							   	   @RequestParam(value="rdate") String rdate,
@@ -105,9 +105,9 @@ public class RestaurantController {
 	
 	
 	/*
-	 * select_rtabletype.do -  select table type
+	 * select_rtabletype -  select table type
 	 * */
-	@RequestMapping(value="/select_rtabletype.do", method=RequestMethod.POST)
+	@RequestMapping(value="/select_rtabletype", method=RequestMethod.POST)
 	@ResponseBody
 	public String select_rtabletype(@RequestParam(value="sid") String sid,
 								   	@RequestParam(value="rdate") String rdate) {
@@ -132,9 +132,9 @@ public class RestaurantController {
 	
 	
 	/**
-	 * restaurant.do - �젅�뒪�넗�옉 �뤌
+	 * restaurant - �젅�뒪�넗�옉 �뤌
 	 */
-	@RequestMapping(value="/restaurant.do", method=RequestMethod.GET)
+	@RequestMapping(value="/restaurant", method=RequestMethod.GET)
 	public ModelAndView restaurant(String sid) {
 
 		ModelAndView model = new ModelAndView();

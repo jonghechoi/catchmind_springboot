@@ -168,7 +168,7 @@ $("#btnFindPass_p").click(function(){
 	로그인 폼 - 유효성 체크
 ******************************/
 	$("#btnLogin").click(function(){
-		
+
 		if($("#id").val() === ""){
 			alert("Please enter your ID");
 			$("#id").focus();

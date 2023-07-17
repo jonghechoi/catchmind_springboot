@@ -34,7 +34,7 @@
 		           ,changeYear: true 
 		           ,changeMonth: true                 
 		           ,showOn: "both"   
-		           ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" 
+		           ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"
 		           ,buttonImageOnly: true 
 		           ,buttonText: "Choose"               
 			           ,yearSuffix: " Year" 
@@ -59,7 +59,7 @@
 	           ,changeYear: true 
 	           ,changeMonth: true                 
 	           ,showOn: "both"   
-	           ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" 
+	           ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"
 	           ,buttonImageOnly: true 
 	           ,buttonText: "Choose"               
 	           ,yearSuffix: " Year" 

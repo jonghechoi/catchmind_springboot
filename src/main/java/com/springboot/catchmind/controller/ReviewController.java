@@ -46,7 +46,7 @@ public class ReviewController {
 	}
 	
 	/**
-	 *  write_review.do
+	 *  write_review
 	 */
 	@GetMapping("write_review/{rid}")
 	public String write_review(@PathVariable String rid, Model model) {

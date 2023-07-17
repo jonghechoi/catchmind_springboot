@@ -82,6 +82,7 @@ public class AdminController {
 		return "/pages/admin/admin_shop_registeration_enter";
 	}
 
+	@RequestMapping(value = "/admin_review", method = RequestMethod.GET)
 	/**
 	 *	Admin review
 	 */
@@ -134,3 +135,4 @@ public class AdminController {
 		return "/pages/admin/admin_notice_write";
 	}
 }
+

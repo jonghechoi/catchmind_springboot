@@ -10,17 +10,17 @@
         <link rel="icon" href="image/favicon.png" type="image/png">
         <title>CatchMind</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="resources/css/bootstrap.css">
-        <link rel="stylesheet" href="resources/vendors/linericon/style.css">
-        <link rel="stylesheet" href="resources/css/font-awesome.min.css">
-        <link rel="stylesheet" href="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-        <link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="resources/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/vendors/lightbox/simpleLightbox.css">
         <!-- main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
-        <link rel="stylesheet" href="resources/css/lsm.css">
-        <link rel="stylesheet" href="resources/css/responsive.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/lsm.css">
+        <link rel="stylesheet" href="/css/responsive.css">
 <script>
 	$(document).ready(function(){	
 		$()
@@ -33,7 +33,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="resources/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -42,29 +42,29 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                           <li class="nav-item"><a class="nav-link" href="index.do">HOME</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">SEARCH</a></li>
+                           <li class="nav-item"><a class="nav-link" href="index">HOME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search">SEARCH</a></li>
                              <li class="nav-item submenu dropdown">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MYDINING</a>
+                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MYDINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li> 
-                            <li class="nav-item"><a class="nav-link active" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
 	                                    <!-- <li class="nav-item active" id="shop_information">Register</li> -->
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>     
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">                
-                            	<li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                         	</c:if>
                         </ul>
                     </div> 
@@ -99,7 +99,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="http://localhost:9000/catchmind/resources/upload/${reviewVo.reviewsphoto }" width="262px"; height="272px"; alt="">
+                                <img src="http://localhost:9000/upload/${reviewVo.reviewsphoto }" width="262px"; height="272px"; alt="">
                             </div>
                             <a href="#"><h4 class="sec_h4">${reviewVo.sname}</h4></a>
                             <span class="__date">${reviewVo.reviewcreatedate}</span><span class="star">${reviewVo.reviewstar }</span>
@@ -229,14 +229,14 @@
                         <div class="single-footer-widget instafeed">
                             <h6 class="footer_title">InstaFeed</h6>
                             <ul class="list_style instafeed d-flex flex-wrap">
-                                <li><img src="resources/image/instagram/Image-01.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-02.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-03.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-04.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-05.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-06.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-07.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-08.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-01.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-02.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-03.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-04.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-05.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-06.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-07.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-08.jpg" alt=""></li>
                             </ul>
                         </div>
                     </div>                  
@@ -252,16 +252,16 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="resources/js/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/popper.js"></script>
-        <script src="resources/js/bootstrap.min.js"></script>
-        <script src="resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="resources/js/jquery.ajaxchimp.min.js"></script>
-        <script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-        <script src="resources/vendors/nice-select/js/jquery.nice-select.js"></script>
-        <script src="resources/js/mail-script.js"></script>
-        <script src="resources/js/stellar.js"></script>
-        <script src="resources/vendors/lightbox/simpleLightbox.min.js"></script>
-        <script src="resources/js/custom.js"></script>
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="/vendors/nice-select/js/jquery.nice-select.js"></script>
+        <script src="/js/mail-script.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/js/custom.js"></script>
     </body>
 </html>

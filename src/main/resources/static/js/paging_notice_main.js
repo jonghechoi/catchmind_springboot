@@ -38,7 +38,7 @@ $(document).ready(function() {
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           		//$(location).attr('href', "notice_list_paging.do?page="+e.page);
+	           		//$(location).attr('href', "notice_list_paging?page="+e.page);
 	           		
 	           		initAjax(e.page); 
 	           	});

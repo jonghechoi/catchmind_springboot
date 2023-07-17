@@ -78,7 +78,7 @@
 	<div id="memberDetailModification">
 		<div class="memberInfo">
 			<h3 style="border-bottom:2px solid lightgray"> Review Detail </h3>
-			<form name="memberDetailModificationForm" action="member_modify_update.do" method="post">
+			<form name="memberDetailModificationForm" action="member_modify_update" method="post">
 				<ul class="memberDetail">
 					<li>
 						<span>No  :  </span>

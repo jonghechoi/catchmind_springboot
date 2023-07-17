@@ -133,7 +133,7 @@ $(document).ready(function() {
 			//memberDetailModificationForm.submit();
 			var queryString = $("form[name=memberDetailModificationForm]").serialize() ;
 			$.ajax({
-	            url: "member_modify_update.do",
+	            url: "member_modify_update",
 	            method: "POST",
 	            data: queryString,
 	            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -435,13 +435,13 @@ $(document).ready(function() {
 	            dataType: "text",
 	            success: function(result) {
 	                if (result == 1) {
-	                    $(location).attr('href', 'index.do');
+	                    $(location).attr('href', 'index');
 	                }else {
 	                    alert("Fail!! - Shop Facility Registered Failed");
 	                }
 	            },
 	            error: function() {
-	                alert("Error Happend shop_information_facility_proc.do");
+	                alert("Error Happend shop_information_facility_proc");
            		}
         	});
 
@@ -461,7 +461,7 @@ $(document).ready(function() {
 	
 	
 	
-	/*======================= admin_shop_information.do 페이지에서 (waiting)  =======================*/	
+	/*======================= admin_shop_information 페이지에서 (waiting)  =======================*/	
 	function adminShopWaiting() {
 		$.ajax({
 			url: "/admin_shop_information_List/true/false",
@@ -575,7 +575,7 @@ $(document).ready(function() {
 	function adminShopCancel(sid) {
 		$(document).on("click", "#btnCancel_" + sid, function() {
 			$.ajax({
-				url: "admin_shop_information_waiting_cancel.do?sid=" + sid,
+				url: "admin_shop_information_waiting_cancel?sid=" + sid,
 				success: function(result) {
 					if(result == 1) {
 						alert("Shop Register Canceled.");
@@ -586,11 +586,11 @@ $(document).ready(function() {
 		});		
 	} 
 	
-	/*======================= admin_shop_information.do 페이지에서 (waiting) =======================*/	
+	/*======================= admin_shop_information 페이지에서 (waiting) =======================*/	
 	
 
 	
-	/*======================= admin_shop_information.do 페이지에서 (completed) =======================*/
+	/*======================= admin_shop_information 페이지에서 (completed) =======================*/
 	$("#adminShopCompleted").click(function() {
 		$.ajax({
 			url: "/admin_shop_information_List/true/true",
@@ -668,15 +668,15 @@ $(document).ready(function() {
 			}
 		});
 	});	
-	/*======================= admin_shop_information.do 페이지에서 (completed) =======================*/
+	/*======================= admin_shop_information 페이지에서 (completed) =======================*/
 
 
 
-	/*======================= admin_review_detail.do 페이지에서 'selected review' 버튼 처리 =======================*/
+	/*======================= admin_review_detail 페이지에서 'selected review' 버튼 처리 =======================*/
 	$("#adminReviewSelected").click(function() {
 	    window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 	});
-	/*======================= admin_review_detail.do 페이지에서 'selected review' 버튼 처리 =======================*/
+	/*======================= admin_review_detail 페이지에서 'selected review' 버튼 처리 =======================*/
 });
 
 /*======================= index.jsp 페이지에서 book now =======================*/	
@@ -686,7 +686,7 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 	console.log(bookNowCuisine);
 
 	$.ajax({
-		url: "search_list_book_now_proc.do?date=" + bookNowDate + "&location=" + bookNowLocation + "&cuisine=" + bookNowCuisine,
+		url: "search_list_book_now_proc?date=" + bookNowDate + "&location=" + bookNowLocation + "&cuisine=" + bookNowCuisine,
 		success: function(result) {
 			 let jdata = JSON.parse(result);
 			 if(jdata.jlist != "") {
@@ -694,7 +694,7 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 		        $(".rb").empty();
 		        let output = "";
 		        for (const obj of jdata.jlist) {
-		        	output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+		        	output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -749,7 +749,7 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 /*======================= index.jsp 페이지에서 음식 종류 클릭했을때 search 페이지 이동 및 리스팅 =======================*/	
 function mainToSearch(searchQuery, searchUrl) {
 	 $.ajax({
-	    url: "search_list_proc.do?searchQuery=" + searchQuery,
+	    url: "search_list_proc?searchQuery=" + searchQuery,
 	    async:false,
 	    success: function(result) {
 	        let jdata = JSON.parse(result);
@@ -757,7 +757,7 @@ function mainToSearch(searchQuery, searchUrl) {
 		        $(".rb").empty();
 		        let output = "";
 		        for (const obj of jdata.jlist) {
-		        	output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+		        	output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -821,7 +821,7 @@ function mapMainToSearch() {
 	var lat = localStorage.getItem('lat');
 	var lng = localStorage.getItem('lng');
 	$.ajax({
-		url:"index_mapMarker.do",
+		url:"index_mapMarker",
 		data: {
 			lat: lat,
 			lng: lng
@@ -832,7 +832,7 @@ function mapMainToSearch() {
 	        
 	        let output = "";
 	        for (const obj of jdata.jlist) {
-	            	output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+	            	output += "<a href='restaurant?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";

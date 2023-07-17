@@ -7,20 +7,20 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="resources/image/favicon.png" type="image/png">
+        <link rel="icon" href="/image/favicon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="resources/css/bootstrap.css">
-        <link rel="stylesheet" href="resources/vendors/linericon/style.css">
-        <link rel="stylesheet" href="resources/css/font-awesome.min.css">
-        <link rel="stylesheet" href="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-        <link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="resources/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/vendors/lightbox/simpleLightbox.css">
         <!-- main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
-       	<link rel="stylesheet" href="resources/css/lsm.css">
-        <link rel="stylesheet" href="resources/css/responsive.css">
+        <link rel="stylesheet" href="/css/style.css">
+       	<link rel="stylesheet" href="/css/lsm.css">
+        <link rel="stylesheet" href="/css/responsive.css">
     </head>
 	<script>
 			let logout_result = "${logout_result }";
@@ -36,7 +36,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="resources/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -45,29 +45,29 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.do">HOME</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">SEARCH</a></li>
+                            <li class="nav-item"><a class="nav-link" href="index">HOME</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search">SEARCH</a></li>
                              <li class="nav-item submenu dropdown">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MYDINING</a>
+                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MYDINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li> 
-                            <li class="nav-item"><a class="nav-link active" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
 	                                    <!-- <li class="nav-item active" id="shop_information">Register</li> -->
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>     
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">                
-                            	<li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                         	</c:if>
                         </ul>
                     </div> 
@@ -83,7 +83,7 @@
                 <div class="page-cover text-center">
                     <h2 class="page-cover-tittle">MY PAGE</h2>
                     <ol class="breadcrumb">
-                        <li><a href="index.do">Home</a></li>
+                        <li><a href="index">Home</a></li>
                         <li class="active">MY PAGE</li>
                     </ol>
                 </div>
@@ -103,12 +103,12 @@
 			    <br>
 			    <br>
 			    <br>
-			    <a href="logout.do"><button class="btn btn-sign-out">Sign out</button></a>
+			    <a href="logout"><button class="btn btn-sign-out">Sign out</button></a>
 			    <script>
 			        // Edit Profile 버튼 클릭 시 동작
 			       /*  document.querySelector('.btn-edit-profile').addEventListener('click', function() {
 			            // 페이지 이동을 위한 URL 설정
-			            var editProfileURL = 'mypage_editprofile.do';
+			            var editProfileURL = 'mypage_editprofile';
 			            // 페이지 이동
 			            window.location.href = editProfileURL;
 			        }); */
@@ -117,11 +117,11 @@
 			        document.querySelector('.btn-favorites').addEventListener('click', function() {
 
 			            // 페이지 이동을 위한 URL 설정
-			            var favoritesURL = 'mypage_favorites.do?mid=MID';
+			            var favoritesURL = 'mypage_favorites?mid=MID';
 			            // 페이지 이동
 			            var loggedInUser = getLoggedInUser();
 			            var mid = loggedInUser.mid;
-			            var favoritesURL = 'mypage_favorites.do?mid=' + mid;
+			            var favoritesURL = 'mypage_favorites?mid=' + mid;
 			            window.location.href = favoritesURL;
 			        });
 			         function getLoggedInUser() {
@@ -133,13 +133,13 @@
 			        // My Review 버튼 클릭 시 동작
 			        document.querySelector('.btn-my-review').addEventListener('click', function() {
 			            // 페이지 이동을 위한 URL 설정
-			            var myReviewURL = 'mypage_review.do?mid=MID';
+			            var myReviewURL = 'mypage_review?mid=MID';
 			            // 페이지 이동
 			            window.location.href = myReviewURL;
 			        	var loggedInUser = getLoggedInUser();
 			            var mid = loggedInUser.mid;
 			        	var reviewId = 'REVIEW_0001';
-			        	var myReviewURL = 'mypage_review.do?mid=' + mid + '&reviewId=' + reviewId;
+			        	var myReviewURL = 'mypage_review?mid=' + mid + '&reviewId=' + reviewId;
 			        	//alert(myReviewURL);
 			        	window.location.href = myReviewURL;
 			        });
@@ -200,14 +200,14 @@
                         <div class="single-footer-widget instafeed">
                             <h6 class="footer_title">InstaFeed</h6>
                             <ul class="list_style instafeed d-flex flex-wrap">
-                                <li><img src="resources/image/instagram/Image-01.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-02.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-03.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-04.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-05.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-06.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-07.jpg" alt=""></li>
-                                <li><img src="resources/image/instagram/Image-08.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-01.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-02.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-03.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-04.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-05.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-06.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-07.jpg" alt=""></li>
+                                <li><img src="/image/instagram/Image-08.jpg" alt=""></li>
                             </ul>
                         </div>
                     </div>                  
@@ -223,19 +223,19 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="resources/js/jquery-3.2.1.min.js"></script>
-        <script src="resources/js/popper.js"></script>
-        <script src="resources/js/bootstrap.min.js"></script>
-        <script src="resources/vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="resources/js/jquery.ajaxchimp.min.js"></script>
-        <script src="resources/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-        <script src="resources/vendors/nice-select/js/jquery.nice-select.js"></script>
-        <script src="resources/js/mail-script.js"></script>
-        <script src="resources/js/stellar.js"></script>
-        <script src="resources/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
-        <script src="resources/vendors/isotope/isotope-min.js"></script>
-        <script src="resources/js/stellar.js"></script>
-        <script src="resources/vendors/lightbox/simpleLightbox.min.js"></script>
-        <script src="resources/js/custom.js"></script>
+        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/popper.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="/vendors/nice-select/js/jquery.nice-select.js"></script>
+        <script src="/js/mail-script.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+        <script src="/vendors/isotope/isotope-min.js"></script>
+        <script src="/js/stellar.js"></script>
+        <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/js/custom.js"></script>
     </body>
 </html>

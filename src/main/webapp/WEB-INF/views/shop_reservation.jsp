@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +17,38 @@
 	<link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
 	<!-- main css -->
 	<link rel="stylesheet" href="/css/style.css">
-	<link rel="stylesheet" href="/css/style_jonghe.css">
 	<link rel="stylesheet" href="/css/responsive.css">
-    <!--================ìˆ˜ì •ì‚¬í•­ ìŠ¤í¬ë¦½íŠ¸, ìŠ¤íƒ€ì¼ ================-->
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/jonghe.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script>
+	   $(function() {
+	       //inputÀ» datepicker·Î ¼±¾ð
+	       $("#datepicker1,#datepicker2").datepicker({
+	           dateFormat: 'yy-mm-dd' //´Þ·Â ³¯Â¥ ÇüÅÂ
+	           ,showOtherMonths: true //ºó °ø°£¿¡ ÇöÀç¿ùÀÇ ¾ÕµÚ¿ùÀÇ ³¯Â¥¸¦ Ç¥½Ã
+	           ,showMonthAfterYear:true // ¿ù- ³â ¼ø¼­°¡¾Æ´Ñ ³âµµ - ¿ù ¼ø¼­
+	           ,changeYear: true //option°ª ³â ¼±ÅÃ °¡´É
+	           ,changeMonth: true //option°ª  ¿ù ¼±ÅÃ °¡´É                
+	           ,showOn: "both" //button:¹öÆ°À» Ç¥½ÃÇÏ°í,¹öÆ°À» ´­·¯¾ß¸¸ ´Þ·Â Ç¥½Ã ^ both:¹öÆ°À» Ç¥½ÃÇÏ°í,¹öÆ°À» ´©¸£°Å³ª inputÀ» Å¬¸¯ÇÏ¸é ´Þ·Â Ç¥½Ã  
+	           ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //¹öÆ° ÀÌ¹ÌÁö °æ·Î
+	           ,buttonImageOnly: true //¹öÆ° ÀÌ¹ÌÁö¸¸ ±ò²ûÇÏ°Ô º¸ÀÌ°ÔÇÔ
+	           ,buttonText: "¼±ÅÃ" //¹öÆ° È£¹ö ÅØ½ºÆ®              
+	           ,yearSuffix: "³â" //´Þ·ÂÀÇ ³âµµ ºÎºÐ µÚ ÅØ½ºÆ®
+	           ,monthNamesShort: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'] //´Þ·ÂÀÇ ¿ù ºÎºÐ ÅØ½ºÆ®
+	           ,monthNames: ['1¿ù','2¿ù','3¿ù','4¿ù','5¿ù','6¿ù','7¿ù','8¿ù','9¿ù','10¿ù','11¿ù','12¿ù'] //´Þ·ÂÀÇ ¿ù ºÎºÐ Tooltip
+	           ,dayNamesMin: ['ÀÏ','¿ù','È­','¼ö','¸ñ','±Ý','Åä'] //´Þ·ÂÀÇ ¿äÀÏ ÅØ½ºÆ®
+	           ,dayNames: ['ÀÏ¿äÀÏ','¿ù¿äÀÏ','È­¿äÀÏ','¼ö¿äÀÏ','¸ñ¿äÀÏ','±Ý¿äÀÏ','Åä¿äÀÏ'] //´Þ·ÂÀÇ ¿äÀÏ Tooltip
+	           ,minDate: "-5Y" //ÃÖ¼Ò ¼±ÅÃÀÏÀÚ(-1D:ÇÏ·çÀü, -1M:ÇÑ´ÞÀü, -1Y:ÀÏ³âÀü)
+	           ,maxDate: "+5y" //ÃÖ´ë ¼±ÅÃÀÏÀÚ(+1D:ÇÏ·çÈÄ, -1M:ÇÑ´ÞÈÄ, -1Y:ÀÏ³âÈÄ)  
+	       });                    
+	       
+	       //ÃÊ±â°ªÀ» ¿À´Ã ³¯Â¥·Î ¼³Á¤ÇØÁà¾ß ÇÕ´Ï´Ù.
+	       $("#datepicker1,#datepicker2").datepicker('setDate', 'today'); //(-1D:ÇÏ·çÀü, -1M:ÇÑ´ÞÀü, -1Y:ÀÏ³âÀü), (+1D:ÇÏ·çÈÄ, -1M:ÇÑ´ÞÈÄ, -1Y:ÀÏ³âÈÄ)            
+	   });
+	</script>
+      <!--================¼öÁ¤»çÇ× ½ºÅ©¸³Æ®, ½ºÅ¸ÀÏ ================-->
 </head>
 	<body>
         <!--================Header Area =================-->
@@ -29,7 +56,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="/"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -38,9 +65,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-        				<!--================ ë³€ê²½í•˜ëŠ” ë¶€ë¶„ =================-->                
-                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
@@ -48,21 +74,20 @@
                                     <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
-                            <%--<c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
+                            <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
+                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
-	                            </li>                     
-                            <%--</c:if>
-                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
-                            	<li class="nav-item active"><a class="nav-link" href="/admin">Admin</a></li>
-                        	<%--</c:if>--%>
-                        <!--================ ë³€ê²½í•˜ëŠ” ë¶€ë¶„ =================-->
+	                            </li>
+                            </c:if>     
+                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">                
+                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+                        	</c:if>
                         </ul>
                     </div> 
                 </nav>
@@ -74,52 +99,141 @@
             <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">
                 <div class="page-cover text-center">
-                    <h2 class="page-cover-tittle">Administrator Page</h2>
+                    <h2 class="page-cover-tittle">Reservation Status</h2>
                     <ol class="breadcrumb">
-                        <li>Do best!!</li>
+                        <li>Check Your Restaurant's Reservation Status</li>
                         <!-- <li class="active"></li> -->
                     </ol>
                 </div>
             </div>
         </section>
         <!--================Breadcrumb Area =================-->
-        <!--================Contact Area =================-->
-        <section class="contact_area section_gap">
-           	<div class="container div1">
-           		<div class="nav_bar">
-					<ul class="nav_bar">
-					  <li><a class="active" id="li_Home">Home</a></li>
-					  <li><a class="" id="li_MemberAdmin">Member</a></li>
-					  <li><a class="" id="li_ShopInfoAdmin">Shop List</a></li>
-					  <li><a class="" id="li_ReservAdmin">Shop Registeration</a></li>
-					  <li><a class="" id="li_ReviewAdmin">Review</a></li>
-					  <li><a class="" id="li_NotiAdmin">Notice</a></li>
-					</ul>
-           		</div>
- 	           	<div class="member">
- 	           		<iframe src="/admin_member_list" id="memberIframe"
-				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
-	           	</div>
-	           	<div class="shopInformation">
-	           		<iframe src="/admin_shop_information" id="shopInformationIframe"
-				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
-	           	</div>
-	           	<div class="reservation">
-	           		<iframe src="/admin_shop_registeration_check" id="reserveIframe"
-				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
-	           	</div>	           	
-	           	<div class="review">
-	           		<iframe src="/admin_review" id="reviewIframe"
-				    	scrolling="yes" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
-	           	</div>
-	           	<div class="notice">
-	           		<iframe src="/admin_notice_list" id="noticeIframe"
-				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
-	           	</div> 
-           	</div>
-           	<!--================ ìˆ˜ì •ì‚¬í•­ ================-->
-        </section>
-        <!--================Contact Area =================-->
+        <!--================Reservation Check Area =================-->
+		<!-- <section id="s1"> -->
+		<div class="container div1 shop-reservation">
+			<section class="s1">
+				<div class="h3">
+					<h3> Restaurant Reservation </h3>
+				</div>
+			</section>
+			<!-- <section id="s2"> -->
+			<section class="s2">
+				<div id="reserveList">
+					<div class="restaurantList">
+						<div class="restaurantInfo">
+							<span>ZERO COMPLEX</span>
+							<span>Hoehyeon</span>
+						</div>
+						<div class='input-group date reservation'>
+							<div>
+						        <input type="text" id="datepicker1">
+							</div>
+							<div>
+						        <input type="text" id="datepicker2">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="reserveDetail">
+					<div> 
+						<div class="reserveDetail">
+							<div>
+								<span>Date  :  </span>
+								<span>2023/05/07</span>
+							</div>
+							<div>
+								<span>Time  :  </span>
+								<span>16:50</span>
+							</div>
+							<div>
+								<span>Name  :  </span>
+								<span>korea</span>
+							</div>
+							<div>
+								<span>ID</span>
+								<span>sosinnmi</span>
+							
+							</div>
+							<div>
+								<span>CellPhone</span>
+								<span>010-1234-1234</span>
+							</div>
+						</div>
+						<div class="confirm">
+							<form name="confirmForm" action="#" method="get">
+								<button type="button" class="btnConfirm">confirm</button>
+								<button type="button" class="btnCancel">cancel</button>
+							</form>
+						</div>
+					</div>
+					<hr>
+					<div> 
+						<div class="reserveDetail">
+							<div>
+								<span>Date  :  </span>
+								<span>2023/05/08</span>
+							</div>
+							<div>
+								<span>Time  :  </span>
+								<span>13:50</span>
+							</div>
+							<div>
+								<span>Name  :  </span>
+								<span>us</span>
+							</div>
+							<div>
+								<span>ID</span>
+								<span>sosinnmi2</span>
+							
+							</div>
+							<div>
+								<span>CellPhone</span>
+								<span>010-1234-5678</span>
+							</div>
+						</div>
+						<div class="confirm">
+							<form name="confirmForm" action="#" method="get">
+								<button type="button" class="btnConfirm">confirm</button>
+								<button type="button" class="btnCancel">cancel</button>
+							</form>
+						</div>
+					</div>
+					<hr>
+					<div> 
+						<div class="reserveDetail">
+							<div>
+								<span>Date  :  </span>
+								<span>2023/05/08</span>
+							</div>
+							<div>
+								<span>Time  :  </span>
+								<span>13:50</span>
+							</div>
+							<div>
+								<span>Name  :  </span>
+								<span>us</span>
+							</div>
+							<div>
+								<span>ID</span>
+								<span>sosinnmi2</span>
+							
+							</div>
+							<div>
+								<span>CellPhone</span>
+								<span>010-1234-5678</span>
+							</div>
+						</div>
+						<div class="confirm">
+							<form name="confirmForm" action="#" method="get">
+								<button type="button" class="btnConfirm">confirm</button>
+								<button type="button" class="btnCancel">cancel</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+        <!--================Reservation Check Area =================-->
         <!--================ start footer Area  =================-->	
         <footer class="footer-area section_gap" style="padding:50px 0 0 0; background:rgb(255, 61, 0)">
             <div class="container">
@@ -142,9 +256,17 @@
                     </div>						
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-widget2" style="width:300px">
                         <div class="single-footer-widget">
-                            <h6 class="footer_title">Contact</h6>
-                            <p style="color:white">We will always put your advice first. If you have any questions, please feel free to leave them.</p>	
-                            <p style="color:white">02-123-1234</p>
+                            <h6 class="footer_title">Newsletter</h6>
+                            <p style="color:white">For business professionals caught between high OEM price and mediocre print and graphic output, </p>		
+                            <div id="mc_embed_signup">
+                                <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
+                                    <div class="input-group d-flex flex-row">
+                                        <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                        <button class="btn sub-btn"><span class="lnr lnr-location"></span></button>		
+                                    </div>									
+                                    <div class="mt-10 info"></div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-widget3"  style="width:300px">
@@ -222,5 +344,8 @@
         <script src="/js/jquery.validate.min.js"></script>
         <script src="/js/contact.js"></script>
         <script src="/js/custom.js"></script>
+        <!-- ´Þ·Â »ç¿ëÀ§ÇÑ ¼Ò½º -->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	</body>
 </html>

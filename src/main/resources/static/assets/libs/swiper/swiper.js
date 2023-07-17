@@ -167,7 +167,7 @@
 
   $.fn = Dom7.prototype;
   $.Class = Dom7;
-  $.Dom7 = Dom7;
+  $m7 = Dom7;
 
   function unique(arr) {
     var uniqueArray = [];
@@ -250,8 +250,8 @@
       el = this[0];
       // Get value
       if (el) {
-        if (el.dom7ElementDataStorage && (key in el.dom7ElementDataStorage)) {
-          return el.dom7ElementDataStorage[key];
+        if (elm7ElementDataStorage && (key in elm7ElementDataStorage)) {
+          return elm7ElementDataStorage[key];
         }
 
         var dataKey = el.getAttribute(("data-" + key));
@@ -266,8 +266,8 @@
     // Set value
     for (var i = 0; i < this.length; i += 1) {
       el = this[i];
-      if (!el.dom7ElementDataStorage) { el.dom7ElementDataStorage = {}; }
-      el.dom7ElementDataStorage[key] = value;
+      if (!elm7ElementDataStorage) { elm7ElementDataStorage = {}; }
+      elm7ElementDataStorage[key] = value;
     }
     return this;
   }
@@ -311,7 +311,7 @@
     function handleLiveEvent(e) {
       var target = e.target;
       if (!target) { return; }
-      var eventData = e.target.dom7EventData || [];
+      var eventData = e.targetm7EventData || [];
       if (eventData.indexOf(e) < 0) {
         eventData.unshift(e);
       }
@@ -324,7 +324,7 @@
       }
     }
     function handleEvent(e) {
-      var eventData = e && e.target ? e.target.dom7EventData || [] : [];
+      var eventData = e && e.target ? e.targetm7EventData || [] : [];
       if (eventData.indexOf(e) < 0) {
         eventData.unshift(e);
       }
@@ -337,9 +337,9 @@
       if (!targetSelector) {
         for (j = 0; j < events.length; j += 1) {
           var event = events[j];
-          if (!el.dom7Listeners) { el.dom7Listeners = {}; }
-          if (!el.dom7Listeners[event]) { el.dom7Listeners[event] = []; }
-          el.dom7Listeners[event].push({
+          if (!elm7Listeners) { elm7Listeners = {}; }
+          if (!elm7Listeners[event]) { elm7Listeners[event] = []; }
+          elm7Listeners[event].push({
             listener: listener,
             proxyListener: handleEvent,
           });
@@ -349,9 +349,9 @@
         // Live events
         for (j = 0; j < events.length; j += 1) {
           var event$1 = events[j];
-          if (!el.dom7LiveListeners) { el.dom7LiveListeners = {}; }
-          if (!el.dom7LiveListeners[event$1]) { el.dom7LiveListeners[event$1] = []; }
-          el.dom7LiveListeners[event$1].push({
+          if (!elm7LiveListeners) { elm7LiveListeners = {}; }
+          if (!elm7LiveListeners[event$1]) { elm7LiveListeners[event$1] = []; }
+          elm7LiveListeners[event$1].push({
             listener: listener,
             proxyListener: handleLiveEvent,
           });
@@ -382,10 +382,10 @@
       for (var j = 0; j < this.length; j += 1) {
         var el = this[j];
         var handlers = (void 0);
-        if (!targetSelector && el.dom7Listeners) {
-          handlers = el.dom7Listeners[event];
-        } else if (targetSelector && el.dom7LiveListeners) {
-          handlers = el.dom7LiveListeners[event];
+        if (!targetSelector && elm7Listeners) {
+          handlers = elm7Listeners[event];
+        } else if (targetSelector && elm7LiveListeners) {
+          handlers = elm7LiveListeners[event];
         }
         if (handlers && handlers.length) {
           for (var k = handlers.length - 1; k >= 0; k -= 1) {
@@ -393,7 +393,7 @@
             if (listener && handler.listener === listener) {
               el.removeEventListener(event, handler.proxyListener, capture);
               handlers.splice(k, 1);
-            } else if (listener && handler.listener && handler.listener.dom7proxy && handler.listener.dom7proxy === listener) {
+            } else if (listener && handler.listener && handler.listenerm7proxy && handler.listenerm7proxy === listener) {
               el.removeEventListener(event, handler.proxyListener, capture);
               handlers.splice(k, 1);
             } else if (!listener) {
@@ -429,10 +429,10 @@
           evt.detail = eventData;
         }
         // eslint-disable-next-line
-        el.dom7EventData = args.filter(function (data, dataIndex) { return dataIndex > 0; });
+        elm7EventData = args.filter(function (data, dataIndex) { return dataIndex > 0; });
         el.dispatchEvent(evt);
-        el.dom7EventData = [];
-        delete el.dom7EventData;
+        elm7EventData = [];
+        delete elm7EventData;
       }
     }
     return this;
@@ -968,7 +968,7 @@
     var testDiv = doc.createElement('div');
     return {
       touch: (win.Modernizr && win.Modernizr.touch === true) || (function checkTouch() {
-        return !!((win.navigator.maxTouchPoints > 0) || ('ontouchstart' in win) || (win.DocumentTouch && doc instanceof win.DocumentTouch));
+        return !!((win.navigator.maxTouchPoints > 0) || ('ontouchstart' in win) || (wincumentTouch && doc instanceof wincumentTouch));
       }()),
 
       pointerEvents: !!(win.navigator.pointerEnabled || win.PointerEvent || ('maxTouchPoints' in win.navigator && win.navigator.maxTouchPoints > 0)),

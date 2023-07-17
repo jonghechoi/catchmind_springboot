@@ -48,7 +48,7 @@ $(document).ready(function(){
 	                    
 		$.ajax({
 	 		type: "POST",
-	 		url: "select_rtabletype.do",
+	 		url: "select_rtabletype",
 	 		dataType : "json",
 	 		data: objParams,
 	 		cache: false,
@@ -105,7 +105,7 @@ $(document).ready(function(){
 	    
 	    $.ajax({
 	 		type: "POST",
-	 		url: "select_guestnumber.do",
+	 		url: "select_guestnumber",
 	 		dataType : "json",
 	 		data: objParams,
 	 		cache: false,
@@ -154,7 +154,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type: "POST",
-			url: "select_rtime.do",
+			url: "select_rtime",
 			dataType: "json",
 			data: objParams,
 			cache: false,
@@ -222,7 +222,7 @@ $(document).ready(function(){
 		alert("merchant_uid--->" + rsp.merchant_uid);
 		alert("name--->" + rsp.name);
 	    $.ajax({
-			url: "booking_with_payment.do", 
+			url: "booking_with_payment", 
     		type: 'POST',
     		dataType: 'json',
     		data: {
@@ -241,7 +241,7 @@ $(document).ready(function(){
     		},
 			success: function (result) {
 	            alert("결제되었습니다.");
-				location.href = "http://localhost:9000/catchmind/mydining_scheduled.do";
+				location.href = "http://localhost:9000/catchmind/mydining_scheduled";
 	        },
 			error: function(){
 				alert("errorrrrr on saving data into DB");
@@ -321,7 +321,7 @@ $(document).ready(function(){
 	    			$.ajax({
 			    		type: 'POST',
 			    		url: "/verifyIamport/" + rsp.imp_uid  
-			    	}).done(function(data) {
+			    	})ne(function(data) {
 			    		alert("data.success");
 			    		if (rsp.paid_amount == data.response.amount) {
 			    			var msg = '결제가 완료되었습니다.';
@@ -476,7 +476,7 @@ $(document).ready(function(){
 				buyer_tel: contact,
 				buyer_addr: " ",
 				buyer_postcode: " ",
-				m_redirect_url : "http://localhost:9000/catchmind/mydining_scheduled.do"
+				m_redirect_url : "http://localhost:9000/catchmind/mydining_scheduled"
 			}, function (rsp) {
 			    if (rsp.success) {
 			    	alert("rsp.success");
@@ -484,7 +484,7 @@ $(document).ready(function(){
 			    	$.ajax({
 			    		type: 'POST',
 			    		url: "/verifyIamport/" + rsp.imp_uid  //cross-domain error가 발생하지 않도록 주의해주세요
-			    	}).done(function(data) {
+			    	})ne(function(data) {
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 			    		alert("data.success");
 			    		if (rsp.paid_amount == data.response.amount) {
