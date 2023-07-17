@@ -3,10 +3,8 @@ package com.springboot.catchmind.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewVo {
-	String reviewid, reviewcontent, reviewcreatedate, reviewmodifydate, sid, mid, rid, 
-		reviewphoto, reviewsphoto, sname, mname;
+	String reviewid, reviewcontent, reviewcreatedate, reviewmodifydate, sid, mid, rid, reviewphoto, reviewsphoto, sname, mname;
 	double reviewstar, tasteStar, moodStar, serviceStar;
-
 	int rno;
 
 	MultipartFile reviewfile1;
@@ -146,7 +144,4 @@ public class ReviewVo {
 	public void setReviewfile1(MultipartFile reviewfile1) {
 		this.reviewfile1 = reviewfile1;
 	}
-
-	
-	
 }

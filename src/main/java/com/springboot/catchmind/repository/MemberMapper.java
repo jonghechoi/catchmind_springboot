@@ -3,7 +3,15 @@ package com.springboot.catchmind.repository;
 import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.SessionDto;
 import org.apache.ibatis.annotations.Mapper;
+import com.springboot.catchmind.dao.DBConn;
+import com.springboot.catchmind.dto.PageDto;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -141,6 +149,9 @@ public interface MemberMapper {
 //	    return memberDto;
 //	}
 
+	List<MemberDto> selectList(PageDto pageDto);
+	MemberDto select(String mid);
+	
 	 /* ADMIN/SHOP 로그인타입 체크 */
 	int roleIdCheck(MemberDto memberDto);
 

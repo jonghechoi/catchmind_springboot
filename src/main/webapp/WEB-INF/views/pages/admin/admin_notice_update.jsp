@@ -5,27 +5,27 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>Catch Mind</title>
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script src="/js/jonghe.js"></script>
 </head>
 <body>
 	<div class="content">
 		<section class="notice_update">
 			<h1 class="title">Notice</h1>
-			<form name="adminNoticeModificationForm" action="notice_update_proc.do" method="post">
-				<input type="hidden" name="nid" id="titleInputHidden" value="${noticeDto.nid}">
+			<form name="adminNoticeModificationForm" action="/admin_notice_update_proc" method="post">
+				<input type="hidden" name="nid" id="titleInputHidden" value="${notice.nid}">
 				<table>
 					<tr>
 						<th>Title</th>
 						<td>
-							<input type="text" name="ntitle" id="titleInput" value="${noticeDto.ntitle}">
+							<input type="text" name="ntitle" id="titleInput" value="${notice.ntitle}">
 						</td>
 					</tr>
 					<tr>
 						<th>Content</th>
 						<td>
-							<textarea name="ncontents" id="contentTA">${noticeDto.ncontents}</textarea>
+							<textarea name="ncontents" id="contentTA">${notice.ncontents}</textarea>
 						</td>
 					</tr>					
 					<tr>

@@ -2,8 +2,12 @@ package com.springboot.catchmind.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.springboot.catchmind.dto.NoticeDto;
+import com.springboot.catchmind.dto.PageDto;
+import com.springboot.catchmind.repository.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,34 +24,12 @@ public class NoticeServiceImpl {
 	private PagingServiceImpl pagingService;*/
 	@Autowired
 	private NoticeDao noticeDao;
+	@Autowired
+	private NoticeMapper noticeMapper;
 	
 	public int getTotalRowCount() {	return noticeDao.totalRowCount(); };
 	
-	public ArrayList<NoticeVo> getNoticeSelect(Map<String, Integer> param) {
-		ArrayList<NoticeVo> list = noticeDao.select(param.get("startCount"), param.get("endCount"));
-
-//		JsonObject jlist = new JsonObject();
-//		JsonArray jarray = new JsonArray();
-//
-//		for(NoticeVo noticeVo : list) {
-//			JsonObject jobj = new JsonObject();
-//			jobj.addProperty("rno", noticeVo.getRno());
-//			jobj.addProperty("ntitle", noticeVo.getNtitle());
-//			jobj.addProperty("nhits", noticeVo.getNhits());
-//			jobj.addProperty("ncreatedate", noticeVo.getNcreatedate());
-//			jobj.addProperty("nid", noticeVo.getNid());
-//
-//			jarray.add(jobj);
-//		}
-//
-//		jlist.add("jlist", jarray);
-//		jlist.addProperty("totals", param.get("dbCount"));
-//		jlist.addProperty("maxSize", param.get("maxSize"));
-//		jlist.addProperty("pageSize", param.get("pageSize"));
-//		jlist.addProperty("page", param.get("page"));
-
-		return list;
+	public List<NoticeDto> getNoticeSelectJson(PageDto pageDto) {
+		return noticeMapper.selectList(pageDto);
 	}
-	
-	public int getNoticeUpload(NoticeVo noticeVo) {	return noticeDao.upload(noticeVo); }
 }

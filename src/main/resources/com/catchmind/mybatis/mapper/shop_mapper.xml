@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="mapper.shop">
+<mapper namespace="com.springboot.catchmind.repository.ShopMapper">
 	<select id="shopLogin" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="com.springboot.catchmind.dto.SessionDto">
 		select count(*) loginResult, SID, SPASS, ROLEID
 		from shop
@@ -20,171 +20,166 @@
 			  SPASS = #{spass}
 	</select>
 
-	<update id="detailInsert" parameterType="com.springboot.catchmind.vo.ShopVo">
-		 UPDATE SHOP SET
-		 		SCONFIRMYN='Y', 
-		 		ACONFIRMFINALYN='N',
-		 		SINTRO=#{sintro},
-				SOPENINGHOUR=#{sopeninghour},
-				SCLOSINGHOUR=#{sclosinghour},
-				SCLOSINGDATE=#{sclosingdate},
-				SDEPOSIT=#{sdeposit},
-				SMEALFEE=#{smealfee},
-				LUNCH=#{lunch},
-				DINNER=#{dinner}
-			 WHERE SID=#{sid}
-	</update>
+    <select id="select" parameterType="map" resultType="com.springboot.catchmind.dto.ShopDto">
+        SELECT SID, ROLEID, SCREATEDATE, SDELETEYN, ACONFIRMYN, ACONFIRMFINALYN, SCONFIRMYN,
+               SPASS, SNAME, SPHONE, SLOC, SLOCSHORT, SINTRO, SMODIFYDATE, SOPENINGHOUR,
+               SCLOSINGHOUR, SCLOSINGDATE, SDEPOSIT, SMEALFEE, LUNCH, DINNER
+            FROM SHOP
+            WHERE SCONFIRMYN=#{sconfirm}
+              AND ACONFIRMFINALYN=#{aconfirmfinal}
+    </select>
 
-	<update id="detailUpdate" parameterType="com.springboot.catchmind.vo.ShopVo">
-		 UPDATE SHOP SET
-		 		SCONFIRMYN='Y', 
-		 		ACONFIRMFINALYN='N',
-		 		SINTRO=#{sintro},
-				SOPENINGHOUR=#{sopeninghour},
-				SCLOSINGHOUR=#{sclosinghour},
-				SCLOSINGDATE=#{sclosingdate},
-				SDEPOSIT=#{sdeposit},
-				SMEALFEE=#{smealfee},
-				LUNCH=#{lunch},
-				DINNER=#{dinner}
-			 WHERE SID=#{sid}
-	</update>
-	
-	<select id="adminList" parameterType="map" resultType="com.springboot.catchmind.vo.ShopVo">
-		SELECT SID, ROLEID, SCREATEDATE, SDELETEYN, ACONFIRMYN, ACONFIRMFINALYN, SCONFIRMYN,
-				SPASS, SNAME, SPHONE, SLOC, SLOCSHORT, SINTRO, SMODIFYDATE, SOPENINGHOUR,
-				SCLOSINGHOUR, SCLOSINGDATE, SDEPOSIT, SMEALFEE, LUNCH, DINNER
-			FROM SHOP
-			WHERE SCONFIRMYN=#{sconfirmCheck}
-			AND ACONFIRMFINALYN=#{aconfirmfinalCheck}
-	</select>
-	
-	<select id="facilityCheck" parameterType="String" resultType="int">
-		SELECT COUNT(*) 
-			FROM FACILITY
-			WHERE SID=#{sid}
-	</select>
-	
-	<insert id="facilityInsert" parameterType="com.springboot.catchmind.vo.FacilityVo">
-	    INSERT INTO FACILITY(
-		    					SID, 
-		    					PARKING, 
-		    					VALET, 
-		    					CORKAGE, 
-		    					ADULTONLY, 
-		    					SOMMELIER, 
-		    					LETTERING, 
-		    					RENTALS
-		    					<if test='parkingdesc != null'>,PARKINGDESC</if> 
-		    					<if test='valetdesc != null'>,VALETDESC </if>
-		    					<if test='corkagedesc != null'>,CORKAGEDESC</if>
-		    					<if test='adultonlydesc != null'>,ADULTONLYDESC</if> 
-		    					<if test='sommelierdesc != null'>,SOMMELIERDESC</if>
-		    					<if test='letteringdesc != null'>,LETTERINGDESC</if>
-		    					<if test='rentalsdesc != null'>,RENTALSDESC</if>
-	    					)
-		    VALUES(
-		        #{sid},
-		        #{parking},
-		        #{valet},
-		        #{corkage},
-		        #{adultonly},
-		        #{sommelier},
-		        #{lettering},
-		        #{rentals}
-		        <if test='parkingdesc != null'>,#{parkingdesc}</if>
-		        <if test='valetdesc != null'>,#{valetdesc}</if>
-		        <if test='corkagedesc != null'>,#{corkagedesc}</if>
-		        <if test='adultonlydesc != null'>,#{adultonlydesc}</if>
-		        <if test='sommelierdesc != null'>,#{sommelierdesc}</if>
-		        <if test='letteringdesc != null'>,#{letteringdesc}</if>
-		        <if test='rentalsdesc != null'>,#{rentalsdesc}</if>
-		    )
-	</insert>
-	
-	<update id="facilityUpdate" parameterType="com.springboot.catchmind.vo.FacilityVo">
-	    UPDATE FACILITY SET
-	        PARKING=#{parking},
-	        VALET=#{valet},
-	        CORKAGE=#{corkage},
-	        ADULTONLY=#{adultonly},
-	        SOMMELIER=#{sommelier},
-	        LETTERING=#{lettering},
-	        RENTALS=#{rentals}
-	        <if test='parkingdesc != null'>,PARKINGDESC=#{parkingdesc}</if>
-	        <if test='valetdesc != null'>,VALETDESC=#{valetdesc}</if>
-	        <if test='corkagedesc != null'>,CORKAGEDESC=#{corkagedesc}</if>
-	        <if test='adultonlydesc != null'>,ADULTONLYDESC=#{adultonlydesc}</if>
-	        <if test='sommelierdesc != null'>,SOMMELIERDESC=#{sommelierdesc}</if>
-	        <if test='letteringdesc != null'>,LETTERINGDESC=#{letteringdesc}</if>
-	        <if test='rentalsdesc != null'>,RENTALSDESC=#{rentalsdesc}</if>
-	    WHERE SID=#{sid}
-	</update>
-	
-	<select id="facilitySelect" parameterType="String" resultType="com.springboot.catchmind.vo.FacilityVo">
-		SELECT PARKING, VALET, CORKAGE, ADULTONLY, SOMMELIER, LETTERING, RENTALS, 
-			   SID, PARKINGDESC, VALETDESC, CORKAGEDESC, ADULTONLYDESC, SOMMELIERDESC, LETTERINGDESC, RENTALSDESC
-			FROM FACILITY
-			WHERE SID=#{sid}
-	</select>
-	
-	<select id="mapSelect" resultType="com.springboot.catchmind.vo.SearchVo">
-		SELECT SID, SNAME, SINTRO, REVIEWSTAR, SLOCSHORT, LUNCH, DINNER, SMPHOTO,  SLOC, SLOCX, SLOCY, SFOODSTYLE, SOPENINGHOUR
-			FROM (SELECT DISTINCT S.SID, S.SNAME, S.SINTRO, TRUNC(AVG(V.REVIEWSTAR),1) REVIEWSTAR, S.SLOCSHORT, S.LUNCH, S.DINNER, S.SMPHOTO,  S.SLOC, S.SLOCX, S.SLOCY, S.SFOODSTYLE, S.SOPENINGHOUR
-		              FROM SHOP S
-		              FULL OUTER JOIN REVIEW V
-		              ON S.SID = V.SID
-		              GROUP BY S.SID, S.SNAME, S.SINTRO, S.SLOCSHORT, S.LUNCH, S.DINNER, S.SMPHOTO,  S.SLOC,  S.SLOCX, S.SLOCY, S.SFOODSTYLE, S.SOPENINGHOUR)
-	</select>
-	
-	<select id="reservationSelect" parameterType="map" resultType="com.springboot.catchmind.vo.BookingVo">
-		SELECT R.RID, R.RMODIFYDATE, R.RMODIFYTIME, R.RTABLETYPE, R.GUESTNUMBER, R.RREQUEST, R.RPHONE, R.MID, M.MNAME 
-		    FROM RESERVATION R, MEMBER M
-		    WHERE R.MID = M.MID
-		    AND R.SID = #{sid}
-		    AND R.RMODIFYDATE BETWEEN TO_DATE(#{startDate}, 'YY-MM-DD')
-		    					  AND TO_DATE(#{endDate}, 'YY-MM-DD')+1
-	</select>
-	
-	<select id="photoSelectCheck" parameterType="String" resultType="int">
-		SELECT COUNT(*)
-			FROM SHOP_PHOTO
-			WHERE SID=#{sid}
-	</select>
-	
-	<insert id="photoInsert" parameterType="map">
-		INSERT INTO SHOP_PHOTO(SID 
-					<if test='shopPhotoVo.photo1 != null'>,PHOTO1, SPHOTO1</if>
-					<if test='shopPhotoVo.photo2 != null'>,PHOTO2, SPHOTO2</if>
-					<if test='shopPhotoVo.photo3 != null'>,PHOTO3, SPHOTO3</if>
-					<if test='shopPhotoVo.photo4 != null'>,PHOTO4, SPHOTO4</if>
-					<if test='shopPhotoVo.photo5 != null'>,PHOTO5, SPHOTO5</if>
-				)
-			VALUES(#{sid}
-					<if test='shopPhotoVo.photo1 != null'>,#{shopPhotoVo.photo1}, #{shopPhotoVo.sphoto1}</if>
-					<if test='shopPhotoVo.photo2 != null'>,#{shopPhotoVo.photo2}, #{shopPhotoVo.sphoto2}</if>
-					<if test='shopPhotoVo.photo3 != null'>,#{shopPhotoVo.photo3}, #{shopPhotoVo.sphoto3}</if>
-					<if test='shopPhotoVo.photo4 != null'>,#{shopPhotoVo.photo4}, #{shopPhotoVo.sphoto4}</if>
-					<if test='shopPhotoVo.photo5 != null'>,#{shopPhotoVo.photo5}, #{shopPhotoVo.sphoto5}</if>
-				)
-	</insert>
-	
-	<update id="photoUpdate" parameterType="map">
-		UPDATE SHOP_PHOTO SET 
-				SID=#{shopPhotoVo.sid}
-				<if test='shopPhotoVo.photo1 != null'>,PHOTO1=#{shopPhotoVo.photo1, jdbcType=VARCHAR}, SPHOTO1=#{shopPhotoVo.sphoto1, jdbcType=VARCHAR}</if>
-				<if test='shopPhotoVo.photo2 != null'>,PHOTO2=#{shopPhotoVo.photo2, jdbcType=VARCHAR}, SPHOTO2=#{shopPhotoVo.sphoto2, jdbcType=VARCHAR}</if>
-				<if test='shopPhotoVo.photo3 != null'>,PHOTO3=#{shopPhotoVo.photo3, jdbcType=VARCHAR}, SPHOTO3=#{shopPhotoVo.sphoto3, jdbcType=VARCHAR}</if>
-				<if test='shopPhotoVo.photo4 != null'>,PHOTO4=#{shopPhotoVo.photo4, jdbcType=VARCHAR}, SPHOTO4=#{shopPhotoVo.sphoto4, jdbcType=VARCHAR}</if>
-				<if test='shopPhotoVo.photo5 != null'>,PHOTO5=#{shopPhotoVo.photo5, jdbcType=VARCHAR}, SPHOTO5=#{shopPhotoVo.sphoto5, jdbcType=VARCHAR}</if>
-			WHERE SID=#{shopPhotoVo.sid}
-	</update>
-	
-	<select id="shopRegistrationCheck" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="int">
-		SELECT COUNT(*)
-			FROM SHOP
-			WHERE SID = #{sid}
-			<!-- AND SCONFIRMYN = 'Y' -->
-	</select>
+    <insert id="insert" parameterType="com.springboot.catchmind.dto.ShopDto">
+        INSERT INTO SHOP(SID, ROLEID, SCREATEDATE, SDELETEYN, ACONFIRMYN, ACONFIRMFINALYN, SCONFIRMYN,
+                         SPASS, SNAME, SPHONE, SFOODSTYLE, SLOC, SLOCX, SLOCY, SLOCSHORT, SMPHOTO)
+            VALUES('S_'||LTRIM(TO_CHAR(SEQU_SHOP_SID.NEXTVAL,'0000')), 'SHOP', SYSDATE, 'N', 'Y', 'N', 'N',
+                   #{spass}, #{sname}, #{sphone}, #{sfoodstyle}, #{sloc}, #{slocx}, #{slocy}, #{slocshort}, #{smphoto})
+    </insert>
 
+    <select id="selectSpass" resultType="String">
+        SELECT DBMS_RANDOM.STRING('L',10)||CEIL(DBMS_RANDOM.VALUE(10000,99999)) SPASS
+            FROM DUAL
+    </select>
+
+    <select id="selectSpassCheck" parameterType="String" resultType="Integer">
+        SELECT COUNT(*)
+            FROM SHOP
+            WHERE SPASS=#{spass}
+    </select>
+
+    <select id="shopInfoSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ShopDto">
+        select sid, roleid, screatedate, sdeleteyn, aconfirmyn, aconfirmfinalyn,
+                sconfirmyn, spass, sname, sphone, sloc, slocx, slocy, slocshort, sintro,
+                smodifydate, sclosingdate, sopeninghour, sclosinghour,
+                sdeposit, smealfee, lunch, dinner, swebsite, sfoodstyle, smphoto
+            from shop
+            where sid = #{sid}
+    </select>
+
+    <select id="facilitySelect" parameterType="String" resultType="com.springboot.catchmind.dto.FacilityDto">
+        SELECT PARKING, VALET, CORKAGE, ADULTONLY, SOMMELIER, LETTERING, RENTALS,
+               SID, PARKINGDESC, VALETDESC, CORKAGEDESC, ADULTONLYDESC, SOMMELIERDESC, LETTERINGDESC, RENTALSDESC
+            FROM FACILITY
+            WHERE SID=#{sid}
+    </select>
+
+    <select id="photoSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ShopPhotoDto">
+        select sid, photo1, photo2, photo3, photo4, photo5,
+		        sphoto1, sphoto2, sphoto3, sphoto4, sphoto5
+		    from shop_photo
+			where sid=#{sid}
+    </select>
+
+    <select id="photoSelectCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+            FROM SHOP_PHOTO
+            WHERE SID=#{sid}
+    </select>
+
+    <select id="shopRegistrationCheck" parameterType="com.springboot.catchmind.dto.ShopDto" resultType="int">
+        SELECT COUNT(*)
+            FROM SHOP
+            WHERE SID = #{sid}
+    </select>
+
+    <update id="detailInsert" parameterType="com.springboot.catchmind.dto.ShopDto">
+        UPDATE SHOP SET
+            SCONFIRMYN='Y',
+            ACONFIRMFINALYN='N',
+            SINTRO=#{sintro},
+            SOPENINGHOUR=#{sopeninghour},
+            SCLOSINGHOUR=#{sclosinghour},
+            SCLOSINGDATE=#{sclosingdate},
+            SDEPOSIT=#{sdeposit},
+            SMEALFEE=#{smealfee},
+            LUNCH=#{lunch},
+            DINNER=#{dinner}
+        WHERE SID=#{sid}
+    </update>
+
+    <update id="detailUpdate" parameterType="com.springboot.catchmind.dto.ShopDto">
+        UPDATE SHOP SET
+            SCONFIRMYN='Y',
+            ACONFIRMFINALYN='N',
+            SINTRO=#{sintro},
+            SOPENINGHOUR=#{sopeninghour},
+            SCLOSINGHOUR=#{sclosinghour},
+            SCLOSINGDATE=#{sclosingdate},
+            SDEPOSIT=#{sdeposit},
+            SMEALFEE=#{smealfee},
+            LUNCH=#{lunch},
+            DINNER=#{dinner}
+        WHERE SID=#{sid}
+    </update>
+
+    <select id="facilityCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+            FROM FACILITY
+            WHERE SID=#{sid}
+    </select>
+
+    <insert id="facilityInsert" parameterType="com.springboot.catchmind.dto.FacilityDto">
+        INSERT INTO FACILITY(
+        SID,
+        PARKING,
+        VALET,
+        CORKAGE,
+        ADULTONLY,
+        SOMMELIER,
+        LETTERING,
+        RENTALS
+        <if test='parkingdesc != null'>,PARKINGDESC</if>
+        <if test='valetdesc != null'>,VALETDESC </if>
+        <if test='corkagedesc != null'>,CORKAGEDESC</if>
+        <if test='adultonlydesc != null'>,ADULTONLYDESC</if>
+        <if test='sommelierdesc != null'>,SOMMELIERDESC</if>
+        <if test='letteringdesc != null'>,LETTERINGDESC</if>
+        <if test='rentalsdesc != null'>,RENTALSDESC</if>
+        )
+        VALUES(
+        #{sid},
+        #{parking},
+        #{valet},
+        #{corkage},
+        #{adultonly},
+        #{sommelier},
+        #{lettering},
+        #{rentals}
+        <if test='parkingdesc != null'>,#{parkingdesc}</if>
+        <if test='valetdesc != null'>,#{valetdesc}</if>
+        <if test='corkagedesc != null'>,#{corkagedesc}</if>
+        <if test='adultonlydesc != null'>,#{adultonlydesc}</if>
+        <if test='sommelierdesc != null'>,#{sommelierdesc}</if>
+        <if test='letteringdesc != null'>,#{letteringdesc}</if>
+        <if test='rentalsdesc != null'>,#{rentalsdesc}</if>
+        )
+    </insert>
+
+    <update id="facilityUpdate" parameterType="com.springboot.catchmind.dto.FacilityDto">
+        UPDATE FACILITY SET
+        PARKING=#{parking},
+        VALET=#{valet},
+        CORKAGE=#{corkage},
+        ADULTONLY=#{adultonly},
+        SOMMELIER=#{sommelier},
+        LETTERING=#{lettering},
+        RENTALS=#{rentals}
+        <if test='parkingdesc != null'>,PARKINGDESC=#{parkingdesc}</if>
+        <if test='valetdesc != null'>,VALETDESC=#{valetdesc}</if>
+        <if test='corkagedesc != null'>,CORKAGEDESC=#{corkagedesc}</if>
+        <if test='adultonlydesc != null'>,ADULTONLYDESC=#{adultonlydesc}</if>
+        <if test='sommelierdesc != null'>,SOMMELIERDESC=#{sommelierdesc}</if>
+        <if test='letteringdesc != null'>,LETTERINGDESC=#{letteringdesc}</if>
+        <if test='rentalsdesc != null'>,RENTALSDESC=#{rentalsdesc}</if>
+        WHERE SID=#{sid}
+    </update>
+
+    <select id="reservationSelect" parameterType="map" resultType="com.springboot.catchmind.dto.BookingDto">
+        SELECT R.RID, R.RMODIFYDATE, R.RMODIFYTIME, R.RTABLETYPE, R.GUESTNUMBER, R.RREQUEST, R.RPHONE, R.MID, M.MNAME
+        FROM RESERVATION R, MEMBER M
+        WHERE R.MID = M.MID
+          AND R.SID = #{sid}
+          AND R.RMODIFYDATE BETWEEN TO_DATE(#{startDate}, 'YY-MM-DD')
+            AND TO_DATE(#{endDate}, 'YY-MM-DD')+1
+    </select>
 </mapper>

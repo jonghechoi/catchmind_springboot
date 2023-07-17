@@ -14,5 +14,4 @@ public class PageDto {
     private int pageSize;
     private int pageCount;
     private int regPage;
-
 }

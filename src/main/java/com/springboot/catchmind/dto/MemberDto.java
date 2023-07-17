@@ -19,7 +19,4 @@ public class MemberDto {
 	public String getMphone() {
 		return mphone = mphone1 + "-" + mphone2 + "-" + mphone3;
 	}
-
-
-
 }
