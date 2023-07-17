@@ -34,7 +34,7 @@ public class AdminRestController {
      */
     @GetMapping("admin_member_list_paging/{page}")
     public Map<String, Object> admin_member_list_paging(@PathVariable String page) {
-        PageDto pageDto = pagingService.getPageResult(new PageDto(page, "member"));
+        PageDto pageDto = pagingService.getPageResult(new PageDto(page, "member", ""));
         Map<String, Object> response = new HashMap<>();
         response.put("list", adminService.getMemberSelectJson(pageDto));
         response.put("page", pageDto);
@@ -42,7 +42,7 @@ public class AdminRestController {
     }
     @GetMapping("admin_review_list/{page}")
     public Map<String, Object> admin_review_list(@PathVariable String page) {
-        PageDto pageDto = pagingService.getPageResult(new PageDto(page, "review"));
+        PageDto pageDto = pagingService.getPageResult(new PageDto(page, "review", ""));
         Map<String, Object> response = new HashMap<>();
         response.put("list", adminService.getReviewSelectJson(pageDto));
         response.put("page", pageDto);

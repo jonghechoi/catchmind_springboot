@@ -52,13 +52,13 @@ public class MemberServiceImpl{
 		return memberMapper.kakaoLogin(memberDto);
 	}
 
-	public int getUpdate(MemberVo memberVo) {
-		return memberDao.update(memberVo);
-	}
+//	public int getUpdate(MemberVo memberVo) {
+//		return memberDao.update(memberVo);
+//	}
 	
-	public int getTotalRowCount() {
-		return memberDao.totalRowCount();
-	}
+//	public int getTotalRowCount() {
+//		return memberDao.totalRowCount();
+//	}
 
 
 	

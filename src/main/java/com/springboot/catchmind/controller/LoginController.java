@@ -29,7 +29,7 @@ public class LoginController {
 	/**
 	 * logout.do
 	 */
-	@RequestMapping(value= "/logout.do", method = RequestMethod.GET)
+	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		

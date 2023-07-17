@@ -83,12 +83,6 @@
 		          from review review, member m
 		          where review.mid = m.mid and rid=#{rid})
 	</select> -->
-
-	<update id="updateToMain" parameterType="java.lang.String">
-		UPDATE REVIEW SET
-				REVIEWMAIN = 'Y'
-			WHERE RID=#{rid}
-	</update>
 	
     <select id="reviewMainList" resultType="com.springboot.catchmind.dto.ReviewDto">
         select RNO, REVIEWID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, REVIEWMODIFYDATE,

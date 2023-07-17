@@ -4,7 +4,6 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.catchmind.repository.MemberMapper">
 
-	
 	<select id="selectList" parameterType="com.springboot.catchmind.dto.PageDto" resultType="com.springboot.catchmind.dto.MemberDto">
 		SELECT RNO, MID, MNAME, MEMBERID, MEMAIL, MPHONE
 			FROM(SELECT ROWNUM RNO, MID, MNAME, MEMBERID, MEMAIL, MPHONE
@@ -22,10 +21,10 @@
 
 	<select id="roleIdCheck" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="int">
 		select count(*)
-		from MEMBER
-		where MEMBERID = #{memberId} and
-			MPASS = #{mpass} and
-			ROLEID = 'ADMIN'
+			from MEMBER
+			where MEMBERID = #{memberId} and
+				MPASS = #{mpass} and
+				ROLEID = 'ADMIN'
 	</select>
 
 	<select id="loginIdCheck" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="int">

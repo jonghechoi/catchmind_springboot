@@ -52,11 +52,11 @@ public class AdminController {
 		return "/pages/admin/admin_member_modify";
 	}
 
-	@RequestMapping(value = "/admin_member_modify_update.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String admin_member_modify_update(@ModelAttribute("memberVo") MemberVo memberVo) {
-		return Integer.toString(memberService.getUpdate(memberVo));
-	}
+//	@RequestMapping(value = "/admin_member_modify_update.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String admin_member_modify_update(@ModelAttribute("memberVo") MemberVo memberVo) {
+//		return Integer.toString(memberService.getUpdate(memberVo));
+//	}
 
 	/**
 	 *	Admin shop
