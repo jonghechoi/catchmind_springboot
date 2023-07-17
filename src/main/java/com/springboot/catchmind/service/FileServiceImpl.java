@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.springboot.catchmind.dto.ReviewDto;
+import lombok.extern.slf4j.Slf4j;
 import com.springboot.catchmind.dto.ShopPhotoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import com.springboot.catchmind.dao.ShopPhotoDao;
 import com.springboot.catchmind.vo.ShopPhotoVo;
 
 @Service("fileService")
+@Slf4j
 public class FileServiceImpl {
 	
 	@Autowired
@@ -24,6 +27,47 @@ public class FileServiceImpl {
 	@Autowired
 	private ShopPhotoDao shopPhotoDao;
 
+	/**
+	 * FileSave
+	 */
+	public void fileSave(ReviewDto reviewDto) throws Exception {
+		String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\upload\\";
+
+		if(reviewDto.getReviewfile1().getOriginalFilename() != null && !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
+			File saveFile = new File(projectPath + reviewDto.getReviewsphoto());
+			reviewDto.getReviewfile1().transferTo(saveFile);
+		}
+	}
+
+
+	/**
+	 * FileChecK
+	 */
+	public Object fileCheck(ReviewDto reviewDto) throws Exception {
+
+		if(reviewDto.getReviewfile1().getOriginalFilename() != null
+				&& !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
+
+			UUID uuid = UUID.randomUUID();
+			String reviewphoto = reviewDto.getReviewfile1().getOriginalFilename();
+			String reviewsphoto = uuid +"_"+ reviewphoto;
+
+			reviewDto.setReviewphoto(reviewphoto);
+			reviewDto.setReviewsphoto(reviewsphoto);
+
+			log.info("reviewVo.getReviewphoto() -> {}", reviewDto.getReviewphoto());
+			log.info("reviewVo.getReviewsphoto() -> {}", reviewDto.getReviewsphoto());
+		}else {
+			System.out.println("No File Upload");
+		}
+
+		return reviewDto;
+	}
+
+
+	/**
+	 *	multiFileCheck - ��Ƽ���� üũ ���
+	 */
 	public ShopPhotoDto multiFileCheck(ShopPhotoDto shopPhotoDto) throws Exception {
 		for(MultipartFile file : shopPhotoDto.getPhotos()) {
 			if(!file.getOriginalFilename().equals("")) {

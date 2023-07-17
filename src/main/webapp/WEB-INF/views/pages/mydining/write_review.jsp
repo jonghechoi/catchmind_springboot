@@ -29,7 +29,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,29 +39,29 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                            <!--================ Menu =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index.do">Home</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                             <li class="nav-item submenu dropdown active">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
 	                                    <!-- <li class="nav-item active" id="shop_information">Register</li> -->
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                             </c:if>
                         <!--================ Menu =================-->
                         </ul>
@@ -78,7 +78,7 @@
                 <div class="page-cover text-center">
                     <h2 class="page-cover-tittle">Write Review</h2>
                     <ol class="breadcrumb">
-                        <li><a href="mydining_visited.do">Visited</a></li>
+                        <li><a href="/mydining_visited">Visited</a></li>
                         <li class="active">Write Review</li>
                     </ol>
                 </div>
@@ -88,7 +88,7 @@
         
         <!--================ About History Area  =================-->
         <section class="about_history_area section_gap">
-      		<form name="writeReviewForm" action="write_review_proc.do" method="post" enctype="multipart/form-data">
+      		<form name="writeReviewForm" action="/write_review" method="post" enctype="multipart/form-data">
 	            <div class="container">
 	                <div class="row">
 	                    <div class="col-md-6 d_flex align-items-center">
@@ -112,41 +112,41 @@
 		                    	<fieldset class="field_star" id="tasteFieldset">
 									<span class="text-bold">맛</span>
 									<input type="radio" name="tasteStar" value="5" id="tasteStar1"><label
-										for="rate1" class="review_label">★</label>
+										for="tasteStar1" class="review_label">★</label>
 									<input type="radio" name="tasteStar" value="4" id="tasteStar2"><label
-										for="rate2" class="review_label">★</label>
+										for="tasteStar2" class="review_label">★</label>
 									<input type="radio" name="tasteStar" value="3" id="tasteStar3"><label
-										for="rate3" class="review_label">★</label>
+										for="tasteStar3" class="review_label">★</label>
 									<input type="radio" name="tasteStar" value="2" id="tasteStar4"><label
-										for="rate4" class="review_label">★</label>
+										for="tasteStar4" class="review_label">★</label>
 									<input type="radio" name="tasteStar" value="1" id="tasteStar5"><label
-										for="rate5" class="review_label">★</label>
+										for="tasteStar5" class="review_label">★</label>
 								</fieldset>
 								<fieldset class="field_star" id="moodFieldset">
 									<span class="text-bold">분위기</span>
 									<input type="radio" name="moodStar" value="5" id="moodStar1"><label
-										for="rate1" class="review_label">★</label>
+										for="moodStar1" class="review_label">★</label>
 									<input type="radio" name="moodStar" value="4" id="moodStar2"><label
-										for="rate2" class="review_label">★</label>
+										for="moodStar2" class="review_label">★</label>
 									<input type="radio" name="moodStar" value="3" id="moodStar3"><label
-										for="rate3" class="review_label">★</label>
+										for="moodStar3" class="review_label">★</label>
 									<input type="radio" name="moodStar" value="2" id="moodStar4"><label
-										for="rate4" class="review_label">★</label>
+										for="moodStar4" class="review_label">★</label>
 									<input type="radio" name="moodStar" value="1" id="moodStar5"><label
-										for="rate5" class="review_label">★</label>
+										for="moodStar5" class="review_label">★</label>
 								</fieldset>
 								<fieldset class="field_star" id="serviceFieldset">
 									<span class="text-bold">서비스</span>
 									<input type="radio" name="serviceStar" value="5" id="serviceStar1"><label
-										for="rate1" class="review_label">★</label>
+										for="serviceStar1" class="review_label">★</label>
 									<input type="radio" name="serviceStar" value="4" id="serviceStar2"><label
-										for="rate2" class="review_label">★</label>
+										for="serviceStar2" class="review_label">★</label>
 									<input type="radio" name="serviceStar" value="3" id="serviceStar3"><label
-										for="rate3" class="review_label">★</label>
+										for="serviceStar3" class="review_label">★</label>
 									<input type="radio" name="serviceStar" value="2" id="serviceStar4"><label
-										for="rate4" class="review_label">★</label>
+										for="serviceStar4" class="review_label">★</label>
 									<input type="radio" name="serviceStar" value="1" id="serviceStar5"><label
-										for="rate5" class="review_label">★</label>
+										for="serviceStar5" class="review_label">★</label>
 								</fieldset>
 								<p class="reviewPolicy">CatchTable Review Policy ></p>
 			                    <p>Contents related to the use of the restaurant,<br> including false and exaggerated contents,<br> unauthorized theft of works, infringement<br> of portrait rights and privacy,<br> and slander may be deleted</p>

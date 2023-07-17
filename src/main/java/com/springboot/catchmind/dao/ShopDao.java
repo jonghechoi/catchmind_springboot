@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.springboot.catchmind.dto.SessionDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -237,7 +238,7 @@ public class ShopDao extends DBConn{
 	/**
 	 * Shop Login 
 	 */
-	public SessionVo shopLogin(ShopVo shopVo) {
+	public SessionDto shopLogin(ShopVo shopVo) {
 		return sqlSession.selectOne("mapper.shop.shopLogin", shopVo);
 	}
 	

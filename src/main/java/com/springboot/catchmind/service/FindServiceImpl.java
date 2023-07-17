@@ -1,38 +1,42 @@
 package com.springboot.catchmind.service;
 
+import com.springboot.catchmind.dto.MemberDto;
+import com.springboot.catchmind.repository.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.MemberDao;
-import com.springboot.catchmind.vo.MemberVo;
+import java.util.HashMap;
+import java.util.Map;
 
-@Service("findService")
-public class FindServiceImpl implements FindService  {
+@Service
+public class FindServiceImpl {
 	@Autowired
-	private MemberDao memberDao;
+	private MemberMapper memberMapper;
 	
-	@Override
-	public MemberVo getFindId(MemberVo memberVo) {
-		return memberDao.findId(memberVo);
+	public MemberDto getFindId(MemberDto memberDto) {
+		return memberMapper.findId(memberDto);
 	}
 	
-	@Override
-	public MemberVo getFindPassInfo(MemberVo memberVo) {
-		return memberDao.findPassInfo(memberVo);
+	public MemberDto getFindPassInfo(MemberDto memberDto) {
+		return memberMapper.findPassInfo(memberDto);
 	}
-	
-	@Override
+
+	public int getFindPassCheck(MemberDto memberDto) {
+		return memberMapper.findPassCheck(memberDto);
+	}
+
 	public int getBeforeMpassUpdate(String mid) {
-		return memberDao.beforeMpassUpdate(mid);
+		return memberMapper.beforeMpassUpdate(mid);
 	}
-	
-	@Override
+
 	public int getPassUpdate(String mid, String mpass) {
-		return memberDao.passUpdate(mid, mpass);
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("mpass", mpass);
+		return memberMapper.passUpdate(param);
 	}
 	
-	@Override
-	public MemberVo getFindPassUpdateInfo(String mid) {
-		return memberDao.findPassUpdateInfo(mid);
+	public MemberDto getFindPassUpdateInfo(String mid) {
+		return memberMapper.findPassUpdateInfo(mid);
 	}
 }

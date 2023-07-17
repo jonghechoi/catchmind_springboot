@@ -6,6 +6,7 @@ import lombok.Data;
 public class PageDto {
     private final String page;
     private final String serviceName;
+    private final String mid;
 
     private int startCount;
     private int endCount;

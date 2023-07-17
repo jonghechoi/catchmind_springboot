@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
 <mapper namespace="com.springboot.catchmind.repository.ShopMapper">
+	<select id="shopLogin" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="com.springboot.catchmind.dto.SessionDto">
+		select count(*) loginResult, SID, SPASS, ROLEID
+		from shop
+		where SID = #{sid} and
+			  SPASS = #{spass} and
+			  ROLEID = 'SHOP'
+		group by SID, SPASS, ROLEID
+	</select>
+	
+	<select id="shopIdCheck" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="int">
+		select count(*)
+		from shop
+		where SID = #{sid} and
+			  SPASS = #{spass}
+	</select>
+
     <select id="select" parameterType="map" resultType="com.springboot.catchmind.dto.ShopDto">
         SELECT SID, ROLEID, SCREATEDATE, SDELETEYN, ACONFIRMYN, ACONFIRMFINALYN, SCONFIRMYN,
                SPASS, SNAME, SPHONE, SLOC, SLOCSHORT, SINTRO, SMODIFYDATE, SOPENINGHOUR,

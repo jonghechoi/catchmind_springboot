@@ -128,20 +128,20 @@
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
-                            <%--<c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
+                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <%--<li class="nav-item active"><a class="nav-link" href="/shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>--%>
-                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/S_0003">Register</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/S_0003">Reservation</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
-                            <%--</c:if>--%>
-                            <%--<c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
+                            </c:if>
+                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
-                        	<%--</c:if>--%>
+                        	</c:if>
                         </ul>
                     </div> 
                 </nav>

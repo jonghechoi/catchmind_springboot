@@ -43,7 +43,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -53,13 +53,13 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                            <!--================ Menu =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index.do">Home</a></li> 
+                            <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
                             <li class="nav-item submenu dropdown active">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
@@ -91,7 +91,7 @@
                 <div class="page-cover text-center">
                     <h2 class="page-cover-tittle">${scheduledVo.sname}</h2>
                     <ol class="breadcrumb">
-                        <li><a href="mydining_scheduled.do?<%-- mid=${scheduledVo.mid}& --%>sid=${scheduledVo.sid}">Schedule</a></li>
+                        <li><a href="/mydining_scheduled">Schedule</a></li>
                         <li class="active">Information</li>
                     </ol>
                 </div>
@@ -108,10 +108,10 @@
                         <div class="about_content ">
                         <c:choose>
 	                        <c:when test="${scheduledVo.fcheck == 'Y'}">
-	                        	<a href="information_bookmark_proc.do?sid=${scheduledVo.sid}&rid=${scheduledVo.rid}" class="btn_sh" id="btn_bookmark"><img src="/image/jhs_img/free-icon-bookmark-6924811.png"></a>
+	                        	<a href="/information_bookmark/${scheduledVo.sid}/${scheduledVo.rid}" class="btn_sh" id="btn_bookmark"><img src="/image/jhs_img/free-icon-bookmark-6924811.png"></a>
     	                    </c:when>
     	                    <c:otherwise>
-	                        	<a href="information_bookmark_proc.do?sid=${scheduledVo.sid}&rid=${scheduledVo.rid}" class="btn_sh" id="btn_bookmark"><img src="/image/jhs_img/free-icon-bookmarks-4218997.png"></a>
+	                        	<a href="/information_bookmark/${scheduledVo.sid}/${scheduledVo.rid}" class="btn_sh" id="btn_bookmark"><img src="/image/jhs_img/free-icon-bookmarks-4218997.png"></a>
     	                    </c:otherwise>
                         </c:choose>
                         	<a class="kakao-share-btn" id="kakao-share-btn" href="javascript:;" onclick="shareKakao()"><img src="/image/jhs_img/free-icon-share-3989188.png" alt="카카오 공유하기"></a>

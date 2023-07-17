@@ -3,6 +3,7 @@ package com.springboot.catchmind.service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.dto.BookingDto;
 import com.springboot.catchmind.dto.FacilityDto;
 import com.springboot.catchmind.dto.ShopDto;
@@ -100,27 +101,6 @@ public class ShopServiceImpl implements ShopService {
 		map.put("startDate", startDate);
 		map.put("endDate", endDate);
 		return shopMapper.reservationSelect(map);
-		//ArrayList<BookingVo> list = shopDao.reservationSelect(map);
-//		JsonObject jlist = new JsonObject();
-//		JsonArray jarray = new JsonArray();
-//
-//		for(BookingVo bookingVo : list) {
-//			JsonObject jobj = new JsonObject();
-//			jobj.addProperty("rid", bookingVo.getRID());
-//			jobj.addProperty("rmodifydate", bookingVo.getRMODIFYDATE());
-//			jobj.addProperty("rmodifytime", bookingVo.getRMODIFYTIME());
-//			jobj.addProperty("rtabletype", bookingVo.getRTABLETYPE());
-//			jobj.addProperty("guestnumber", bookingVo.getGUESTNUMBER());
-//			jobj.addProperty("rrequest", bookingVo.getRREQUEST());
-//			jobj.addProperty("rphone", bookingVo.getRPHONE());
-//			jobj.addProperty("mid", bookingVo.getMID());
-//			jobj.addProperty("mname", bookingVo.getMNAME());
-//
-//			jarray.add(jobj);
-//		}
-//		jlist.add("jlist", jarray);
-//
-//		return new Gson().toJson(jlist);
 	}
 	
 	@Override
@@ -150,7 +130,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public SessionVo getShopLogin(ShopVo shopVo) {
+	public SessionDto getShopLogin(ShopVo shopVo) {
 		return shopDao.shopLogin(shopVo);
 	}
 	
@@ -166,7 +146,7 @@ public class ShopServiceImpl implements ShopService {
 		Date endDateForm = dateFormat.parse(endDate);
 
 		if (startDateForm.compareTo(endDateForm) > 0) {
-			throw new Exception("���ᳯ¥�� ���۳�¥���� �����ϴ�. ������ �߻���ŵ�ϴ�.");
+			throw new Exception("dateCheck Method Exception");
 		}
 	}
 }

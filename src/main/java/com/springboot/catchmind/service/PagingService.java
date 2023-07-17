@@ -13,5 +13,5 @@ public interface PagingService {
 	
 	public PageDto getPageResult(PageDto pageDto);
 	
-	public Map<String, String> getVisitedResult(String page, String serviceName, String mid);
+	public PageDto getVisitedResult(PageDto pageDto);
 }

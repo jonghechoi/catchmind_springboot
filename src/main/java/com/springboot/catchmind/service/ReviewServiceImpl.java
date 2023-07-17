@@ -1,33 +1,24 @@
 
 package com.springboot.catchmind.service;
 
+import com.springboot.catchmind.dto.ReviewDto;
+import com.springboot.catchmind.repository.ReviewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.springboot.catchmind.dao.ReviewDao;
-import com.springboot.catchmind.vo.ReviewVo;
-@Service("reviewService")
-public class ReviewServiceImpl implements ReviewService {
+@Service
+public class ReviewServiceImpl{
 	@Autowired
-	private ReviewDao reviewDao;
-	
-	@Override
-	public ReviewVo getReviewSelect(String rid) {
-		return reviewDao.reviewSelect(rid);
+	private ReviewMapper reviewMapper;
+
+	public ReviewDto getReviewSelect(String rid) {
+		return reviewMapper.reviewSelect(rid);
 	}
-	
-	@Override
-	public int getWriteReview(ReviewVo reviewVo) {
-		return reviewDao.writeReview(reviewVo);
+
+	public int getWriteReview(ReviewDto reviewDto) {
+		return reviewMapper.writeReview(reviewDto);
 	}
-	
-	@Override
+
 	public int getUpdateReviewYN(String rid) {
-		return reviewDao.updateReviewYN(rid);
-	}
-	
-	@Override
-	public int getTotalRowCount() {
-		return reviewDao.totalRowCount();
+		return reviewMapper.updateReviewYN(rid);
 	}
 }

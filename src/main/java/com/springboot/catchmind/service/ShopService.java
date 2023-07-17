@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.dto.BookingDto;
 import com.springboot.catchmind.dto.FacilityDto;
 import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.dto.ShopPhotoDto;
-import com.springboot.catchmind.vo.FacilityVo;
-import com.springboot.catchmind.vo.SessionVo;
-import com.springboot.catchmind.vo.ShopPhotoVo;
 import com.springboot.catchmind.vo.ShopVo;
 
 public interface ShopService {
@@ -41,7 +39,7 @@ public interface ShopService {
 		
 		public int getShopIdCheck(ShopVo shopVo);
 		
-		public SessionVo getShopLogin(ShopVo shopVo);
+		public SessionDto getShopLogin(ShopVo shopVo);
 		
 		public int getRegistrationCheck(ShopDto shopDto);
 

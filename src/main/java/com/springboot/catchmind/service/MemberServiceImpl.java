@@ -1,70 +1,65 @@
 package com.springboot.catchmind.service;
 
+import com.springboot.catchmind.dao.MemberDao;
+import com.springboot.catchmind.dto.MemberDto;
+import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.repository.MemberMapper;
+import com.springboot.catchmind.vo.MemberVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.MemberDao;
-import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.vo.SessionVo;
+@Service
+public class MemberServiceImpl{
+	@Autowired
+	private MemberMapper memberMapper;
 
-@Service("memberService")
-public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao memberDao;
 	
-	@Override
-	public int getRoleIdCheck(MemberVo memberVo) {
-		return memberDao.roleIdCheck(memberVo);
+	public int getRoleIdCheck(MemberDto memberDto) {
+		return memberMapper.roleIdCheck(memberDto);
 	}
 	
-	@Override
-	public int getLoginIdCheck(MemberVo memberVo) {
-		return memberDao.loginIdCheck(memberVo);
+	public int getLoginIdCheck(MemberDto memberDto) {
+		return memberMapper.loginIdCheck(memberDto);
 	}
 	
-	@Override
 	public int getIdCheck(String memberId) {
-		return memberDao.idCheck(memberId);
+		return memberMapper.idCheck(memberId);
 	}
 	
-	@Override
-	public int getJoin(MemberVo memberVo) {
-		return memberDao.join(memberVo);
+	public int getJoin(MemberDto memberDto) {
+		return memberMapper.join(memberDto);
 	}
 	
-	@Override
-	public SessionVo getMemberLogin(MemberVo memberVo) {
-		return memberDao.memberLogin(memberVo);
+	public SessionDto getMemberLogin(MemberDto memberDto) {
+		return memberMapper.memberLogin(memberDto);
 	}
 	
-	@Override
-	public SessionVo getRoleLogin(MemberVo memberVo) {
-		return memberDao.roleLogin(memberVo);
+	public SessionDto getRoleLogin(MemberDto memberDto) {
+		return memberMapper.roleLogin(memberDto);
 	}
 	
-	@Override
-	public int getKakaoJoin(MemberVo memberVo) {
-		return memberDao.kakaoJoin(memberVo);
+	public int getKakaoJoin(MemberDto memberDto) {
+		return memberMapper.kakaoJoin(memberDto);
 	}
 	
-	@Override
-	public int getKakaoIdCheck(MemberVo memberVo) {
-		return memberDao.kakaoIdCheck(memberVo);
+	public int getKakaoIdCheck(MemberDto memberDto) {
+		return memberMapper.kakaoIdCheck(memberDto);
 	}
-	
-	@Override
+
+	public SessionDto getKakaoLogin(MemberDto memberDto) {
+		return memberMapper.kakaoLogin(memberDto);
+	}
+
 	public int getUpdate(MemberVo memberVo) {
 		return memberDao.update(memberVo);
 	}
 	
-	@Override
 	public int getTotalRowCount() {
 		return memberDao.totalRowCount();
 	}
-	
-	@Override
-	public SessionVo getKakaoLogin(MemberVo memberVo) {
-		return memberDao.kakaoLogin(memberVo);
-	}
+
+
 	
 }

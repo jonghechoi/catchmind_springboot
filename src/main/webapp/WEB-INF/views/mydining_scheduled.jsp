@@ -27,7 +27,7 @@
         	let cancle_reservation = "${cancle_reservation}"
         	if(cancle_reservation == "ok") {
         		alert("Your reservation has been canceled");
-        		window.opener.location.href = 'mydining_scheduled.do';
+        		window.opener.location.href = 'mydining_scheduled';
         		window.close();
         	}
         </script>
@@ -39,7 +39,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -49,29 +49,29 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <!--================ Menu =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index.do">Home</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                             <li class="nav-item submenu dropdown active">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
 	                                    <!-- <li class="nav-item active" id="shop_information">Register</li> -->
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                             </c:if>
                         <!--================ Menu =================-->
                         </ul>
@@ -89,7 +89,7 @@
                     <h2 class="page-cover-tittle">My Dining</h2>
                     <ol class="breadcrumb">
                         <li class="active">Scheduled</li>
-                        <li><a href="mydining_visited.do">Visited</a></li>
+                        <li><a href="/mydining_visited">Visited</a></li>
                     </ol>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
                                 <img src="${scheduledVo.smphoto}" width="262px"; height="272px"; alt="">
-                                <a href="information.do?sid=${scheduledVo.sid}<%-- &mid=${scheduledVo.mid} --%>&rid=${scheduledVo.rid}" 
+                                <a href="/information/${scheduledVo.sid}/${scheduledVo.rid}"
                                 	class="btn theme_btn button_hover" target="_parent">Information</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">${scheduledVo.sname }</h4></a>

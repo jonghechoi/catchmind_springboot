@@ -3,31 +3,37 @@ package com.springboot.catchmind.controller;
 
 import javax.servlet.http.HttpSession;
 
+import com.springboot.catchmind.dto.ScheduledDto;
+import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.service.MyDiningServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springboot.catchmind.service.MyDiningService;
 import com.springboot.catchmind.vo.ScheduledVo;
 import com.springboot.catchmind.vo.SessionVo;
-
+import retrofit2.http.GET;
+@Slf4j
 @Controller
 public class InformationController {
 	@Autowired
-	private MyDiningService myDiningService;
+	private MyDiningServiceImpl myDiningService;
 	
 	/**
-	 * �ϸ�ũ üũ �� �߰� ����
+	 * information - Bookmark insert and delete
 	 */
-	@RequestMapping(value = "/information_bookmark_proc.do", method = RequestMethod.GET)
-	public String information_bookmark_proc(HttpSession session, String sid, String rid, RedirectAttributes redirectAttributes) {
+	@GetMapping("information_bookmark/{sid}/{rid}")
+	public String information_bookmark_proc(HttpSession session, @PathVariable String sid, @PathVariable String rid,
+											RedirectAttributes redirectAttributes) {
 		String viewName = "";
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
-		
+
 		int count = myDiningService.getBookmarkResult(mid, sid);
 		
 		if(count == 1) {
@@ -35,7 +41,7 @@ public class InformationController {
 			
 			if(deleteBookmark == 1) {
 				redirectAttributes.addFlashAttribute("information_bookmark","delete");
-				viewName = "redirect:/information.do?sid="+sid+"&rid="+rid;
+				viewName = "redirect:/information/"+sid+"/"+rid;
 			}
 			
 		}else {
@@ -43,7 +49,7 @@ public class InformationController {
 			
 			if(insertBookmark == 1) {
 				redirectAttributes.addFlashAttribute("information_bookmark","insert");
-				viewName = "redirect:/information.do?sid="+sid+"&rid="+rid;
+				viewName = "redirect:/information/"+sid+"/"+rid;
 			}
 		}
 		
@@ -54,47 +60,44 @@ public class InformationController {
 	
 	
 	/**
-	 * ���� ��� ó�� - cancle_reservation_proc.do
+	 * cancle_reservation
 	 */
-	@RequestMapping(value = "/cancle_reservation_proc.do", method = RequestMethod.POST)
-	public ModelAndView cancle_reservation_proc(String rid, RedirectAttributes redirectAttributes) {
-		ModelAndView model = new ModelAndView();
-		
+	@PostMapping("cancle_reservation")
+	public String cancle_reservation_proc(@RequestParam String rid, RedirectAttributes redirectAttributes) {
+		String viewName = "";
 		int result = myDiningService.getUpdateDeleteYN(rid);
 		
 		if(result == 1) {
 			redirectAttributes.addFlashAttribute("cancle_reservation", "ok");
-			model.setViewName("redirect:/mydining_scheduled.do");
+			viewName = "redirect:/mydining_scheduled";
 		}
 		
-		return model;
+		return viewName;
 	}
 	
 	
 	/**
-	 * ���� ��� - cancle_reservation.do
+	 * cancle_reservation form
 	 */
-	@RequestMapping(value = "/cancle_reservation.do", method = RequestMethod.GET)
-	public ModelAndView cancle_reservation(String rid) {
-		ModelAndView model = new ModelAndView();
-		model.addObject("rid", rid);
-		model.setViewName("pages/mydining/cancle_reservation");
-		return model;
+	@GetMapping("cancle_reservation/{rid}")
+	public String cancle_reservation(@PathVariable String rid, Model model) {
+		model.addAttribute("rid", rid);
+
+		return "/pages/mydining/cancle_reservation";
 	}
 	
 	/**
-	 * ���� �Ĵ� ���� - information.do
+	 * information form
 	 */
-	@RequestMapping(value = "/information.do", method = RequestMethod.GET)
-	public ModelAndView information(HttpSession session, String sid, String rid) {
-		ModelAndView model = new ModelAndView();
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+	@GetMapping("information/{sid}/{rid}")
+	public String information(HttpSession session, @PathVariable String sid, @PathVariable String rid, Model model) {
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
-		
-		ScheduledVo scheduledVo = myDiningService.getInformation(mid, sid, rid);
-		model.addObject("scheduledVo", scheduledVo);
-		model.setViewName("pages/mydining/information");
-		
-		return model;
+		log.info("sid -> {}", sid);
+		log.info("rid -> {}", rid);
+		ScheduledDto scheduledDto = myDiningService.getInformation(mid, sid, rid);
+		model.addAttribute("scheduledVo", scheduledDto);
+
+		return "/pages/mydining/information";
 	}
 }

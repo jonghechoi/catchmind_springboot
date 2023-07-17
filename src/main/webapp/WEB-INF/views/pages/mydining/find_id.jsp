@@ -23,7 +23,7 @@
 <body>
 	<div class="Find">
 		<h1>Find ID</h1>
-		<form name="findIdForm" action="find_id_proc.do" method="post">
+		<form name="findIdForm" action="find_id" method="post">
 			<div>
 				<input type="text" name="mname" class="findText" id="findName" placeholder="Name">
 			</div>

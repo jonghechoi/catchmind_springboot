@@ -22,7 +22,7 @@
 <body>
 	<div class="Find">
 		<h1>Find Password</h1>
-		<form name="findPassForm" action="find_pass_proc.do" method="post">
+		<form name="findPassForm" action="find_pass" method="post">
 			<div>
 				<input type="text" name="memberId" class="findText" id="textId" placeholder="ID">
 			</div>

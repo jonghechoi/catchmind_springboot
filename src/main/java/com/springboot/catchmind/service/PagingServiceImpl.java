@@ -1,15 +1,14 @@
 package com.springboot.catchmind.service;
 
+import com.springboot.catchmind.vo.MemberVo;
+import com.springboot.catchmind.dao.MemberDao;
+import com.springboot.catchmind.dto.PageDto;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.repository.PageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.springboot.catchmind.dao.MemberDao;
-import com.springboot.catchmind.vo.MemberVo;
 
 @Service("pagingService")
 public class PagingServiceImpl implements PagingService {
@@ -67,9 +66,7 @@ public class PagingServiceImpl implements PagingService {
 	}
 	
 	@Override
-	public Map<String, String> getVisitedResult(String page, String serviceName, String mid) {
-		Map<String, String> param = new HashMap<String, String>();
-		
+	public PageDto getVisitedResult(PageDto pageDto) {
 		int startCount = 0;
 		int endCount = 0;
 		int pageSize = 12;
@@ -77,8 +74,8 @@ public class PagingServiceImpl implements PagingService {
 		int pageCount = 1;
 		int dbCount = 0;
 		
-		if(serviceName.equals("visited")) {
-			dbCount = myDiningService.getTotalRowCount(mid);
+		if(pageDto.getServiceName().equals("visited")) {
+			dbCount = myDiningService.getTotalRowCount(pageDto.getMid());
 		}
 		
 		if(dbCount % pageSize == 0){
@@ -87,22 +84,22 @@ public class PagingServiceImpl implements PagingService {
 			pageCount = dbCount/pageSize+1;
 		}
 		
-		if(page != null){
-			reqPage = Integer.parseInt(page);
+		if(pageDto.getPage() != null){
+			reqPage = Integer.parseInt(pageDto.getPage());
 			startCount = (reqPage-1) * pageSize+1; 
 			endCount = reqPage *pageSize;
 		}else{
 			startCount = 1;
 			endCount = 12;
 		}
+
+		pageDto.setStartCount(startCount);
+		pageDto.setEndCount(endCount);
+		pageDto.setDbCount(dbCount);
+		pageDto.setPageSize(pageSize);
+		pageDto.setPageCount(pageCount);
+		pageDto.setRegPage(reqPage);
 		
-		param.put("startCount", String.valueOf(startCount));
-		param.put("endCount", String.valueOf(endCount));
-		param.put("dbCount", String.valueOf(dbCount));
-		param.put("pageSize", String.valueOf(pageSize));
-		param.put("maxSize", String.valueOf(pageCount));
-		param.put("page", String.valueOf(reqPage));
-		
-		return param;
+		return pageDto;
 	}
 }

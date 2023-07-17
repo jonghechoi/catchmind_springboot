@@ -1,63 +1,62 @@
 package com.springboot.catchmind.controller;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
-
+import com.springboot.catchmind.dto.MemberDto;
+import com.springboot.catchmind.service.FindServiceImpl;
+import com.springboot.catchmind.service.MailSendService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.springboot.catchmind.service.FindService;
-import com.springboot.catchmind.service.MailSendService;
-import com.springboot.catchmind.vo.MemberVo;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
+@Slf4j
 public class FindController {
 	
 	@Autowired
-	private FindService findService;
+	private FindServiceImpl findService;
 	
 	@Autowired
 	private MailSendService mailSendService;
 	
 	/**
-	 * ��й�ȣ ã�� �̸��� Ȯ�� �� ���� - find_pass_emailCheck.do
+	 *find_pass_emailCheck.do
 	 */
-	@RequestMapping(value="/find_pass_emailCheck.do", method = RequestMethod.GET)
+	@RequestMapping(value="/find_pass_emailCheck", method = RequestMethod.GET)
 	@ResponseBody
 	public String find_pass_emailCheck(String memail) {
-		System.out.println("�̸��� ���� �̸��� : " + memail);
+		log.info("Find_User_MEmail -> {}", memail);
 		return mailSendService.findEmail(memail);
 	}
 	/**
-	 * ��й�ȣ �缳�� - find_pass_update_proc.do
+	 *  Find Pass Update process
 	 */
-	@RequestMapping(value="/find_pass_update_proc.do", method = RequestMethod.POST)
-	public ModelAndView find_pass_update_proc(MemberVo memberVo, RedirectAttributes redirectAttributes, HttpSession session) {
+	@PostMapping("find_pass_update")
+	public ModelAndView find_pass_update_proc(MemberDto memberDto, RedirectAttributes redirectAttributes, HttpSession session) {
 		ModelAndView model = new ModelAndView();
-		
-		MemberVo beforemPass = findService.getFindPassUpdateInfo(memberVo.getMid());
+
+		MemberDto beforemPass = findService.getFindPassUpdateInfo(memberDto.getMid());
 		
 		session.setAttribute("sessionResult", beforemPass);
 		
-		if(!memberVo.getMpass().equals(beforemPass.getBeforemPass())) {
-			int passUpdate = findService.getPassUpdate(memberVo.getMid(), memberVo.getMpass());
+		if(!memberDto.getMpass().equals(beforemPass.getBeforemPass())) {
+			int passUpdate = findService.getPassUpdate(memberDto.getMid(), memberDto.getMpass());
 			
 			if(passUpdate == 1) {
 				redirectAttributes.addFlashAttribute("pass_update", "ok");
-				model.setViewName("redirect:/login.do");
+				model.setViewName("redirect:/login");
 			}
 			
-		}else if(memberVo.getMpass().equals(beforemPass.getBeforemPass())) {
+		}else if(memberDto.getMpass().equals(beforemPass.getBeforemPass())) {
 			
-			MemberVo sessionResult = (MemberVo)session.getAttribute("sessionResult");
+			MemberDto sessionResult = (MemberDto)session.getAttribute("sessionResult");
 			
 			Map<String, String> param = new HashMap<String, String>();
 			param.put("beforemPass", sessionResult.getBeforemPass());
@@ -72,65 +71,63 @@ public class FindController {
 	}
 	
 	/**
-	 * ��й�ȣ ã�� ó�� - find_pass_proc.do
+	 * find_pass_proc
 	 */
-	@RequestMapping(value="/find_pass_proc.do", method = RequestMethod.POST)
-	public ModelAndView find_pass_proc(MemberVo memberVo) {
-		ModelAndView model = new ModelAndView();
-		
-		MemberVo findPassInfo = findService.getFindPassInfo(memberVo);
-		
-		if(findPassInfo.getMid() != null) {
+	@PostMapping(value="find_pass")
+	public String find_pass_proc(MemberDto memberDto, Model model) {
+		log.info("memberDto.getMemberId() -> {}" ,memberDto.getMemberId());
+		log.info("memberDto.getMemail -> {}", memberDto.getMemail());
+
+		int findPassResult = findService.getFindPassCheck(memberDto);
+
+		if(findPassResult == 1) {
+			MemberDto findPassInfo = findService.getFindPassInfo(memberDto);
+
 			int result = findService.getBeforeMpassUpdate(findPassInfo.getMid());
 			
 			if(result == 1) {
-//				session.setAttribute("findPassInfo", findPassInfo);
-				model.addObject("findPassInfo", findPassInfo);
-				model.setViewName("pages/mydining/find_pass_info");
+				model.addAttribute("findPassInfo", findPassInfo);
+				return "pages/mydining/find_pass_info";
 				
 			}else {
-				model.addObject("find_fail", "no");
-				model.setViewName("pages/mydining/find_pass");
+				model.addAttribute("find_fail", "no");
+				return "pages/mydining/find_pass";
 			}
 			
 		}else {
-			model.addObject("find_fail", "no");
-			model.setViewName("pages/mydining/find_pass");
+			model.addAttribute("find_fail", "no");
+			return "pages/mydining/find_pass";
 		}
 		
-		return model;
 	}
 	/**
-	 * ���̵� ã�� ó�� - find_id_proc.do
+	 * Find id process
 	 */
-	@RequestMapping(value="/find_id_proc.do", method = RequestMethod.POST)
-	public ModelAndView find_id_proc(MemberVo memberVo) {
-		ModelAndView model = new ModelAndView();
-		MemberVo findMember = findService.getFindId(memberVo);
+	@PostMapping("find_id")
+	public String find_id_proc(MemberDto memberDto, Model model) {
+		MemberDto findMember = findService.getFindId(memberDto);
 		
 		if(findMember != null) {
-			model.addObject("findMember", findMember);
-			model.setViewName("pages/mydining/find_id_info");
+			model.addAttribute("findMember", findMember);
+			return "pages/mydining/find_id_info";
 		}else {
-			model.addObject("find_fail", "no");
-			model.setViewName("pages/mydining/find_id");
+			model.addAttribute("find_fail", "no");
+			return "pages/mydining/find_id";
 		}
-		
-		return model;
 	}
 	
 	/**
-	 * ��й�ȣ ã�� ������ - find_pass.do
+	 *find_pass form
 	 */
-	@RequestMapping(value = "/find_pass.do", method = RequestMethod.GET)
+	@GetMapping("find_pass")
 	public String find_pass() {
 		
 		return "pages/mydining/find_pass";
 	}
 	/**
-	 * ���̵� ã�� ������ - find_id.do
+	 *find_id form
 	 */
-	@RequestMapping(value = "/find_id.do", method = RequestMethod.GET)
+	@GetMapping("find_id")
 	public String find_id() {
 		
 		return "pages/mydining/find_id";

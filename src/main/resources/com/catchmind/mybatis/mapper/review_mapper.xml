@@ -16,6 +16,10 @@
             order by rno
     </select>
 
+	<update id="updateReviewYN" parameterType="String">
+		update reservation set REVIEWYN = 'Y' WHERE REVIEWYN = 'N' AND RID = #{rid}
+	</update>
+	
     <select id="select" parameterType="String" resultType="com.springboot.catchmind.dto.ReviewDto">
         select RNO, REVIEWID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, REVIEWMODIFYDATE,
                SID, MID, RID, REVIEWPHOTO, mname
@@ -33,6 +37,59 @@
             WHERE RID=#{rid}
     </update>
 
+	<insert id="writeReview" parameterType="com.springboot.catchmind.dto.ReviewDto">
+		insert into REVIEW(REVIEWID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, REVIEWMODIFYDATE, SID, MID, RID, REVIEWPHOTO, REVIEWSPHOTO, REVIEWMAIN) 
+				 VALUES('REVIEW_'||LTRIM(TO_CHAR(SEQU_REVIEW_RID.NEXTVAL,'0000')),
+				 #{reviewcontent},
+				 #{reviewstar},
+				 SYSDATE,
+				 SYSDATE,
+				 #{sid},
+				 #{mid},
+				 #{rid},
+				 #{reviewphoto, jdbcType=VARCHAR},
+				 #{reviewsphoto, jdbcType=VARCHAR},
+				 'N')
+	</insert>
+
+	<select id="reviewSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ReviewDto">
+		SELECT MID, SID, RID, SNAME
+			FROM(SELECT M.MID MID, S.SID SID, R.RID RID, S.SNAME SNAME
+				FROM MEMBER M, SHOP S, RESERVATION R
+				WHERE M.MID = R.MID AND S.SID = R.SID)
+			WHERE RID = #{rid}
+	</select>
+
+	<select id="list" parameterType="map" resultType="com.springboot.catchmind.dto.ReviewDto">
+		select rno, mname, SID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, RID
+		    from(select rownum rno, REVIEWID, REVIEWCONTENT, REVIEWSTAR,
+		              to_char(REVIEWCREATEDATE, 'yyyy-mm-dd') REVIEWCREATEDATE,
+		              to_char(REVIEWMODIFYDATE, 'yyyy-mm-dd') REVIEWMODIFYDATE,
+		              SID, review.MID MID, RID, REVIEWPHOTO, m.mname mname
+		            from review review, member m
+		            where review.mid = m.mid
+		            order by reviewcreatedate desc)
+		    where rno between #{startCount} and #{endCount}
+		    order by rno
+	</select>
+
+	<!-- <select id="one" parameterType="map" resultType="com.springboot.catchmind.vo.ReviewVo">
+		select RNO, REVIEWID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, REVIEWMODIFYDATE,
+		       SID, MID, RID, REVIEWPHOTO, mname
+		   from(select ROWNUM RNO, REVIEWID, REVIEWCONTENT, REVIEWSTAR,
+		            to_char(REVIEWCREATEDATE, 'yyyy-mm-dd') REVIEWCREATEDATE,
+		            to_char(REVIEWMODIFYDATE, 'yyyy-mm-dd') REVIEWMODIFYDATE,
+		            SID, review.MID MID, RID, REVIEWPHOTO, m.mname mname
+		          from review review, member m
+		          where review.mid = m.mid and rid=#{rid})
+	</select> -->
+
+	<update id="updateToMain" parameterType="java.lang.String">
+		UPDATE REVIEW SET
+				REVIEWMAIN = 'Y'
+			WHERE RID=#{rid}
+	</update>
+	
     <select id="reviewMainList" resultType="com.springboot.catchmind.dto.ReviewDto">
         select RNO, REVIEWID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, REVIEWMODIFYDATE,
                SID, MID, RID, REVIEWPHOTO, REVIEWSPHOTO, mname
