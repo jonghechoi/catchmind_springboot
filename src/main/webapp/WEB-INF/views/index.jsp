@@ -141,8 +141,6 @@
                         	</c:if>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
                     <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>

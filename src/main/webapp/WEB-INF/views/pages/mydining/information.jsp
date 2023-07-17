@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="/image/catchcon.png" type="image/png">
         <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
         <title>Catch Mind</title>
