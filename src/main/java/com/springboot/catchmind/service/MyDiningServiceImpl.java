@@ -1,67 +1,77 @@
 package com.springboot.catchmind.service;
 
-import java.util.ArrayList;
-import java.util.Map;
-
+import com.springboot.catchmind.dto.ScheduledDto;
+import com.springboot.catchmind.repository.MyDiningMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.MyDiningDao;
-import com.springboot.catchmind.vo.ScheduledVo;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-@Service("myDiningService")
-public class MyDiningServiceImpl implements MyDiningService {
-	
+@Service
+public class MyDiningServiceImpl{
+
 	@Autowired
-	private MyDiningDao myDiningDao;
-	
-	@Override
-	public ArrayList<ScheduledVo> getScheduled(String mid) {
-		return myDiningDao.scheduled(mid);
+	private MyDiningMapper myDiningMapper;
+
+	public ArrayList<ScheduledDto> getScheduled(String mid) {
+		return myDiningMapper.scheduled(mid);
 	}
-	
-	@Override
-	public ScheduledVo getInformation(String mid, String sid, String rid) {
-		return myDiningDao.information(mid, sid, rid);
+
+	public ScheduledDto getInformation(String mid, String sid, String rid) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("sid", sid);
+		param.put("rid", rid);
+
+		ScheduledDto scheduledDto = myDiningMapper.information(param);
+
+		int check = myDiningMapper.fcount(param);
+
+		if(check == 0) {
+			scheduledDto.setFcheck(String.valueOf('N'));
+		}else {
+			scheduledDto.setFcheck(String.valueOf('Y'));
+		}
+
+		return scheduledDto;
 	}
-	
-	@Override
-	public ArrayList<ScheduledVo> getVisited(String mid) {
-		return myDiningDao.visited(mid);
-	}
-	
-	@Override
+
 	public void getUpdateStatus() {
-		myDiningDao.updateStatus();
+		myDiningMapper.updateStatus();
 	}
-	
-	@Override
+
 	public int getTotalRowCount(String mid) {
-		return myDiningDao.totalRowCount(mid);
+		return myDiningMapper.totalRowCount(mid);
 	}
-	
-	@Override
-	public ArrayList<ScheduledVo> getVisitedSelect(Map<String, String> param) {
-		return myDiningDao.visitedSelect(param);
+
+	public ArrayList<ScheduledDto> getVisitedSelect(String mid) {
+		return myDiningMapper.visitedSelect(mid);
 	}
-	
-	@Override
+
 	public int getUpdateDeleteYN(String rid) {
-		return myDiningDao.updateDeleteYN(rid);
+		return myDiningMapper.updateDeleteYN(rid);
 	}
-	
-	@Override
+
 	public int getBookmarkResult(String mid, String sid) {
-		return myDiningDao.bookmarkResult(mid, sid);
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("sid", sid);
+		return myDiningMapper.bookmarkResult(param);
 	}
-	
-	@Override
+
 	public int getDeleteBookmark(String mid, String sid) {
-		return myDiningDao.deleteBookmark(mid, sid);
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("sid", sid);
+		return myDiningMapper.deleteBookmark(param);
 	}
-	
-	@Override
+
 	public int getInsertBookmark(String mid, String sid) {
-		return myDiningDao.insertBookmark(mid, sid);
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("mid", mid);
+		param.put("sid", sid);
+		return myDiningMapper.insertBookmark(param);
 	}
 }

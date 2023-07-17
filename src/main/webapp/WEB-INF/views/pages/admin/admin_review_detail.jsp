@@ -4,48 +4,48 @@
 <%@ page import="com.google.gson.JsonObject" %>
 <%@ page import="com.google.gson.Gson" %>    
 <%
-    String reviewJson = (String) request.getAttribute("reviewJson");
-    JsonObject reviewObj = new Gson().fromJson(reviewJson, JsonObject.class);
-    String rid = reviewObj.get("rid").toString();
-    
-    Boolean goMain = (Boolean)request.getAttribute("goMain");
+//    String reviewJson = (String) request.getAttribute("reviewJson");
+//    JsonObject reviewObj = new Gson().fromJson(reviewJson, JsonObject.class);
+//    String rid = reviewObj.get("rid").toString();
+//
+//    Boolean goMain = (Boolean)request.getAttribute("goMain");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="EUC-KR">
 	<title>Catch Mind</title>
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script src="/js/jonghe.js"></script>
 	<script>
 		$(document).ready(function() {
-			document.getElementById("inputRno").value = <%= reviewObj.get("rno").getAsString() %>
-			document.getElementById("inputreviewid").value = <%= reviewObj.get("reviewid") %>;
-			document.getElementById("inputmid").value = <%= reviewObj.get("mid") %>;
-			document.getElementById("inputmemberName").value = <%= reviewObj.get("mname") %>;
-			document.getElementById("inputsid").value = <%= reviewObj.get("sid") %>;
-			document.getElementById("inputReviewcontent").value = <%= reviewObj.get("reviewcontent") %>;
-			document.getElementById("inputReviewcreatedate").value = <%= reviewObj.get("reviewcreatedate") %>;
-			document.getElementById("inputReviewmodifydate").value = <%= reviewObj.get("reviewmodifydate") %>;
-			document.getElementById("inputReviewstar").value = <%= reviewObj.get("reviewstar") %>;
-			document.getElementById("shopPhoto").src = <%= reviewObj.get("reviewphoto") %>;
+			document.getElementById("inputRno").value = "${reviewJson.rno}";
+			document.getElementById("inputreviewid").value = "${reviewJson.reviewid}";
+			document.getElementById("inputmid").value = "${reviewJson.mid}";
+			document.getElementById("inputmemberName").value = "${reviewJson.mname}";
+			document.getElementById("inputsid").value = "${reviewJson.sid}";
+			document.getElementById("inputReviewcontent").value =  "${reviewJson.reviewcontent}";
+			document.getElementById("inputReviewcreatedate").value = "${reviewJson.reviewcreatedate}";
+			document.getElementById("inputReviewmodifydate").value = "${reviewJson.reviewmodifydate}";
+			document.getElementById("inputReviewstar").value = "${reviewJson.reviewstar}";
+			document.getElementById("shopPhoto").src = "/upload/" + "${reviewJson.reviewphoto}";
+
+			var reviewRidStr = "${reviewJson.rid}";
+			var reviewRid = "${reviewJson.rid}";
 			
-			var reviewRidStr = <%= rid %>;
-			var reviewRid = JSON.parse('<%= rid %>');
-			
-			if(<%= goMain %>) {
+			if(${goMain}) {
 				var btnUpdateId = 'btnReviewMainUpdate_' + reviewRid;
 				btnReviewMainUpdate.setAttribute("id", btnUpdateId);
 				
 				document.getElementById(btnUpdateId).addEventListener("click", function() {
 					$.ajax({
-						url: "admin_review_detail_data.do?rid=" + reviewRidStr,
+						url: "/admin_review_detail_data/" + reviewRidStr,
 						success: function(result) {
 							if(result == 1) {
 								alert("Success Upload to Main.")
-								window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+								window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 							}else {
 								alert("Fail Upload to Main.")
 							}
@@ -58,14 +58,14 @@
 				
 				document.getElementById(btnDeleteId).addEventListener("click", function() {
 					$.ajax({
-						url: "admin_review_detail_delete_data.do?rid=" + reviewRidStr,
+						url: "/admin_review_detail_delete_data/" + reviewRidStr,
 						success: function(result) {
 							if(result == 1) {
 								alert("Success Review Delete From Main");
-								window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+								window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 							}else {
 								alert("Fail to Delete Review From Main");
-								window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
+								window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 							}
 						}
 					})

@@ -2,8 +2,12 @@ package com.springboot.catchmind.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.springboot.catchmind.dto.*;
+import com.springboot.catchmind.repository.*;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 @Service("adminService")
+@MapperScan(basePackages = "com.springboot.catchmind.repository")
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
@@ -34,188 +39,106 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDao adminDao;
 	@Autowired
-	private ReviewDao reviewDao;	
-	
+	private ReviewDao reviewDao;
+	@Autowired
+	private MemberMapper memberMapper;
+	@Autowired
+	private NoticeMapper noticeMapper;
+	@Autowired
+	private ReviewMapper reviewMapper;
+	@Autowired
+	private ShopMapper shopMapper;
+	@Autowired
+	private AdminMapper adminMapper;
+
+	/**
+	 *	Admin paging - Member, Notice, Review
+	 */
 	@Override
-	public String getNoticeSelectGson(String page) {
-		Map<String, Integer> param = (HashMap<String, Integer>)pagingService.getPageResult(page, "notice");
-		ArrayList<NoticeVo> list = noticeDao.select(param.get("startCount"), param.get("endCount"));
-		
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();		
-		
-		for(NoticeVo noticeVo : list) {
-			JsonObject jobj = new JsonObject();
-			jobj.addProperty("rno", noticeVo.getRno());
-			jobj.addProperty("ntitle", noticeVo.getNtitle());
-			jobj.addProperty("nhits", noticeVo.getNhits());
-			jobj.addProperty("ncreatedate", noticeVo.getNcreatedate());
-			jobj.addProperty("nid", noticeVo.getNid());
-			
-			jarray.add(jobj);
-		}
-		
-		jlist.add("jlist", jarray);
-		jlist.addProperty("totals", param.get("dbCount"));
-		jlist.addProperty("maxSize", param.get("maxSize"));
-		jlist.addProperty("pageSize", param.get("pageSize"));
-		jlist.addProperty("page", param.get("page"));	
-		
-		return new Gson().toJson(jlist);		
+	public List<MemberDto> getMemberSelectJson(PageDto pageDto) {
+		return memberMapper.selectList(pagingService.getPageResult(pageDto));
+	}
+	@Override
+	public List<NoticeDto> getNoticeSelectJson(PageDto pageDto) {
+		return noticeMapper.selectList(pagingService.getPageResult(pageDto));
+	}
+	@Override
+	public List<ReviewDto> getReviewSelectJson(PageDto pageDto) {
+		return reviewMapper.selectList(pagingService.getPageResult(pageDto));
 	}
 
+	/**
+	 *	Member
+	 */
 	@Override
-	public MemberVo getCertainMemberSelect(String mid) { return memberDao.select(mid); }
+	public MemberDto getCertainMemberSelect(String mid) {
+		return memberMapper.select(mid);
+	}
 
+	/**
+	 *	Notice
+	 */
 	@Override
-	public String getMemberSelectGson(String page) {
-		Map<String, Integer> param = (HashMap<String, Integer>)pagingService.getPageResult(page, "member");
-		ArrayList<MemberVo> list = memberDao.select(param.get("startCount"), param.get("endCount"));
-		
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();			
-		
-		for(MemberVo memberVo : list) {
-			JsonObject jobj = new JsonObject();
-			jobj.addProperty("rno", memberVo.getRno());
-			jobj.addProperty("mid", memberVo.getMid());
-			jobj.addProperty("mname", memberVo.getMname()); 
-			jobj.addProperty("memberid", memberVo.getMemberId());
-			jobj.addProperty("memail", memberVo.getMemailAdmin());
-			jobj.addProperty("mphone", memberVo.getMphoneAdmin());
-			
-			jarray.add(jobj);
-		}
-		
-		jlist.add("jlist", jarray);
-		jlist.addProperty("totals", param.get("dbCount"));
-		jlist.addProperty("maxSize", param.get("maxSize"));
-		jlist.addProperty("pageSize", param.get("pageSize"));
-		jlist.addProperty("page", param.get("page"));	
-		
-		return new Gson().toJson(jlist);		
+	public NoticeDto getNoticeSelect(String nid) {
+		return noticeMapper.select(nid);
 	}
 	
 	@Override
-	public NoticeVo getNoticeSelect(String nid) {
-		return noticeDao.select(nid);
-	}
-	
-	@Override
-	public int getNoticeUpdate(NoticeVo noticeVo) {
-		return noticeDao.update(noticeVo);
+	public int getNoticeUpdate(NoticeDto noticeDto) {
+		return noticeMapper.update(noticeDto);
 	}
 	
 	@Override
 	public int getNoticeDelete(String nid) {
-		return noticeDao.delete(nid);
+		return noticeMapper.delete(nid);
 	}
-	
+
 	@Override
-	public String getShopSelectGson(boolean sconfirm, boolean aconfirmfinal) {
-		ArrayList<ShopVo> list = shopDao.select(sconfirm, aconfirmfinal);
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();			
-		
-		for(ShopVo shopVo : list) {
-			JsonObject jobj = new JsonObject();
-			jobj.addProperty("sid", shopVo.getSid());
-			jobj.addProperty("roleid", shopVo.getRoleid());
-			jobj.addProperty("screatedate", shopVo.getScreatedate());
-			jobj.addProperty("aconfirmyn", shopVo.getAconfirmyn());
-			jobj.addProperty("sconfirmyn", shopVo.getSconfirmyn());
-			jobj.addProperty("spass", shopVo.getSpass());
-			jobj.addProperty("sname", shopVo.getSname());
-			jobj.addProperty("sphone", shopVo.getSphone());
-			jobj.addProperty("sloc", shopVo.getSloc());
-			jobj.addProperty("slocshort", shopVo.getSlocshort());
-			jobj.addProperty("sintro", shopVo.getSintro());
-			jobj.addProperty("smodifydate", shopVo.getSmodifydate());
-			jobj.addProperty("sopeninghour", shopVo.getSopeninghour());
-			jobj.addProperty("sclosinghour", shopVo.getSclosinghour());
-			jobj.addProperty("sclosingdate", shopVo.getSclosingdate());
-			jobj.addProperty("sdeposit", shopVo.getSdeposit());
-			jobj.addProperty("smealfee", shopVo.getSmealfee());
-			jobj.addProperty("lunch", shopVo.getLunch());
-			jobj.addProperty("dinner", shopVo.getDinner());
-			
-			jarray.add(jobj);
-		}
-		jlist.add("jlist", jarray);
-		
-		return new Gson().toJson(jlist);
+	public int getNoticeUpload(NoticeDto noticeDto) {	return noticeMapper.upload(noticeDto); }
+
+	/**
+	 *	Review
+	 */
+	@Override
+	public ReviewDto getReviewDetailSelectJson(String rid) {
+		return reviewMapper.select(rid);
+	}
+
+	@Override
+	public int getReviewMainUpdate(String rid) {
+		return reviewMapper.updateToMain(rid);
+	}
+
+	@Override
+	public List<ReviewDto> getReviewMainList() {
+		return reviewMapper.reviewMainList();
+	}
+
+	@Override
+	public int getReviewMainDelete(String rid) {
+		return reviewMapper.deleteFromMain(rid);
+	}
+
+	/**
+	 *	Shop
+	 */
+	@Override
+	public List<ShopDto> getShopSelectJson(boolean sconfirm, boolean aconfirmfinal) {
+		Map<String, String> map = new HashMap<String, String>();
+		String sconfirmCheck = sconfirm ? String.valueOf('Y') : String.valueOf('N');
+		String aconfirmfinalCheck = aconfirmfinal ? String.valueOf('Y') : String.valueOf('N');
+		map.put("sconfirm", sconfirmCheck);
+		map.put("aconfirmfinal", aconfirmfinalCheck);
+		return shopMapper.select(map);
 	}
 	
 	@Override
 	public int getConfirmUpdate(String sid) {
-		return adminDao.update(sid);
+		return adminMapper.update(sid);
 	}
 	
 	@Override
 	public int getCancelUpdate(String sid) {
 		return adminDao.cancel(sid);
 	}
-	
-	@Override
-	public String getReviewSelectGson(String page) {
-		Map<String, Integer> param = (HashMap<String, Integer>)pagingService.getPageResult(page, "review");
-		ArrayList<ReviewVo> list = reviewDao.select(param.get("startCount"), param.get("endCount"));
-		JsonObject jlist = new JsonObject();
-		JsonArray jarray = new JsonArray();			
-		
-		for(ReviewVo ReviewVo : list) {
-			JsonObject jobj = new JsonObject();
-			jobj.addProperty("rno", ReviewVo.getRno());
-			jobj.addProperty("mname", ReviewVo.getMname());
-			jobj.addProperty("sid", ReviewVo.getSid());
-			jobj.addProperty("reviewcontent", ReviewVo.getReviewcontent());
-			jobj.addProperty("reviewstar", ReviewVo.getReviewstar());
-			jobj.addProperty("reviewcreatedate", ReviewVo.getReviewcreatedate());
-			jobj.addProperty("rid", ReviewVo.getRid());
-			
-			jarray.add(jobj);
-		}
-		jlist.add("jlist", jarray);
-		jlist.addProperty("totals", param.get("dbCount"));
-		jlist.addProperty("maxSize", param.get("maxSize"));
-		jlist.addProperty("pageSize", param.get("pageSize"));
-		jlist.addProperty("page", param.get("page"));	
-		
-		return new Gson().toJson(jlist);		
-	}
-	
-	@Override
-	public String getReviewDetailSelectGson(String rid) {
-		ReviewVo reviewVo = reviewDao.selectRid(rid);
-		JsonObject jobj = new JsonObject();
-		jobj.addProperty("reviewid", reviewVo.getReviewid());
-		jobj.addProperty("reviewcontent", reviewVo.getReviewcontent());
-		jobj.addProperty("reviewcreatedate", reviewVo.getReviewcreatedate());
-		jobj.addProperty("reviewmodifydate", reviewVo.getReviewmodifydate());
-		jobj.addProperty("sid", reviewVo.getSid());
-		jobj.addProperty("mid", reviewVo.getMid());
-		jobj.addProperty("rid", reviewVo.getRid());
-		jobj.addProperty("reviewphoto", reviewVo.getReviewphoto());
-		jobj.addProperty("mname", reviewVo.getMname());
-		jobj.addProperty("rno", reviewVo.getRno());
-		jobj.addProperty("reviewstar", reviewVo.getReviewstar());
-		//return jobj;
-		return new Gson().toJson(jobj);
-	}
-	
-	@Override
-	public int getReviewMainUpdate(String rid) {
-		return reviewDao.updateToMain(rid);
-	}
-	
-	@Override
-	public ArrayList<ReviewVo> getReviewMainList() {
-		return reviewDao.reviewMainList();
-	}
-	
-	@Override
-	public int getReviewMainDelete(String rid) {
-		return reviewDao.deleteFromMain(rid);
-	}
-	
 }

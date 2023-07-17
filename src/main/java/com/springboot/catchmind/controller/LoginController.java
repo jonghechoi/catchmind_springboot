@@ -1,24 +1,27 @@
 package com.springboot.catchmind.controller;
 
-import javax.servlet.http.HttpSession;
-
+import com.springboot.catchmind.dto.MemberDto;
+import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.service.MemberServiceImpl;
+import com.springboot.catchmind.service.ShopService;
+import com.springboot.catchmind.vo.ShopVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.springboot.catchmind.service.MemberService;
-import com.springboot.catchmind.service.ShopService;
-import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.vo.SessionVo;
-import com.springboot.catchmind.vo.ShopVo;
+import javax.servlet.http.HttpSession;
 
 @Controller
+@Slf4j
 public class LoginController {
 	@Autowired
-	private MemberService memberService;
+	private MemberServiceImpl memberService;
 	
 	@Autowired
 	private ShopService shopService;
@@ -30,9 +33,9 @@ public class LoginController {
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+		SessionDto sessionDto = (SessionDto)session.getAttribute("sessionDto");
 		
-		if(sessionVo != null) {
+		if(sessionDto != null) {
 			session.invalidate();
 			
 			model.addObject("logout_result", "ok");
@@ -45,42 +48,42 @@ public class LoginController {
 	/**
 	 *  login_role_proc.do
 	 */
-	@RequestMapping(value = "/login_role_proc.do", method = RequestMethod.POST)
-	public ModelAndView login_role_proc(MemberVo memberVo, HttpSession session, ShopVo shopVo, RedirectAttributes redirectAttributes) 
+	@PostMapping("login_role")
+	public ModelAndView login_role_proc(MemberDto memberDto, HttpSession session, ShopVo shopVo, RedirectAttributes redirectAttributes)
 															throws Exception{
 		ModelAndView model = new ModelAndView();
 		
-		if(memberVo.getMemberId() != null && shopVo.getSid() == null) {
-			int adminIdCheck = memberService.getRoleIdCheck(memberVo);
+		if(memberDto.getMemberId() != null && shopVo.getSid() == null) {
+			int adminIdCheck = memberService.getRoleIdCheck(memberDto);
 			
 			if(adminIdCheck == 1) {
-				SessionVo sessionVo = memberService.getRoleLogin(memberVo);
-				session.setAttribute("sessionVo", sessionVo);
+				SessionDto sessionDto = memberService.getRoleLogin(memberDto);
+				session.setAttribute("sessionVo", sessionDto);
 				
 				redirectAttributes.addFlashAttribute("loginRole_complete", "ok");
-				model.setViewName("redirect:/index.do");
+				model.setViewName("redirect:/index");
 			}else {
 				redirectAttributes.addFlashAttribute("loginRole_fail", "no");
-				model.setViewName("redirect:/login_role.do");
+				model.setViewName("redirect:/login_role");
 			}
 			
-		}else if(shopVo.getSid() != null && memberVo.getMid() == null) {
+		}else if(shopVo.getSid() != null && memberDto.getMid() == null) {
 			System.out.println(shopVo.getRoleid());
 			int shopIdCheck = shopService.getShopIdCheck(shopVo);
 			
 			if(shopIdCheck == 1) {
-				SessionVo sessionVo = shopService.getShopLogin(shopVo);
-				session.setAttribute("sessionVo", sessionVo);
+				SessionDto sessionDto = shopService.getShopLogin(shopVo);
+				session.setAttribute("sessionVo", sessionDto);
 				
 				redirectAttributes.addFlashAttribute("loginRole_complete", "ok");
-				model.setViewName("redirect:/index.do");
+				model.setViewName("redirect:/index");
 			}else {
 				redirectAttributes.addFlashAttribute("loginRole_fail", "no");
-				model.setViewName("redirect:/login_role.do");
+				model.setViewName("redirect:/login_role");
 			}
 		}else {
 			redirectAttributes.addFlashAttribute("loginRole_fail", "no");
-			model.setViewName("redirect:/login_role.do");
+			model.setViewName("redirect:/login_role");
 		}
 		return model;
 	}
@@ -88,7 +91,7 @@ public class LoginController {
 	/**
 	 *  login_role.do 
 	 */
-	@RequestMapping(value = "/login_role.do", method = RequestMethod.GET)
+	@GetMapping("login_role")
 	public String login_role() {
 		return "pages/mydining/login_role";
 	}
@@ -96,25 +99,25 @@ public class LoginController {
 	/**
 	 *  kakao_login_proc.do
 	 */
-	@RequestMapping(value = "/kakao_login_proc.do", method = RequestMethod.POST)
-	public String kakao_login_proc(MemberVo memberVo, RedirectAttributes redirectAttributes, HttpSession session) {
+	@PostMapping("/kakao_login")
+	public String kakao_login_proc(MemberDto memberDto, RedirectAttributes redirectAttributes, HttpSession session) {
 		String viewName = "";
 		
-		int idCheck = memberService.getKakaoIdCheck(memberVo);
+		int idCheck = memberService.getKakaoIdCheck(memberDto);
 		System.out.println(idCheck);
 		
 		if(idCheck ==  1) {
-			SessionVo sessionVo = memberService.getKakaoLogin(memberVo);
-			session.setAttribute("sessionVo", sessionVo);
+			SessionDto sessionDto = memberService.getKakaoLogin(memberDto);
+			session.setAttribute("sessionVo", sessionDto);
 			redirectAttributes.addFlashAttribute("kakoLogin_complete", "ok");
-			viewName = "redirect:/index.do";
+			viewName = "redirect:/index";
 			
 		}else if(idCheck == 0) {
-			int joinCheck = memberService.getKakaoJoin(memberVo);
+			int joinCheck = memberService.getKakaoJoin(memberDto);
 			
 			if(joinCheck == 1) {
 				redirectAttributes.addFlashAttribute("kakoLogin_complete", "ok");
-				viewName = "redirect:/index.do";
+				viewName = "redirect:/index";
 				
 			}else {
 				System.out.println("Error");
@@ -128,34 +131,35 @@ public class LoginController {
 	/**
 	 *  login_proc.do
 	 */
-	@RequestMapping(value = "/login_proc.do", method = RequestMethod.POST)
-	public String login_proc(MemberVo memberVo, HttpSession session, RedirectAttributes redirectAttributes) {
+	@PostMapping("login")
+	public String login_proc(MemberDto memberDto, HttpSession session, RedirectAttributes redirectAttributes) {
 		
-		int result = memberService.getLoginIdCheck(memberVo);
+		int result = memberService.getLoginIdCheck(memberDto);
 		if(result == 1) {
-			SessionVo sessionVo = memberService.getMemberLogin(memberVo);
-			
-			if(sessionVo != null && sessionVo.getLoginResult() == 1) {
-				session.setAttribute("sessionVo", sessionVo);
+			SessionDto sessionDto = memberService.getMemberLogin(memberDto);
+			log.info("sessionDto.getMid() -> {}",sessionDto.getMid());
+
+			if(sessionDto != null && sessionDto.getLoginResult() == 1) {
+				session.setAttribute("sessionVo", sessionDto);
+				System.out.println(sessionDto.getLoginResult());
 				redirectAttributes.addFlashAttribute("login_complete", "ok");
-				return "redirect:/index.do";
+				return "redirect:/index";
 			}
 			
 		}else {
 			redirectAttributes.addFlashAttribute("login_fail", "no");
-			return"redirect:/login.do";
+			return"redirect:/login";
 		}
 		
-		return "redirect:/index.do";
+		return "redirect:/index";
 	}
 
 	/**
 	 *  login.do
 	 */
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	@GetMapping("login")
 	public String login() {
-		
-		return "pages/mydining/login";
+		return "/pages/mydining/login";
 	}
 
 }

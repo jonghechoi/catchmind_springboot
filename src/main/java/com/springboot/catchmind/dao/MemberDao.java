@@ -170,7 +170,6 @@ public class MemberDao extends DBConn {
 
 	/**
 	 * kakaoIdCheck
-	 * 카카占쏙옙 占싸깍옙占쏙옙 체크
 	 */
 	public int kakaoIdCheck(MemberVo memberVo) {
 		return sqlSession.selectOne("mapper.member.kakaoIdCheck", memberVo);
@@ -178,7 +177,6 @@ public class MemberDao extends DBConn {
 	
 	/**
 	 * kakaoJoin
-	 * 카카占쏙옙 회占쏙옙占쏙옙占쏙옙
 	 */
 	public int kakaoJoin(MemberVo memberVo) {
 		return sqlSession.insert("mapper.member.kakaoJoin", memberVo);
@@ -186,7 +184,6 @@ public class MemberDao extends DBConn {
 	
 	/**
 	 * PassUpdate
-	 * 占쏙옙橘占싫� 찾占쏙옙 
 	 */
 	public int passUpdate(String mid, String mpass) {
 		Map<String, String> param = new HashMap<String, String>();

@@ -24,13 +24,20 @@
 		where mid = #{mid}
 	</update>
 	
-	<select id="findPassInfo" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
-		SELECT MID, MEMBERID, MEMAIL, MPASS, BEFOREMPASS
+	<select id="findPassCheck" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="int">
+		SELECT count(*)
 		FROM MEMBER
 		WHERE memberId = #{memberId} and
 			  memail = #{memail}
 	</select>
-	
+
+	<select id="findPassInfo" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
+		SELECT mid, memberId, memail, mpass, beforemPass
+		FROM MEMBER
+		WHERE memberId = #{memberId} and
+			  memail = #{memail}
+	</select>
+
 	<select id="findId" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
 		select mid, mname, memail, memberId, mphone  
 		from member

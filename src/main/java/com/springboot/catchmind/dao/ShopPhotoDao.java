@@ -99,26 +99,3 @@ public class ShopPhotoDao extends DBConn{
 		return sqlSession.insert("mapper.shop.photoUpdate", map);		
 	}
 }
-	// public Map<String, String> select(String sid) {
-	// 	Map<String, String> shopPhoto = new HashMap<String, String>();
-	// 	String sql = "select photo1, photo2, photo3, photo4, photo5 " + 
-	// 			"	  from shop_photo" + 
-	// 			"	  where sid=?";
-	// 	getPreparedStatement(sql);
-		
-	// 	try {
-	// 		pstmt.setString(1, sid);
-	// 		rs = pstmt.executeQuery();
-			
-	// 		while(rs.next()) {
-	// 			shopPhoto.put("photo1", rs.getString(1));
-	// 		}
-			
-	// 	}
-	// 	catch(Exception e) {
-	// 		e.printStackTrace();
-	// 	}
-		
-		
-	// 	return shopPhoto;
-	// }

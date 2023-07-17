@@ -6,17 +6,17 @@
 	<meta charset="utf-8">
 	<title>Catch Mind</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="resources/image/catchcon.png" type="image/png">
+	<link rel="icon" href="/image/catchcon.png" type="image/png">
 	<title>Royal Hotel</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-	<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/vendors/linericon/style.css">
+	<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
 	<!-- main css -->
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
+	<script src="/js/jonghe.js"></script>
 </head>
 <body>
 	<section class="s1">
