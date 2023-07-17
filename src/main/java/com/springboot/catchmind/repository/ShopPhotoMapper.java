@@ -7,6 +7,10 @@ import java.util.Map;
 
 @Mapper
 public interface ShopPhotoMapper {
+    //start Dayoung
+    ShopPhotoDto shopPhotoSelect(String sid);
+    //end Dayoung
+
     int selectCheck(String sid);
 
     int insert(Map map);

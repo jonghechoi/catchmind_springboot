@@ -8,5 +8,5 @@ public class ShopDto {
 		   spass, sname, sphone, sloc, slocx, slocy, slocshort, sintro, smodifydate, 
 		   sclosingdate, swebsite, sfoodstyle, smphoto, sopeninghour, sclosinghour;
 	int rno, sdeposit, smealfee, lunch, dinner;
-	String sopeninghourString, sclosinghourString;
+	String sopeninghourString, sclosinghourString, sdepositString, smealfeeString, lunchString, dinnerString;
 }

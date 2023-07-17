@@ -35,7 +35,18 @@ public class ShopServiceImpl implements ShopService {
 	private ShopMapper shopMapper;
 	@Autowired
 	private ShopPhotoMapper shopPhotoMapper;
-	
+
+
+	//start Dayoung
+	public ShopDto shopSelect(String sid){
+		return shopMapper.shopSelect(sid);
+	}
+
+	public Map<String, String> getPriceInString(String sid){
+		return shopMapper.getPriceInString(sid);
+	}
+	//end Dayoung
+
 	@Override
 	public int getInsert(ShopDto shopDto) {
 		int result = 0;
