@@ -98,15 +98,14 @@ $(document).ready(function() {
         
         
         $.ajax({
-            url: "search_list_proc.do?searchQuery=" + searchQuery,
+            url: "search_list_proc/"+searchQuery+"/",
             async:false,
             success: function(result) {
             fdata = result;
-                let jdata = JSON.parse(result);
-                
+                //let jdata = JSON.parse(result);
                 let output = "";
-
-                for (const obj of jdata.jlist) {
+                //alert(result);
+                for (const obj of result) {
                 	//console.log(obj.sid);
                     output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
@@ -153,19 +152,19 @@ $(document).ready(function() {
         
     }
     
-    $(".d_p1").click(function(){
-    	//alert($(this).attr("id"));
-    	let locname = $(this).attr("id");
-		const jdata = JSON.parse(fdata);
-        const searchData =jdata.jlist.filter(object => {
-	        if(object.sloc.indexOf(locname) > -1){
-	        return object;
-	        }
-	        return null;
-        }); //searchData
-        
-                
-                
+            $(".d_p1").click(function(){
+                //alert($(this).attr("id"));
+                let locname = $(this).attr("id");
+
+                console.log(fdata);
+                const searchData =fdata.filter(object => {
+                    if(object.sloc.indexOf(locname) > -1){
+                    return object;
+                    }
+                    return null;
+                }); //searchData
+
+
                 let output = "";
 
                 for (const obj of searchData) {
@@ -218,8 +217,7 @@ $(document).ready(function() {
     	//alert($(this).attr("id"));
     	let cuisinename = $(this).attr("id");
     	//alert(fdata);
-		const jdata = JSON.parse(fdata);
-        const searchData =jdata.jlist.filter(object => {
+        const searchData =fdata.filter(object => {
 	        if(object.sfoodstyle.indexOf(cuisinename) > -1){
 	        return object;
 	        }
@@ -308,9 +306,8 @@ $(document).ready(function() {
     	
     	//alert($(this).attr("id"));
     	let pricescope = $(this).attr("id");
-    	
-		const jdata = JSON.parse(fdata);
-		const pricedata = jdata.jlist; //Price filtering Data
+
+		const pricedata = fdata; //Price filtering Data
        
        	const filterData = (pricedata, contractAmountRange, rangeSelected) => {
 			  const foundRange = contractAmountRange.find((x) => x.id === rangeSelected);
