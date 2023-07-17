@@ -4,7 +4,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.find">
+<mapper namespace="com.springboot.catchmind.repository.MemberMapper">
 
 	<update id="passUpdate" parameterType="map">
 		update member
@@ -12,7 +12,7 @@
 		where mid = #{mid}
 	</update>
 	
-	<select id="findPassUpdateInfo" parameterType="String" resultType="com.springboot.catchmind.vo.MemberVo">
+	<select id="findPassUpdateInfo" parameterType="String" resultType="com.springboot.catchmind.dto.MemberDto">
 		select mid, BEFOREMPASS
 		from member
 		where mid = #{mid}
@@ -23,15 +23,23 @@
 		set beforemPass = mpass
 		where mid = #{mid}
 	</update>
+
+	<select id="findPassCheck" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="int">
+		SELECT count(*)
+		FROM MEMBER
+		WHERE memberId = #{memberId} and
+			memail = #{memail}
+	</select>
 	
-	<select id="findPassInfo" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
+	<select id="findPassInfo" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="com.springboot.catchmind.dto.MemberDto">
 		SELECT MID, MEMBERID, MEMAIL, MPASS, BEFOREMPASS
 		FROM MEMBER
 		WHERE memberId = #{memberId} and
 			  memail = #{memail}
 	</select>
-	
-	<select id="findId" parameterType="com.springboot.catchmind.vo.MemberVo" resultType="com.springboot.catchmind.vo.MemberVo">
+
+
+	<select id="findId" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="com.springboot.catchmind.dto.MemberDto">
 		select mid, mname, memail, memberId, mphone  
 		from member
 		where mname = #{mname} and

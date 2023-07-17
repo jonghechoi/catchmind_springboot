@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 		<title>Find Pass</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-       <script src="resources/js/jquery-3.6.4.min.js"></script>
-        <script src="resources/js/catchmind_hyeonsoo.js"></script>
+       <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="/js/catchmind_hyeonsoo.js"></script>
         <!-- main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
-		<link rel="stylesheet" href="resources/css/jhsStyle.css">
+        <link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/jhsStyle.css">
 		<script>
 		let find_fail = "${find_fail}"
 			
@@ -22,7 +22,7 @@
 <body>
 	<div class="Find">
 		<h1>Find Password</h1>
-		<form name="findPassForm" action="find_pass_proc" method="post">
+		<form name="findPassForm" action="find_pass" method="post">
 			<div>
 				<input type="text" name="memberId" class="findText" id="textId" placeholder="ID">
 			</div>

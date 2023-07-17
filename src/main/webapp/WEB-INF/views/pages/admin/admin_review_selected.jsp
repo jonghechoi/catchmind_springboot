@@ -6,19 +6,19 @@
 <head>
 	<meta charset="utf-8">
 	<title>Catch Minde</title>
-	<link rel="stylesheet" href="resources/css/bootstrap.css">
-	<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-	<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
-	<script src="resources/js/jonghe.js"></script>
-	<link rel="stylesheet" href="resources/css/am-pagination.css">
-	<script src="resources/js/am-pagination.js"></script>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/vendors/linericon/style.css">
+	<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.2.1.min.js"></script>
+	<script src="/js/jonghe.js"></script>
+	<link rel="stylesheet" href="/css/am-pagination.css">
+	<script src="/js/am-pagination.js"></script>
 	<script>
 		function adminReviewDatail(rid) {
 			$(document).on("click", "#btnReviewMainDetail_" + rid, function() {
-				window.open("admin_review_detail?goMain=false&rid=" + rid, 'Review Detail', 'width=700px,height=900px, scrollbars=yes');
+				window.open("/admin_review_detail/false/" + rid, 'Review Detail', 'width=700px,height=900px, scrollbars=yes');
 			});		
 		}			
 	</script>
@@ -40,15 +40,15 @@
 				<th>Date</th>
 				<th></th>
 			</tr>
- 			<c:forEach var="ReviewVo" items="${reviewVo}">
+ 			<c:forEach var="ReviewDto" items="${review}">
 				<tr>
-					<td>${ReviewVo.rno}</td>
-					<td>${ReviewVo.mname}</td> 
-					<td>${ReviewVo.sid}</td>
-					<td>${ReviewVo.reviewcontent}</td>
-					<td>${ReviewVo.reviewstar}</td>
-					<td>${ReviewVo.reviewcreatedate}</td>
-					<td><button type="button" name="name" id="btnReviewMainDetail_${ReviewVo.rid}" onclick="adminReviewDatail('${ReviewVo.rid}')">Detail</button></td>
+					<td>${ReviewDto.rno}</td>
+					<td>${ReviewDto.mname}</td>
+					<td>${ReviewDto.sid}</td>
+					<td>${ReviewDto.reviewcontent}</td>
+					<td>${ReviewDto.reviewstar}</td>
+					<td>${ReviewDto.reviewcreatedate}</td>
+					<td><button type="button" name="name" id="btnReviewMainDetail_${ReviewDto.rid}" onclick="adminReviewDatail('${ReviewDto.rid}')">Detail</button></td>
 				</tr>
 			</c:forEach>	
 	 	 	<tr>

@@ -10,7 +10,7 @@
         <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-        <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="/js/jquery-3.2.1.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <script src="/js/am-pagination.js"></script>
         <script src="/js/paging_visited.js"></script>
@@ -40,7 +40,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="/index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -50,24 +50,23 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                            <!--================ Menu =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                             <li class="nav-item submenu dropdown active">
-                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">
 	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <!-- <li class="nav-item active" id="shop_information">Register</li> -->
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>
@@ -90,7 +89,7 @@
                     <h2 class="page-cover-tittle">My Dining</h2>
                     <ol class="breadcrumb">
                         <li class="active">Visited</li>
-                        <li><a href="mydining_scheduled">Scheduled</a></li> <!-- 링크로 넘어갈때 mid 가져가야함  -->
+                        <li><a href="/mydining_scheduled">Scheduled</a></li> <!-- 링크로 넘어갈때 mid 가져가야함  -->
                     </ol>
                 </div>
             </div>
@@ -105,28 +104,6 @@
                     <p>Thank you for using it. Please write a review</p>
                 </div>
                 <p id="pooo"></p>
-                <%-- <div class="row mb_30">
-                <c:forEach var="scheduledVo" items="${visitedList}">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="accomodation_item text-center">
-                            <div class="hotel_img">
-                                <img src="${scheduledVo.smphoto}" width="262px"; height="272px"; alt="">
-                                <c:choose>
-                                	 <c:when test="${scheduledVo.reviewYN == 'N'}">
-	                               		 <a href="write_review?sid=${scheduledVo.sid}&mid=${scheduledVo.mid}&rid=${scheduledVo.rid}" class="btn theme_btn button_hover">Write Review</a>
-                                	 </c:when>
-                                	  <c:when test="${scheduledVo.reviewYN == 'Y'}">
-	                               		 <a href="mypage_review?${scheduledVo.sid}&mid=${scheduledVo.mid}" class="btn theme_btn button_hover" style="padding: 5px 1px;">My Review Check</a>
-                                	  </c:when>
-                                </c:choose>
-                            </div>
-                            <img src="resources/image/jhs_img/1000_F_412408259_m13MpFAxpttIh3jxxsRl3rbsbS5SjnVL.jpg" width="20px"; height="20px"; >
-                            <a href="#"><h4 class="sec_h4">${scheduledVo.sname }</h4></a>
-                            <h5>${scheduledVo.rdate }<br> ${scheduledVo.rtime } - ${scheduledVo.guestNumber } People <br><small>${scheduledVo.slocShort}</small></h5>
-                        </div>
-                    </div>
-                </c:forEach>
-                </div> --%>
             </div>
         </section>
         <!--================ Accomodation Area  =================-->
@@ -193,7 +170,7 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <!-- <script src="resources/js/jquery-3.2.1.min.js"></script> -->
+        <!-- <script src="/js/jquery-3.2.1.min.js"></script> -->
         <script src="/js/popper.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>

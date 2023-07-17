@@ -1,25 +1,24 @@
 package com.springboot.catchmind.service;
 
-import java.util.ArrayList;
-import java.util.Map;
-
+import com.springboot.catchmind.dto.SearchDto;
+import com.springboot.catchmind.repository.SearchMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.SearchDao;
-import com.springboot.catchmind.vo.SearchVo;
+import java.util.List;
 
-@Service("searchService")
+@Service
 public class SearchService {
 	
 	@Autowired
-	 private SearchDao searchDao;
+	SearchMapper searchMapper;
 
-	public ArrayList<SearchVo> getSelect(String searchValue) {
-		return searchDao.select(searchValue);
+	public List<SearchDto> select(String searchValue) {
+		//System.out.println(searchValue);
+		return searchMapper.select(searchValue);
 	}
 
-	public ArrayList<SearchVo> getBookNowSelect(Map<String, String> map) {
-		return searchDao.bookNowSelect(map);
-	}
+//	public ArrayList<SearchDto> getBookNowSelect(Map<String, String> map) {
+//		return searchDao.bookNowSelect(map);
+//	}
 }

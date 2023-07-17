@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>CatchMind</title>
-<link rel="icon" href="resources/image/catchcon.png" type="image/png">
-<link rel="stylesheet" href="resources/css/hyeonsoo_join_consent.css">
-<script src="resources/js/jquery-3.6.4.min.js"></script>
-<script src="resources/js/catchmind_hyeonsoo.js"></script>
+<link rel="icon" href="/image/catchcon.png" type="image/png">
+<link rel="stylesheet" href="/css/hyeonsoo_join_consent.css">
+<script src="/js/jquery-3.6.4.min.js"></script>
+<script src="/js/catchmind_hyeonsoo.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 

@@ -49,24 +49,23 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <!--================ Menu =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                             <li class="nav-item submenu dropdown active">
-                                <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">
 	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <!-- <li class="nav-item active" id="shop_information">Register</li> -->
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>
@@ -89,7 +88,7 @@
                     <h2 class="page-cover-tittle">My Dining</h2>
                     <ol class="breadcrumb">
                         <li class="active">Scheduled</li>
-                        <li><a href="mydining_visited">Visited</a></li>
+                        <li><a href="/mydining_visited">Visited</a></li>
                     </ol>
                 </div>
             </div>
@@ -109,7 +108,7 @@
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
                                 <img src="${scheduledVo.smphoto}" width="262px"; height="272px"; alt="">
-                                <a href="information?sid=${scheduledVo.sid}<%-- &mid=${scheduledVo.mid} --%>&rid=${scheduledVo.rid}"
+                                <a href="/information/${scheduledVo.sid}/${scheduledVo.rid}"
                                 	class="btn theme_btn button_hover" target="_parent">Information</a>
                             </div>
                             <a href="#"><h4 class="sec_h4">${scheduledVo.sname }</h4></a>

@@ -17,7 +17,7 @@ public class ReviewDao extends DBConn{
 	private SqlSessionTemplate sqlSession;
 	
 	/**
-	 * ���侲�� �Ϸ� �� REVIEWYN -> N -> Y�� ���� 
+	 *  ReviewYN N -> Y
 	 */
 	public int updateReviewYN(String rid) {
 		return sqlSession.update("mapper.review.updateReviewYN", rid);
@@ -25,7 +25,7 @@ public class ReviewDao extends DBConn{
 
 	
 	/**
-	 * ���侲�� (insert)
+	 * Review_Write (insert)
 	 */
 	public int writeReview(ReviewVo reviewVo) {
 		return sqlSession.insert("mapper.review.writeReview", reviewVo);

@@ -29,7 +29,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="/"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,8 +39,8 @@
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
         				<!--================ 변경하는 부분 =================-->                
-                            <li class="nav-item"><a class="nav-link" href="index">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="search">Search</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
@@ -48,20 +48,20 @@
                                     <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
-                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
+                            <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
+                            <%--<c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
 	                            <li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation">Reservation</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
 	                                </ul>
 	                            </li>                     
-                            </c:if>
-                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item active"><a class="nav-link" href="admin">Admin</a></li>
-                        	</c:if>
+                            <%--</c:if>
+                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
+                            	<li class="nav-item active"><a class="nav-link" href="/admin">Admin</a></li>
+                        	<%--</c:if>--%>
                         <!--================ 변경하는 부분 =================-->
                         </ul>
                     </div> 
@@ -97,23 +97,23 @@
 					</ul>
            		</div>
  	           	<div class="member">
- 	           		<iframe src="admin_member_list" id="memberIframe"
+ 	           		<iframe src="/admin_member_list" id="memberIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>
 	           	<div class="shopInformation">
-	           		<iframe src="admin_shop_information" id="shopInformationIframe"
+	           		<iframe src="/admin_shop_information" id="shopInformationIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>
 	           	<div class="reservation">
-	           		<iframe src="admin_shop_registeration_check" id="reserveIframe"
+	           		<iframe src="/admin_shop_registeration_check" id="reserveIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>	           	
 	           	<div class="review">
-	           		<iframe src="admin_review" id="reviewIframe"
+	           		<iframe src="/admin_review" id="reviewIframe"
 				    	scrolling="yes" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div>
 	           	<div class="notice">
-	           		<iframe src="notice_list" id="noticeIframe"
+	           		<iframe src="/admin_notice_list" id="noticeIframe"
 				    	scrolling="no" width="100%" height="400px" frameborder=0 style="display:none"></iframe>
 	           	</div> 
            	</div>

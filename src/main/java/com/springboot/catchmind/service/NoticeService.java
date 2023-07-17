@@ -1,12 +1,13 @@
 package com.springboot.catchmind.service;
 
-import com.springboot.catchmind.vo.NoticeVo;
+import com.springboot.catchmind.dto.NoticeDto;
+import com.springboot.catchmind.dto.PageDto;
+
+import java.util.List;
 
 public interface NoticeService {
 
 	public int getTotalRowCount();
-	
-	public String getNoticeSelect(String page);
-	
-	public int getNoticeUpload(NoticeVo noticeVo);
+
+	public List<NoticeDto> getNoticeSelectJson(PageDto pageDto);
 }

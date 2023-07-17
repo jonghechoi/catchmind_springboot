@@ -26,7 +26,7 @@ $("#btn_cancleReservation").click(function(){
 **************************/
 	$('.btn_cancel').click(function() {
 	    var value = $(this).val();
-	    window.open('cancle_reservation?rid=' + value, '_blank', 'width=460,height=700');
+	    window.open('/cancle_reservation/'+value, '_blank', 'width=460,height=700');
 	});
 
 /***************************
@@ -78,7 +78,7 @@ $("#btn_cancleReservation").click(function(){
 				
 				$.ajax({
 					type : 'get',
-					url : "find_pass_emailCheck?memail="+memail,
+					url : "/find_pass_emailCheck/"+memail,
 					success : function (data) {
 						console.log("data : " +  data);
 						checkInput.attr('disabled',false);
@@ -87,62 +87,43 @@ $("#btn_cancleReservation").click(function(){
 					}			
 		}); // ajax
 	});
+
 /**************************
-	비밀번호 찾기 이메일 인증 값 체크
-***************************/
-	/*$("#btnRequestCheck").click(function () {
+ 비밀번호 찾기 폼 - 유효성 체크
+ **************************/
+$("#btnFindPass_p").click(function(){
+	if($("#textId").val() === ""){
+		alert("Please enter your ID");
+		$("#textId").focus();
+		return false;
+
+	}else if($("#email1").val() == ""){
+		alert("Please enter your Email");
+		$("#email1").focus();
+		return false;
+
+	}else if($("#email2").val() == ""){
+		alert("Please enter your Email");
+		$("#email2").focus();
+		return false;
+
+	}else if($("#find_request").val() === ""){
+		alert("Please enter Request Number");
+		$("#find_request").focus();
+		return false;
+
+	}else if($("#find_request").val() != code) {
 		const inputCode = $("#find_request").val();
 		const $resultMsg = $('#mail-check-warn');
-		if(inputCode === code){
-			$resultMsg.html('인증번호가 일치합니다.');
-			$resultMsg.css('color','green');
-			$('#mail-Check-Btn').attr('disabled',true);
-			$('#email1').attr('readonly',true);
-			$('#email1').attr('readonly',true);
-			$('#email2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
-	        $('#email2').attr('onChange', 'this.selectedIndex = this.initialSelect');
-	        
-		}else{
-			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-			$resultMsg.css('color','red');
-			return false;
-		}
-	});*/
-/**************************
-	비밀번호 찾기 폼 - 유효성 체크
-**************************/
-	$("#btnFindPass_p").click(function(){
-		if($("#textId").val() === ""){
-			alert("Please enter your ID");
-			$("#textId").focus();
-			return false;
-				
-		}else if($("#email1").val() == ""){
-			alert("Please enter your Email");
-			$("#email1").focus();
-			return false;
-			
-		}else if($("#email2").val() == ""){
-			alert("Please enter your Email");
-			$("#email2").focus();
-			return false;
-		
-		}else if($("#find_request").val() === ""){
-			alert("Please enter Request Number");
-			$("#find_request").focus();
-			return false;
-			
-		}else if($("#find_request").val() != code) {
-			const inputCode = $("#find_request").val();
-			const $resultMsg = $('#mail-check-warn');
-			$resultMsg.html('The authentication number does not match. Please check again');
-			$resultMsg.css('color','red');
-			return false;
-			
-		}else {
-			findPassForm.submit();
-		}
-	});
+		$resultMsg.html('The authentication number does not match. Please check again');
+		$resultMsg.css('color','red');
+		return false;
+
+	}else {
+		findPassForm.submit();
+	}
+});
+
 /**************************
 	아이디 찾기 폼 - 유효성 체크
 **************************/
@@ -339,7 +320,7 @@ $(document).ready(function(){
 		}else {
 			//ajax
 			$.ajax({
-				url :"id_check?memberId="+ inputId ,
+				url :"/id_check/"+inputId ,
 				success : function(result) {
 					if(result == 0){
 						$("#idCheck_msg1").text("O").css("color","mediumseagreen")
@@ -358,23 +339,23 @@ $(document).ready(function(){
 /***********************************
 	회원가입 폼 체크 - 비밀번호 & 비밀번호 확인
 ************************************/
-	$("#pass1").on("blur", function(){
-		var password = $(this).val();
-    	var passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/;
-    	
-    	if(passwordPattern.test(password)) {
-    		$('#pass_check').text('This password is available').css("color","mediumseagreen")
-					.css("font-size","11px").css("display","block");
-					
-			$("#cpass").focus();
-    	}else {
-    		$('#pass_check').text('Password must be between 8 and 15 characters long and must contain all English, numeric, and special characters').css("color","red")
-				.css("font-size","11px").css("display","block");
-				
-			$("#pass1").val("").focus();
-				
-    	}
-	});
+$("#pass1").on("blur", function(){
+	var password = $(this).val();
+	var passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/;
+
+	if(passwordPattern.test(password)) {
+		$('#pass_check').text('This password is available').css("color","mediumseagreen")
+			.css("font-size","11px").css("display","block");
+
+		$("#cpass").focus();
+	}else {
+		$('#pass_check').text('Password must be between 8 and 15 characters long and must contain all English, numeric, and special characters').css("color","red")
+			.css("font-size","11px").css("display","block");
+
+		$("#pass1").val("").focus();
+
+	}
+});
 
 	$("#cpass").on("blur", function(){
 		if($("#pass1").val() != "" && $("#cpass").val() != ""){
@@ -384,8 +365,8 @@ $(document).ready(function(){
 				$("#name").focus();
 			}else{
 				$("#cmsg").text("Password is not the same. Please enter it again")
-				.css("color","red").css("font-size","11px").css("display","block");
-				
+					.css("color","red").css("font-size","11px").css("display","block");
+
 				$("#cpass").val("").focus();
 			}
 		}
@@ -393,96 +374,106 @@ $(document).ready(function(){
 /********************************
 	회원가입 공백, 특수문자 체크
 *********************************/
-	 $('#id1').on('blur', function() {
-        var memberId = $(this).val();
-        var regex = /^(?=.*[a-z0-9])[a-z0-9]{6,}$/; // 6자 이상의 영문 또는 영문 + 숫자
+$('#id1').on('keyup', function() {
+	var memberId = $(this).val();
+	var regex = /^(?=.*[a-z0-9])[a-z0-9]{6,}$/g; // 6자 이상의 영문 또는 영문 + 숫자
 
-        if (regex.test(memberId)) {
-          $('#idCheck_msg').text("This ID is available").css("color","mediumseagreen").css("font-size","11px").css("display","block").css("padding","4px 0px");
-          return false;
-          
-        }else {
-          $('#idCheck_msg').text('6 or more characters in English or English + numbers').css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
-          $("#id1").val(memberId.replace(regex, "")).focus();
-          return false;
-        }
-        
-      });
-      
+	if (regex.test(memberId)) {
+		$('#idCheck_msg').text("This ID is available").css("color","mediumseagreen").css("font-size","11px").css("display","block").css("padding","4px 0px");
+		return false;
+
+	}else {
+		$('#idCheck_msg').text('6 or more characters in English or English + numbers').css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+		$("#id1").val(memberId.replace(regex, "")).focus();
+		return false;
+	}
+
+});
+
 	$("#name").on("keyup", function() {
-	  var name = $(this).val();
-	  var specialChars = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-	  
-	  if (/\s/.test(name)) {
-	    alert("Name should not contain spaces between characters.");
-	    $(this).val("").focus();
-	    
-	  } else if (specialChars.test(name)) {
-	    alert("Name should not contain special characters.");
-	    $(this).val("").focus();
-	  }
-	});
-	
-	$("#email1, #email2").on("keyup", function() {
-	  var email1 = $("#email1").val();
-	  var email2 = $("#email2").val();
-	  var nonAlphanumericChars = /[^a-z0-9.@]/g;
+		var name = $(this).val();
+		var specialChars = /[`~!@#$%^&*|\\\'\";:\/?]/g;
 
-	  if (nonAlphanumericChars.test(email1)) {
-	    alert("Please enter a valid email format");
-	    $("#email1").val(email1.replace(nonAlphanumericChars, "")).focus();
-	    
-	  } else if (nonAlphanumericChars.test(email2)) {
-	    alert("Please enter a valid email format");
-	    $("#email2").val(email2.replace(nonAlphanumericChars, "")).focus();
-	  }
-	  
+		if (/\s/.test(name)) {
+			$('#nameCheck').text("Name should not contain spaces between characters.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Name should not contain spaces between characters.");
+			$(this).val(name.replace(specialChars, "")).focus();
+
+		} else if (specialChars.test(name)) {
+			$('#nameCheck').text("Name should not contain special characters.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Name should not contain special characters.");
+			$(this).val(name.replace(specialChars, "")).focus();
+		}
 	});
-	
+
+	$("#email1, #email2").on("keyup", function() {
+		var email1 = $("#email1").val();
+		var email2 = $("#email2").val();
+		var nonAlphanumericChars = /[^a-z0-9.@]/g;
+
+		if (nonAlphanumericChars.test(email1)) {
+			$('#emailCheck').text("Please enter a valid email format").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Please enter a valid email format");
+			$("#email1").val(email1.replace(nonAlphanumericChars, "")).focus();
+
+		} else if (nonAlphanumericChars.test(email2)) {
+			$('#emailCheck').text("Please enter a valid email format").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Please enter a valid email format");
+			$("#email2").val(email2.replace(nonAlphanumericChars, "")).focus();
+		}
+
+	});
+
 	$("#phone2, #phone3").on("keyup", function() {
-	  var phone2 = $("#phone2").val();
-	  var phone3 = $("#phone3").val();
-	  var nonNumericChars = /[^0-9]/g;
-	  
-     if(nonNumericChars.test(phone2)) {
-	     alert("You can only enter numbers for phone numbers.");
-		 $("#phone2").val(phone2.replace(nonNumericChars, "")).focus();
-	    
-	 }else if (nonNumericChars.test(phone3)) {
-		 alert("You can only enter numbers for phone numbers.");
-		 $("#phone3").val(phone3.replace(nonNumericChars, "")).focus();
-	  }
+		var phone2 = $("#phone2").val();
+		var phone3 = $("#phone3").val();
+		var nonNumericChars = /[^0-9]/g;
+
+		if(nonNumericChars.test(phone2)) {
+			$('#phoneCheck').text("You can only enter numbers for phone numbers.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("You can only enter numbers for phone numbers.");
+			$("#phone2").val(phone2.replace(nonNumericChars, "")).focus();
+
+		}else if (nonNumericChars.test(phone3)) {
+			$('#phoneCheck').text("You can only enter numbers for phone numbers.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("You can only enter numbers for phone numbers.");
+			$("#phone3").val(phone3.replace(nonNumericChars, "")).focus();
+		}
 	});
-	
 /*********************************
 	리뷰 유효성 체크
 *********************************/
 	$("#review_registe").click(function(){
-		if($("#reviewcontent").val() === ""){
+		if($("#reviewcontent").val() === "") {
 			alert("Please enter your Contents");
 			$("#reviewcontent").focus();
 			return false;
-			
-		}else if($("input[name='tasteStar']:checked").val() === ""){
+		}
+
+		if($("input[name='tasteStar']:checked").length == 0) {
 			alert("Please enter your TasteField Check");
 			return false;
-			
-		}else if($("input[name='moodStar']:checked").val() === ""){
+		}
+
+		if($("input[name='moodStar']:checked").length == 0) {
 			alert("Please enter your MoodField Check");
 			return false;
-			
-		}else if($("input[name='serviceStar']:checked").val() === ""){
+		}
+
+		if($("input[name='serviceStar']:checked").length == 0) { //.val 레거시 확인
 			alert("Please enter your SeviceField Check");
 			return false;
-		}else {
+		}
+		if($("#reviewcontent").val() != "" && $("input[name='tasteStar']:checked").length != 0 &&
+			$("input[name='moodStar']:checked").length != 0 && $("input[name='serviceStar']:checked").length != 0){
 			var tasteRating = $("input[name='tasteStar']:checked").val();
-		    var moodRating = $("input[name='moodStar']:checked").val();
-		    var serviceRating = $("input[name='serviceStar']:checked").val();
-		
-		    console.log("맛 별점: " + tasteRating);
-		    console.log("분위기 별점: " + moodRating);
-		    console.log("서비스 별점: " + serviceRating);
-		    
+			var moodRating = $("input[name='moodStar']:checked").val();
+			var serviceRating = $("input[name='serviceStar']:checked").val();
+
+			console.log("맛 별점: " + tasteRating);
+			console.log("분위기 별점: " + moodRating);
+			console.log("서비스 별점: " + serviceRating);
+
 			writeReviewForm.submit();
 		}
 	});

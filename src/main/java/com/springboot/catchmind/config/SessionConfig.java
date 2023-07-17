@@ -17,10 +17,6 @@ public class SessionConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(sessionAuthInterceptor())
-                .addPathPatterns("/mypage**/**")
-                .addPathPatterns("/shop**/**")
-                .addPathPatterns("/mydining**/**")
-                .addPathPatterns("/reservation**/**")
-                .addPathPatterns("/admin**/**");
+            .addPathPatterns("/mypage**/**", "/shop**/**", "/mydining**/**", "/reservation**/**", "/admin**/**");
     }
 }

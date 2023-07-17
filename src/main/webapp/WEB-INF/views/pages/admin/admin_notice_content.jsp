@@ -5,8 +5,8 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>Catch Mind</title>
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$(".toList").click(function() {
@@ -22,26 +22,26 @@
 			<table class="notice_content2">
 				<tr>
 					<th>Title</th>
-					<td>${noticeDto.ntitle}</td>
+					<td>${notice.ntitle}</td>
 				</tr>
 				<tr>
 					<th>Content</th>
-					<td>${noticeDto.ncontents}
+					<td>${notice.ncontents}
 					</td>
 				</tr>
 				<tr>
 					<th>Hits</th>
-					<td>${noticeDto.nhits}</td>
+					<td>${notice.nhits}</td>
 				</tr>
 				<tr>
 					<th>Reporting<br>Date</th>
-					<td>${noticeDto.ncreatedate}</td>
+					<td>${notice.ncreatedate}</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<a href="notice_update?nid=${noticeDto.nid}">
+						<a href="/admin_notice_update/${notice.nid}">
 							<button type="button">Revise</button></a>
-						<a href="notice_delete?nid=${noticeDto.nid}">
+						<a href="/admin_notice_delete/${notice.nid}">
 							<button type="button">Remove</button></a> 
 						<button type="button" class="toList">List</button>
 					</td>

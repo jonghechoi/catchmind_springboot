@@ -6,12 +6,12 @@
 		<meta charset="UTF-8">
 		<title>CatchMind</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" href="resources/image/catchcon.png" type="image/png">
-        <script src="resources/js/jquery-3.6.4.min.js"></script>
-        <script src="resources/js/catchmind_hyeonsoo.js"></script>
+		<link rel="icon" href="/image/catchcon.png" type="image/png">
+        <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="/js/catchmind_hyeonsoo.js"></script>
         <!-- main css -->
-        <link rel="stylesheet" href="resources/css/style.css">
-		<link rel="stylesheet" href="resources/css/jhsStyle.css">
+        <link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/jhsStyle.css">
 		<script>
 		let find_fail = "${find_fail}"
 		
@@ -23,7 +23,7 @@
 <body>
 	<div class="Find">
 		<h1>Find ID</h1>
-		<form name="findIdForm" action="find_id_proc" method="post">
+		<form name="findIdForm" action="find_id" method="post">
 			<div>
 				<input type="text" name="mname" class="findText" id="findName" placeholder="Name">
 			</div>

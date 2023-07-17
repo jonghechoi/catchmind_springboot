@@ -5,9 +5,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="resources/css/style.css">
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			const FacilityVo = '${FacilityVo}';
@@ -46,7 +46,7 @@
 	<div id="shopFacilityDetailUpdate">
 		<div class="memberInfo">
 			<h3 style="border-bottom:2px solid lightgray"> Facility Detail Information </h3>
-			<form name="shopFacilityDetailUpdateForm" action="member_modify_update" method="post">
+			<form name="shopFacilityDetailUpdateForm" action="#" method="post">
 				<ul class="memberDetail">
 					<li>
 						<span>Parking  </span>
@@ -83,6 +83,6 @@
 			</form>
 		</div>
 	</div>
-	<script src="resources/js/jonghe.js"></script>
+	<script src="/js/jonghe.js"></script>
 </body>
 </html>
