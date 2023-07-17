@@ -4,7 +4,11 @@ import lombok.Data;
 
 @Data
 public class BookingDto {
-	String RID, RDATE, RTIME, RMODIFYDATE, RMODIFYTIME, RTABLETYPE, RREQUEST, RPHONE, DELETEYN, SID, UID, TID,
-		   MID, MNAME;
-	int GUESTNUMBER;
+	String sid, rdate, rtabletype, rtime;
+	String sopeninghour, sclosinghour;
+	String endTime, startTime;
+	int guestnumber;
+	int rtabletypeNum;
+	String mid, kemail, contact, rrequest;
+	int paymentAmount;
 }

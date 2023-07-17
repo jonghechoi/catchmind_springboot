@@ -11,6 +11,12 @@ import java.util.Map;
 
 @Mapper
 public interface ShopMapper {
+    //start Dayoung
+    ShopDto shopSelect(String sid);
+    Map<String, String> getPriceInString(String sid);
+    //end Dayoung
+
+
     List<ShopDto> select(Map map);
 
     int insert(ShopDto shopDto);

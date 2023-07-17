@@ -9,29 +9,29 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="resources/image/catchcon.png" type="image/png">
+        <link rel="icon" href="/image/catchcon.png" type="image/png">
 		<title>Catch Mind</title>
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="resources/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-		<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/vendors/bootstrap-datepicker/bootstrap-datepicker3.css">
-		<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-		<link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
+		<link rel="stylesheet" href="/css/bootstrap.css">
+		<link rel="stylesheet" href="/vendors/linericon/style.css">
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datepicker3.css">
+		<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+		<link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
 		<!-- main css -->
-		<link rel="stylesheet" href="resources/css/style.css">
-		<link rel="stylesheet" href="resources/css/style_dayoung.css">
-		<link rel="stylesheet" href="resources/css/responsive.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/style_dayoung.css">
+		<link rel="stylesheet" href="/css/responsive.css">
 		<!-- <script src="js/jquery-3.2.1.min.js"></script> -->	
-		<script src="resources/js/popper.js"></script>
-		<script src="resources/js/bootstrap.min.js"></script>
-		<script src="resources/js/jquery-3.6.4.min.js"></script>
-		<script src="resources/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+		<script src="/js/popper.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/jquery-3.6.4.min.js"></script>
+		<script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 		<script src="https://www.jqueryscript.net/demo/Mobile-friendly-Custom-Scrollbar-Plugin-With-jQuery-NiceScroll/js/jquery.nicescroll.min.js"></script>
     	<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
     	<!-- iamport.payment.js -->
 	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	    <script src="resources/js/catchmind_dayoung.js"></script>
+	    <script src="/js/catchmind_dayoung.js"></script>
     </head>
     <body>
         <!--================Header Area =================-->
@@ -39,7 +39,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index"><img src="resources/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -63,8 +63,8 @@
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>     
@@ -96,19 +96,19 @@
         <!--================ Reservation Confirm Area  =================-->
         <section class="facilities_area section_gap">
 	        <!-- Start form -->
-	        <form name="bookingForm" action="booking_without_payment" method="post">
-				<input type="hidden" id="sid" name="sid" value="${param.sid}">
-				<input type="hidden" id="rdate" name="rdate" value="${param.rdate}">
-				<input type="hidden" id="rtabletype" name="rtabletype" value="${param.rtabletype}">
-				<input type="hidden" id="rtime" name="rtime" value="${param.rtime}">
-				<input type="hidden" id="guestnumber" name="guestnumber" value="${guestnumber}">
+	        <form name="bookingForm" action="booking_without_payment.do" method="post">
+				<input type="hidden" id="sid" name="sid" value="${bookingDto.sid}">
+				<input type="hidden" id="rdate" name="rdate" value="${bookingDto.rdate}">
+				<input type="hidden" id="rtabletype" name="rtabletype" value="${bookingDto.rtabletype}">
+				<input type="hidden" id="rtime" name="rtime" value="${bookingDto.rtime}">
+				<input type="hidden" id="guestnumber" name="guestnumber" value="${bookingDto.guestnumber}">
 	            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="">  
 	            </div>
 	            <div class="container">
 	                <!-- Start select menu -->
 	                <div class="section_title text-center">
 	                    <br><br><br><br>
-	                    <h2 class="title_w" style="font-size: 50px;">${shopVo.sname}</h2>
+	                    <h2 class="title_w" style="font-size: 50px;">${shopDto.sname}</h2>
 	                </div>
 	                <hr class = "seperator">
 	                <!-- End select menu -->
@@ -143,7 +143,8 @@
 	                            <div class="__more-info">
 	                                <dl style="font-size: 15px;">
 	                                    <dt>Schedule</dt>
-	                                    <dd>${param.rdate} · ${param.rtime} · ${guestnumber} Person(s)</dd>
+	                                    <dd>${bookingDto.rdate} · ${bookingDto.rtime} · ${bookingDto.guestnumber}
+                                                                Person(s)</dd>
 	                                </dl>
 	                                <dl style="font-size: 15px;">
 	                                    <dt>Booker</dt>

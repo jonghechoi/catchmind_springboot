@@ -9,29 +9,29 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="resources/image/catchcon.png" type="image/png">
+        <link rel="icon" href="/image/catchcon.png" type="image/png">
 		<title>Catch Mind</title>
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="resources/css/bootstrap.css">
-		<link rel="stylesheet" href="resources/vendors/linericon/style.css">
-		<link rel="stylesheet" href="resources/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/vendors/bootstrap-datepicker/bootstrap-datepicker3.css">
-		<link rel="stylesheet" href="resources/vendors/nice-select/css/nice-select.css">
-		<link rel="stylesheet" href="resources/vendors/owl-carousel/owl.carousel.min.css">
+		<link rel="stylesheet" href="/css/bootstrap.css">
+		<link rel="stylesheet" href="/vendors/linericon/style.css">
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datepicker3.css">
+		<link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+		<link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
 		<!-- main css -->
-		<link rel="stylesheet" href="resources/css/style.css">
-		<link rel="stylesheet" href="resources/css/style_dayoung.css">
-		<link rel="stylesheet" href="resources/css/responsive.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/style_dayoung.css">
+		<link rel="stylesheet" href="/css/responsive.css">
 		<!-- <script src="js/jquery-3.2.1.min.js"></script> -->	
-		<script src="resources/js/popper.js"></script>
-		<script src="resources/js/bootstrap.min.js"></script>
-		<script src="resources/js/jquery-3.6.4.min.js"></script>
-		<script src="resources/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+		<script src="/js/popper.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/jquery-3.6.4.min.js"></script>
+		<script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 		<script src="https://www.jqueryscript.net/demo/Mobile-friendly-Custom-Scrollbar-Plugin-With-jQuery-NiceScroll/js/jquery.nicescroll.min.js"></script>
     	<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
     	<!-- iamport.payment.js -->
 	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	    <script src="resources/js/catchmind_dayoung.js"></script>
+	    <script src="/js/catchmind_dayoung.js"></script>
 	    <script>
 	    $(document).ready(function() {
 	    	$("#requestPay").click(function(){
@@ -86,7 +86,7 @@
 	    	    			$.ajax({
 	    			    		type: 'POST',
 	    			    		url: "/verifyIamport/" + rsp.imp_uid  
-	    			    	})ne(function(data) {
+	    			    	}).done(function(data) {
 	    			    		alert("data.success");
 	    			    		if (rsp.paid_amount == data.response.amount) {
 	    			    			var msg = '결제가 완료되었습니다.';
@@ -126,7 +126,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index"><img src="resources/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -167,7 +167,7 @@
         
         <!--================Breadcrumb Area =================-->
         <section class="breadcrumb_area">
-            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="" style="background: url('resources/image/dayoung_img/reservation_confirm_bg.jpeg') no-repeat scroll center 0 / cover"></div>
+            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="" style="background: url('/image/dayoung_img/reservation_confirm_bg.jpeg') no-repeat scroll center 0 / cover"></div>
             <div class="container">
                 <div class="page-cover text-center">
                     <h2 class="page-cover-tittle">Reservation</h2>
@@ -187,7 +187,7 @@
                 <!-- Start select menu -->
                 <div class="section_title text-center">
                     <br><br><br><br>
-                    <h2 class="title_w" style="font-size: 50px;">${shopVo.sname}</h2>
+                    <h2 class="title_w" style="font-size: 50px;">${shopDto.sname}</h2>
                     <br><br>
                     <h2 class="title_w">Select Menu</h2>
                     <div class = "res_notice" style="height: 320px;">
@@ -202,19 +202,19 @@
                         url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyIgdmlld0JveD0iMCAwIDEzIDEzIj4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGNpcmNsZSBjeD0iNi41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiNGRjNEMDAiLz4KICAgICAgICA8cGF0aCBmaWxsPSIjRkZGIiBmaWxsLXJ1bGU9Im5vbnplcm8iIGQ9Ik02LjY5NCAzLjc0Yy4yMjQgMCAuNDEyLS4wNzQuNTY0LS4yMjIuMTUyLS4xNDguMjI4LS4zMy4yMjgtLjU0NiAwLS4yMDgtLjA3Ni0uMzg2LS4yMjgtLjUzNC0uMTUyLS4xNDgtLjM0LS4yMjItLjU2NC0uMjIyLS4yMjQgMC0uNDEyLjA3NC0uNTY0LjIyMi0uMTUyLjE0OC0uMjI4LjMyNi0uMjI4LjUzNCAwIC4yMTYuMDc2LjM5OC4yMjguNTQ2LjE1Mi4xNDguMzQuMjIyLjU2NC4yMjJ6bTAgNy4yNzJjLjE2IDAgLjI5OC0uMDQuNDE0LS4xMi4xMTYtLjA4LjE3NC0uMjA0LjE3NC0uMzcyVjUuMDg0YzAtLjE2OC0uMDU4LS4yOTItLjE3NC0uMzcyLS4xMTYtLjA4LS4yNTQtLjEyLS40MTQtLjEyLS4xNTIgMC0uMjg4LjA0LS40MDguMTItLjEyLjA4LS4xOC4yMDQtLjE4LjM3MnY1LjQzNmMwIC4xNjguMDYuMjkyLjE4LjM3Mi4xMi4wOC4yNTYuMTIuNDA4LjEyeiIvPgogICAgPC9nPgo8L3N2Zz4K) 1px 0.1em no-repeat; text-align: left; padding: 0px 0px 0px 20px;">A deposit will be charged according to the number of party.</p>
                             <dl class="mb-10" style="margin-bottom: 10px!important;">
                                 <c:choose> 
-									<c:when test="${shopVo.smealfee > 0}"> 
+									<c:when test="${shopDto.smealfee > 0}">
 										<dt style="text-align: left">Payment in advance</dt>
-										<dd style="text-align: right">${priceInStringMap.mealfee}</dd>
+										<dd style="text-align: right">${shopDto.smealfeeString}</dd>
 									</c:when> 
 									<c:otherwise> 
 										<dt style="text-align: left">Deposit per person</dt>
-										<dd style="text-align: right">${priceInStringMap.deposit}</dd>
+										<dd style="text-align: right">${shopDto.sdepositString}</dd>
 									</c:otherwise> 
 								</c:choose> 
 							</dl>
                             <dl class="">
                                 <dt style="text-align: left">x Person(s)</dt>
-                                <dd style="text-align: right">${guestnumber}</dd>
+                                <dd style="text-align: right">${bookingDto.guestnumber}</dd>
                             </dl>
                             <hr class="hairline mt-20 mb-20"
                                 style="margin-top: 20px!important;
@@ -222,7 +222,7 @@
                                        margin: 0 -20px;">
                             <dl class="dl-lg">
                                 <dt style="text-align: left">Total Amount</dt>
-                                <dd style="text-align: right; color: rgb(255, 61, 0);">₩ ${paymentAmount * guestnumber}</dd>
+                                <dd style="text-align: right; color: rgb(255, 61, 0);">₩ ${paymentAmount * bookingDto.guestnumber}</dd>
                             </dl>
                         </div>
                         <div class="boxed-dl-list mb-20"
@@ -243,12 +243,12 @@
 
                 <!-- Start notes -->
                 <!-- Start form -->
-                <form name="payForm" action="booking_with_payment" method="post">
-	                <input type="hidden" id="sid" name="sid" value="${param.sid}">
-					<input type="hidden" id="rdate" name="rdate" value="${param.rdate}">
-					<input type="hidden" id="rtabletype" name="rtabletype" value="${param.rtabletype}">
-					<input type="hidden" id="rtime" name="rtime" value="${param.rtime}">
-					<input type="hidden" id="guestnumber" name="guestnumber" value="${guestnumber}">
+                <form name="payForm" action="/booking_with_payment" method="post">
+	                <input type="hidden" id="sid" name="sid" value="${bookingDto.sid}">
+					<input type="hidden" id="rdate" name="rdate" value="${bookingDto.rdate}">
+					<input type="hidden" id="rtabletype" name="rtabletype" value="${bookingDto.rtabletype}">
+					<input type="hidden" id="rtime" name="rtime" value="${bookingDto.rtime}">
+					<input type="hidden" id="guestnumber" name="guestnumber" value="${bookingDto.guestnumber}">
 					<input type="hidden" id="mid" name="mid" value="${sessionVo.mid}">
 					<input type="hidden" id="kemail" name="kemail" value="${sessionVo.kemail}">
 					<input type="hidden" id="paymentAmount" name="paymentAmount" value="${paymentAmount}">
@@ -281,7 +281,8 @@
 	                            <div class="__more-info">
 	                                <dl style="font-size: 15px;">
 	                                    <dt>Schedule</dt>
-	                                    <dd>${param.rdate} · ${param.rtime} · ${guestnumber} Person(s)</dd>
+	                                    <dd>${bookingDto.rdate} · ${bookingDto.rtime} · ${bookingDto.guestnumber}
+																Person(s)</dd>
 	                                </dl>
 	                                <dl style="font-size: 15px;">
 	                                    <dt>Booker</dt>
@@ -389,7 +390,8 @@
 	                                                  float: right;
 	                                                  margin-top: 80px;">
 	                            <strong class="ebold color-red font-18 mr-10" style="font-size: 28px; color: rgb(255, 61, 0);">
-	                            	<dd style="text-align: right; color: rgb(255, 61, 0);">₩ ${paymentAmount * guestnumber}</dd>
+	                            	<dd style="text-align: right; color: rgb(255, 61, 0);">₩ ${paymentAmount *
+	                            	bookingDto.guestnumber}</dd>
 	                            </strong>
 	                            <!-- <a href="" class="__toggle __toggle-checkout-info __up">More</a>-->
 	                        </div>
@@ -438,7 +440,7 @@
 			                            /* border: 1px solid white; */
 			                            box-shadow: 3px 3px 3px 3px tomato;
 			                            border-radius: 6px;">
-	                        Pay ₩ ${paymentAmount * guestnumber}
+	                        Pay ₩ ${paymentAmount * bookingDto.guestnumber}
 	                    </button>
 	                </div>
                 </form>

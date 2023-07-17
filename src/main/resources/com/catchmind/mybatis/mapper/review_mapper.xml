@@ -3,6 +3,43 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springboot.catchmind.repository.ReviewMapper">
+    <!-- start Dayoung -->
+    <select id="getStarAvg" parameterType="String" resultType="int">
+        select trunc(avg(reviewstar), 2)
+        from review
+        where sid=#{sid}
+    </select>
+
+    <select id="getTotalReviewCount" parameterType="String" resultType="int">
+        select count(*)
+        from review
+        where sid=#{sid}
+    </select>
+
+    <select id="getTotalReviewPhotoCount" parameterType="String" resultType="int">
+        select count(reviewphoto)
+        from review
+        where sid=#{sid}
+    </select>
+
+    <select id="reviewListSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ReviewDto">
+        select rno, REVIEWID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE,
+               REVIEWMODIFYDATE, SID, MID, RID, REVIEWPHOTO, REVIEWSPHOTO, mname
+        from(select rownum rno, REVIEWID, REVIEWCONTENT, REVIEWSTAR,
+                    to_char(REVIEWCREATEDATE, 'yyyy-mm-dd') REVIEWCREATEDATE,
+                    to_char(REVIEWMODIFYDATE, 'yyyy-mm-dd') REVIEWMODIFYDATE,
+                    SID, review.MID, RID, REVIEWPHOTO, REVIEWSPHOTO, m.mname mname
+             from review review, member m
+             where sid = #{sid} and review.mid = m.mid
+             order by reviewcreatedate desc)
+        where rno between 1 and 8
+    </select>
+    <!-- end Dayoung -->
+
+
+
+
+
     <select id="selectList" parameterType="com.springboot.catchmind.dto.PageDto" resultType="com.springboot.catchmind.dto.ReviewDto">
         select rno, mname, SID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, RID
             from(select rownum rno, REVIEWID, REVIEWCONTENT, REVIEWSTAR,

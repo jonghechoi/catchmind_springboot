@@ -13,6 +13,14 @@ import java.util.Map;
 
 @Mapper
 public interface ReviewMapper{
+	//start Dayoung
+	int getStarAvg(String sid);
+	int getTotalReviewCount(String sid);
+	int getTotalReviewPhotoCount(String sid);
+	ArrayList<ReviewDto> reviewListSelect(String sid);
+	//end Dayoung
+
+
 	 /* REVIEWYN : N -> Y */
 	int updateReviewYN(String rid);
 

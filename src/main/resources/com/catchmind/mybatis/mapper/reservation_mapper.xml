@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springboot.catchmind.repository.ReservationRepository">
+	<insert id="insert" parameterType="com.springboot.catchmind.dto.BookingDto">
+		insert into reservation(rid, rdate, rtime, guestnumber, rmodifydate, rmodifytime,
+		                        rrequest, rphone, deleteyn, sid, mid, rtabletype, rstatus, reviewyn)
+		values('R_'||LTRIM(TO_CHAR(SEQU_RESERVATION_RID.NEXTVAL,'0000')), #{rdate}, #{rtime}, #{guestnumber},
+			   #{rdate}, #{rtime}, #{rrequest}, #{contact}, 'N', #{sid}, #{mid}, #{rtabletype}, 'ACTIVE', 'N')
+	</insert>
+
+	<insert id="insertPayment" parameterType="com.springboot.catchmind.dto.BookingDto">
+		insert into reservation(rid, rdate, rtime, guestnumber, rmodifydate, rmodifytime,
+		                        rrequest, rphone, deleteyn, sid, mid, rtabletype, rstatus, reviewyn)
+		values('R_'||LTRIM(TO_CHAR(SEQU_RESERVATION_RID.NEXTVAL,'0000')), #{rdate}, #{rtime}, #{guestnumber},
+			   #{rdate}, #{rtime}, #{rrequest}, #{contact}, 'N', #{sid}, #{mid}, #{rtabletype}, 'ACTIVE', 'N')
+	</insert>
+
+	<select id="selectRtime" parameterType="com.springboot.catchmind.dto.BookingDto" resultType="com.springboot.catchmind.dto.ReservationDto">
+		<![CDATA[
+		select rid, rdate, rtime, guestnumber, rmodifydate, rmodifytime,
+		       rrequest, rphone, deleteyn, sid, mid, rtabletype, rstatus, reviewyn
+		from reservation
+		where sid = #{sid} and rtabletype = #{rtabletype} and
+		      ((to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI')
+		            >= to_date(#{startTime}, 'yyyy-mm-dd HH24:MI') and
+		        to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI')
+		            < to_date(#{endTime}, 'yyyy-mm-dd HH24:MI')) or
+		       (to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI') + (interval '2' hour)
+		            > to_date(#{startTime}, 'yyyy-mm-dd HH24:MI') and
+		        to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI') + (interval '2' hour)
+		            < to_date(#{endTime}, 'yyyy-mm-dd HH24:MI')))
+		]]>
+	</select>
+
+
+	<select id="selectGuestnumber" parameterType="com.springboot.catchmind.dto.BookingDto" resultType="com.springboot.catchmind.dto.ReservationDto">
+		<![CDATA[
+		select rid, rdate, rtime, guestnumber, rmodifydate, rmodifytime,
+		       rrequest, rphone, deleteyn, sid, mid, rtabletype, rstatus, reviewyn
+		from reservation
+		where sid = #{sid} and rtabletype = #{rtabletype} and
+		      ((to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI')
+		            >= to_date(#{startTime}, 'yyyy-mm-dd HH24:MI') and
+		        to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI')
+		        < to_date(#{endTime}, 'yyyy-mm-dd HH24:MI')) or
+		       (to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI') + (interval '2' hour)
+		            > to_date(#{startTime}, 'yyyy-mm-dd HH24:MI') and
+		        to_date(#{rdate} || ' ' || rmodifytime, 'yyyy-mm-dd HH24:MI') + (interval '2' hour)
+		        < to_date(#{endTime}, 'yyyy-mm-dd HH24:MI')))
+		]]>
+	</select>
+</mapper>		
