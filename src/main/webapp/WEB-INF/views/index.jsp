@@ -132,10 +132,8 @@
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
-                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
 	                                </ul>
 	                            </li>
                             </c:if>

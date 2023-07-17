@@ -179,9 +179,9 @@ public interface MemberMapper {
 	 /* FindPassInfo */
 	MemberDto findPassInfo(MemberDto memberDto);
 
-	/**
-	 * FindPasswordCheck
-	 */
+
+	/* FindPasswordCheck */
+
 	int findPassCheck(MemberDto memberDto);
 
 	 /* FindID */
