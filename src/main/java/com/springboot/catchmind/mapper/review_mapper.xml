@@ -74,9 +74,8 @@
 		          where review.mid = m.mid and review.reviewmain='Y')		
 	</select>
 	
-	<delete id="deleteFromMain" parameterType="java.lang.String">
+	<delete id="deleteFromMain" parameterType="String">
 		DELETE FROM REVIEW
 			WHERE RID=#{rid}
 	</delete>
-	
-</mapper>		
+</mapper>

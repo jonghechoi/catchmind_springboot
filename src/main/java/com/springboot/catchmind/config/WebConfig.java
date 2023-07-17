@@ -11,12 +11,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-
 @Configuration
-@MapperScan(basePackages="com.springboot.catchmind.dao")
+//@MapperScan(basePackages="com.springboot.catchmind.dao")
+//@MapperScan(basePackages="com.springboot.catchmind.repository")
 @EnableTransactionManagement
 public class WebConfig {
-
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         final SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
@@ -31,5 +30,4 @@ public class WebConfig {
         final SqlSessionTemplate sqlSessionTemplate = new SqlSessionTemplate(sqlSessionFactory);
         return sqlSessionTemplate;
     }
-
 }

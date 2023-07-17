@@ -5,8 +5,8 @@
 <head>
 	<meta charset="EUC-KR">
 	<title>Catch Mind</title>
-	<link rel="stylesheet" href="resources/css/style_jonghe.css">
-	<script src="resources/js/jquery-3.6.4.min.js"></script>
+	<link rel="stylesheet" href="/css/style_jonghe.css">
+	<script src="/js/jquery-3.6.4.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$(".toList").click(function() {
@@ -15,14 +15,14 @@
 			
 			$("#noticeDelete").click(function() {
 				$.ajax({
-					url:"notice_delete_proc.do?nid="+$("#noticeDeleteHiddenNid").val(),
+					url:"/admin_notice_delete_proc/"+$("#noticeDeleteHiddenNid").val(),
 					success: function(result) {
 						if(result == 1) {
-							alert("삭제 되었습니다");
+							alert("Notice Deleted");
 						}else {
-							alert("삭제에 실패했습니다\n관리자에게 문의하세요");
+							alert("Notice Delete Failed.\nPlease ask Admin");
 						}
-						window.location.href = "notice_list.do";
+						window.location.href = "/admin_notice_list";
 					}
 				});
 			});

@@ -64,14 +64,14 @@
 	     	});
 	    	function updateData() {
 	    		$.ajax({
-	    			url: "index_review.do",
+	    			url: "/index_review",
 	    			success: function(dataList) {
 	    				$(".testimonial_slider.owl-carousel").empty();
 	    				
-	    				var jdata = JSON.parse(dataList);
+	    				//var jdata = JSON.parse(dataList);
 	    				var output = "";
 	    				
-	    				for(obj of jdata.jlist) {
+	    				for(obj of dataList) {
 	    			        output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
 	    			        
 	    			        output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>"; 
@@ -108,7 +108,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="/"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -117,29 +117,31 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.do">Home</a></li> 
-                            <li class="nav-item"><a class="nav-link" href="search.do">Search</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                             <li class="nav-item submenu dropdown">
-                                <a href="mydining_scheduled.do" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="mydining_scheduled.do">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="mydining_visited.do">Visited</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
-                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
+                            <%--<c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
+	                                    <%--<li class="nav-item active"><a class="nav-link" href="/shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
+	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>--%>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/S_0003">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/S_0003">Reservation</a></li>
 	                                </ul>
 	                            </li>
-                            </c:if>     
-                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">                
-                            	<li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
-                        	</c:if>
+                            <%--</c:if>--%>
+                            <%--<c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">--%>
+                            	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                        	<%--</c:if>--%>
                         </ul>
                     </div> 
                 </nav>

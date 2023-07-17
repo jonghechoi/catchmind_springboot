@@ -5,20 +5,20 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="image/catchcon.png" type="image/png">
+        <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="vendors/linericon/style.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
-        <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
-        <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
         <!-- main css -->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/style_jonghe.css">
-        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/style_jonghe.css">
+        <link rel="stylesheet" href="/css/responsive.css">
 <body>
 	<div class="container">
 	    <div class="row">
@@ -49,14 +49,14 @@
 	            <div class="single-footer-widget instafeed">
 	                <h6 class="footer_title">InstaFeed</h6>
 	                <ul class="list_style instafeed d-flex flex-wrap">
-	                    <li><img src="image/instagram/Image-01.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-02.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-03.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-04.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-05.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-06.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-07.jpg" alt=""></li>
-	                    <li><img src="image/instagram/Image-08.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-01.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-02.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-03.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-04.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-05.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-06.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-07.jpg" alt=""></li>
+	                    <li><img src="/image/instagram/Image-08.jpg" alt=""></li>
 	                </ul>
 	            </div>
 	        </div>						
