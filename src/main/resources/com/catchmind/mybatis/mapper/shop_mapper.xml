@@ -29,7 +29,7 @@
     <!-- end Dayoung -->
 
 
-	<select id="shopLogin" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="com.springboot.catchmind.dto.SessionDto">
+	<select id="shopLogin" parameterType="com.springboot.catchmind.dto.ShopDto" resultType="com.springboot.catchmind.dto.SessionDto">
 		select count(*) loginResult, SID, SPASS, ROLEID
 		from shop
 		where SID = #{sid} and
@@ -38,7 +38,7 @@
 		group by SID, SPASS, ROLEID
 	</select>
 	
-	<select id="shopIdCheck" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="int">
+	<select id="shopIdCheck" parameterType="com.springboot.catchmind.dto.ShopDto" resultType="int">
 		select count(*)
 		from shop
 		where SID = #{sid} and

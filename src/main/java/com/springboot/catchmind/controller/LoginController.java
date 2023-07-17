@@ -2,6 +2,7 @@ package com.springboot.catchmind.controller;
 
 import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.service.MemberServiceImpl;
 import com.springboot.catchmind.service.ShopService;
 import com.springboot.catchmind.vo.ShopVo;
@@ -33,14 +34,14 @@ public class LoginController {
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
-		SessionDto sessionDto = (SessionDto)session.getAttribute("sessionDto");
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 		
-		if(sessionDto != null) {
+		if(sessionVo != null) {
 			session.invalidate();
 			
 			model.addObject("logout_result", "ok");
 		}
-		model.setViewName("index");
+		model.setViewName("/index");
 		
 		return model;
 	}
@@ -49,11 +50,11 @@ public class LoginController {
 	 *  login_role_proc.do
 	 */
 	@PostMapping("login_role")
-	public ModelAndView login_role_proc(MemberDto memberDto, HttpSession session, ShopVo shopVo, RedirectAttributes redirectAttributes)
+	public ModelAndView login_role_proc(MemberDto memberDto, HttpSession session, ShopDto shopDto, RedirectAttributes redirectAttributes)
 															throws Exception{
 		ModelAndView model = new ModelAndView();
 		
-		if(memberDto.getMemberId() != null && shopVo.getSid() == null) {
+		if(memberDto.getMemberId() != null && shopDto.getSid() == null) {
 			int adminIdCheck = memberService.getRoleIdCheck(memberDto);
 			
 			if(adminIdCheck == 1) {
@@ -67,12 +68,12 @@ public class LoginController {
 				model.setViewName("redirect:/login_role");
 			}
 			
-		}else if(shopVo.getSid() != null && memberDto.getMid() == null) {
-			System.out.println(shopVo.getRoleid());
-			int shopIdCheck = shopService.getShopIdCheck(shopVo);
+		}else if(shopDto.getSid() != null && memberDto.getMid() == null) {
+			System.out.println(shopDto.getRoleid());
+			int shopIdCheck = shopService.getShopIdCheck(shopDto);
 			
 			if(shopIdCheck == 1) {
-				SessionDto sessionDto = shopService.getShopLogin(shopVo);
+				SessionDto sessionDto = shopService.getShopLogin(shopDto);
 				session.setAttribute("sessionVo", sessionDto);
 				
 				redirectAttributes.addFlashAttribute("loginRole_complete", "ok");

@@ -37,9 +37,9 @@ public interface ShopService {
 		
 		public int getPhotoUpdate(String sid, ShopPhotoDto shopPhotoDto);
 		
-		public int getShopIdCheck(ShopVo shopVo);
+		public int getShopIdCheck(ShopDto shopDto);
 		
-		public SessionDto getShopLogin(ShopVo shopVo);
+		public SessionDto getShopLogin(ShopDto shopDto);
 		
 		public int getRegistrationCheck(ShopDto shopDto);
 

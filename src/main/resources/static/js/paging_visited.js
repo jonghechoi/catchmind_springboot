@@ -18,7 +18,7 @@ $(document).ready(function() {
 					if (obj.reviewYN == 'N') {
 					    output += "<a href='/write_review/"+ obj.rid + "' class='btn theme_btn button_hover'>Write Review</a>";
 					} else if (obj.reviewYN == 'Y') {
-					    output += "<a href='/mypage_review/" + obj.sid + "/" + obj.rid + "' class='btn theme_btn button_hover' style='padding: 5px 1px;'>My Review Check</a>";
+					    output += "<a href='/mypage_review' class='btn theme_btn button_hover' style='padding: 5px 1px;'>My Review Check</a>";
 					}
 					output += "</div>";			
 					output += "<img src='/image/jhs_img/1000_F_412408259_m13MpFAxpttIh3jxxsRl3rbsbS5SjnVL.jpg' width='20px' height='20px' >";
