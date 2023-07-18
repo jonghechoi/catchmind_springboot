@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ReviewServiceImpl{
@@ -43,4 +44,6 @@ public class ReviewServiceImpl{
 	public int getUpdateReviewYN(String rid) {
 		return reviewMapper.updateReviewYN(rid);
 	}
+
+	public List<ReviewDto> Select(String mid){ return reviewMapper.selectBy(mid); }
 }

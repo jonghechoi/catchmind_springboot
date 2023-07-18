@@ -2,6 +2,7 @@ package com.springboot.catchmind.service;
 
 import java.util.ArrayList;
 
+import com.springboot.catchmind.dto.ReviewDto;
 import com.springboot.catchmind.vo.ReviewVo;
 
 public interface ReviewService {
@@ -16,5 +17,6 @@ public interface ReviewService {
 	int getUpdateReviewYN(String rid);
 	int getWriteReview(ReviewVo reviewVo);
 	ReviewVo getReviewSelect(String rid);
+	ReviewDto Select(String mid);
 }
 

@@ -117,11 +117,11 @@
 			        document.querySelector('.btn-favorites').addEventListener('click', function() {
 
 			            // 페이지 이동을 위한 URL 설정
-			            var favoritesURL = 'mypage_favorites?mid=MID';
+			            //var favoritesURL = 'mypage_favorites/';
 			            // 페이지 이동
 			            var loggedInUser = getLoggedInUser();
 			            var mid = loggedInUser.mid;
-			            var favoritesURL = 'mypage_favorites?mid=' + mid;
+			            var favoritesURL = 'mypage_favorites/' + mid + '/';
 			            window.location.href = favoritesURL;
 			        });
 			         function getLoggedInUser() {
@@ -133,13 +133,13 @@
 			        // My Review 버튼 클릭 시 동작
 			        document.querySelector('.btn-my-review').addEventListener('click', function() {
 			            // 페이지 이동을 위한 URL 설정
-			            var myReviewURL = 'mypage_review?mid=MID';
+			            //var myReviewURL = 'mypage_review?mid=MID';
 			            // 페이지 이동
 			            window.location.href = myReviewURL;
 			        	var loggedInUser = getLoggedInUser();
 			            var mid = loggedInUser.mid;
-			        	var reviewId = 'REVIEW_0001';
-			        	var myReviewURL = 'mypage_review?mid=' + mid + '&reviewId=' + reviewId;
+			        	//var reviewId = 'REVIEW_0001';
+			        	var myReviewURL = 'mypage_review/' + mid  + '/';
 			        	//alert(myReviewURL);
 			        	window.location.href = myReviewURL;
 			        });

@@ -40,4 +40,6 @@ public interface ReviewMapper{
     List<ReviewDto> reviewMainList();
 
     int deleteFromMain(String rid);
+
+	List<ReviewDto> selectBy(String mid);
 }
