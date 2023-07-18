@@ -49,57 +49,57 @@
         </script>
         
         <!-- script -->
-     	<script>
-	     	$(document).ready(function() {
-				$('#datepicker').datepicker({
-					format : "yyyy-mm-dd",
-					startDate: '0d', 
-					endDate: '+1m',
-					todayHighlight: true,
-					//daysOfWeekDisabled: [dayoffnum] // 월요일(1) 비활성화
-				}).datepicker("setDate", new Date());
-	     		
-	            updateData();       
-		        setInterval(() => {updateData();}, 600000);
-	     	});
-	    	function updateData() {
-	    		$.ajax({
-	    			url: "/index_review",
-	    			success: function(dataList) {
-	    				$(".testimonial_slider.owl-carousel").empty();
-	    				
-	    				//var jdata = JSON.parse(dataList);
-	    				var output = "";
-	    				
-	    				for(obj of dataList) {
-	    			        output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
-	    			        
-	    			        output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>"; 
-	    			        output += "<img style='margin-right:0px;width:100px; height:100px; text-align:center' class='rounded-circle' src='http://localhost:9000/catchmind/resources/upload/" + obj.reviewphoto + "' alt=''>";
-	    			        output += "<div class='media-body' style='text-align:center'>";
-	    			        output += "<a href='#'><h4 class='sec_h4'>" + obj.mname + "</h4></a>";
-	    			        output += "<div class='star' style='text-align:center'>";
-	    			        
-	    			        for(i=0; i<obj.reviewstar; i++) { 
-	    			        	output += "<a href='#'><i class='fa fa-star'></i></a>"; 
-	    			        };
-	    			        output += "</div>";
-	    			        output += "</div>";
-	    			        output += "</div>";
-                        </script>
     <script>
-        let login_complete = "${login_complete}"
-        let loginRole_complete = "${loginRole_complete}"
-        let kakaoLogin = "${kakoLogin_complete}"
-        let logout = "${logout_result}"
+        $(document).ready(function() {
+            $('#datepicker').datepicker({
+                format : "yyyy-mm-dd",
+                startDate: '0d',
+                endDate: '+1m',
+                todayHighlight: true,
+                //daysOfWeekDisabled: [dayoffnum] // 월요일(1) 비활성화
+            }).datepicker("setDate", new Date());
 
+            updateData();
+            setInterval(() => {updateData();}, 600000);
+        });
+        function updateData() {
+            $.ajax({
+                url: "/index_review",
+                success: function(dataList) {
+                    $(".testimonial_slider.owl-carousel").empty();
+
+                    var output = "";
+
+                    for(obj of dataList) {
+                        output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
+
+                        output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>";
+                        output += "<img style='margin-right:0px;width:100px; height:100px; text-align:center' class='rounded-circle' src='/upload/" + obj.reviewphoto + "' alt=''>";
+                        output += "<div class='media-body' style='text-align:center'>";
+                        output += "<a href='#'><h4 class='sec_h4'>" + obj.mname + "</h4></a>";
+                        output += "<div class='star' style='text-align:center'>";
+
+                        for(i=0; i<obj.reviewstar; i++) {
+                            output += "<a href='#'><i class='fa fa-star'></i></a>";
                         };
-	    				
-	    				$(".testimonial_slider.owl-carousel").append(output);
-	    			} //success
-	    		}) //ajax
-	    	} //function
-    	</script>
+                        output += "</div>";
+                        output += "</div>";
+                        output += "</div>";
+
+
+                        output += "<div style='float: left; padding-left:70px;'>";
+                        output += "<p>" + obj.reviewcontent + "</p>";
+                        output += "</div>";
+
+                        output += "</div>";
+
+                    };
+
+                    $(".testimonial_slider.owl-carousel").append(output);
+                } //success
+            }) //ajax
+        } //function
+    </script>
     </head>
     <body>
         <!--================Header Area =================-->
