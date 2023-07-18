@@ -8,8 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="/image/catchcon.png" type="image/png">
-        <script src="/js/jquery-3.6.4.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
@@ -222,7 +221,6 @@
         
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="/js/jquery-3.2.1.min.js"></script>
         <script src="/js/popper.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>

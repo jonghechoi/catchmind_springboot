@@ -4,12 +4,14 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "/notice_list_paging/" + page,
+			url: "notice_list_paging.do?page="+page,
 			success: function(result){
+				let jdata = JSON.parse(result);
+				
 				let output = "<table class='notice_list'>";
 				output += "<tr class='adminList'>";
 				output += "<td colspan='3'>";
-				output += "<a href='/notice_write'>";
+				output += "<a href='notice_write.do'>";
 				output += "<button type='button'>register</button>";
 				output += "</a>";
 				output += "</td>";
@@ -21,10 +23,10 @@ $(document).ready(function() {
 				output += "<th>Reporting Date</th>";
 				output += "</tr>";
 		
-				for(obj of result.list) {
+				for(obj of jdata.jlist) {
 					output += "<tr>";
 					output += "<td>" + obj.rno + "</td>";
-					output += "<td><a href='/admin_notice_content/" + obj.nid + "'>" +  obj.ntitle + "</a></td>";
+					output += "<td><a href='admin_notice_content.do?nid=" + obj.nid + "'>" +  obj.ntitle + "</a></td>";
 					//output += "<td>" + obj.nhits + "</td>";
 					output += "<td>" + obj.ncreatedate + "</td>";
 					output += "</tr>";
@@ -37,13 +39,13 @@ $(document).ready(function() {
 				
 				$("table.notice_list").remove();
 				$("h1").after(output);
-
-				pager(result.page.dbCount, result.page.maxSize, result.page.pageSize, result.page.page);
+				
+				pager(jdata.totals, jdata.maxSize, jdata.pageSize, jdata.page);
 	
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           		//$(location).attr('href', "notice_list_paging?page="+e.page);
+	           		//$(location).attr('href', "notice_list_paging.do?page="+e.page);
 	           		
 	           		initAjax(e.page); 
 	           	});

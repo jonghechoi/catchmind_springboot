@@ -10,7 +10,7 @@
        <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-        <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/vendors/linericon/style.css">
@@ -123,7 +123,7 @@
                <footer class="footer-area section_gap" style="padding:50px 0 0 0; background:rgb(255, 61, 0)">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3  col-md-6 col-sm-6 footer-widget1" style="padding-right:50px width:370px">
+                    <div class="col-lg-3  col-md-6 col-sm-6 footer-widget1" style="padding-right:50px; width:370px">
                         <div class="single-footer-widget single-footer-widget-left">
                             <h6 class="footer_title">About Agency</h6>
                             <p style="color:white">WAD Corp.

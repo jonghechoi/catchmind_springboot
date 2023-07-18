@@ -7,9 +7,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <link rel="icon" href="/image/catchcon.png" type="image/png">
         <!-- <link rel="icon" href="image/favicon.png" type="image/png"> -->
@@ -245,7 +244,6 @@
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="/js/kakaologin_hyeonsoo.js"></script>
-        <script src="/js/jquery-3.2.1.min.js"></script>
         <script src="/js/popper.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>

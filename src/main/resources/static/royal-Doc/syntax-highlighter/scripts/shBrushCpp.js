@@ -17,7 +17,7 @@
 ;(function()
 {
 	// CommonJS
-	typeof(require) != 'undefined' ? SyntaxHighlighter = require('static/royal-Doc/syntax-highlighter/scripts/shCore').SyntaxHighlighter : null;
+	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
 
 	function Brush()
 	{
@@ -78,7 +78,7 @@
 		this.regexList = [
 			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'comments' },			// one line comments
 			{ regex: SyntaxHighlighter.regexLib.multiLineCComments,		css: 'comments' },			// multiline comments
-			{ regex: SyntaxHighlighter.regexLibubleQuotedString,		css: 'string' },			// strings
+			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string' },			// strings
 			{ regex: SyntaxHighlighter.regexLib.singleQuotedString,		css: 'string' },			// strings
 			{ regex: /^ *#.*/gm,										css: 'preprocessor' },
 			{ regex: new RegExp(this.getKeywords(datatypes), 'gm'),		css: 'color1 bold' },
