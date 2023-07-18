@@ -1,25 +1,25 @@
 $(document).ready(function() {
-	/*======================= MyDining í˜ì´ì§€ì—ì„œ mydining_visited í˜ì´ì§• ì²˜ë¦¬ =======================*/
+	/*======================= MyDining ?˜?´ì§??—?„œ mydining_visited ?˜?´ì§? ì²˜ë¦¬ =======================*/
 	initAjax(1);
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "mydining_visited_paging/"+page,
+			url: "mydining_visited_paging.do?page="+page,
 			success: function(result){
 				//let jdata = JSON.parse(result);
 				let output = "<div class='row mb_30'>";
-				for(obj of result.list) {
+				for(obj of jdata.jlist) {
 					output += "<div class='col-lg-3 col-sm-6'>";
 					output += "<div class='accomodation_item text-center'>";
 					output += "<div class='hotel_img'>";
 					output += "<img src='" + obj.smphoto + "' width='262px' height='272px' alt=''>";
 					if (obj.reviewYN == 'N') {
-					    output += "<a href='/write_review/"+ obj.rid + "' class='btn theme_btn button_hover'>Write Review</a>";
+					    output += "<a href='write_review.do?sid=" + obj.sid + "&rid=" + obj.rid + "' class='btn theme_btn button_hover'>Write Review</a>";
 					} else if (obj.reviewYN == 'Y') {
 					    output += "<a href='/mypage_review' class='btn theme_btn button_hover' style='padding: 5px 1px;'>My Review Check</a>";
 					}
 					output += "</div>";			
-					output += "<img src='/image/jhs_img/1000_F_412408259_m13MpFAxpttIh3jxxsRl3rbsbS5SjnVL.jpg' width='20px' height='20px' >";
+					output += "<img src='resources/image/jhs_img/1000_F_412408259_m13MpFAxpttIh3jxxsRl3rbsbS5SjnVL.jpg' width='20px' height='20px' >";			
 					output += "<a href='#'><h4 class='sec_h4'>"+ obj.sname +"</h4></a>";			
 					output += "<h5>"+ obj.rdate +"<br>"+ obj.rtime +"-"+ obj.guestNumber +" People <br><small>"+ obj.slocShort +"</small></h5>";
 					output += "</div>";			
@@ -33,7 +33,7 @@ $(document).ready(function() {
 				$("div.mb_30").remove();
 				$("p#pooo").after(output);
 				pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
-				//í˜ì´ì§€ ë²ˆí˜¸ í´ë¦­ ì´ë²¤íŠ¸ ì²˜ë¦¬
+				//?˜?´ì§? ë²ˆí˜¸ ?´ë¦? ?´ë²¤íŠ¸ ì²˜ë¦¬
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);
 	           		
@@ -43,7 +43,7 @@ $(document).ready(function() {
 		});//$.ajax
 	};//initAjax	
 	
-	/* í˜ì´ì§• ì²˜ë¦¬ í•¨ìˆ˜ */
+	/* ?˜?´ì§? ì²˜ë¦¬ ?•¨?ˆ˜ */
 	function pager(totals, maxSize, pageSize, page){
 		var pager = jQuery('#ampaginationsm').pagination({
 		    maxSize: maxSize,	    		// max page size
@@ -60,5 +60,5 @@ $(document).ready(function() {
 		    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
 	};
-	/*======================= MyDining í˜ì´ì§€ì—ì„œ mydining_visited í˜ì´ì§• ì²˜ë¦¬ =======================*/
+	/*======================= MyDining ?˜?´ì§??—?„œ mydining_visited ?˜?´ì§? ì²˜ë¦¬ =======================*/
 });
