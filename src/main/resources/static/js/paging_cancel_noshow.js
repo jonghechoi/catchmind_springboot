@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "mydining_visited_paging/"+page,
+			url: "/mydining_cancel_noshow/"+page,
 			success: function(result){
 				//let jdata = JSON.parse(result);
 				let output = "<div class='row mb_30'>";

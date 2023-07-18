@@ -42,6 +42,20 @@ public class MyDiningRestController {
         return mailSendService.findEmail(memail);
     }
 
+    @GetMapping("mydining_cancel_noshow/{page}")
+    public Map mydining_cancel_noshow(@PathVariable String page, HttpSession session) {
+        Map map = new HashMap();
+        SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
+        String mid = sessionVo.getMid();
+
+        PageDto pageDto = pagingService.getVisitedResult(new PageDto(page, "cancel_noshow", mid));
+
+        map.put("list", myDiningService.getCancelNoshow(pageDto));
+        map.put("page", pageDto);
+
+        return map;
+    }
+
     @GetMapping("mydining_visited_paging/{page}")
     public Map mydining_visited_paging(@PathVariable String page, HttpSession session) {
         Map map = new HashMap();

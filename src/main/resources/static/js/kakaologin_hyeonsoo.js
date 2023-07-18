@@ -1,10 +1,10 @@
 /******************************************
-		ì¹´ì¹´?˜¤ ë¡œê·¸?¸ 
+		ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ 
 ******************************************/
-	Kakao.init('a07bd04ced35130db583b416ed4c8f94'); //ë°œê¸‰ë°›ì?? ?‚¤ ì¤? javascript?‚¤ë¥? ?‚¬?š©?•´ì¤??‹¤.
-	console.log(Kakao.isInitialized()); // sdkì´ˆê¸°?™”?—¬ë¶??Œ?‹¨
+	Kakao.init('a07bd04ced35130db583b416ed4c8f94'); //ë°œê¸‰ë°›ì€ í‚¤ ì¤‘ javascriptí‚¤ë¥¼ ì‚¬ìš©í•´ì¤€ë‹¤.
+	console.log(Kakao.isInitialized()); // sdkì´ˆê¸°í™”ì—¬ë¶€íŒë‹¨
 	
-	//ì¹´ì¹´?˜¤ë¡œê·¸?¸
+	//ì¹´ì¹´ì˜¤ë¡œê·¸ì¸
 	 function kakaoLogin() {
 	    Kakao.Auth.login({
 	      success: function (response) {
@@ -31,13 +31,13 @@
 	    })
 	  }
 
-// ?œ ??? ?°?´?„°ë¥? ?¼?œ¼ë¡? ? „?†¡
+// ìœ ì € ë°ì´í„°ë¥¼ í¼ìœ¼ë¡œ ì „ì†¡
 function sendUserData(userInfo) {
   var form = document.createElement('form');
   form.method = 'POST';
-  form.action = 'kakao_login_proc.do';
+  form.action = 'kakao_login';
 
-  // ?¼ ?°?´?„° ì¶”ê??
+  // í¼ ë°ì´í„° ì¶”ê°€
   for (var key in userInfo) {
     if (userInfo.hasOwnProperty(key)) {
       var input = document.createElement('input');
@@ -48,12 +48,12 @@ function sendUserData(userInfo) {
     }
   }
 
-  // ?¼ ? „?†¡
+  // í¼ ì „ì†¡
  document.body.appendChild(form);
  form.submit();
 }
 /******************************************
-		ì¹´ì¹´?˜¤ ë¡œê·¸?¸ ì²´í¬
+		ì¹´ì¹´ì˜¤ ë¡œê·¸ì¸ ì²´í¬
 ******************************************/
 	function loginCheck(userInfo) {
 		if(userInfo.id !== undefined || userInfo.length !== 0 || userInfo !== null) {
@@ -62,9 +62,9 @@ function sendUserData(userInfo) {
 	}
 
 /******************************************
-		ì¹´ì¹´?˜¤ ë¡œê·¸?•„?›ƒ
+		ì¹´ì¹´ì˜¤ ë¡œê·¸ì•„ì›ƒ
 ******************************************/
-	//ì¹´ì¹´?˜¤ë¡œê·¸?•„?›ƒ  
+	//ì¹´ì¹´ì˜¤ë¡œê·¸ì•„ì›ƒ  
 	function kakaoLogout() {
 	    if (Kakao.Auth.getAccessToken()) {
 	      Kakao.API.request({

@@ -40,6 +40,14 @@ public interface MyDiningMapper {
 	 */
 	void updateStatus();
 
+	/* Cancel Reservation : RSTATUS -> CANCEL or NOSHOW */
+	int updateCancelNoshow(String rid);
+
+	/**
+	 * mydining_cancel_noshow - paging
+	 */
+	ArrayList<ScheduledDto> cancelNoshow(PageDto pageDto);
+
 	/**
 	 * mydining_visited - paging
 	 */

@@ -55,8 +55,9 @@
                             <li class="nav-item submenu dropdown active">
                                 <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                    <li class="nav-item active"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Visited</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>

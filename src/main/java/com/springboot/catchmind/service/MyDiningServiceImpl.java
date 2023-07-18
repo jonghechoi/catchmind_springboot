@@ -47,6 +47,12 @@ public class MyDiningServiceImpl{
 		return myDiningMapper.totalRowCount(mid);
 	}
 
+	public int getUpdateCancelNoshow(String rid) { return myDiningMapper.updateCancelNoshow(rid);}
+
+	public ArrayList<ScheduledDto> getCancelNoshow(PageDto pageDto) {
+		return myDiningMapper.cancelNoshow(pageDto);
+	}
+
 	public ArrayList<ScheduledDto> getVisitedSelect(PageDto pageDto) {
 		return myDiningMapper.visitedSelect(pageDto);
 	}
