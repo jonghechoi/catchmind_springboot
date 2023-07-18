@@ -575,7 +575,7 @@ $(document).ready(function() {
 	function adminShopCancel(sid) {
 		$(document).on("click", "#btnCancel_" + sid, function() {
 			$.ajax({
-				url: "admin_shop_information_waiting_cancel?sid=" + sid,
+				url: "/admin_shop_information_waiting_cancel/" + sid,
 				success: function(result) {
 					if(result == 1) {
 						alert("Shop Register Canceled.");
@@ -681,20 +681,14 @@ $(document).ready(function() {
 
 /*======================= index.jsp 페이지에서 book now =======================*/	
 function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
-	console.log(bookNowDate);
-	console.log(bookNowLocation);
-	console.log(bookNowCuisine);
-
 	$.ajax({
-		url: "search_list_book_now_proc?date=" + bookNowDate + "&location=" + bookNowLocation + "&cuisine=" + bookNowCuisine,
+		url: "/search_list_book_now_proc/" + bookNowDate + "/" + bookNowLocation + "/" + bookNowCuisine,
 		success: function(result) {
-			 let jdata = JSON.parse(result);
-			 if(jdata.jlist != "") {
-			 	console.log("여기 들어옴~~~ search_list_book_now_proc");
+			 if(result != "") {
 		        $(".rb").empty();
 		        let output = "";
-		        for (const obj of jdata.jlist) {
-		        	output += "<a href='restaurant?sid=" + obj.sid + "'>";
+		        for (const obj of result) {
+		        	output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -747,17 +741,17 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 
 
 /*======================= index.jsp 페이지에서 음식 종류 클릭했을때 search 페이지 이동 및 리스팅 =======================*/	
-function mainToSearch(searchQuery, searchUrl) {
+function mainToSearch(searchQuery) {
 	 $.ajax({
-	    url: "search_list_proc?searchQuery=" + searchQuery,
+	    url: "/search_list_proc/" + searchQuery,
 	    async:false,
 	    success: function(result) {
-	        let jdata = JSON.parse(result);
-	        if(jdata.jlist != "") {
+			console.log(result);
+			if(result != "") {
 		        $(".rb").empty();
 		        let output = "";
-		        for (const obj of jdata.jlist) {
-		        	output += "<a href='restaurant?sid=" + obj.sid + "'>";
+		        for (const obj of result) {
+		        	output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -821,18 +815,18 @@ function mapMainToSearch() {
 	var lat = localStorage.getItem('lat');
 	var lng = localStorage.getItem('lng');
 	$.ajax({
-		url:"index_mapMarker",
+		url:"/index_mapMarker",
+		method: "POST",
 		data: {
 			lat: lat,
 			lng: lng
 		},
 		success: function(result) {
-	        fdata = result;
-	        let jdata = JSON.parse(result);
-	        
+	        console.log(result);
+			let jdata = JSON.parse(result);
 	        let output = "";
 	        for (const obj of jdata.jlist) {
-	            	output += "<a href='restaurant?sid=" + obj.sid + "'>";
+	            	output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -1019,34 +1013,4 @@ function base64ToByteArray(base64Data) {
     }
     return byteArray;
 }
-/*======================= shop_reservation.jsp 페이지에서 shop photo 등록&프리뷰 =======================*/	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-        	
+/*======================= shop_reservation.jsp 페이지에서 shop photo 등록&프리뷰 =======================*/

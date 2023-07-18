@@ -42,8 +42,6 @@ public class ShopController {
 
 	@Autowired
 	private ShopServiceImpl shopService;
-	@Autowired
-	private FileServiceImpl fileService;
 
 	@GetMapping("shop_information")
 	public String shop_information(HttpSession session, Model model) {

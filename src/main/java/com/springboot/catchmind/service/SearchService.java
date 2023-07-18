@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SearchService {
@@ -14,11 +15,10 @@ public class SearchService {
 	SearchMapper searchMapper;
 
 	public List<SearchDto> select(String searchValue) {
-		//System.out.println(searchValue);
 		return searchMapper.select(searchValue);
 	}
 
-//	public ArrayList<SearchDto> getBookNowSelect(Map<String, String> map) {
-//		return searchDao.bookNowSelect(map);
-//	}
+	public List<SearchDto> getBookNowSelect(Map<String, String> map) {
+		return searchMapper.bookNowSelect(map);
+	}
 }
