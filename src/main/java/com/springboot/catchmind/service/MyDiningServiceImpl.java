@@ -1,5 +1,6 @@
 package com.springboot.catchmind.service;
 
+import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.dto.ScheduledDto;
 import com.springboot.catchmind.repository.MyDiningMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,8 @@ public class MyDiningServiceImpl{
 		return myDiningMapper.totalRowCount(mid);
 	}
 
-	public ArrayList<ScheduledDto> getVisitedSelect(String mid) {
-		return myDiningMapper.visitedSelect(mid);
+	public ArrayList<ScheduledDto> getVisitedSelect(PageDto pageDto) {
+		return myDiningMapper.visitedSelect(pageDto);
 	}
 
 	public int getUpdateDeleteYN(String rid) {

@@ -6,6 +6,9 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/notice_list_paging/"+page,
 			success: function(result){
+
+				console.log(result);
+				console.log(result.page.maxSize);
 				let output = "<table class='board_list'>";
 				output += "<tr>";
 				output += "<td colspan='3'>";
@@ -34,7 +37,7 @@ $(document).ready(function() {
 				$("h1.title").after(output);
 
 				pager(result.page.dbCount, result.page.maxSize, result.page.pageSize, result.page.page);
-	
+
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);

@@ -6,9 +6,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "mydining_visited_paging/"+page,
 			success: function(result){
-
 				//let jdata = JSON.parse(result);
-			
 				let output = "<div class='row mb_30'>";
 				for(obj of result.list) {
 					output += "<div class='col-lg-3 col-sm-6'>";
@@ -28,14 +26,13 @@ $(document).ready(function() {
 					output += "</div>";			
 				}			
 				output += "<div>";
-				output += "<td colspan='12'><div id='ampaginationsm'></div></td>";
+				output += "<td colspan='4'><div id='ampaginationsm'></div></td>";
 				output += "</div>";
 				output += "</div>";			
 				
 				$("div.mb_30").remove();
 				$("p#pooo").after(output);
 				pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
-	
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);

@@ -60,7 +60,7 @@ public class PagingServiceImpl implements PagingService {
 		pageDto.setDbCount(dbCount);
 		pageDto.setPageSize(pageSize);
 		pageDto.setPageCount(pageCount);
-		pageDto.setRegPage(reqPage);
+		pageDto.setReqPage(reqPage);
 		
 		return pageDto;
 	}
@@ -98,7 +98,7 @@ public class PagingServiceImpl implements PagingService {
 		pageDto.setDbCount(dbCount);
 		pageDto.setPageSize(pageSize);
 		pageDto.setPageCount(pageCount);
-		pageDto.setRegPage(reqPage);
+		pageDto.setReqPage(reqPage);
 		
 		return pageDto;
 	}

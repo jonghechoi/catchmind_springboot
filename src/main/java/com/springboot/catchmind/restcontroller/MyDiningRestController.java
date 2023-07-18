@@ -49,13 +49,8 @@ public class MyDiningRestController {
         String mid = sessionVo.getMid();
 
         PageDto pageDto = pagingService.getVisitedResult(new PageDto(page, "visited", mid));
-        System.out.println("size -->" + pageDto.getPageSize());
-        System.out.println("count ->" + pageDto.getPageCount());
-        System.out.println("req -> " + pageDto.getRegPage());
-        System.out.println("dbcount ->" + pageDto.getDbCount());
 
-        ArrayList<ScheduledDto> list = myDiningService.getVisitedSelect(mid);
-        map.put("list", list);
+        map.put("list", myDiningService.getVisitedSelect(pageDto));
         map.put("page", pageDto);
 
         return map;

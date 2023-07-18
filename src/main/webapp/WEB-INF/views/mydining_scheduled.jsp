@@ -10,7 +10,7 @@
        <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-       <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="/js/jquery-3.6.4.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/vendors/linericon/style.css">

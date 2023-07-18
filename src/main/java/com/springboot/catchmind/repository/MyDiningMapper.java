@@ -1,5 +1,6 @@
 package com.springboot.catchmind.repository;
 
+import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.dto.ScheduledDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -42,7 +43,7 @@ public interface MyDiningMapper {
 	/**
 	 * mydining_visited - paging
 	 */
-	ArrayList<ScheduledDto> visitedSelect(String mid);
+	ArrayList<ScheduledDto> visitedSelect(PageDto pageDto);
 
 	/**
 	 * information.do

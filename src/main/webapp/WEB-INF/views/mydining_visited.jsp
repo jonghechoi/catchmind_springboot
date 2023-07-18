@@ -10,7 +10,7 @@
         <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-        <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="/js/jquery-3.6.4.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <script src="/js/am-pagination.js"></script>
