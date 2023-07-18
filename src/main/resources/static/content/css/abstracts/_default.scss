@@ -1,0 +1,125 @@
+//default.scss
+//----------------------------------------------//
+/*                     컬러                     */
+//----------------------------------------------//
+$black_0 : #000;
+$black_1 : #111;
+$black_3 : #333;
+$black_5 : #555;
+$black_7 : #777; 
+$black_9 : #999;
+$black_a : #aaa;
+$black_c : #ccc ;
+$black_e : #e6e6e6;
+$black_f0 : #f0f0f0;
+$black_f6 : #f6f6f6; 
+$white : #ffffff;
+$point_red : #ff0000;
+$point_blue : #353cdd;
+
+.red{ color: $point_red; }
+.blue{ color: $point_blue; }
+
+//----------------------------------------------//
+/*                 공간 커스텀                   */
+//----------------------------------------------//
+.mt-30{ margin-top: 30px; }
+.mt-60{ margin-top: 60px; }
+.mt-100{ margin-top: 100px; }
+
+//----------------------------------------------//
+/*                      폰트                    */
+//----------------------------------------------//
+%en-font{
+    font-family: 'Poppins', sans-serif;
+}
+
+//----------------------------------------------//
+/*                      정렬                    */
+//----------------------------------------------//
+// 말줄임
+%text-one{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+//수직 말줄임 -두줄
+%text-vertical-2{
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    white-space: initial;
+    -webkit-line-clamp: 2;
+}
+//수직 말줄임 -세줄
+%text-vertical-3{
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    white-space: initial;
+    -webkit-line-clamp: 3;
+}
+
+//센터 정렬
+%d-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+//양끝 정렬
+%d-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+//앞 정렬
+%d-start{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+//끝 정렬
+%d-end{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+//----------------------------------------------//
+/*             브레이크 포인트(include)            */
+//----------------------------------------------//
+$break_point_pc : 1199px;
+$break_point_tablet : 769px;
+$break_point_mobile : 499px;
+$break_point_xmobile : 321px;
+
+@mixin rwd($break_point) {
+    @if ( $break_point == tablet ) {
+        @media only screen and ( max-width: #{$break_point_tablet} ) {
+            @content;
+        }
+    }
+    @if ( $break_point == mobile ) {
+        @media only screen and ( max-width: #{$break_point_mobile} ) {
+            @content;
+        }
+    }
+    @if ( $break_point == pc ) {
+        @media only screen and ( min-width: #{$break_point_pc} ) {
+            @content;
+        }
+    }
+    @if ( $break_point == xmobile ) {
+        @media only screen and ( max-width: #{$break_point_xmobile} ) {
+            @content;
+        }
+    }
+}
+

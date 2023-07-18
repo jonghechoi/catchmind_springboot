@@ -602,7 +602,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3  col-md-6 col-sm-6 footer-widget1"
-						style="padding-right: 50px width:370px">
+						style="padding-right: 50px; width:370px;">
 						<div class="single-footer-widget single-footer-widget-left">
 							<h6 class="footer_title">About Agency</h6>
 							<p style="color: white">
