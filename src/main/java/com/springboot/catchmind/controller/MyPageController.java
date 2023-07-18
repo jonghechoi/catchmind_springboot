@@ -99,19 +99,21 @@ public class MyPageController {
 		model.addAttribute("mid", mid);
 		//model.addObject("mid", mid);
 		//model.setViewName("/pages/mypage/mypage_favorites");
-
 		return "/pages/mypage/mypage_favorites";
 	}
 
-	@GetMapping("mypage_review/{mid},{sid}")
-	public String mypage_Review(@PathVariable String mid, @PathVariable String sid, Model model) {
-		//ModelAndView model = new ModelAndView();
-		List<ReviewDto> reviewList = reviewService.Select(mid);
-
-		model.addAttribute("reviewList", reviewList);
+	@GetMapping("mypage_review/{mid}")
+	public String mypage_Review(HttpSession session, Model model) {
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
+		System.out.println("1111111111111");
+		String mid = sessionVo.getMid();
+		System.out.println("222222222222");
+		List<ReviewDto> reviewList = reviewService.SelectBy(mid);
+		System.out.println("3333333333333");
+		//model.addAttribute("reviewList", reviewList);
 		model.addAttribute("mid", mid);
-		//model.setViewName("/pages/mypage/mypage_review");
-
+		//model.addAttribute("sid", sid);
+		System.out.println("4444444444444");
 		return "/pages/mypage/mypage_review";
 	}
 

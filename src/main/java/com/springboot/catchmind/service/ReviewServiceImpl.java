@@ -45,5 +45,5 @@ public class ReviewServiceImpl{
 		return reviewMapper.updateReviewYN(rid);
 	}
 
-	public List<ReviewDto> Select(String mid){ return reviewMapper.selectBy(mid); }
+	public List<ReviewDto> SelectBy(String mid){ return reviewMapper.selectBy(mid); }
 }
