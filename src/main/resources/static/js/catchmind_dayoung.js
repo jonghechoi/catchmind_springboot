@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 	var rdate = null;
 	var sid = null;
 	var rtabletype = null;
@@ -7,180 +7,215 @@ $(document).ready(function(){
 	var smealfee = null;
 	var sdeposit = null;
 	var rrequest = null;
-	
-	
+
+
 	/*
 	 * 카카오 공유하기
 	 */
 	// 카카오 JavaScript 키 설정
 	Kakao.init('adacb7319ef90251f888ca7acb9c479d');
-	
-	$("#kakao-share-btn").on('click', shareKakao);	
-    function shareKakao() {
+
+	$("#kakao-share-btn").on('click', shareKakao);
+
+	function shareKakao() {
 		Kakao.Link.sendDefault({
-	    	objectType: 'feed',	
-	    	content: {
-				title: '카카오 공유하기',
+			objectType: 'feed',
+			content   : {
+				title      : '카카오 공유하기',
 				description: '캐치마인드!.',
-		        imageUrl: '이미지 URL',
-		        link: {
-		        	webUrl: '웹사이트 URL',
-		        	mobileWebUrl: '모바일 웹사이트 URL'
-		        }
-	    	}
+				imageUrl   : '이미지 URL',
+				link       : {
+					webUrl      : '웹사이트 URL',
+					mobileWebUrl: '모바일 웹사이트 URL'
+				}
+			}
 		});
-    }
-	 
-	
+	}
+
+
 	/*
 	 * date picker
 	 */
-	$("#rdate").change(function() {
+	$("#rdate").change(function () {
 		sid = $("#sid").val();
 		rdate = $("#rdate").val();
 		//alert(sid);
 		//alert(rdate);
-				
-		var objParams = {	
-							"sid" : sid,
-							"rdate" : rdate 
-	                    };	
-	                    
+
+		var objParams = {
+			"sid"  : sid,
+			"rdate": rdate
+		};
+
 		$.ajax({
-	 		type: "POST",
-	 		url: "select_rtabletype",
-	 		dataType : "json",
-	 		data: objParams,
-	 		cache: false,
-	 		success: function(result){
-	 			let output = "";
-	 			//alert(result.terrace);
-				
-	 			if(result.rooftop > 0){
+			url: "/select_rtabletype",
+			type: "POST",
+			data: objParams,
+			dataType: "json",
+			cache: false,
+			success : function (result) {
+				let output = "";
+				//alert(result.terrace);
+
+				if (result.rooftop > 0) {
 					output += "<option name = 'rtabletype' value='ROOFTOP'>Rooftop</option>";
 				}
-				if(result.terrace > 0){
+				if (result.terrace > 0) {
 					output += "<option name = 'rtabletype' value='TERRACE'>Terrace</option>";
 				}
-				if(result.bar > 0){
+				if (result.bar > 0) {
 					output += "<option name = 'rtabletype' value='BAR'>Bar</option>";
 				}
-				if(result.dininghall > 0){
+				if (result.dininghall > 0) {
 					output += "<option name = 'rtabletype' value='DININGHALL'>Dining Hall</option>";
 				}
-				if(result.windowseat > 0){
+				if (result.windowseat > 0) {
 					output += "<option name = 'rtabletype' value='WINDOWSEAT'>Window Seat</option>";
 				}
-				if(result.privateroom > 0){
+				if (result.privateroom > 0) {
 					output += "<option name = 'rtabletype' value='PRIVATEROOM'>Private room</option>";
 				}
-				if(result.rental > 0){
+				if (result.rental > 0) {
 					output += "<option name = 'rtabletype' value='RENTAL'>Rental</option>";
 				}
-	 			
-	 			$("#rtabletype").append(output);
-	 			$("#rtabletype").niceSelect('destroy');
+
+				$("#rtabletype").append(output);
+				$("#rtabletype").niceSelect('destroy');
 				$("#rtabletype").niceSelect();
-	 			
-	 		},
-	 		error: function() {
-	 			alert("errorrrrr");
-	 		}
- 		});
+			},
+			error   : function () {
+				alert("errorrrrr-rdate");
+			}
+		});
 	});
-	
-	
-	$("#rtabletype").on('change', selectBoxRtabletype);	
-	
+
+
+	$("#rtabletype").on('change', selectBoxRtabletype);
+
 	/*
 	 * select rtabletype
 	 */
-	function selectBoxRtabletype(){
-		rtabletype = $("#rtabletype").val();
-		var objParams = {	
-							"sid" : sid,
-							"rdate" : rdate,
-							"rtabletype" : rtabletype
-	                    };	
-	    
-	    $.ajax({
-	 		type: "POST",
-	 		url: "select_guestnumber",
-	 		dataType : "json",
-	 		data: objParams,
-	 		cache: false,
-	 		success: function(result){
-	 			var minOccupiedTableNum = parseInt(result.minOccupiedTableNum);
-	 			var rtabletypeNum = parseInt(result.rtabletypeNum);
-	 			//alert(minOccupiedTableNum);
-	 			//alert(rtabletypeNum);
-	 			
-	 			let output = "";
-	 			for(var i = 1; i <= (rtabletypeNum - minOccupiedTableNum) * 2; i++){
-					output += "<option name = 'guestnumber' value = '" + i + "'>" + i + "</option>";
-	 			}
-	 			
-	 			$("#guestnumber").append(output);
-	 			$("#guestnumber").niceSelect('destroy');
-				$("#guestnumber").niceSelect();
-	 			
-	 		},
-	 		error: function() {
-	 			alert("errorrrrr");
-	 		}
- 		});
+	function selectBoxRtabletype() {
+		if (rdate == "") {
+			alert("Please select a date first");
+			return false;
+		} else {
+			rtabletype = $("#rtabletype").val();
+			var objParams = {
+				"sid"       : sid,
+				"rdate"     : rdate,
+				"rtabletype": rtabletype
+			};
+			//alert(sid);
+			//alert(rtabletype);
+
+			$.ajax({
+				url: "/select_guestnumber",
+				type: "POST",
+				data: objParams,
+				dataType: "json",
+				cache: false,
+				success : function (result) {
+					var minOccupiedTableNum = result.minOccupiedTableNum;
+					var rtabletypeNum = result.rtabletypeNum;
+					//alert(minOccupiedTableNum);
+					//alert(rtabletypeNum);
+
+					let output = "";
+					for (var i = 1; i <= (rtabletypeNum - minOccupiedTableNum) * 2; i++) {
+						output += "<option name = 'guestnumber' value = '" + i + "'>" + i + "</option>";
+					}
+
+					$("#guestnumber").append(output);
+					$("#guestnumber").niceSelect('destroy');
+					$("#guestnumber").niceSelect();
+
+				},
+				error   : function () {
+					alert("errorrrrr-rtabletype");
+				}
+			});
+		}
 	}
-	
-	
-	
-	$("#guestnumber").on('change', selectBoxRtime);	
-	
+
+
+
+	$("#guestnumber").on('change', selectBoxGuestnumber);
+
 	/*
 	 * select guestnumber
 	 */
-	function selectBoxRtime(){
-		guestnumber = $("#guestnumber").val();
-		//alert(sid);
-		//alert(rdate);
-		//alert(rtabletype);
-		//alert(guestnumber);
+	function selectBoxGuestnumber(){
+		if(rdate==""){
+			alert("Please select a date first");
+			return false;
+		}
+		else if(rtabletype=="default"){
+			alert("Please select a 'Seating Options' first");
+			return false;
+		}
+		else {
+			guestnumber = $("#guestnumber").val();
 
-		var objParams = {
-							"sid" : sid,
-							"rdate" : rdate,
-							"rtabletype" : rtabletype,
-							"guestnumber" : guestnumber
-						}
-		
-		$.ajax({
-			type: "POST",
-			url: "select_rtime",
-			dataType: "json",
-			data: objParams,
-			cache: false,
-			success: function(result){
-				//alert(result.time);
-	 			let output = "";
-				
-				for (var key in result) {
-	                if (result.hasOwnProperty(key)) {
-	                    var time = result[key];
-	                    output += "<option name='rtime' value='" + time + "'>" + time + "</option>";
-	                }
-            	}
-            	
-	 			$("#rtime").append(output);
-	 			$("#rtime").niceSelect('destroy');
-				$("#rtime").niceSelect();
-			},
-			error: function(){
-				 alert("errorrrrr");
+			var objParams = {
+				"sid"        : sid,
+				"rdate"      : rdate,
+				"rtabletype" : rtabletype,
+				"guestnumber": guestnumber
 			}
-		}); //ajax
+
+			//alert(guestnumber);
+
+			$.ajax({
+				url: "/select_rtime",
+				type: "POST",
+				data: objParams,
+				dataType: "json",
+				cache: false,
+				success : function (result) {
+					let output = "";
+
+					$(result).each(function(){
+						output += "<option name='rtime' value='" + this + "'>" + this + "</option>"
+					});
+
+					$("#rtime").append(output);
+					$("#rtime").niceSelect('destroy');
+					$("#rtime").niceSelect();
+				},
+				error   : function () {
+					alert("errorrrrr-guestnumber");
+				}
+			}); //ajax
+		}
 	} //function
-	
-	
-	
+
+
+
+	$("#rtime").on('change', selectBoxRtime);
+
+	/*
+	 * select rtime
+	 */
+	function selectBoxRtime() {
+		if (rdate == "") {
+			alert("Please select a date first");
+			return false;
+		}
+		else if(rtabletype=="default") {
+			alert("Please select a 'Seating Options' first");
+			return false;
+		}
+		else if(guestnumber=="default"){
+			alert("Please select a 'Party Size' first");
+			return false;
+		}
+		else{
+			return true;
+		}
+	}
+
+
 	/*
 	 * 예약버튼
 	 */
@@ -203,9 +238,9 @@ $(document).ready(function(){
 			return false;
 		}
 		else{
-			reservationForm.submit();	
+			reservationForm.submit();
 		}
-	});	
+	});
 	
 	
 	/*
@@ -222,7 +257,7 @@ $(document).ready(function(){
 		alert("merchant_uid--->" + rsp.merchant_uid);
 		alert("name--->" + rsp.name);
 	    $.ajax({
-			url: "booking_with_payment", 
+			url: "booking_with_payment.do", 
     		type: 'POST',
     		dataType: 'json',
     		data: {
@@ -241,7 +276,7 @@ $(document).ready(function(){
     		},
 			success: function (result) {
 	            alert("결제되었습니다.");
-				location.href = "http://localhost:9000/catchmind/mydining_scheduled";
+				location.href = "http://localhost:9000/catchmind/mydining_scheduled.do";
 	        },
 			error: function(){
 				alert("errorrrrr on saving data into DB");
@@ -321,7 +356,7 @@ $(document).ready(function(){
 	    			$.ajax({
 			    		type: 'POST',
 			    		url: "/verifyIamport/" + rsp.imp_uid  
-			    	})ne(function(data) {
+			    	}).done(function(data) {
 			    		alert("data.success");
 			    		if (rsp.paid_amount == data.response.amount) {
 			    			var msg = '결제가 완료되었습니다.';
@@ -476,7 +511,7 @@ $(document).ready(function(){
 				buyer_tel: contact,
 				buyer_addr: " ",
 				buyer_postcode: " ",
-				m_redirect_url : "http://localhost:9000/catchmind/mydining_scheduled"
+				m_redirect_url : "http://localhost:9000/catchmind/mydining_scheduled.do"
 			}, function (rsp) {
 			    if (rsp.success) {
 			    	alert("rsp.success");
@@ -484,7 +519,7 @@ $(document).ready(function(){
 			    	$.ajax({
 			    		type: 'POST',
 			    		url: "/verifyIamport/" + rsp.imp_uid  //cross-domain error가 발생하지 않도록 주의해주세요
-			    	})ne(function(data) {
+			    	}).done(function(data) {
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 			    		alert("data.success");
 			    		if (rsp.paid_amount == data.response.amount) {
