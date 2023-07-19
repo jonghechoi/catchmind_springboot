@@ -6,12 +6,14 @@ import java.util.Map;
 
 import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.repository.*;
+import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service("adminService")
 @MapperScan(basePackages = "com.springboot.catchmind.repository")
+@RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired

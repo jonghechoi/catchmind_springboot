@@ -685,6 +685,7 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 		url: "/search_list_book_now_proc/" + bookNowDate + "/" + bookNowLocation + "/" + bookNowCuisine,
 		success: function(result) {
 			 if(result != "") {
+				 console.log(result);
 		        $(".rb").empty();
 		        let output = "";
 		        for (const obj of result) {

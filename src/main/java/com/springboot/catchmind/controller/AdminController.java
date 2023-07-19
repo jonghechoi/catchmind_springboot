@@ -17,15 +17,18 @@ import com.springboot.catchmind.vo.ShopVo;
 
 @Controller
 public class AdminController {
-	@Autowired
-	private MemberServiceImpl memberService;
-	@Autowired
-	private AdminServiceImpl adminService;
-	@Autowired
-	private ShopServiceImpl shopService;
-	@Autowired
-	private NoticeServiceImpl noticeService;
 
+	private final AdminServiceImpl adminService;
+
+	/* Constructor DI */
+	@Autowired
+	public AdminController(AdminServiceImpl adminService) {
+		this.adminService = adminService;
+	}
+
+	/**
+	 *	Admin
+	 */
 	@GetMapping("admin")
 	public String admin() {
 		return "/admin";
