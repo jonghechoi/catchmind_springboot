@@ -1,12 +1,15 @@
 package com.springboot.catchmind.service;
 
 import com.springboot.catchmind.dao.MemberDao;
+import com.springboot.catchmind.dto.FavoritesDto;
 import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.repository.MemberMapper;
 import com.springboot.catchmind.vo.MemberVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MemberServiceImpl{
@@ -52,7 +55,9 @@ public class MemberServiceImpl{
 		return memberMapper.kakaoLogin(memberDto);
 	}
 
-//	public int getUpdate(MemberVo memberVo) {
+	public List<MemberDto> selectBy(String mid) { return memberMapper.selectBy(mid); }
+
+//	public int getUpdate(MemberDto memberVo) {
 //		return memberDao.update(memberVo);
 //	}
 	

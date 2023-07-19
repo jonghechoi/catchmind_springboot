@@ -33,7 +33,7 @@ public class LoginController {
 	public ModelAndView logout(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		
-		SessionDto sessionDto = (SessionDto)session.getAttribute("sessionDto");
+		SessionDto sessionDto = (SessionDto)session.getAttribute("sessionVo");
 		
 		if(sessionDto != null) {
 			session.invalidate();

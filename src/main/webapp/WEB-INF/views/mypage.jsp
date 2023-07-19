@@ -94,7 +94,7 @@
 			<div class="accomodation_item text-center">
 			<div>
 				
-			<h4 class="name username">${memberList.mname}</h4>
+			<h4 class="name username">${memberList[0].mname}</h4>
 			<p id="introduce_p" class="expand"> Catch Mind <br></p>
 			<body>
 			    <!-- <button class="btn btn-edit-profile">Edit Profile</button> -->

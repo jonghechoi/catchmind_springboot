@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.ReviewDto;
 import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.service.FavoritesServiceImpl;
+import com.springboot.catchmind.service.MemberServiceImpl;
+import com.springboot.catchmind.service.MyDiningServiceImpl;
 import com.springboot.catchmind.service.ReviewServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springboot.catchmind.dto.FavoritesDto;
 import com.springboot.catchmind.dao.MemberDao;
 import com.springboot.catchmind.vo.MemberVo;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -26,70 +30,42 @@ public class MyPageController {
 	@Autowired
 	private FavoritesServiceImpl favoritesService;
 	@Autowired
-	private MemberDao memberDao;
-	/**
-	 * mypage
-	 */
+	private MemberServiceImpl memberService;
 
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public ModelAndView mypage(HttpSession session) {
-		ModelAndView model = new ModelAndView();
-		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
-		String mid = sessionVo.getMid();
-		MemberVo memberList = memberDao.nameSelect(mid);
 
-		model.addObject("memberList", memberList);
-		model.addObject("mid", mid);
-        model.setViewName("mypage");
-
-        return model;
-	}
-	
 	/**
 	 * bookmark_delete_proc
 	 */
-	@RequestMapping(value = "/bookmark_delete_proc", method = RequestMethod.GET)
-	public String bookmark_delete_proc(String fid, String mid) {
-		
+	@GetMapping("bookmark_delete_proc/{fid}/{mid}/")
+	public String bookmarkDeleteProc(@PathVariable String fid,@PathVariable String mid) {
 		String viewName = "";
 		int result = favoritesService.deleteFavorites(fid);
-		if(result == 1) {
-			viewName = "redirect:/mypage_favorites?mid="+mid;
+		if (result == 1) {
+			viewName = "redirect:/mypage_favorites/" + mid;
 		}
-        return viewName;  
+		return viewName;
+	}
+
+
+	/**
+	 * mypage
+	 */
+	@GetMapping("mypage")
+	public String mypage(HttpSession session, Model model) {
+		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
+		String mid = sessionVo.getMid();
+
+		List<MemberDto> memberList = memberService.selectBy(mid);
+
+		model.addAttribute("memberList", memberList);
+		//model.addObject("mid", mid);
+		//model.setViewName("mypage");
+
+		return "/mypage";
 	}
 
 	/**
-	 * mypage_review
-	 */
-//	@RequestMapping(value = "/mypage_review", method = RequestMethod.GET)
-//	public ModelAndView mypage_review(String mid, String sid) {
-//		ModelAndView model = new ModelAndView();
-//		ArrayList<ReviewVo> reviewList = reviewDao.selectMid(mid);
-//        model.addObject("reviewList", reviewList);
-//        model.addObject("mid", mid);
-//        model.setViewName("pages/mypage/mypage_review");
-//
-//        return model;
-//	}
-
-
-//	@GetMapping("mypage")
-//	public String mypage(){
-//		ModelAndView model = new ModelAndView();
-//		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
-//		String mid = sessionVo.getMid();
-//		MemberVo memberList = memberDao.nameSelect(mid);
-//
-//		model.addObject("memberList", memberList);
-//		model.addObject("mid", mid);
-//        model.setViewName("mypage");
-//
-//        return model;
-//	}
-
-	/**
-	 *  mypage_favorites
+	 * mypage_favorites
 	 */
 	@GetMapping("mypage_favorites/{mid}")
 	public String mypage_Favorites(@PathVariable String mid, Model model) {
@@ -102,33 +78,38 @@ public class MyPageController {
 		return "/pages/mypage/mypage_favorites";
 	}
 
+	/**
+	 * mypage_review
+	 */
 	@GetMapping("mypage_review/{mid}")
 	public String mypage_Review(HttpSession session, Model model) {
-		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
-		System.out.println("1111111111111");
+		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
-		System.out.println("222222222222");
 		List<ReviewDto> reviewList = reviewService.SelectBy(mid);
-		System.out.println("3333333333333");
-		//model.addAttribute("reviewList", reviewList);
-		model.addAttribute("mid", mid);
+		model.addAttribute("reviewList", reviewList);
+		//model.addAttribute("mid", mid);
 		//model.addAttribute("sid", sid);
-		System.out.println("4444444444444");
 		return "/pages/mypage/mypage_review";
 	}
 
-//	@GetMapping("/mypage_review")
-//	public ModelAndView mypageReview(@RequestParam("mid") String mid, @RequestParam("sid") String sid) {
-//		ModelAndView model = new ModelAndView();
-//		ArrayList<ReviewDto> reviewList = reviewService.getReviewSelect(mid);
+//	public String information_bookmark_proc(HttpSession session, @PathVariable String sid, @PathVariable String rid,
+//											RedirectAttributes redirectAttributes) {
+//		String viewName = "";
+//		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
+//		String mid = sessionVo.getMid();
 //
-//		model.addObject("reviewList", reviewList);
-//		model.addObject("mid", mid);
-//		model.setViewName("pages/mypage/mypage_review");
+//		int count = myDiningService.getBookmarkResult(mid, sid);
 //
-//		return model;
+//		if (count == 1) {
+//			int deleteBookmark = myDiningService.getDeleteBookmark(mid, sid);
+//
+//			if (deleteBookmark == 1) {
+//				redirectAttributes.addFlashAttribute("information_bookmark", "delete");
+//				viewName = "redirect:/information/" + sid + "/" + rid;
+//			}
+//		}
+//		return viewName;
 //	}
-
 }
 
 	

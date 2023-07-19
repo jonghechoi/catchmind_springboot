@@ -1,5 +1,6 @@
 package com.springboot.catchmind.repository;
 
+import com.springboot.catchmind.dto.FavoritesDto;
 import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.SessionDto;
 import org.apache.ibatis.annotations.Mapper;
@@ -198,4 +199,6 @@ public interface MemberMapper {
 
 	 /* Duplicate check */
 	int idCheck(String memberId);
+
+	List<MemberDto> selectBy(String mid);
 }

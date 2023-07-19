@@ -23,8 +23,8 @@
         <link rel="stylesheet" href="/css/responsive.css">
 <script>
 	function bookmark(fid){
-		location.href = "bookmark_delete_proc?fid="+fid+"&mid=${mid}";
-		
+		location.href = "/bookmark_delete_proc/"+fid+"/${mid}/";
+
 	}
 </script>	
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -172,7 +172,7 @@
                             </div>
                             <span>Lunch ${favorites.lunch}</span><br>
                             <span>Dinner ${favorites.dinner}</span>
-                            
+
                             
                         </div>
                     </div>

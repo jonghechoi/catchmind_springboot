@@ -99,4 +99,10 @@
 		from MEMBER
 		where MEMBERID = #{memberId}
 	</select>
+
+	<select id="selectBy" parameterType="java.lang.String" resultType="com.springboot.catchmind.dto.MemberDto">
+		select mid, mname, memberid, memail, mphone
+		from member
+		where mid = #{mid}
+	</select>
 </mapper>
