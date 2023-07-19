@@ -18,6 +18,7 @@
 <body>
 	<form name="cancelReservationForm" action="/cancle_reservation" method="post" id="joinConsentForm">
     	<input type="hidden" name="rid" value="${rid}">
+    	<input type="hidden" name="rdate" value="${rdate}">
 	    <ul class="join_box">
 	    	<li class="cancle_check">
 	    		<h5 class="cancle_h5">Please select a reason for cancellation (required)</h5>

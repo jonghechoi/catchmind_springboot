@@ -1,7 +1,6 @@
 package com.springboot.catchmind.exception;
 
 import lombok.Getter;
-
 @Getter
 public enum ErrorCode {
 

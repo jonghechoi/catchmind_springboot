@@ -30,16 +30,16 @@
 		where mid = #{mid} and sid = #{sid}
 	</select>
 
-	<update id="updateCancelNoshow" parameterType="String">
+	<update id="updateNoshow" parameterType="String">
 		UPDATE RESERVATION
-		SET RSTATUS =
-		<if test = "rdate == to_char(sysdate, 'YYYY-MM-DD')">
-			'NOSHOW'
-		</if>
-		<if test = "rdate &lt; to_char(sysdate, 'YYYY-MM-DD')">
-			'CANCEL'
-		</if>
-		WHERE RID = #{rid}
+			SET RSTATUS ='NOSHOW'
+			WHERE RID = #{rid}
+	</update>
+
+	<update id="updateCancel" parameterType="String">
+		UPDATE RESERVATION
+			SET RSTATUS ='CANCEL'
+			WHERE RID = #{rid}
 	</update>
 
 	<update id="updateDeleteYN" parameterType="String">
@@ -54,14 +54,14 @@
 		WHERE to_date(rdate,'yyyy-mm-dd') &lt;	to_date(sysdate,'yyyy-mm-dd') AND RSTATUS = 'ACTIVE'
 	</update>
 
-	<select id="totalRowCount" parameterType="String" resultType="int">
+	<select id="totalRowCount" parameterType="com.springboot.catchmind.dto.PageDto" resultType="int">
 		select count(*)
 		from reservation
 		<if test="serviceName == 'visited'">
-			where mid = #{mid} and rstatus = 'COMPLETED' AND DELETEYN = 'N'
+			where MID = #{mid} and RSTATUS = 'COMPLETED' AND DELETEYN = 'N'
 		</if>
 		<if test="serviceName == 'cancel_noshow'">
-			where mid = #{mid} and rstatus = 'CANCEL' and rstatus = 'NOSHOW' AND DELETEYN = 'Y'
+			where MID = #{mid} and RSTATUS = 'CANCEL' OR rstatus = 'NOSHOW' AND DELETEYN = 'Y'
 		</if>
 	</select>
 
@@ -75,7 +75,7 @@
 						 R.RSTATUS RSTATUS, R.REVIEWYN, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
 				  from MEMBER M, SHOP S, RESERVATION R
 				  WHERE R.MID = M.MID AND R.SID = S.SID
-					and M.MID = #{mid} and RSTATUS = 'CANCEL' AND RSTATUS = 'NOSHOW' AND R.DELETEYN = 'Y'
+					and M.MID = #{mid} and RSTATUS = 'CANCEL' OR RSTATUS = 'NOSHOW' AND R.DELETEYN = 'Y'
 				  order by rdate desc, RTIME))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>

@@ -6,23 +6,28 @@ $(document).ready(function() {
 		$.ajax({
 			url: "/mydining_cancel_noshow/"+page,
 			success: function(result){
-				//let jdata = JSON.parse(result);
+				console.log(result);
+				console.log(result.page);
+				console.log(result.page.dbCount);
+				console.log(result.page.pageCount);
+				console.log(result.page.pageSize);
+				console.log(result.page.reqPage);
 				let output = "<div class='row mb_30'>";
 				for(obj of result.list) {
 					output += "<div class='col-lg-3 col-sm-6'>";
 					output += "<div class='accomodation_item text-center'>";
 					output += "<div class='hotel_img'>";
 					output += "<img src='" + obj.smphoto + "' width='262px' height='272px' alt=''>";
-					if (obj.reviewYN == 'N') {
-					    output += "<a href='/write_review/"+ obj.rid + "' class='btn theme_btn button_hover'>Write Review</a>";
-					} else if (obj.reviewYN == 'Y') {
-					    output += "<a href='/mypage_review' class='btn theme_btn button_hover' style='padding: 5px 1px;'>My Review Check</a>";
+					output += "</div>";
+					if (obj.rstatus == 'CANCEL') {
+						output += "<span class = 'cancel_noshow_M'>Canceled</span>";
+					}else if(obj.rstatus == 'NOSHOW'){
+						output += "<span class = 'cancel_noshow_M'>No-Show</span>";
 					}
-					output += "</div>";			
-					output += "<img src='/image/jhs_img/1000_F_412408259_m13MpFAxpttIh3jxxsRl3rbsbS5SjnVL.jpg' width='20px' height='20px' >";
-					output += "<a href='#'><h4 class='sec_h4'>"+ obj.sname +"</h4></a>";			
-					output += "<h5>"+ obj.rdate +"<br>"+ obj.rtime +"-"+ obj.guestNumber +" People <br><small>"+ obj.slocShort +"</small></h5>";
-					output += "</div>";			
+					output += "<a href='#'><h4 class='sec_h4'>"+ obj.sname +"</h4></a>";
+					output += "<h5 id='cancel_re' style='color:lightgrey;'>" + obj.rdate + "<br>" + obj.rtime + "-" + obj.guestNumber + " People <br></h5>";
+					output += "<h5 style='color:lightgrey;'><small style='color:lightgrey;'>" + obj.slocShort + "</small></h5>"
+					output += "</div>";
 					output += "</div>";			
 				}			
 				output += "<div>";
@@ -33,6 +38,7 @@ $(document).ready(function() {
 				$("div.mb_30").remove();
 				$("p#pooo").after(output);
 				pager(result.page.dbCount, result.page.pageCount, result.page.pageSize, result.page.reqPage);
+
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);

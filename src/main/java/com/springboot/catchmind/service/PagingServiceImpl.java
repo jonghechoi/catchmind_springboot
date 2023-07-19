@@ -75,9 +75,10 @@ public class PagingServiceImpl implements PagingService {
 		int dbCount = 0;
 		
 		if(pageDto.getServiceName().equals("visited")) {
-			dbCount = myDiningService.getTotalRowCount(pageDto.getMid());
+			dbCount = myDiningService.getTotalRowCount(pageDto);
+
 		}else if(pageDto.getServiceName().equals("cancel_noshow")) {
-			dbCount = myDiningService.getTotalRowCount(pageDto.getMid());
+			dbCount = myDiningService.getTotalRowCount(pageDto);
 		}
 		
 		if(dbCount % pageSize == 0){

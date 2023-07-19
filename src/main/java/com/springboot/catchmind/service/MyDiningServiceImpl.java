@@ -6,6 +6,8 @@ import com.springboot.catchmind.repository.MyDiningMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,11 +45,22 @@ public class MyDiningServiceImpl{
 		myDiningMapper.updateStatus();
 	}
 
-	public int getTotalRowCount(String mid) {
-		return myDiningMapper.totalRowCount(mid);
+	public int getTotalRowCount(PageDto pageDto) {
+		return myDiningMapper.totalRowCount(pageDto);
 	}
 
-	public int getUpdateCancelNoshow(String rid) { return myDiningMapper.updateCancelNoshow(rid);}
+	public int getUpdateCancelNoshow(String rid, String rdate) {
+		LocalDate currentDate = LocalDate.now();
+		String sysdate = currentDate.format(DateTimeFormatter.ISO_DATE);
+
+		if(rdate.equals(sysdate)) {
+			return myDiningMapper.updateNoshow(rid);
+
+		}else{
+			return myDiningMapper.updateCancel(rid);
+		}
+	}
+
 
 	public ArrayList<ScheduledDto> getCancelNoshow(PageDto pageDto) {
 		return myDiningMapper.cancelNoshow(pageDto);

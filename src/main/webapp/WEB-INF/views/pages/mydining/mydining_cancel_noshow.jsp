@@ -25,6 +25,15 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/jhsStyle.css">
     <link rel="stylesheet" href="/css/responsive.css">
+
+    <script>
+        let cancle_reservation = "${cancle_reservation}"
+        if(cancle_reservation == "ok") {
+            alert("Your reservation has been canceled");
+            window.opener.location.href = '/mydining_cancel_noshow';
+            window.close();
+        }
+    </script>
 </head>
 <body>
 <!--================Header Area =================-->
@@ -49,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
                             <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
-                            <li class="nav-item active"><a class="nav-link" href="/mydining_cancel_noshow">Visited</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
@@ -81,7 +90,7 @@
         <div class="page-cover text-center">
             <h2 class="page-cover-tittle">My Dining</h2>
             <ol class="breadcrumb">
-                <li class="active">Scheduled</li>
+                <li class="active">Cancel/No-Show</li>
                 <li><a href="/mydining_visited">Visited</a></li>
             </ol>
         </div>
@@ -93,10 +102,11 @@
 <section class="accomodation_area section_gap">
     <div class="container">
         <div class="section_title text-center">
-            <h2 class="title_color">Reservation Scheduled</h2>
-            <p>Check the information of the restaurant you reserved</p>
+            <h2 class="title_color">Cancel / No-Show</h2>
+            <p>Disadvantages may apply in case of cancellation or no-show</p>
         </div>
-        <div class="row mb_30">
+        <p id="pooo"></p>
+        <%--<div class="row mb_30">
             <c:forEach var="scheduledVo" items="${list}">
                 <div class="col-lg-3 col-sm-6">
                     <div class="accomodation_item text-center">
@@ -109,7 +119,7 @@
                         <h5>${scheduledVo.rdate }<br> ${scheduledVo.rtime } - ${scheduledVo.guestNumber } People <br><small>${scheduledVo.slocShort}</small></h5>
                     </div>
                 </div>
-            </c:forEach>
+            </c:forEach>--%>
         </div>
 </section>
 <!--================ Accomodation Area  =================-->
@@ -176,7 +186,6 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/popper.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>

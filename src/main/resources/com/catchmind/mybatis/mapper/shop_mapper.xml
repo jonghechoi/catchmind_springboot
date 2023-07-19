@@ -6,14 +6,36 @@
 <mapper namespace="com.springboot.catchmind.repository.ShopMapper">
     <!-- start Dayoung -->
     <select id="shopSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ShopDto">
-        select sid, roleid, screatedate, sdeleteyn, aconfirmyn, aconfirmfinalyn,
-               sconfirmyn, spass, sname, sphone, sloc, slocx, slocy, slocshort, sintro,
-               smodifydate, sclosingdate, sopeninghour, sclosinghour,
-               sdeposit, smealfee, lunch, dinner, swebsite, sfoodstyle, smphoto,
+        select sid,
+               roleid,
+               screatedate,
+               sdeleteyn,
+               aconfirmyn,
+               aconfirmfinalyn,
+               sconfirmyn,
+               spass,
+               sname,
+               sphone,
+               sloc,
+               slocx,
+               slocy,
+               slocshort,
+               sintro,
+               smodifydate,
+               sclosingdate,
+               sopeninghour,
+               sclosinghour,
+               sdeposit,
+               smealfee,
+               lunch,
+               dinner,
+               swebsite,
+               sfoodstyle,
+               smphoto,
                to_char(sdeposit, 'L999,999') sdepositString,
                to_char(smealfee, 'L999,999') smealfeeString,
-               to_char(lunch, 'L999,999') lunchString,
-               to_char(dinner, 'L999,999') dinnerString
+               to_char(lunch, 'L999,999')    lunchString,
+               to_char(dinner, 'L999,999')   dinnerString
         from shop
         where sid = #{sid}
     </select>

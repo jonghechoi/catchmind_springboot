@@ -138,11 +138,12 @@ public class LoginController {
 		int result = memberService.getLoginIdCheck(memberDto);
 		if(result == 1) {
 			SessionDto sessionDto = memberService.getMemberLogin(memberDto);
-			log.info("sessionDto.getMid() -> {}",sessionDto.getMid());
+
 
 			if(sessionDto != null && sessionDto.getLoginResult() == 1) {
+				log.info("Login_mid -> {}",sessionDto.getMid());
 				session.setAttribute("sessionVo", sessionDto);
-				System.out.println(sessionDto.getLoginResult());
+
 				redirectAttributes.addFlashAttribute("login_complete", "ok");
 				return "redirect:/index";
 			}

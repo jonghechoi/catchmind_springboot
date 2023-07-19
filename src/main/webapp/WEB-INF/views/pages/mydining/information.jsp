@@ -60,6 +60,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href=/mypage">My Page</a></li>
@@ -150,7 +151,7 @@
                         		<span><img src="/image/jhs_img/free-icon-clock-88291.png" class="schedule_img" ></span>
                         		<span><img src="/image/jhs_img/free-icon-user-3856336.png" class="schedule_img" id="img_sch" ></span>
                         	</div>
-	                        	<span class="schedule_day1">${scheduledVo.rdate}</span>
+	                        	<span class="schedule_day1" id="span_rdate">${scheduledVo.rdate}</span>
 	                        	<span class="schedule_day1">${scheduledVo.rtime}</span>
 	                        	<span class="schedule_day1">${scheduledVo.guestNumber} person(s)</span>
                         </div>

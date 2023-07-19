@@ -25,8 +25,9 @@ $("#btn_cancleReservation").click(function(){
 	예약 취소 페이지 open
 **************************/
 	$('.btn_cancel').click(function() {
+		var rdate = $(span_rdate).text();
 	    var value = $(this).val();
-	    window.open('/cancle_reservation/'+value, '_blank', 'width=460,height=700');
+	    window.open('/cancle_reservation/'+value+'/'+rdate, '_blank', 'width=460,height=700');
 	});
 
 /***************************

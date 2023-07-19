@@ -33,15 +33,18 @@ public interface MyDiningMapper {
 	/**
 	 * visitedTotalRowCount
 	 */
-	int totalRowCount(String mid);
+	int totalRowCount(PageDto pageDto);
 
  	/**
 	 * RSTATUS ACTIVED -> COMPLETED
 	 */
 	void updateStatus();
 
-	/* Cancel Reservation : RSTATUS -> CANCEL or NOSHOW */
-	int updateCancelNoshow(String rid);
+	/* Cancel Reservation : RSTATUS -> NOSHOW */
+	int updateNoshow(String rid);
+
+	/* Cancel Reservation : RSTATUS -> CANCEL */
+	int updateCancel(String rid);
 
 	/**
 	 * mydining_cancel_noshow - paging

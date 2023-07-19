@@ -6,6 +6,7 @@ $(document).ready(function() {
 		$.ajax({
 			url: "mydining_visited_paging/"+page,
 			success: function(result){
+				console.log(result);
 				//let jdata = JSON.parse(result);
 				let output = "<div class='row mb_30'>";
 				for(obj of result.list) {
