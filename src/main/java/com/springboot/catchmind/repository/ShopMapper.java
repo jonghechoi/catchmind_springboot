@@ -1,7 +1,6 @@
 package com.springboot.catchmind.repository;
 
 import com.springboot.catchmind.dto.*;
-import com.springboot.catchmind.vo.ShopVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public interface ShopMapper {
     ShopDto shopSelect(String sid);
     Map<String, String> getPriceInString(String sid);
     //end Dayoung
-
 
     List<ShopDto> select(Map map);
 
@@ -50,4 +48,5 @@ public interface ShopMapper {
 
     /* Login - Shop */
     SessionDto shopLogin(ShopDto shopDto);
+    List<SearchDto> mapSelect(double lat, double lng);
 }

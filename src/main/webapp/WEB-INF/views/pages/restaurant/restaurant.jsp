@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!doctype html>  
+<!doctype html>
 <html lang="en">
 	<head>
 		<!-- Required meta tags -->
@@ -19,8 +19,8 @@
 		<link rel="stylesheet" href="/vendors/owl-carousel/owl.carousel.min.css">
 		<!-- main css -->
 		<link rel="stylesheet" href="/css/style.css">
-		<link rel="stylesheet" href="/css/style_dayoung.css">
 		<link rel="stylesheet" href="/css/responsive.css">
+		<link rel="stylesheet" href="/css/style_dayoung.css">
 		<!-- <script src="js/jquery-3.2.1.min.js"></script> -->
 		<script src="/js/popper.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
@@ -67,17 +67,17 @@
 																href="shop_reservation?sid=${sessionScope.sessionDto.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
-                            </c:if>     
+                            </c:if>
                             <c:if test="${sessionScope.sessionDto.roleId == 'ADMIN'}">
                             	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                         	</c:if>
                         </ul>
-                    </div> 
+                    </div>
                 </nav>
             </div>
         </header>
 		<!--================Header Area =================-->
-	
+
 		<!--================Breadcrumb Area =================-->
 		<section class="breadcrumb_area">
 			<div class="overlay bg-parallax" data-stellar-ratio="0.8"
@@ -94,7 +94,7 @@
 			</div>
 		</section>
 		<!--================Breadcrumb Area =================-->
-	
+
 		<!--================ About History Area  =================-->
 		<section class="about_history_area section_gap">
 			<div class="container">
@@ -130,7 +130,7 @@
 						</div>
 					</div>
 					<!--  End restaurant page mini info -->
-	
+
 					<!-- Start restaurant page mini photo-->
 					<div class="col-md-8">
 						<section class="testimonial_area section_gap">
@@ -159,13 +159,13 @@
 		</section>
 		<hr class="seperator">
 		<!--================ About History Area  =================-->
-	
+
 		<!--================ Facilities Area  =================-->
 		<section class="facilities_area section_gap">
 			<div class="overlay bg-parallax" data-stellar-ratio="0.8"
 				data-stellar-vertical-offset="0" data-background=""></div>
 			<div class="container">
-	
+
 				<!-- Start Notices from restaurant -->
 				<c:if test="${not empty ptitleNotNullList}"> <!-- if 조건 선언 -->
 				<div class="section_title text-center">
@@ -179,8 +179,9 @@
 								<p>${ptitleNotNullList.get(0).pcontents}</p>
 							</div>
 						</div>
-						<c:if test = "${ptitleNotNullList.size() > 1}"> 
-							<c:forEach var="rsPolicyVo" begin="1" end="${ptitleNotNullList.size() - 1}" step="1" items="${ptitleNotNullList}">
+						<c:if test = "${ptitleNotNullList.size() > 1}">
+							<c:forEach var="rsPolicyDto" begin="1" end="${ptitleNotNullList.size() - 1}" step="1"
+									   items="${ptitleNotNullList}">
 								<div class="res_notice_block">
 									<div class="res_notice_icon2">
 										<div class="img2"></div>
@@ -196,49 +197,49 @@
 				<hr class="seperator">
 				</c:if>
 				<!-- End Notices from restaurant -->
-	
+
 				<div class="facilities_icon">
 					<div class="section-body pt-20">
 						<div class="restaurant-features mb-20">
 							<c:if test="${facilityDto.parking eq 1}">
-								<span class="feature-item"> 
-									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_parking.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_parking.svg" class="icon">
 									<span class="label">Parking</span>
 								</span>
 							</c:if>
 							<c:if test="${facilityDto.valet eq 1}">
-								<span class="feature-item"> 
-									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_valet_parking.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_valet_parking.svg" class="icon">
 									<span class="label">Valet</span>
 								</span>
 							</c:if>
 							<c:if test="${facilityDto.corkage eq 1}">
-								<span class="feature-item"> 
-									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_corkage.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_corkage.svg" class="icon">
 									<span class="label">Corkage</span>
 								</span>
 							</c:if>
 							<c:if test="${facilityDto.adultonly eq 1}">
-								<span class="feature-item"> 
-									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_no_kids.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_no_kids.svg" class="icon">
 									<span class="label">Adult-Only</span>
 								</span>
 							</c:if>
 							<c:if test="${facilityDto.sommelier eq 1}">
-								<span class="feature-item"> 
-									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_sommelier.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons-mood/ic_sommelier.svg" class="icon">
 									<span class="label">Sommelier</span>
 								</span>
 							</c:if>
 							<c:if test="${facilityDto.lettering eq 1}">
-								<span class="feature-item"> 
-									<img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_lettering.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_lettering.svg" class="icon">
 									<span class="label">Lettering</span>
 								</span>
 							</c:if>
 							<c:if test="${facilityDto.rentals eq 1}">
-								<span class="feature-item"> 
-									<img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_rent.svg" class="icon"> 
+								<span class="feature-item">
+									<img src="https://catchtable.co.kr/web-static/static_webapp_v2/img/icons-mood/ic_rent.svg" class="icon">
 									<span class="label">Rentals</span>
 								</span>
 							</c:if>
@@ -246,8 +247,8 @@
 					</div>
 				</div>
 				<hr class="seperator2">
-				
-				
+
+
 				<div class="__notes ml--20 mr--20 open">
 					<c:if test="${not empty facilityDto.parkingdesc}">
 						<div class="__notes-item">
@@ -310,7 +311,7 @@
 			</div>
 		</section>
 		<!--================ Facilities Area  =================-->
-	
+
 		<!--================ Testimonial Area  =================-->
 		<section class="testimonial_area section_gap">
 			<div class="container">
@@ -345,7 +346,7 @@
 				</section>
 				<hr class="seperator">
 				<!-- End restaurant page menu-->
-	
+
 				<!-- Start restuarant page reservation-->
 				<section>
 					<form name="reservationForm" action="/reservation_proc" method="post">
@@ -413,7 +414,7 @@
 				</section>
 				<hr class="seperator">
 				<!-- End restuarant page reservation-->
-	
+
 				<!-- Start restaurant page photo-->
 				<section class="section pt-30 pb-30">
 					<div class="container gutter-sm" style="margin:50px 0px;">
@@ -427,7 +428,7 @@
 						</div>
 						<div class="section-body">
 							<div class="photo-grid-list">
-								<c:forEach var="reviewVo" items="${reviewList}">
+								<c:forEach var="reviewDto" items="${reviewList}">
 									<div class="photo-grid-list-item">
 										<a class="tb">
 											<div class="img">
@@ -443,7 +444,7 @@
 				</section>
 				<hr class="seperator">
 				<!-- End restaurant page photo-->
-	
+
 				<!-- Start restaurant page recommended reviews-->
 				<section class="section pt-30 pb-30">
 					<div class="container gutter-sm">
@@ -457,15 +458,15 @@
 							<div class="section-body">
 								<div class="rating-summary mb-30">
 									<div class="rating">
-										<img src="image/dayoung_img/star.svg.png"> 
-											<span class="star">${starAvg}</span> 
+										<img src="/image/dayoung_img/star.svg.png">
+											<span class="star">${starAvg}</span>
 											<span class="count">(${totalReviewCount})</span>
 									</div>
 								</div>
 								<div class="v-scroll">
 									<div class="v-scroll-inner">
 										<div class="review-post-list">
-											<c:forEach var="reviewVo" items="${reviewList}">
+											<c:forEach var="reviewDto" items="${reviewList}">
 												<a class="review-post-list-item">
 													<div class="tb">
 														<div class="img"
@@ -494,7 +495,7 @@
 															</p>
 														</div>
 													</div>
-												</a> 
+												</a>
 											</c:forEach>
 											<!-- <div class="showall">
 												<a href="#" class="arrow"> <span>More</span>
@@ -509,7 +510,7 @@
 				</section>
 				<hr class="seperator">
 				<!-- End restaurant page recommended reviews-->
-	
+
 				<!-- Start restaurant page Location -->
 				<section class="section">
 					<div class="container gutter-sm">
@@ -530,7 +531,7 @@
 				</section>
 				<hr class="seperator2">
 				<!-- End restaurant page Location -->
-	
+
 				<!-- Start restaurant page Detailed Information -->
 				<section class="section">
 					<div class="container gutter-sm pb-20">
@@ -576,7 +577,7 @@
 									<dl>
 										<dt>Notes</dt>
 										<dd>
-											<c:forEach var="rsPolicyVo" items="${rsPolicyList}">
+											<c:forEach var="rsPolicyDto" items="${rsPolicyList}">
 												*${rsPolicyDto.pcontents}<br>
 											</c:forEach>
 										</dd>
@@ -588,19 +589,19 @@
 				</section>
 				<hr class="seperator2">
 				<!-- End restaurant page Detailed Information -->
-				
+
 			</div>
 		</section>
 		<hr class="seperator">
 		<!--================ Testimonial Area  =================-->
-	
+
 		<!--================ start footer Area  =================-->
 		<footer class="footer-area section_gap"
 			style="padding: 50px 0 0 0; background: rgb(255, 61, 0)">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3  col-md-6 col-sm-6 footer-widget1"
-						style="padding-right: 50px width:370px">
+						style="padding-right: 50px; width:370px;">
 						<div class="single-footer-widget single-footer-widget-left">
 							<h6 class="footer_title">About Agency</h6>
 							<p style="color: white">
@@ -662,7 +663,7 @@
 			</div>
 		</footer>
 		<!--================ End footer Area  =================-->
-	
+
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
@@ -690,18 +691,18 @@
 						break;
 					}
 				}
-				
+
 				$('#datepicker').datepicker({
 					format : "yyyy-mm-dd",
-					startDate: '0d', 
+					startDate: '0d',
 					endDate: '+1m',
 					todayHighlight: true,
 					daysOfWeekDisabled: [dayoffnum] // 월요일(1) 비활성화
 				}).datepicker("setDate", new Date());
-			
+
 			});
 		</script>
-		
+
 		<!-- Kako Map -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>
         <script>

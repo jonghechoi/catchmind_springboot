@@ -229,4 +229,13 @@
           AND R.RMODIFYDATE BETWEEN TO_DATE(#{startDate}, 'YY-MM-DD')
             AND TO_DATE(#{endDate}, 'YY-MM-DD')+1
     </select>
+
+    <select id="mapSelect" resultType="com.springboot.catchmind.dto.SearchDto">
+        SELECT SID, SNAME, SINTRO, REVIEWSTAR, SLOCSHORT, LUNCH, DINNER, SMPHOTO,  SLOC, SLOCX, SLOCY, SFOODSTYLE, SOPENINGHOUR
+        FROM (SELECT DISTINCT S.SID, S.SNAME, S.SINTRO, TRUNC(AVG(V.REVIEWSTAR),1) REVIEWSTAR, S.SLOCSHORT, S.LUNCH, S.DINNER, S.SMPHOTO,  S.SLOC, S.SLOCX, S.SLOCY, S.SFOODSTYLE, S.SOPENINGHOUR
+              FROM SHOP S
+                       FULL OUTER JOIN REVIEW V
+                                       ON S.SID = V.SID
+              GROUP BY S.SID, S.SNAME, S.SINTRO, S.SLOCSHORT, S.LUNCH, S.DINNER, S.SMPHOTO,  S.SLOC,  S.SLOCX, S.SLOCY, S.SFOODSTYLE, S.SOPENINGHOUR)
+    </select>
 </mapper>

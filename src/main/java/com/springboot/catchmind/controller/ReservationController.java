@@ -33,7 +33,7 @@ public class ReservationController {
     /*
      * booking_without_payment.do
      */
-    @PostMapping("booking_without_payment.do")
+    @PostMapping("booking_without_payment")
     public String booking_without_payment(BookingDto bookingDto)
             throws ParseException {
         //Map<String, String> param = new HashMap<String, String>();

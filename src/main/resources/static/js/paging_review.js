@@ -41,7 +41,11 @@ $(document).ready(function() {
 				$("table#reviewAdmin").remove();
 				$("section.review.s2").append(output);
 				
+<<<<<<< HEAD
 				pager(jdata.totals, jdata.maxSize, jdata.pageSize, jdata.page);
+=======
+				pager(result.page.dbCount, result.page.maxSize, result.page.pageSize, result.page.page);
+>>>>>>> master
 	
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){

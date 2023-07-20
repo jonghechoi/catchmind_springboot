@@ -20,17 +20,8 @@ public class IndexController {
 	/**
 	 *	Index
 	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@GetMapping("index")
 	public String index() {
-		return "index";
-	}
-
-	/**
-	 *	Index mapMarker
-	 */
-	@RequestMapping(value = "/index_mapMarker", method = RequestMethod.GET)
-	@ResponseBody
-	public String index_mapMarker(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
-		return mapService.mapMainToSearch(lat, lng);
+		return "/index";
 	}
 }

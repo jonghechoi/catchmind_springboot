@@ -1,52 +1,52 @@
 .accomodation_item {
-	margin-bottom: 30px;
-	box-shadow: 0 0 30px rgba(0,0,0,.05);
-	border-radius: 10px;
-}
-.accomodation_item .hotel_img .theme_btn {
-	position: absolute;
-	bottom: 20px;
-	left: 50%;
-	-webkit-transform: translate(-50%);
-	-ms-transform: translate(-50%);
-	transform: translate(-50%);
-	padding: 5px 14px;
-	max-width: 128px;
-	background:tomato;
-}
-.accomodation_item h5 {
-	font-size: 10pt;
-	line-height: 28px;
-	color: #52c5fd;
-	font-weight: 600;
-	margin-bottom: 0px;
-}
-.accomodation_item h5 small {
-	font-weight: 470;
-	color:rgb(255,53,0);
-	font-size: 14px;
-}
-.navbar {
-	background: #FF3D00;
-	padding: 0px 25px;
-}
-.about_content {
-	padding-right: 60px;
-	margin-top:40px;
-}
-
-.about_content p {
-	padding-top: 18px;
-	margin-top:42px;
-}
-.testimonial_area {
-	background: white;
-}
-.testimonial_slider .testimonial_item1 {
-	background: white;
-	padding: 40px 0px;
-}
-form .loginUl {
+    margin-bottom: 30px;
+    box-shadow: 0 0 30px rgba(0,0,0,.05);
+    border-radius: 10px;
+  }
+  .accomodation_item .hotel_img .theme_btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    padding: 5px 14px;
+    max-width: 128px;
+    background:tomato;
+  }
+  .accomodation_item h5 {
+    font-size: 10pt;
+    line-height: 28px;
+    color: #52c5fd;
+    font-weight: 600;
+    margin-bottom: 0px;
+  }
+  .accomodation_item h5 small {
+    font-weight: 470;
+    color:rgb(255,53,0);
+    font-size: 14px;
+  }
+  .navbar {
+    background: #FF3D00;
+    padding: 0px 25px;
+  }
+  .about_content {
+    padding-right: 60px;
+    margin-top:40px;
+  }
+  
+  .about_content p {
+    padding-top: 18px;
+    margin-top:42px;
+  }
+  .testimonial_area {
+    background: white;
+  }    
+  .testimonial_slider .testimonial_item1 {
+    background: white;
+    padding: 40px 0px;
+  }
+  form .loginUl {
 	list-style-type:none;
 	padding-left:100px;
 	margin:-70px 0px 90px 0px;
@@ -69,7 +69,6 @@ form .loginUl li label {
 	float:left;
 	opacity:0.8;
 }
-
 form .loginUl li input {
 	border:none;
 	border-bottom:1px solid #e8e8e8;
@@ -80,7 +79,6 @@ form .loginUl li input {
 }
 form .loginUl li:first-child {
 	padding-left:35px;
-	margin-top:40px;
 }
 form .loginUl li:nth-child(2) {
 	padding-left:35px;
@@ -90,7 +88,7 @@ form .loginUl li:last-child {
 }
 form .loginUl li:last-child > button:first-child {
 	margin-right:10px;
-	margin-top:48px;
+	margin-top:90px;
 	width:400px;
 	opacity:1;
 	border:none;
@@ -99,14 +97,6 @@ form .loginUl li:nth-child(3) {
 	text-align:right;
 	margin:10px 0px 10px 40px;
 	padding-right:140px;
-}
-
-form .loginUl li span {
-	padding-top:20px;
-	cursor:pointer;
-	margin-right:10px;
-	color:black;
-	text-decoration:underline;
 }
 form .loginUl li span {
 	padding-top:20px;
@@ -118,18 +108,11 @@ form .loginUl li span {
 form .loginUl li span a {
 	color:black;
 	text-decoration:underline;
-	font-size:9pt;
+	font-size:8pt;
 	font-weight:500;
 }
 form .loginUl li span a:first-child {
 	margin-right:10px;
-}
-.a_find_ownerIdPass {
-	color:black;
-	text-decoration:underline;
-	font-size:8pt;
-	font-weight:500;
-	padding-right:50px;
 }
 .btn_style {
 	width:400px;
@@ -159,15 +142,9 @@ div.dkakao {
 	border-radius:10px;
 	position:absolute;
 	left:365px;
-	top:255px;
+	top:300px;
 	margin-top:20px;
 	text-align:center;
-}
-.div111{
-	margin-top:-50px;
-}
-.div222{
-	margin-top:50px;
 }
 .kakaoSpan {
 	color:black;
@@ -238,7 +215,7 @@ input[name='roleId'] {
 	margin-left:18px;
 }
 /***********************
- 	�뜝�럩�뤂�뜝�럩�쐸�뤆�룊�삕�뜝�럩肉�
+ 	회원가입
 ************************/
 section.join Form ul {
 	font-size:10pt;
@@ -267,31 +244,34 @@ section.join Form ul li label {
 	border:1px solid #ddd;
 	border-radius:5px;
 }
-input[name='memail1'], input[name='memail2']{
-	width:106px;
+input[name='email1'], input[name='email2']{
+	width:200px;
 	padding:8px 20px;
 	border:1px solid #ddd;
 	border-radius:5px;
 }
-input[name='memail2'] +select, select[name='mphone1'] {
+input[name='email2'] +select, select[name='phone1'] {
 	padding:2px 0px;
 	border-radius:5px;
 	border:1px solid lightgray;
 	font-size:10pt;
 	margin-left:3px;
 }
-#email3 {
-	border:1px solid lightgray;
-	border-radius:5px;
-	margin-left:5px;
-}
-input[name='mphone2'], input[name='mphone3'] {
+input[name='phone2'], input[name='phone3'] {
 	border:1px solid #ddd;
 	border-radius:4px;
 	width:80px;
 	padding:5px 0;
 	text-indent:2px;
 	text-align:center;
+}
+textarea[name='intro'] {
+	border:1px solid #ddd;
+	border-radius:4px;
+	width:60%;
+	height:100px;
+	font-size:10pt;
+	padding:8px 10px;
 }
 input[type='radio'] +span, input[type='radio'], input[type='checkbox'], input[type='checkbox'] +span{
 	font-size:9pt;
@@ -318,26 +298,22 @@ div.loginTypeCheck {
 	top:-20px;
 }
 .title {
-	font-size: 36px;
-	line-height: 45px;
-	font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+  font-weight: 600;
 }
 .joinTypeCheck {
 	margin-left:40px;
 }
-.review_star_s {
-	color:yellow;
-}
 /**********************
-	�뜝�럥�닡�뜝�럩逾졾뜝�럥�꺏, 占쎈쑏熬곣뫅�삕�뵓怨뺣쐡占쎄퉰 嶺뚢돦堉먪뵳占�
+		아이디 찾기
 **********************/
 div.Find {
 	height:500px;
 	text-align:center;
 }
 input.findText {
-	border:1px solid #ddd;
-	border-radius:5px;
+	border-radius:10px;
 	width:300px;
 	padding:10px;
 	margin-top:10px;
@@ -348,17 +324,6 @@ input.findText {
 	width:325px;
 	padding:10px;
 	margin-top:40px;
-	border:none;
-	color:white;
-	font-weight:600;
-	cursor:pointer;
-}
-.btnFind1 {
-	background:tomato;
-	border-radius:10px;
-	width:340px;
-	padding:10px;
-	margin-top:231px;
 	border:none;
 	color:white;
 	font-weight:600;
@@ -376,61 +341,45 @@ input.findText {
 }
 
 /**************************
-		癰귢쑴�젎
+		리뷰 페이지
 **************************/
-.field_star{
-	direction: rtl;
-	display: inline-block;
-	border:0;
-	margin:25px;
+#myform fieldset{
+    direction: rtl;
+    border:0;
+    margin:10px 0px;
 }
-.field_star:first-child{
-	margin-top:90px;
+#myform fieldset:first-child{
+    margin-top:90px;
 }
-/* .field_star legend{
+#myform fieldset legend{
     text-align: right;
-} */
-input[name="tasteStar"]{
-	display: none;
 }
-input[name="moodStar"]{
-	display: none;
+#myform input[type=radio]{
+    display: none;
 }
-input[name="serviceStar"]{
-	display: none;
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
 }
-.review_label{
-	font-size: 3em;
-	color: transparent;
-	text-shadow: 0 0 0 #f0f0f0;
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-.review_label:hover{
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-.review_label:hover ~ label{
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
-input[type='radio']:checked ~ label[for^="moodStar"]{
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-input[type='radio']:checked ~ label[for^="serviceStar"]{
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-input[type='radio']:checked ~ label[for^="tasteStar"]{
-	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-.btn_fileUpload {
-	margin:60px 0px;
-}
-#reviewcontent {
-	width: 400px;
-	height: 150px;
-	padding: 10px;
-	box-sizing: border-box;
-	border: solid 1.5px #D3D3D3;
-	border-radius: 5px;
-	font-size: 16px;
-	resize: none;
+#reviewContents {
+    width: 400px;
+    height: 150px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
 }
 h3.photo {
 	margin:40px 10px 10px 10px;
@@ -463,19 +412,15 @@ span.upload {
 .d1photo {
 	margin-top:-104px;
 }
-#previewImage {
-	width:200px; height:125px;
-	display:block;
-}
 /**********************
-	嶺뚮씭�쐠占쎈턄�뜝�럥堉꾢뜝�럩逾졾뜝�럥六� - �뜝�럩援쇿뜝�럥�뒎�뜝�럥由� �뜝�럥六쇔뜝�럥堉�
+	예약된 레스토랑 페이지
 **********************/
 .schedule_day1 {
 	padding:0px 18px;
-
+	
 }
 .schedule_img {
-	margin-left:50px;
+	margin-left:58px;
 	padding-bottom:10px;
 }
 .sc_p {
@@ -520,7 +465,7 @@ span.upload {
 	padding-bottom:80px;
 }
 /******************
-	占썩뫀踰륅옙苑�
+	공통
 *******************/
 .btn_style {
 	width:130px;
@@ -534,7 +479,7 @@ span.upload {
 	cursor:pointer;
 	opacity:1;
 }
-.btn_style2 { /* �뜝�럩�뤂�뜝�럥�맶�뜝�럥吏쀥뜝�럩援꿨뜝�럥�맶�뜝�럥吏쀥뜝�럩援꿨뜝�럥�맶�뜝�럥吏쀥뜝�럩援�-�뜝�럥�맶�뜝�럥�넰占쎈눀占쎈튂占쎄뎡嶺뚳퐢�샑野껓옙, �뜝�럥�맶�뜝�럥�냲�뜝�럥�떚�뜝�럩援꿰춯�돦堉껓옙�맶�뜝�럥吏쀥뜝�럩援� �뜝�럥�맶�뜝�럥吏쀥뜝�럩援꿨뜝�럥諭� �뜝�럥�맶�뜝�럥吏쀥뜝�럩援꿨뜝�룞�삕�뜝�럥�맶�뜝�럥吏쀥뜝�럩援� */
+.btn_style2 { /* ȸ������-�ߺ�üũ, �ּ�ã�� ��ư ��Ÿ�� */
 	width:80px;
 	padding:6px 0;
 	background:#777;
@@ -558,18 +503,14 @@ span.upload {
 	font-weight:700;
 	cursor:pointer;
 }
-input[name="tel"]{
-	display:inline-block;
-}
-
 /********************
  Footer
 ********************/
 .footer-widget1, .footer-widget2, .footer-widget3 {
-	margin-right: 80px;
+   margin-right: 80px;
 }
 .footer-widget2, footer-widget3 {
-	margin-left: 50px;
+   margin-left: 50px;
 }
 .single-footer-widget-left {
 	width: 330px

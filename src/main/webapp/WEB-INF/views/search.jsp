@@ -42,8 +42,8 @@
 					localStorage.setItem('check', JSON.stringify('none'));
 				}else if(JSON.parse(localStorage.getItem('check')) === 'imageClick') {
 					var searchQuery = localStorage.getItem('searchQuery');
-					var searchUrl = localStorage.getItem('searchUrl');
-					mainToSearch(searchQuery, searchUrl);
+					//var searchUrl = localStorage.getItem('searchUrl');
+					mainToSearch(searchQuery);
 					localStorage.setItem('check', JSON.stringify('none'));
 				}else if(JSON.parse(localStorage.getItem('check')) === 'bookNowClick') {
 					const bookNowDate = localStorage.getItem('bookNowDate');
@@ -62,7 +62,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.do"><img src="image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="/index"><img src="image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
