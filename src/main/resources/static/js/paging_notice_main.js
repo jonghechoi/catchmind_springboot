@@ -4,10 +4,8 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "notice_list_paging.do?page="+page,
+			url: "/notice_list_paging/"+page,
 			success: function(result){
-				let jdata = JSON.parse(result);
-				
 				let output = "<table class='board_list'>";
 				output += "<tr>";
 				output += "<td colspan='3'>";
@@ -19,10 +17,10 @@ $(document).ready(function() {
 				output += "<th>Reporting Date</th>";
 				output += "</tr>";
 
-				for(obj of jdata.jlist) {
+				for(obj of result.list) {
 					output += "<tr>";
 					output += "<td>" + obj.rno + "</td>";
-					output += "<td><a href='notice_content.do?nid=" + obj.nid + "'>" + obj.ntitle + "</a></td>";
+					output += "<td><a href='/notice_content/" + obj.nid + "'>" + obj.ntitle + "</a></td>";
 					output += "<td>" + obj.ncreatedate + "</td>";
 					output += "</tr>";
 				}				
@@ -35,12 +33,12 @@ $(document).ready(function() {
 				$("table.board_list").remove();
 				$("h1.title").after(output);
 				
-				pager(jdata.totals, jdata.maxSize, jdata.pageSize, jdata.page);
+				pager(result.page.dbCount, result.page.maxSize, result.page.pageSize, result.page.page);
 	
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           		//$(location).attr('href', "notice_list_paging.do?page="+e.page);
+	           		//$(location).attr('href', "notice_list_paging?page="+e.page);
 	           		
 	           		initAjax(e.page); 
 	           	});

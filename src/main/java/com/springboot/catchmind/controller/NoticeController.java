@@ -19,13 +19,9 @@ import java.util.Map;
 
 @Controller
 public class NoticeController {
-	
-	@Autowired
-	private NoticeServiceImpl noticeService;
+
 	@Autowired
 	private AdminServiceImpl adminService;
-	@Autowired
-	private PagingServiceImpl pagingService;
 
 	@GetMapping("notice")
 	public String notice() {

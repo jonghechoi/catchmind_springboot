@@ -17,15 +17,18 @@ import com.springboot.catchmind.vo.ShopVo;
 
 @Controller
 public class AdminController {
-	@Autowired
-	private MemberServiceImpl memberService;
-	@Autowired
-	private AdminServiceImpl adminService;
-	@Autowired
-	private ShopServiceImpl shopService;
-	@Autowired
-	private NoticeServiceImpl noticeService;
 
+	private final AdminServiceImpl adminService;
+
+	/* Constructor DI */
+	@Autowired
+	public AdminController(AdminServiceImpl adminService) {
+		this.adminService = adminService;
+	}
+
+	/**
+	 *	Admin
+	 */
 	@GetMapping("admin")
 	public String admin() {
 		return "/admin";
@@ -66,12 +69,6 @@ public class AdminController {
 		return "/pages/admin/admin_shop_information";
 	}
 
-	@RequestMapping(value = "/admin_shop_information_waiting_cancel.do", method = RequestMethod.GET)
-	@ResponseBody
-	public String admin_shop_information_waiting_cancel(String sid) {
-		return String.valueOf(adminService.getCancelUpdate(sid));
-	}
-
 	@GetMapping("admin_shop_registeration_check")
 	public String admin_shop_registeration_check() {
 		return "/pages/admin/admin_shop_registeration_check";
@@ -82,7 +79,6 @@ public class AdminController {
 		return "/pages/admin/admin_shop_registeration_enter";
 	}
 
-	@RequestMapping(value = "/admin_review", method = RequestMethod.GET)
 	/**
 	 *	Admin review
 	 */

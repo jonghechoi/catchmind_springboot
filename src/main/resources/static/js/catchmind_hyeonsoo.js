@@ -26,7 +26,7 @@ $("#btn_cancleReservation").click(function(){
 **************************/
 	$('.btn_cancel').click(function() {
 	    var value = $(this).val();
-	    window.open('cancle_reservation.do?rid=' + value, '_blank', 'width=460,height=700');
+	    window.open('/cancle_reservation/'+value, '_blank', 'width=460,height=700');
 	});
 
 /***************************
@@ -78,7 +78,7 @@ $("#btn_cancleReservation").click(function(){
 				
 				$.ajax({
 					type : 'get',
-					url : "find_pass_emailCheck.do?memail="+memail,
+					url : "/find_pass_emailCheck/"+memail,
 					success : function (data) {
 						console.log("data : " +  data);
 						checkInput.attr('disabled',false);
@@ -239,16 +239,16 @@ $("#btn_cancleReservation").click(function(){
 	회원가입,아이디,비밀번호 찾기 창 띄우기
 ******************************/
 	$("#btnFindID").click(function(){
-		window.open("find_id.do", "_blank", "width=800,height=600");
+		window.open("find_id", "_blank", "width=800,height=600");
 	});
 	$("#btnFindPass").click(function(){
-		window.open("find_pass.do", "_blank", "width=800,height=650");
+		window.open("find_pass", "_blank", "width=800,height=650");
 	});
 	$("#btnSignUp").click(function(){
-   	 	window.open("join_consent.do", "_blank", "width=460,height=700");
+   	 	window.open("join_consent", "_blank", "width=460,height=700");
 	});
 	$("#btnFindPass1").click(function(){
-		window.open("find_pass.do", "_self", "width=800,height=650");
+		window.open("find_pass", "_self", "width=800,height=650");
 	});
 	$(".a_find_ownerIdPass").click(function(){
 		alert("Contact the manager");
@@ -339,7 +339,7 @@ $(document).ready(function(){
 		}else {
 			//ajax
 			$.ajax({
-				url :"id_check.do?memberId="+ inputId ,
+				url :"/id_check/"+inputId ,
 				success : function(result) {
 					if(result == 0){
 						$("#idCheck_msg1").text("O").css("color","mediumseagreen")
@@ -393,9 +393,9 @@ $(document).ready(function(){
 /********************************
 	회원가입 공백, 특수문자 체크
 *********************************/
-	 $('#id1').on('blur', function() {
+$('#id1').on('keyup', function() {
         var memberId = $(this).val();
-        var regex = /^(?=.*[a-z0-9])[a-z0-9]{6,}$/; // 6자 이상의 영문 또는 영문 + 숫자
+	var regex = /^(?=.*[a-z0-9])[a-z0-9]{6,}$/g; // 6자 이상의 영문 또는 영문 + 숫자
 
         if (regex.test(memberId)) {
           $('#idCheck_msg').text("This ID is available").css("color","mediumseagreen").css("font-size","11px").css("display","block").css("padding","4px 0px");
@@ -411,15 +411,17 @@ $(document).ready(function(){
       
 	$("#name").on("keyup", function() {
 	  var name = $(this).val();
-	  var specialChars = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+		var specialChars = /[`~!@#$%^&*|\\\'\";:\/?]/g;
 	  
 	  if (/\s/.test(name)) {
-	    alert("Name should not contain spaces between characters.");
-	    $(this).val("").focus();
+			$('#nameCheck').text("Name should not contain spaces between characters.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Name should not contain spaces between characters.");
+			$(this).val(name.replace(specialChars, "")).focus();
 	    
 	  } else if (specialChars.test(name)) {
-	    alert("Name should not contain special characters.");
-	    $(this).val("").focus();
+			$('#nameCheck').text("Name should not contain special characters.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Name should not contain special characters.");
+			$(this).val(name.replace(specialChars, "")).focus();
 	  }
 	});
 	
@@ -429,11 +431,13 @@ $(document).ready(function(){
 	  var nonAlphanumericChars = /[^a-z0-9.@]/g;
 
 	  if (nonAlphanumericChars.test(email1)) {
-	    alert("Please enter a valid email format");
+			$('#emailCheck').text("Please enter a valid email format").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Please enter a valid email format");
 	    $("#email1").val(email1.replace(nonAlphanumericChars, "")).focus();
 	    
 	  } else if (nonAlphanumericChars.test(email2)) {
-	    alert("Please enter a valid email format");
+			$('#emailCheck').text("Please enter a valid email format").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("Please enter a valid email format");
 	    $("#email2").val(email2.replace(nonAlphanumericChars, "")).focus();
 	  }
 	  
@@ -445,11 +449,13 @@ $(document).ready(function(){
 	  var nonNumericChars = /[^0-9]/g;
 	  
      if(nonNumericChars.test(phone2)) {
-	     alert("You can only enter numbers for phone numbers.");
+			$('#phoneCheck').text("You can only enter numbers for phone numbers.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("You can only enter numbers for phone numbers.");
 		 $("#phone2").val(phone2.replace(nonNumericChars, "")).focus();
 	    
 	 }else if (nonNumericChars.test(phone3)) {
-		 alert("You can only enter numbers for phone numbers.");
+			$('#phoneCheck').text("You can only enter numbers for phone numbers.").css("color","red").css("font-size","11px").css("display","block").css("padding","4px 0px");
+			//alert("You can only enter numbers for phone numbers.");
 		 $("#phone3").val(phone3.replace(nonNumericChars, "")).focus();
 	  }
 	});
@@ -458,23 +464,28 @@ $(document).ready(function(){
 	리뷰 유효성 체크
 *********************************/
 	$("#review_registe").click(function(){
-		if($("#reviewcontent").val() === ""){
+		if($("#reviewcontent").val() === "") {
 			alert("Please enter your Contents");
 			$("#reviewcontent").focus();
 			return false;
-			
-		}else if($("input[name='tasteStar']:checked").val() === ""){
+		}
+
+		if($("input[name='tasteStar']:checked").length == 0) {
 			alert("Please enter your TasteField Check");
 			return false;
+		}
 			
-		}else if($("input[name='moodStar']:checked").val() === ""){
+		if($("input[name='moodStar']:checked").length == 0) {
 			alert("Please enter your MoodField Check");
 			return false;
+		}
 			
-		}else if($("input[name='serviceStar']:checked").val() === ""){
+		if($("input[name='serviceStar']:checked").length == 0) { //.val 레거시 확인
 			alert("Please enter your SeviceField Check");
 			return false;
-		}else {
+		}
+		if($("#reviewcontent").val() != "" && $("input[name='tasteStar']:checked").length != 0 &&
+			$("input[name='moodStar']:checked").length != 0 && $("input[name='serviceStar']:checked").length != 0){
 			var tasteRating = $("input[name='tasteStar']:checked").val();
 		    var moodRating = $("input[name='moodStar']:checked").val();
 		    var serviceRating = $("input[name='serviceStar']:checked").val();
@@ -533,7 +544,7 @@ $(".review_label").click(function() {
 			return false;
 		}else{
 			window.close();
-			window.open("join.do", "_blank", "width=900,height=800");
+			window.open("join", "_blank", "width=900,height=800");
 		}
 	});
 	$("#conset_disagree").click(function(){

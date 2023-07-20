@@ -24,8 +24,7 @@
 		<!-- <script src="js/jquery-3.2.1.min.js"></script> -->
 		<script src="/js/popper.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<%--		<script src="/js/jquery-3.6.4.min.js"></script>--%>
+		<script src="/js/jquery-3.6.4.min.js"></script>
 		<script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 		<script src="/js/catchmind_dayoung.js"></script>
 		<script src="https://www.jqueryscript.net/demo/Mobile-friendly-Custom-Scrollbar-Plugin-With-jQuery-NiceScroll/js/jquery.nicescroll.min.js"></script>

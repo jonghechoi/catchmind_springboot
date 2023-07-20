@@ -128,33 +128,20 @@
                             <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
-	                            <li class="nav-item submenu dropdown">
-	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
-	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
-	                                </ul>
-	                            </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
+                                    </ul>
+                                </li>
                             </c:if>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
-                        	</c:if>
+                                <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                            </c:if>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="mypage.do">My Page</a></li>
-                    <li class="nav-item"><a class="nav-link" href="notice.do">Notice</a></li>
-                    <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">Register</a></li>
-                                <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
-                            </ul>
-                        </li>
-                    </c:if>
-                    <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                        <li class="nav-item"><a class="nav-link" href="admin.do">Admin</a></li>
-                    </c:if>
+
                 </ul>
             </div>
         </nav>
@@ -170,7 +157,7 @@
                 <h6>Away from monotonous life</h6>
                 <h2>Catch Your Mind</h2>
                 <p><!--If you are looking at blank cassettes on the web, you may be very confused at the<br> difference in price. You may see some for as low as $.17 each.--></p>
-                <a href="search.do" class="btn theme_btn button_hover">Get Started</a>
+                <a href="/search" class="btn theme_btn button_hover">Get Started</a>
             </div>
         </div>
     </div>
@@ -216,15 +203,6 @@
                                             <option value="western">Western</option>
                                         </select>
                                     </div>
-                                    <!-- <div class="input-group">
-                                        <select class="wide">
-                                            <option data-display="Price">Browse by Price</option>
-                                            <option value="30000">Under �?30,000</option>
-                                            <option value="50000">�?30,000 ~ �?50,000</option>
-                                            <option value="100000">�?50,000 ~ �?100,000</option>
-                                            <option value="200000">�?100,000 & Above</option>
-                                        </select>
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-md-4" style="padding-top: 50px;" >
@@ -253,7 +231,7 @@
                     <div class="hotel_img">
                         <!--<img src="image/room1.jpg" alt="">-->
                         <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/sz7PepEw6dYzPacOpI-IvAQ/z7pepew6dyzpacopi-ivaq_2362011453534440.jpeg" alt="">
-                        <a href="restaurant.do?sid=S_0001" class="btn theme_btn button_hover">BOOK NOW</a>
+                        <a href="/restaurant/S_0001" class="btn theme_btn button_hover">BOOK NOW</a>
                     </div>
                     <a href="#"><h4 class="sec_h4">ZERO COMPLEX</h4></a>
                     <!--<h5>$250<small>/night</small></h5>-->
@@ -264,7 +242,7 @@
                     <div class="hotel_img">
                         <!--<img src="image/room2.jpg" alt="">-->
                         <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/s47jHT01fp_nCI0cT-mo03Q/47jht01fp_nci0ct-mo03q_2210422223601797_thumbMenuImage.png" alt="">
-                        <a href="restaurant.do?sid=S_0002" class="btn theme_btn button_hover">BOOK NOW</a>
+                        <a href="/restaurant/S_0002" class="btn theme_btn button_hover">BOOK NOW</a>
                     </div>
                     <a href="#"><h4 class="sec_h4">On 6.5</h4></a>
                     <!--<h5>$200<small>/night</small></h5>-->
@@ -275,7 +253,7 @@
                     <div class="hotel_img">
                         <!--<img src="image/room3.jpg" alt="">-->
                         <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/soBe_yC58BHX5nFzOdCBvkg/obe_yc58bhx5nfzodcbvkg_22122915183140452_thumbMenuImage.jpg" alt="">
-                        <a href="restaurant.do?sid=S_0003" class="btn theme_btn button_hover">BOOK NOW</a>
+                        <a href="/restaurant/S_0003" class="btn theme_btn button_hover">BOOK NOW</a>
                     </div>
                     <a href="#"><h4 class="sec_h4">JL Dessert Bar</h4></a>
                     <!--<h5>$750<small>/night</small></h5>-->
@@ -286,7 +264,7 @@
                     <div class="hotel_img">
                         <!--<img src="image/room4.jpg" alt="">-->
                         <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/swwlaIVPUq12IBc-Lgyxvjw/wwlaivpuq12ibc-lgyxvjw_233514275232871_thumbMenuImage.jpeg" alt="">
-                        <a href="restaurant.do?sid=S_0004" class="btn theme_btn button_hover">BOOK NOW</a>
+                        <a href="/restaurant/S_0004" class="btn theme_btn button_hover">BOOK NOW</a>
                     </div>
                     <a href="#"><h4 class="sec_h4">GIGAS</h4></a>
                     <!--<h5>$200<small>/night</small></h5>-->
@@ -304,7 +282,7 @@
                 <div class="about_content ">
                     <h2 class="title_index title_color">Browse<br>by Cuisine</h2>
                     <p>The best food is not far away. Enjoy the best food around you. Catchmind will only show you selected restaurants so that you can have the best meal.</p>
-                    <a href="search.do" class="button_hover theme_btn_two">Find Food you want</a>
+                    <a href="/search" class="button_hover theme_btn_two">Find Food you want</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -469,37 +447,28 @@
 
         localStorage.setItem('lat', JSON.stringify(latlng.getLat()));
         localStorage.setItem('lng', JSON.stringify(latlng.getLng()));
-        window.location.href = "search.do";
+        window.location.href = "/search";
     });
 
 
     $(".cuisine-image").click(function() {
         var cuisine = $(this).attr('alt');
-        var searchUrl = "search.do?searchQuery=" + encodeURIComponent(cuisine);
-        var searchQuery = getParameterByName("searchQuery", searchUrl);
-
         var check = 'imageClick';
+
         localStorage.setItem('check', JSON.stringify(check));
+        localStorage.setItem('searchQuery', JSON.stringify(cuisine).replace(/["']/g, ''));
 
-        localStorage.setItem('searchQuery', JSON.stringify(searchQuery).replace(/["']/g, ''));
-        localStorage.setItem('searchUrl', JSON.stringify(searchUrl));
-
-        window.location.href = "search.do";
-        //mainToSearch(searchQuery);
+        window.location.href = "/search";
     });
 
     $(".place-image").click(function() {
         var place = $(this).attr('alt');
-        var searchUrl = "search.do?searchQuery=" + encodeURIComponent(place);
-        var searchQuery = getParameterByName("searchQuery", searchUrl);
-
         var check = 'imageClick';
+
         localStorage.setItem('check', JSON.stringify(check));
+        localStorage.setItem('searchQuery', JSON.stringify(place).replace(/["']/g, ''));
 
-        localStorage.setItem('searchQuery', JSON.stringify(searchQuery).replace(/["']/g, ''));
-        localStorage.setItem('searchUrl', JSON.stringify(searchUrl));
-
-        window.location.href = "search.do";
+        window.location.href = "/search";
     });
 
     $(".book_now_btn").click(function() {
@@ -514,7 +483,7 @@
         localStorage.setItem('bookNowLocation', bookNowLocation.value);
         localStorage.setItem('bookNowCuisine', bookNowCuisine.value);
 
-        window.location.href = "search.do";
+        window.location.href = "/search";
     })
 </script>
 </body>
