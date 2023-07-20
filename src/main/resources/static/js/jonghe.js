@@ -71,7 +71,7 @@ $(document).ready(function() {
 	});			
 	
 	// review
-	$("#li_ReviewAdmin").click(function() {
+	$("#li_ReviewAdmin").click(function() {	
 		$("#memberIframe").css("display", "none");
 		$("#shopInformationIframe").css("display", "none");
 		$("#reserveIframe").css("display", "none");
@@ -96,8 +96,6 @@ $(document).ready(function() {
 		activeFunc(this);
 	});
 	/*======================= 네비게이션-바에서 메뉴 클릭시 관련 페이지 가져오기 =======================*/
-
-
 	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/
 	$("#btnMemberModification").click(function() {
 		$.ajax({
@@ -108,9 +106,7 @@ $(document).ready(function() {
 		});
   	});
 	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/
-
-
-
+	
 	/*======================= member_modify에서 버튼 누르면 정보 업데이트 =======================*/
 	$("#btnMemberModificationUpdate").click(function() {
 		if($("#inputName").val() == "") {
@@ -155,7 +151,7 @@ $(document).ready(function() {
 	/*======================= member_modify에서 버튼 누르면 정보 업데이트 =======================*/
 
 
-	
+
 	/*======================= admin 페이지의 notice_update에서 업데이트 성공적으로 되면 확인 alert추가 =======================*/
 	$("#btnNoticeModificationUpdate").click(function() {
 		if($("#titleInput").val() == "") {
@@ -188,6 +184,7 @@ $(document).ready(function() {
         	});
 		}
 	});	
+	
 	/*======================= admin 페이지의 notice_update에서 업데이트 성공적으로 되면 확인 alert추가 =======================*/
 
 
@@ -655,7 +652,7 @@ $(document).ready(function() {
 					outputDetail += "<span>" + obj.dinner + "</span>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";
-					outputDetail += "<div class='confirm'>";
+					outputDetail += "<div class='confirm'>";					
 					outputDetail += "</div>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";	
@@ -670,6 +667,8 @@ $(document).ready(function() {
 	});	
 	/*======================= admin_shop_information 페이지에서 (completed) =======================*/
 	/*======================= admin_review_detail 페이지에서 'selected review' 버튼 처리 =======================*/
+
+
 	$("#adminReviewSelected").click(function() {
 	    window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 	});
@@ -681,7 +680,6 @@ $(document).ready(function() {
 /*======================= index.jsp 페이지에서 book now =======================*/	
 function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 	$.ajax({
-		// url: "/search_list_book_now_proc/" + bookNowDate + "/" + bookNowLocation + "/" + bookNowCuisine,
 		url: "/search_list_book_now_proc",
 		method: "POST",
 		data: {
@@ -970,8 +968,7 @@ function bringPhoto(sid, count, photos) {
 		url:"/shop_information_photoBring",
 		method: "POST",
 		data: {
-			//sid : sid,
-			sid : 'S_0041',
+			sid : sid,
 			count : count,
 			photos : JSON.stringify(photos) 
 		},
