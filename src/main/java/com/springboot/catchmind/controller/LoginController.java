@@ -74,6 +74,7 @@ public class LoginController {
 			
 			if(shopIdCheck == 1) {
 				SessionDto sessionDto = shopService.getShopLogin(shopDto);
+				log.info("Login_Shop -> {}", sessionDto.getSid());
 				session.setAttribute("sessionVo", sessionDto);
 				
 				redirectAttributes.addFlashAttribute("loginRole_complete", "ok");

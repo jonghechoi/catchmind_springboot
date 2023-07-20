@@ -292,7 +292,7 @@ $("#btnFindPass_p").click(function(){
 }); //ready
 
 /***********************************
-	이메일 체크
+	회원가입 - 이메일 체크
 ************************************/
 $(document).ready(function(){
 	$("#email3").on("change", function(){

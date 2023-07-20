@@ -50,9 +50,8 @@ public class MyDiningRestController {
         String mid = sessionVo.getMid();
 
         PageDto pageDto = pagingService.getVisitedResult(new PageDto(page, "cancel_noshow", mid));
-        ArrayList<ScheduledDto> list = myDiningService.getCancelNoshow(pageDto);
 
-        map.put("list", list);
+        map.put("list", myDiningService.getCancelNoshow(pageDto));
         map.put("page", pageDto);
 
         return map;

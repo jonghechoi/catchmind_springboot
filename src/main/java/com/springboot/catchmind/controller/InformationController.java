@@ -70,6 +70,8 @@ public class InformationController {
 
 		if(cancelResult == 1) {
 			if(result == 1) {
+				log.info("Cancel RID Number ->", rid);
+
 				redirectAttributes.addFlashAttribute("cancle_reservation", "ok");
 				viewName = "redirect:/mydining_cancel_noshow";
 			}
