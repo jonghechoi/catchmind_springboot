@@ -68,7 +68,6 @@ public class InformationController {
 		int result = myDiningService.getUpdateDeleteYN(rid);
 		int cancelResult = myDiningService.getUpdateCancelNoshow(rid, rdate);
 
-		System.out.println(cancelResult);
 		if(cancelResult == 1) {
 			if(result == 1) {
 				redirectAttributes.addFlashAttribute("cancle_reservation", "ok");

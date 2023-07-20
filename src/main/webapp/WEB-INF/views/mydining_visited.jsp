@@ -90,7 +90,7 @@
                     <h2 class="page-cover-tittle">My Dining</h2>
                     <ol class="breadcrumb">
                         <li class="active">Visited</li>
-                        <li><a href="/mydining_scheduled">Scheduled</a></li> <!-- 링크로 넘어갈때 mid 가져가야함  -->
+                        <li><a href="/mydining_cancel_noshow">Cancel/No-Show</a></li> <!-- 링크로 넘어갈때 mid 가져가야함  -->
                     </ol>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,8 +50,9 @@ public class MyDiningRestController {
         String mid = sessionVo.getMid();
 
         PageDto pageDto = pagingService.getVisitedResult(new PageDto(page, "cancel_noshow", mid));
+        ArrayList<ScheduledDto> list = myDiningService.getCancelNoshow(pageDto);
 
-        map.put("list", myDiningService.getCancelNoshow(pageDto));
+        map.put("list", list);
         map.put("page", pageDto);
 
         return map;

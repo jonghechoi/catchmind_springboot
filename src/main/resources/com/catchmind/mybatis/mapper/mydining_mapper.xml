@@ -75,7 +75,7 @@
 						 R.RSTATUS RSTATUS, R.REVIEWYN, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
 				  from MEMBER M, SHOP S, RESERVATION R
 				  WHERE R.MID = M.MID AND R.SID = S.SID
-					and M.MID = #{mid} and RSTATUS = 'CANCEL' OR RSTATUS = 'NOSHOW' AND R.DELETEYN = 'Y'
+					and M.MID = #{mid} and R.DELETEYN = 'Y' AND (RSTATUS = 'CANCEL' OR RSTATUS = 'NOSHOW')
 				  order by rdate desc, RTIME))
 		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
