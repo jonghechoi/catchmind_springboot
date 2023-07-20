@@ -4,8 +4,10 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "/admin_review_list/" + page,
+			url: "admin_review_list.do?page="+page,
 			success: function(result){
+				let jdata = JSON.parse(result);
+				
 				let output = "<table id='reviewAdmin'>";
 				output += "<tr>";
 				output += "<th>No</th>";
@@ -17,7 +19,7 @@ $(document).ready(function() {
 				output += "<th></th>";
 				output += "</tr>";
 				
-				for(obj of result.list) {
+				for(obj of jdata.jlist) {
 					output += "<tr>";
 					output += "<td>" + obj.rno + "</td>";
 					output += "<td>" + obj.mname + "</td>";
@@ -39,12 +41,16 @@ $(document).ready(function() {
 				$("table#reviewAdmin").remove();
 				$("section.review.s2").append(output);
 				
+<<<<<<< HEAD
+				pager(jdata.totals, jdata.maxSize, jdata.pageSize, jdata.page);
+=======
 				pager(result.page.dbCount, result.page.maxSize, result.page.pageSize, result.page.page);
+>>>>>>> master
 	
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           		//$(location).attr('href', "notice_list_paging?page="+e.page);
+	           		//$(location).attr('href', "notice_list_paging.do?page="+e.page);
 	           		
 	           		initAjax(e.page); 
 	           	});
@@ -76,8 +82,11 @@ $(document).ready(function() {
 	/*======================= admin 페이지에서 review_detail =======================*/
 	function adminReviewDatail(rid) {
 		$(document).on("click", "#btnReviewDetail_" + rid, function() {
-			const popup = window.open("/admin_review_detail/true/" + rid, 'Review Detail', 'width=700px,height=1200px, scrollbars=yes');
+			const popup = window.open("admin_review_detail.do?goMain=true&rid=" + rid, 'Review Detail', 'width=700px,height=1200px, scrollbars=yes');
 		});		
 	}	
+
+
+  	
   	/*======================= admin 페이지에서 review_detail =======================*/
 });

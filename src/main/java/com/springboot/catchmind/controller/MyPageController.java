@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import com.springboot.catchmind.dto.SessionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,7 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public ModelAndView mypage(HttpSession session) {
 		ModelAndView model = new ModelAndView();
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
 		MemberVo memberList = memberDao.nameSelect(mid);
 

@@ -10,7 +10,7 @@
        <link rel="icon" href="/image/catchcon.png" type="image/png">
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
-       <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/vendors/linericon/style.css">
@@ -23,15 +23,7 @@
 		<link rel="stylesheet" href="/css/jhsStyle.css">
         <link rel="stylesheet" href="/css/responsive.css">
         
-        <script>
-        	let cancle_reservation = "${cancle_reservation}"
-        	if(cancle_reservation == "ok") {
-        		alert("Your reservation has been canceled");
-        		window.opener.location.href = 'mydining_scheduled';
-        		window.close();
-        	}
-        </script>
-        
+
     </head>
     <body>
         <!--================Header Area =================-->
@@ -39,7 +31,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index"><img src="/image/catchmind.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="/index"><img src="/image/catchmind.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -56,13 +48,14 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="/shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
                                         <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
@@ -70,7 +63,7 @@
 	                            </li>
                             </c:if>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                             </c:if>
                         <!--================ Menu =================-->
                         </ul>
@@ -123,7 +116,7 @@
                <footer class="footer-area section_gap" style="padding:50px 0 0 0; background:rgb(255, 61, 0)">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3  col-md-6 col-sm-6 footer-widget1" style="padding-right:50px width:370px">
+                    <div class="col-lg-3  col-md-6 col-sm-6 footer-widget1" style="padding-right:50px; width:370px">
                         <div class="single-footer-widget single-footer-widget-left">
                             <h6 class="footer_title">About Agency</h6>
                             <p style="color:white">WAD Corp.

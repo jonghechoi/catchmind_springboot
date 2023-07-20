@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/style_jonghe.css">
     <link rel="stylesheet" href="/css/responsive.css">
-    <script src="/js/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
 
         
@@ -141,7 +141,6 @@
                             </c:if>
                         </ul>
                     </li>
-
                 </ul>
             </div>
         </nav>

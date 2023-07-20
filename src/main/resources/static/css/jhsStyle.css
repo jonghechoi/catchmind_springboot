@@ -513,5 +513,27 @@ span.upload {
    margin-left: 50px;
 }
 .single-footer-widget-left {
-   width: 330px
+	width: 330px
+}
+.roleLoginType {
+	border:1px solid red;
+}
+/********************
+	find_id
+*******************/
+.email22{
+	width:100px;
+	padding:8px 20px;
+	border:1px solid #ddd;
+	border-radius:5px;
+}
+/*******************
+	cancel / noshow
+*******************/
+.cancel_noshow_M{
+	border-radius: 10px;
+	color: rgb(255,74,17);
+	background: rgb(255,235,229);
+	font-weight: 500;
+	padding: 4px;
 }

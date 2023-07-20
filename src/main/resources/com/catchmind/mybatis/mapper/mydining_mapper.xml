@@ -30,6 +30,17 @@
 		where mid = #{mid} and sid = #{sid}
 	</select>
 
+	<update id="updateNoshow" parameterType="String">
+		UPDATE RESERVATION
+			SET RSTATUS ='NOSHOW'
+			WHERE RID = #{rid}
+	</update>
+
+	<update id="updateCancel" parameterType="String">
+		UPDATE RESERVATION
+			SET RSTATUS ='CANCEL'
+			WHERE RID = #{rid}
+	</update>
 
 	<update id="updateDeleteYN" parameterType="String">
 		UPDATE RESERVATION
@@ -43,21 +54,45 @@
 		WHERE to_date(rdate,'yyyy-mm-dd') &lt;	to_date(sysdate,'yyyy-mm-dd') AND RSTATUS = 'ACTIVE'
 	</update>
 
-	<select id="totalRowCount" parameterType="String" resultType="int">
+	<select id="totalRowCount" parameterType="com.springboot.catchmind.dto.PageDto" resultType="int">
 		select count(*)
 		from reservation
-		where mid = #{mid} and rstatus = 'COMPLETED' AND DELETEYN = 'N'
+		<if test="serviceName == 'visited'">
+			where MID = #{mid} and RSTATUS = 'COMPLETED' AND DELETEYN = 'N'
+		</if>
+		<if test="serviceName == 'cancel_noshow'">
+			where MID = #{mid} and RSTATUS = 'CANCEL' OR rstatus = 'NOSHOW' AND DELETEYN = 'Y'
+		</if>
 	</select>
 
-	<select id="visitedSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ScheduledDto">
-		select MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
-		from(select M.MID MID,S.SID SID,R.RID RID, M.MEMBERID MEMBERID, M.MNAME MNAME, M.TEL TEL, M.MPHONE MPHONE, S.SNAME SNAME,
-					S.SLOCSHORT SLOCSHORT, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER, R.RPHONE RPHONE,
-					R.RSTATUS RSTATUS, R.REVIEWYN, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
-			 from MEMBER M, SHOP S, RESERVATION R
-			 WHERE R.MID = M.MID AND R.SID = S.SID
-			 ORDER BY RDATE DESC, RTIME desc)
-		WHERE MID = #{mid} AND RSTATUS = 'COMPLETED' AND DELETEYN = 'N'
+	<select id="cancelNoshow" parameterType="com.springboot.catchmind.dto.PageDto" resultType="com.springboot.catchmind.dto.ScheduledDto">
+		select RNO,MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
+		from
+			(select RNO,MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
+			 from
+				 (select ROWNUM RNO, M.MID MID,S.SID SID,R.RID RID, M.MEMBERID MEMBERID, M.MNAME MNAME, M.TEL TEL, M.MPHONE MPHONE, S.SNAME SNAME,
+						 S.SLOCSHORT SLOCSHORT, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER, R.RPHONE RPHONE,
+						 R.RSTATUS RSTATUS, R.REVIEWYN, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
+				  from MEMBER M, SHOP S, RESERVATION R
+				  WHERE R.MID = M.MID AND R.SID = S.SID
+					and M.MID = #{mid} and R.DELETEYN = 'Y' AND (RSTATUS = 'CANCEL' OR RSTATUS = 'NOSHOW')
+				  order by rdate desc, RTIME))
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<select id="visitedSelect" parameterType="com.springboot.catchmind.dto.PageDto" resultType="com.springboot.catchmind.dto.ScheduledDto">
+		select RNO,MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
+		from
+			(select RNO,MID,SID,RID, MEMBERID, MNAME, TEL, MPHONE,SNAME,SLOCSHORT, RDATE, RTIME, GUESTNUMBER, RPHONE, RSTATUS, REVIEWYN, SMPHOTO, DELETEYN
+			 from
+				 (select ROWNUM RNO, M.MID MID,S.SID SID,R.RID RID, M.MEMBERID MEMBERID, M.MNAME MNAME, M.TEL TEL, M.MPHONE MPHONE, S.SNAME SNAME,
+						 S.SLOCSHORT SLOCSHORT, to_char(R.RDATE,'yyyy-mm-dd') RDATE, R.RTIME RTIME, R.GUESTNUMBER GUESTNUMBER, R.RPHONE RPHONE,
+						 R.RSTATUS RSTATUS, R.REVIEWYN, S.SMPHOTO SMPHOTO, R.DELETEYN DELETEYN
+				  from MEMBER M, SHOP S, RESERVATION R
+				  WHERE R.MID = M.MID AND R.SID = S.SID
+					and M.MID = #{mid} and RSTATUS = 'COMPLETED' AND R.DELETEYN = 'N'
+				  order by rdate desc, RTIME))
+		WHERE RNO BETWEEN #{startCount} AND #{endCount}
 	</select>
 
 	<select id="information" parameterType="map" resultType="com.springboot.catchmind.dto.ScheduledDto">

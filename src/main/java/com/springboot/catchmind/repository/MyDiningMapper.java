@@ -1,5 +1,6 @@
 package com.springboot.catchmind.repository;
 
+import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.dto.ScheduledDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -32,17 +33,28 @@ public interface MyDiningMapper {
 	/**
 	 * visitedTotalRowCount
 	 */
-	int totalRowCount(String mid);
+	int totalRowCount(PageDto pageDto);
 
  	/**
 	 * RSTATUS ACTIVED -> COMPLETED
 	 */
 	void updateStatus();
 
+	/* Cancel Reservation : RSTATUS -> NOSHOW */
+	int updateNoshow(String rid);
+
+	/* Cancel Reservation : RSTATUS -> CANCEL */
+	int updateCancel(String rid);
+
+	/**
+	 * mydining_cancel_noshow - paging
+	 */
+	ArrayList<ScheduledDto> cancelNoshow(PageDto pageDto);
+
 	/**
 	 * mydining_visited - paging
 	 */
-	ArrayList<ScheduledDto> visitedSelect(String mid);
+	ArrayList<ScheduledDto> visitedSelect(PageDto pageDto);
 
 	/**
 	 * information.do
