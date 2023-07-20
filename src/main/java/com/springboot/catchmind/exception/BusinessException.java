@@ -12,11 +12,9 @@ public class BusinessException extends RuntimeException {
     public BusinessException(CommonErrorCode commonErrorCode) {
         super(commonErrorCode.getMessage());
         this.commonErrorCode = commonErrorCode;
-        System.out.println("히히 에러당");
     }
 
     public CommonErrorCode getErrorCode() {
         return commonErrorCode;
     }
-
 }

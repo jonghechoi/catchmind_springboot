@@ -20,8 +20,8 @@ public class IndexController {
 	/**
 	 *	Index
 	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@GetMapping("index")
 	public String index() {
-		return "index";
+		return "/index";
 	}
 }

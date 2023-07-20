@@ -15,30 +15,25 @@ import org.springframework.web.util.WebUtils;
 
 /**
  *  ResponseEntityExceptionHandler
- *      - 스프링 예외를 미리 처리해둔 추상 클래스
- *      - 스프링 예외에 대한 ExceptionHandler가 모두 구현되어 있음
- *      - 만약 이 추상 클래스를 상속받지 않으면 스프링 예외들은 DefaultHandlerExceptionResolver가 처리하게 되고
- *        그러면 예외 처리기가 달라지므로 클라이언트는 일관되지 못한 에러 응답을 받게됨
- *        또한, 이 추상 클래스는 기본적으로 에러 메세지를 반환하지 않으므로 스프링 예외에 대한 에러 응답을 보내려면
- *        handleExceptionInternal 메소드를 override 해야함
+ *  - 스프링 예외를 미리 처리해둔 추상 클래스
+ *  - 스프링 예외에 대한 ExceptionHandler가 모두 구현되어 있음
+ *  - 만약 이 추상 클래스를 상속받지 않으면 스프링 예외들은 DefaultHandlerExceptionResolver가 처리하게 되고
+ *    러면 예외 처리기가 달라지므로 클라이언트는 일관되지 못한 에러 응답을 받게됨
+ *    또한, 이 추상 클래스는 기본적으로 에러 메세지를 반환하지 않으므로 스프링 예외에 대한 에러 응답을 보내려면
+ *    handleExceptionInternal 메소드를 override 해야함
  */
-
-
 //@ControllerAdvice
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-
     @ExceptionHandler(BusinessException.class)
     protected ResponseEntity<ErrorResponseDto> handleBusinessException(BusinessException e) {
         CommonErrorCode commonErrorCode = e.getErrorCode();
         log.info(commonErrorCode.getMessage());
-        //ErrorResponseDto response = ErrorResponseDto.of(errorCode);
 
         ErrorResponseDto response = new ErrorResponseDto(commonErrorCode.getStatus(), commonErrorCode.getMessage());
 
         return new ResponseEntity<>(response, HttpStatus.valueOf(commonErrorCode.getStatus()));
-        //return new ResponseEntity<>(/*response*/ HttpStatus.valueOf(commonErrorCode.getStatus()));
     }
 
     @Override

@@ -669,9 +669,6 @@ $(document).ready(function() {
 		});
 	});	
 	/*======================= admin_shop_information 페이지에서 (completed) =======================*/
-
-
-
 	/*======================= admin_review_detail 페이지에서 'selected review' 버튼 처리 =======================*/
 	$("#adminReviewSelected").click(function() {
 	    window.open("/admin_review_selected", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
@@ -679,14 +676,22 @@ $(document).ready(function() {
 	/*======================= admin_review_detail 페이지에서 'selected review' 버튼 처리 =======================*/
 });
 
+
+
 /*======================= index.jsp 페이지에서 book now =======================*/	
 function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 	$.ajax({
-		url: "/search_list_book_now_proc/" + bookNowDate + "/" + bookNowLocation + "/" + bookNowCuisine,
+		// url: "/search_list_book_now_proc/" + bookNowDate + "/" + bookNowLocation + "/" + bookNowCuisine,
+		url: "/search_list_book_now_proc",
+		method: "POST",
+		data: {
+			date : bookNowDate,
+			location : bookNowLocation,
+			cuisine : bookNowCuisine
+		},
 		success: function(result) {
 			 if(result != "") {
-				 console.log(result);
-		        $(".rb").empty();
+				 $(".rb").empty();
 		        let output = "";
 		        for (const obj of result) {
 		        	output += "<a href='/restaurant/" + obj.sid + "'>";
@@ -731,17 +736,21 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 		    }else {
 		    	$(".rb").empty();
 		    }
+		},
+		error: function (xhr) {
+			console.error("xhr --> " + xhr);
+			if (xhr.status == 400) {
+				alert("죄송합니다. \n시간과 장소를 모두 선택해야합니다.");
+				window.location.href = "/";
+			}
 		}
 	})
-
-}	
-	
-	
-/*======================= index.jsp 페이지에서 book now =======================*/	
+}
+/*======================= index.jsp 페이지에서 book now =======================*/
 
 
 
-/*======================= index.jsp 페이지에서 음식 종류 클릭했을때 search 페이지 이동 및 리스팅 =======================*/	
+/*======================= index.jsp 페이지에서 음식 종류 클릭했을때 search 페이지 이동 및 리스팅 =======================*/
 function mainToSearch(searchQuery) {
 	 $.ajax({
 	    url: "/search_list_proc/" + searchQuery,

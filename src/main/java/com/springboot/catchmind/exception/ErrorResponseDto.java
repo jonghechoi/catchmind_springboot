@@ -2,15 +2,12 @@ package com.springboot.catchmind.exception;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
+@RequiredArgsConstructor
 public class ErrorResponseDto {
-    private int status;
-    private String message;
-
-    public ErrorResponseDto(int status, String message) {
-        this.status = status;
-        this.message = message;
-    }
+    private final int status;
+    private final String message;
 }

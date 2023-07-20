@@ -21,16 +21,7 @@ public class SearchService {
 		return searchMapper.select(searchValue);
 	}
 
-	public List<SearchDto> getBookNowSelect(String date, String location, String cuisine) {
-		Map<String, String> map = new HashMap<String, String>();
-
-		if(location.equals("Location") || cuisine.equals("Cuisine")) {
-			throw new BusinessException(CommonErrorCode.INVALID_INPUT_VALUE);
-		}else {
-			map.put("date", date);
-			map.put("location", location);
-			map.put("cuisine", cuisine);
-		}
+	public List<SearchDto> getBookNowSelect(Map map) {
 		return searchMapper.bookNowSelect(map);
 	}
 }
