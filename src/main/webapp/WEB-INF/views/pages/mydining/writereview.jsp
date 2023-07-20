@@ -42,6 +42,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
                                     <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
