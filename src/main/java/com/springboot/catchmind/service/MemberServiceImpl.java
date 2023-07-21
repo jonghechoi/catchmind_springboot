@@ -52,6 +52,8 @@ public class MemberServiceImpl{
 		return memberMapper.kakaoLogin(memberDto);
 	}
 
+	public int getEmailCheck(String memail) { return memberMapper.emailCheck(memail); }
+
 //	public int getUpdate(MemberVo memberVo) {
 //		return memberDao.update(memberVo);
 //	}

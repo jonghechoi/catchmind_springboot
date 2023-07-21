@@ -1,5 +1,6 @@
 package com.springboot.catchmind.exception;
 
+
 public class BusinessException extends RuntimeException {
 
     private final CommonErrorCode commonErrorCode;
@@ -14,7 +15,11 @@ public class BusinessException extends RuntimeException {
         this.commonErrorCode = commonErrorCode;
     }
 
+
     public CommonErrorCode getErrorCode() {
         return commonErrorCode;
     }
+
 }
+
+

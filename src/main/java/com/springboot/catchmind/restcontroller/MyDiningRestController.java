@@ -26,22 +26,6 @@ public class MyDiningRestController {
     @Autowired
     PagingServiceImpl pagingService;
 
-    @Autowired
-    MailSendService mailSendService;
-
-    @Autowired
-    MemberServiceImpl memberService;
-
-    @GetMapping("id_check/{memberId}")
-    public String id_check(@PathVariable String memberId) {
-        return String.valueOf(memberService.getIdCheck(memberId));
-    }
-
-    @GetMapping("find_pass_emailCheck/{memail}")
-    public String find_pass_emailCheck(@PathVariable String memail) {
-        log.info("Find_User_MEmail -> {}", memail);
-        return mailSendService.findEmail(memail);
-    }
 
     @GetMapping("mydining_cancel_noshow/{page}")
     public Map mydining_cancel_noshow(@PathVariable String page, HttpSession session) {

@@ -5,6 +5,7 @@ import com.springboot.catchmind.service.MemberServiceImpl;
 import com.springboot.catchmind.vo.MemberVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,7 +15,7 @@ public class JoinController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	/**
-	 * ȸ������ ������� ������ - join_consent
+	 * join_consent
 	 */
 	@GetMapping("join_consent")
 	public String join_consent() {
@@ -22,24 +23,21 @@ public class JoinController {
 	}
 	
 	/**
-	 * ȸ������ ó�� - join_proc
+	 * join_proc
 	 */
 	@PostMapping("join")
-	public ModelAndView join_proc(MemberDto memberDto) {
-		ModelAndView model = new ModelAndView();
-		
+	public String join_proc(MemberDto memberDto, Model model) {
+
 		int result = memberService.getJoin(memberDto);
-		
 		if(result == 1) {
-			model.addObject("SignUp_Complete", "ok");
-			model.setViewName("pages/mydining/login");
+			model.addAttribute("SignUp_Complete", "ok");
+			return "pages/mydining/login";
 		}
-		
-		return model;
+		return "pages/mydining/login";
 	}
 		
 	/**
-	 * ȸ������ ������ - join.do
+	 * join.do
 	 */
 	@GetMapping("join")
 	public String join() {

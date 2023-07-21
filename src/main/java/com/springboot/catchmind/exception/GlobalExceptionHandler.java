@@ -36,6 +36,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.valueOf(commonErrorCode.getStatus()));
     }
 
+    @ExceptionHandler(MemberException.class)
+    protected ResponseEntity<ErrorResponseDto> handleMemberException(MemberException e) {
+        MemberErrorCode memberErrorCode = e.getMemberErrorCode();
+        log.info(memberErrorCode.getMessage());
+
+        ErrorResponseDto response = new ErrorResponseDto(memberErrorCode.getStatus(), memberErrorCode.getMessage());
+
+        return new ResponseEntity<>(response, HttpStatus.valueOf(memberErrorCode.getStatus()));
+    }
+
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex,
                                                              @Nullable Object body,

@@ -33,24 +33,24 @@
 
 // 유저 데이터를 폼으로 전송
 function sendUserData(userInfo) {
-  var form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'kakao_login';
+	var form = document.createElement('form');
+	form.method = 'POST';
+	form.action = 'kakao_login';
 
   // 폼 데이터 추가
-  for (var key in userInfo) {
-    if (userInfo.hasOwnProperty(key)) {
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = userInfo[key];
-      form.appendChild(input);
-    }
-  }
+	for (var key in userInfo) {
+		if (userInfo.hasOwnProperty(key)) {
+			var input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = key;
+			input.value = userInfo[key];
+			form.appendChild(input);
+    	}
+  	}
 
   // 폼 전송
- document.body.appendChild(form);
- form.submit();
+	document.body.appendChild(form);
+	form.submit();
 }
 /******************************************
 		카카오 로그인 체크

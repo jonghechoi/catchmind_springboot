@@ -151,7 +151,9 @@ public interface MemberMapper {
 
 	List<MemberDto> selectList(PageDto pageDto);
 	MemberDto select(String mid);
-	
+
+
+
 	 /* ADMIN/SHOP 로그인타입 체크 */
 	int roleIdCheck(MemberDto memberDto);
 
@@ -179,9 +181,7 @@ public interface MemberMapper {
 	 /* FindPassInfo */
 	MemberDto findPassInfo(MemberDto memberDto);
 
-
 	/* FindPasswordCheck */
-
 	int findPassCheck(MemberDto memberDto);
 
 	 /* FindID */
@@ -196,6 +196,9 @@ public interface MemberMapper {
 	 /* MemberJoin */
 	int join(MemberDto memberDto);
 
-	 /* Duplicate check */
+	/*Join - Duplicate Email check */
+	int emailCheck(String memail);
+
+	 /* Join Duplicate ID check */
 	int idCheck(String memberId);
 }

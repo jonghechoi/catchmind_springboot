@@ -30,6 +30,7 @@ public class SearchRestController {
 				                                       @RequestParam String cuisine) {
 		if(location.equals("Location") || cuisine.equals("Cuisine")) {
 			throw new BusinessException(CommonErrorCode.INVALID_INPUT_VALUE);
+
 		}else {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("date", date);

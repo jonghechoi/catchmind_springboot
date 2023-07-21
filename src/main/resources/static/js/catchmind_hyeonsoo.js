@@ -261,6 +261,12 @@ $("#btn_cancleReservation").click(function(){
 **************************/
 	$("#btnJoin").click(function(){
 		console.log($("#idCheck_msg").text());
+		var email1 = $("#email1").val();
+		var email2 = $("#email2").val();
+
+		var memail = email1+"@"+email2;
+
+
 		if($("#id").val() == ""){
 			alert("Please enter your ID");
 			$("#id").focus();
@@ -305,7 +311,24 @@ $("#btn_cancleReservation").click(function(){
 			$("#phone3").focus();
 			return false;
 		}else{
-			joinForm.submit();
+			$.ajax({
+				url :"/join_email_check",
+				method: "POST",
+				data: {
+					memail : memail,
+				},
+				success : function(result) {
+					console.log(result);
+					if(result == 0){
+						joinForm.submit();
+					}
+				},
+				error : function (error) {
+					console.log(error)
+					alert("Duplicate Email Exists");
+					return false;
+				}
+			});
 		}
 	});	//btnJoin
 }); //ready
