@@ -8,4 +8,10 @@
             ACONFIRMFINALYN='Y'
         WHERE SID=#{sid}
     </update>
+
+    <update id="cancle" parameterType="String">
+        UPDATE SHOP SET
+            SCONFIRMYN='N'
+        WHERE SID=#{sid}
+    </update>
 </mapper>

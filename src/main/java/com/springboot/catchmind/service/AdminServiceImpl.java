@@ -1,45 +1,23 @@
 package com.springboot.catchmind.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.repository.*;
+import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.AdminDao;
-import com.springboot.catchmind.dao.MemberDao;
-import com.springboot.catchmind.dao.NoticeDao;
-import com.springboot.catchmind.dao.ReviewDao;
-import com.springboot.catchmind.dao.ShopDao;
-import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.vo.NoticeVo;
-import com.springboot.catchmind.vo.ReviewVo;
-import com.springboot.catchmind.vo.ShopVo;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
 @Service("adminService")
 @MapperScan(basePackages = "com.springboot.catchmind.repository")
+@RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private PagingServiceImpl pagingService;
-	@Autowired
-	private NoticeDao noticeDao;
-	@Autowired
-	private MemberDao memberDao;
-	@Autowired
-	private ShopDao shopDao;
-	@Autowired
-	private AdminDao adminDao;
-	@Autowired
-	private ReviewDao reviewDao;
 	@Autowired
 	private MemberMapper memberMapper;
 	@Autowired
@@ -139,6 +117,6 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public int getCancelUpdate(String sid) {
-		return adminDao.cancel(sid);
+		return adminMapper.cancle(sid);
 	}
 }

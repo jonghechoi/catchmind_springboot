@@ -32,7 +32,7 @@ $(document).ready(function() {
 				
 				$("table.board_list").remove();
 				$("h1.title").after(output);
-
+				
 				pager(result.page.dbCount, result.page.maxSize, result.page.pageSize, result.page.page);
 	
 				//페이지 번호 클릭 이벤트 처리
