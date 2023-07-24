@@ -1,22 +1,20 @@
 package com.springboot.catchmind.exception;
 
-import lombok.Getter;
-
 public class BusinessException extends RuntimeException {
 
-    private final ErrorCode errorCode;
+    private final CommonErrorCode commonErrorCode;
 
-    public BusinessException(String message, ErrorCode errorCode) {
+    public BusinessException(String message, CommonErrorCode commonErrorCode) {
         super(message);
-        this.errorCode = errorCode;
+        this.commonErrorCode = commonErrorCode;
     }
 
-    public BusinessException(ErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.errorCode = errorCode;
+    public BusinessException(CommonErrorCode commonErrorCode) {
+        super(commonErrorCode.getMessage());
+        this.commonErrorCode = commonErrorCode;
     }
 
-    public ErrorCode getErrorCode() {
-        return errorCode;
+    public CommonErrorCode getErrorCode() {
+        return commonErrorCode;
     }
 }
