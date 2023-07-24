@@ -5,6 +5,7 @@ import com.springboot.catchmind.dao.ShopPhotoDao;
 import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.repository.ShopMapper;
 import com.springboot.catchmind.repository.ShopPhotoMapper;
+import com.springboot.catchmind.vo.ShopVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -126,12 +127,12 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int getShopIdCheck(ShopDto shopDto) {
+	public int getShopIdCheck(ShopVo shopDto) {
 		return shopMapper.shopIdCheck(shopDto);
 	}
 	
 	@Override
-	public SessionDto getShopLogin(ShopDto shopDto) {
+	public SessionDto getShopLogin(ShopVo shopDto) {
 		return shopMapper.shopLogin(shopDto);
 	}
 	

@@ -1,6 +1,7 @@
 package com.springboot.catchmind.repository;
 
 import com.springboot.catchmind.dto.*;
+import com.springboot.catchmind.vo.ShopVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -44,9 +45,9 @@ public interface ShopMapper {
     List<BookingDto> reservationSelect(Map map);
 
     /* Login - Shop ID Check */
-    int shopIdCheck(ShopDto shopDto);
+    int shopIdCheck(ShopVo shopDto);
 
     /* Login - Shop */
-    SessionDto shopLogin(ShopDto shopDto);
+    SessionDto shopLogin(ShopVo shopDto);
     List<SearchDto> mapSelect(double lat, double lng);
 }

@@ -1,7 +1,6 @@
 package com.springboot.catchmind.service;
 
 import java.util.List;
-import java.util.Map;
 
 
 import com.springboot.catchmind.dto.SessionDto;
@@ -37,9 +36,9 @@ public interface ShopService {
 		
 		public int getPhotoUpdate(String sid, ShopPhotoDto shopPhotoDto);
 		
-		public int getShopIdCheck(ShopDto shopDto);
+		public int getShopIdCheck(ShopVo shopDto);
 		
-		public SessionDto getShopLogin(ShopDto shopDto);
+		public SessionDto getShopLogin(ShopVo shopDto);
 		
 		public int getRegistrationCheck(ShopDto shopDto);
 
