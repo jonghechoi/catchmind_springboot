@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="/css/responsive.css">
         <link rel="stylesheet" href="/css/am-pagination.css">
         <script src="/js/jquery-3.2.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
        	<script src="/js/am-pagination.js"></script>
 		<script src="/js/paging_notice_main.js"></script>
     </head>

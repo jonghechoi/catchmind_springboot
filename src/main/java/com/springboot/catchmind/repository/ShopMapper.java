@@ -43,5 +43,10 @@ public interface ShopMapper {
 
     List<BookingDto> reservationSelect(Map map);
 
+    /* Login - Shop ID Check */
+    int shopIdCheck(ShopDto shopDto);
+
+    /* Login - Shop */
+    SessionDto shopLogin(ShopDto shopDto);
     List<SearchDto> mapSelect(double lat, double lng);
 }

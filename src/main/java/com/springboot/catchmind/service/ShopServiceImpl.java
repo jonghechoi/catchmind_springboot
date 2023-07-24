@@ -1,28 +1,18 @@
 package com.springboot.catchmind.service;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import com.springboot.catchmind.dto.SessionDto;
-import com.springboot.catchmind.dto.BookingDto;
-import com.springboot.catchmind.dto.FacilityDto;
-import com.springboot.catchmind.dto.ShopDto;
-import com.springboot.catchmind.dto.ShopPhotoDto;
+import com.springboot.catchmind.dao.ShopDao;
+import com.springboot.catchmind.dao.ShopPhotoDao;
+import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.repository.ShopMapper;
 import com.springboot.catchmind.repository.ShopPhotoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.ShopDao;
-import com.springboot.catchmind.dao.ShopPhotoDao;
-import com.springboot.catchmind.vo.BookingVo;
-import com.springboot.catchmind.vo.FacilityVo;
-import com.springboot.catchmind.vo.SessionVo;
-import com.springboot.catchmind.vo.ShopPhotoVo;
-import com.springboot.catchmind.vo.ShopVo;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
@@ -136,13 +126,13 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int getShopIdCheck(ShopVo shopVo) {
-		return shopDao.shopIdCheck(shopVo);
+	public int getShopIdCheck(ShopDto shopDto) {
+		return shopMapper.shopIdCheck(shopDto);
 	}
 	
 	@Override
-	public SessionDto getShopLogin(ShopVo shopVo) {
-		return shopDao.shopLogin(shopVo);
+	public SessionDto getShopLogin(ShopDto shopDto) {
+		return shopMapper.shopLogin(shopDto);
 	}
 	
 	@Override

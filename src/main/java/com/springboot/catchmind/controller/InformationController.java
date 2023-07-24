@@ -63,15 +63,19 @@ public class InformationController {
 	 * cancle_reservation
 	 */
 	@PostMapping("cancle_reservation")
-	public String cancle_reservation_proc(@RequestParam String rid, RedirectAttributes redirectAttributes) {
+	public String cancle_reservation_proc(@RequestParam String rid, @RequestParam String rdate, RedirectAttributes redirectAttributes) {
 		String viewName = "";
 		int result = myDiningService.getUpdateDeleteYN(rid);
-		
-		if(result == 1) {
-			redirectAttributes.addFlashAttribute("cancle_reservation", "ok");
-			viewName = "redirect:/mydining_scheduled";
+		int cancelResult = myDiningService.getUpdateCancelNoshow(rid, rdate);
+
+		if(cancelResult == 1) {
+			if(result == 1) {
+				log.info("Cancel RID Number ->", rid);
+
+				redirectAttributes.addFlashAttribute("cancle_reservation", "ok");
+				viewName = "redirect:/mydining_cancel_noshow";
+			}
 		}
-		
 		return viewName;
 	}
 	
@@ -79,9 +83,10 @@ public class InformationController {
 	/**
 	 * cancle_reservation form
 	 */
-	@GetMapping("cancle_reservation/{rid}")
-	public String cancle_reservation(@PathVariable String rid, Model model) {
+	@GetMapping("cancle_reservation/{rid}/{rdate}")
+	public String cancle_reservation(@PathVariable String rid, @PathVariable String rdate, Model model) {
 		model.addAttribute("rid", rid);
+		model.addAttribute("rdate", rdate);
 
 		return "/pages/mydining/cancle_reservation";
 	}

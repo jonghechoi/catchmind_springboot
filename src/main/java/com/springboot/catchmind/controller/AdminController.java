@@ -69,6 +69,12 @@ public class AdminController {
 		return "/pages/admin/admin_shop_information";
 	}
 
+	// @RequestMapping(value = "/admin_shop_information_waiting_cancel.do", method = RequestMethod.GET)
+	// @ResponseBody
+	// public String admin_shop_information_waiting_cancel(String sid) {
+	// 	return String.valueOf(adminService.getCancelUpdate(sid));
+	// }
+
 	@GetMapping("admin_shop_registeration_check")
 	public String admin_shop_registeration_check() {
 		return "/pages/admin/admin_shop_registeration_check";

@@ -7,7 +7,7 @@
 		<title>CatchMind</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" href="/image/catchcon.png" type="image/png">
-        <script src="/js/jquery-3.6.4.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <!-- main css -->
@@ -18,6 +18,7 @@
 <body>
 	<form name="cancelReservationForm" action="/cancle_reservation" method="post" id="joinConsentForm">
     	<input type="hidden" name="rid" value="${rid}">
+    	<input type="hidden" name="rdate" value="${rdate}">
 	    <ul class="join_box">
 	    	<li class="cancle_check">
 	    		<h5 class="cancle_h5">Please select a reason for cancellation (required)</h5>

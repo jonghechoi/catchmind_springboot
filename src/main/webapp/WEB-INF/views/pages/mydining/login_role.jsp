@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="/image/catchcon.png" type="image/png">
-        <script src="/js/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="/js/catchmind_hyeonsoo.js"></script>
         <title>Catch Mind</title>
         <!-- Bootstrap CSS -->
@@ -60,7 +60,7 @@
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">
-	                                <a href="shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+	                                <a href="/shop_reservation" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
 	                                <ul class="dropdown-menu">
                                         <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
@@ -68,7 +68,7 @@
 	                            </li>
                             </c:if>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
-                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                             </c:if>
                         <!--================ Menu =================-->
                         </ul>
@@ -265,7 +265,6 @@
 </script>     
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="/js/jquery-3.2.1.min.js"></script>
         <script src="/js/popper.js"></script>
         <script src="/js/bootstrap.min.js"></script>
         <script src="/vendors/owl-carousel/owl.carousel.min.js"></script>
