@@ -94,6 +94,12 @@
 			   'N')
 	</insert>
 
+	<select id="emailCheck" parameterType="String" resultType="int">
+		select count(*)
+		from MEMBER
+		where MEMAIL = #{memail}
+	</select>
+
 	<select id="idCheck" parameterType="String" resultType="int">
 		select count(*)
 		from MEMBER

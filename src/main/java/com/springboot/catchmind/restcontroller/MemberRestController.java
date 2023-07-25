@@ -22,7 +22,7 @@ public class MemberRestController {
     @PostMapping("join_email_check")
     public ResponseEntity<?> join_email_check(@RequestParam String memail) {
         int emailCount = memberService.getEmailCheck(memail);
-        System.out.println(emailCount);
+        
         if(emailCount == 1) {
             throw new MemberException(MemberErrorCode.EMAIL_DUPLICATED);
         }else {
