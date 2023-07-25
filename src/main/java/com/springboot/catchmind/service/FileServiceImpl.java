@@ -24,8 +24,6 @@ public class FileServiceImpl {
 	
 	@Autowired
 	private ShopServiceImpl shopService;
-	@Autowired
-	private ShopPhotoDao shopPhotoDao;
 
 	/**
 	 * FileSave

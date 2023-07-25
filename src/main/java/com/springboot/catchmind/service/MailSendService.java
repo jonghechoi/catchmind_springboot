@@ -15,6 +15,7 @@ public class MailSendService {
 
 	@Autowired
 	private JavaMailSender mailSender;
+
 	private int authNumber;
 
 		public void makeRandomNumber() {

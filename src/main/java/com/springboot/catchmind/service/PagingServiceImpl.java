@@ -13,23 +13,13 @@ import org.springframework.stereotype.Service;
 @Service("pagingService")
 public class PagingServiceImpl implements PagingService {
 	
-	@Autowired 
-	private NoticeServiceImpl noticeService;
-	@Autowired
-	private MemberServiceImpl memberService;
-	@Autowired
-	private ReviewServiceImpl reviewService;
 	@Autowired
 	private MyDiningServiceImpl myDiningService;
-	@Autowired
-	private MemberDao memberdao;
 
 	@Autowired
 	PageMapper pageMapper;
 
-	@Override
-	public MemberVo getCertainMemberSelect(String mid) { return memberdao.select(mid); }
-	
+
 	@Override
 	public PageDto getPageResult(PageDto pageDto) {
 		int startCount = 0;

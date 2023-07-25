@@ -13,9 +13,6 @@ public class MemberServiceImpl{
 	@Autowired
 	private MemberMapper memberMapper;
 
-	@Autowired
-	private MemberDao memberDao;
-	
 	public int getRoleIdCheck(MemberDto memberDto) {
 		return memberMapper.roleIdCheck(memberDto);
 	}

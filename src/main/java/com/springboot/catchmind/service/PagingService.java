@@ -8,9 +8,8 @@ import com.springboot.catchmind.vo.MemberVo;
 public interface PagingService {
 	
 	/* public ArrayList<MemberVo> getMemberSelect(); */
-	
-	public MemberVo getCertainMemberSelect(String mid);
-	
+
+
 	public PageDto getPageResult(PageDto pageDto);
 	
 	public PageDto getVisitedResult(PageDto pageDto);
