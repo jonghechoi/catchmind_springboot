@@ -28,7 +28,8 @@ import org.springframework.web.util.WebUtils;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     protected ResponseEntity<ErrorResponseDto> handleBusinessException(BusinessException e) {
-        CommonErrorCode commonErrorCode = e.getErrorCode();
+//        CommonErrorCode commonErrorCode = e.getErrorCode();
+        CommonErrorCode commonErrorCode = (CommonErrorCode)e.getErrorCode();
         log.info(commonErrorCode.getMessage());
 
         ErrorResponseDto response = new ErrorResponseDto(commonErrorCode.getStatus(), commonErrorCode.getMessage());

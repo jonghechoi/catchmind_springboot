@@ -10,7 +10,7 @@ $(document).ready(function() {
 				let output = "<table class='notice_list'>";
 				output += "<tr class='adminList'>";
 				output += "<td colspan='3'>";
-				output += "<a href='notice_write.do'>";
+				output += "<a href='/notice_write'>";
 				output += "<button type='button'>register</button>";
 				output += "</a>";
 				output += "</td>";
