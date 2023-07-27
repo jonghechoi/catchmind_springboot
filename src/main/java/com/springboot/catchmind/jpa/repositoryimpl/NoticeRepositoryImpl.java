@@ -2,7 +2,10 @@ package com.springboot.catchmind.jpa.repositoryimpl;
 
 
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.Expressions;
 import com.springboot.catchmind.config.CustomJPAQueryFactory;
+import com.springboot.catchmind.dto.NoticeDto;
 import com.springboot.catchmind.jpa.entity.NoticeEntity;
 
 import com.springboot.catchmind.jpa.entity.QNoticeEntity;
@@ -38,14 +41,16 @@ public class NoticeRepositoryImpl implements NoticeRepository {
     }
 
     @Override
-    public List<NoticeEntity> getNoticeListByPage(Pageable pageable) {
-        return jpaQueryFactory.select(qNoticeEntity
-//                         Projections.fields(NoticeDto.class,
-//
-//                                 qNoticeEntity.ntitle,
-//                                 qNoticeEntity.ncreatedate,
-//                                 qNoticeEntity.nid)
+    public List<NoticeDto> getNoticeListByPage(Pageable pageable) {
+        return jpaQueryFactory
+                .select(
+                                 Projections.fields(NoticeDto.class,
+                                         Expressions.template(Integer.class, "function('ROWNUM')").as("rno"),
+                                                     qNoticeEntity.ntitle,
+                                                     qNoticeEntity.ncreatedate,
+                                                     qNoticeEntity.nid)
                 )
+
                 .from(qNoticeEntity)
                 .orderBy(qNoticeEntity.ncreatedate.desc())
                 .offset(pageable.getOffset())

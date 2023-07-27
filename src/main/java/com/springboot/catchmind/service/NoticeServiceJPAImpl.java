@@ -29,7 +29,7 @@ public class NoticeServiceJPAImpl {
 //    public List<NoticeEntity> getNoticeSelectJson(PageDto pageDto) {
 //        return noticeRepositoryImpl.getNoticeListByPage(pageDto);
 //    }
-    public List<NoticeEntity> getNoticeSelectJson(Pageable pageable) {
+    public List<NoticeDto> getNoticeSelectJson(Pageable pageable) {
         return noticeRepositoryImpl.getNoticeListByPage(pageable);
-}
+    }
 }

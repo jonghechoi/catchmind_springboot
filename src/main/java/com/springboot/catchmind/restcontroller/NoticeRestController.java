@@ -45,7 +45,7 @@ public class NoticeRestController {
     public Map<String, Object> notice_list_paging(PageRequest pageRequest) {
         Pageable pageable = pageRequest.of();
 
-        List<NoticeEntity> list = noticeServiceJPA.getNoticeSelectJson(pageable);
+        List<NoticeDto> list = noticeServiceJPA.getNoticeSelectJson(pageable);
         list.stream().forEach(noticeRow ->
                                 System.out.println("rno --> " + noticeRow + "        ntitle --> " + noticeRow.getNtitle()));
 

@@ -7,6 +7,6 @@ import org.hibernate.type.StandardBasicTypes;
 public class CustomDialect extends Oracle10gDialect {
     public CustomDialect() {
         super();
-        this.registerFunction("ROWNUM", new SQLFunctionTemplate(StandardBasicTypes.INTEGER, "ROWNUM()"));
+        this.registerFunction("ROWNUM", new SQLFunctionTemplate(StandardBasicTypes.INTEGER, "ROWNUM"));
     }
 }

@@ -11,6 +11,6 @@ import java.util.List;
 public interface NoticeRepository {
 
     public List<Tuple> getNoticeByRownum();
-    List<NoticeEntity> getNoticeListByPage(Pageable pageable);
+    List<NoticeDto> getNoticeListByPage(Pageable pageable);
 
 }
