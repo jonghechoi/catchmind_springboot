@@ -1,9 +1,16 @@
 package com.springboot.catchmind.jpa.repository;
 
+import com.querydsl.core.Tuple;
+import com.springboot.catchmind.dto.NoticeDto;
+import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.jpa.entity.NoticeEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Pageable;
 
-@Repository
-public interface NoticeRepository extends JpaRepository<NoticeEntity, String> {
+import java.util.List;
+
+public interface NoticeRepository {
+
+    public List<Tuple> getNoticeByRownum();
+    List<NoticeEntity> getNoticeListByPage(Pageable pageable);
+
 }

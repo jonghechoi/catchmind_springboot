@@ -1,30 +1,43 @@
 package com.springboot.catchmind.jpa.entity;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.querydsl.core.annotations.QueryProjection;
+import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Getter
-@Setter
 @Table(name="NOTICE")
+@NoArgsConstructor
 public class NoticeEntity {
     @Id
-    @GeneratedValue
-    private String nid;
-    private String AID;
-    private String ncreateid;
-    private String ncreatedate;
-    private String nmodifyid;
-    private String nmodifydate;
-    private String ndeleteyn;
-    private String ntitle;
-    private int nhits;
-    private String ncontents;
+    String nid;
+    String aid;
+    String ncontents;
+    String ncreatedate;
+    String ncreateid;
+    String ndeleteyn;
+    int nhits;
+    String nmodifydate;
+    String nmodifyid;
+    String ntitle;
+
+    @QueryProjection
+    @Builder
+    public NoticeEntity(String nid, String aid, String ncontents, String ncreatedate, String ncreateid,
+                        String ndeleteyn, int nhits, String nmodifydate, String nmodifyid, String ntitle) {
+        this.nid = nid;
+        this.aid = aid;
+        this.ncontents = ncontents;
+        this.ncreatedate = ncreatedate;
+        this.ncreateid = ncreateid;
+        this.ndeleteyn = ndeleteyn;
+        this.nhits = nhits;
+        this.nmodifydate = nmodifydate;
+        this.nmodifyid = nmodifyid;
+        this.ntitle = ntitle;
+    }
 }

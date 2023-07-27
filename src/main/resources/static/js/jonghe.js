@@ -888,7 +888,7 @@ function mapMainToSearch() {
 /*======================= shop_reservation.jsp 페이지에서 'datepicker'로 날짜 선택시 리스팅 =======================*/
 function reservationListing() {
 	$.ajax({
-		url: "shop_reservation_proc.do",
+		url: "/shop_reservation_proc",
 		data: {
 			sid : $("#shopReservationSid").val(),
 			startDate :  $("#startDate").val(),

@@ -4,8 +4,10 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "/notice_list_paging/"+page,
+			url: "/notice_list_paging/notice/"+page,
 			success: function(result){
+
+				console.log(result);
 
 				let output = "<table class='notice_list'>";
 				output += "<tr class='adminList'>";

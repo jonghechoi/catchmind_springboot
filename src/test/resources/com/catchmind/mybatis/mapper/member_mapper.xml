@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.catchmind.repository.MemberMapper">
+
+	<select id="selectList" parameterType="com.springboot.catchmind.dto.PageDto" resultType="com.springboot.catchmind.dto.MemberDto">
+		SELECT RNO, MID, MNAME, MEMBERID, MEMAIL, MPHONE
+			FROM(SELECT ROWNUM RNO, MID, MNAME, MEMBERID, MEMAIL, MPHONE
+				  FROM(SELECT MID, MNAME, MEMBERID, MEMAIL, MPHONE
+								FROM MEMBER
+								ORDER BY MID))
+				 WHERE RNO BETWEEN #{startCount} AND #{endCount}
+	</select>
+
+	<select id="select" parameterType="String" resultType="com.springboot.catchmind.dto.MemberDto">
+		SELECT MID, MNAME, MEMBERID, MEMAIL, MPHONE FROM MEMBER
+			WHERE MID = #{mid}
+	</select>
+
+
+	<select id="roleIdCheck" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="int">
+		select count(*)
+			from MEMBER
+			where MEMBERID = #{memberId} and
+				MPASS = #{mpass} and
+				ROLEID = 'ADMIN'
+	</select>
+
+	<select id="loginIdCheck" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="int">
+		select count(*)
+		from MEMBER
+		where MEMBERID = #{memberId} and
+			MPASS = #{mpass}
+	</select>
+
+	<select id="kakaoIdCheck" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="int">
+		select count(*)
+		from MEMBER
+		where MEMBERID = #{memberId} and
+			KEMAIL = #{kemail}
+	</select>
+
+	<select id="kakaoLogin" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="com.springboot.catchmind.dto.SessionDto">
+		select count(*) loginResult, MID, MEMBERID, KEMAIL, ROLEID, MNAME
+		from MEMBER
+		WHERE MEMBERID = #{memberId} AND
+			KEMAIL = #{kemail} AND
+			ROLEID = 'USER'
+		GROUP BY MID, MEMBERID, KEMAIL, ROLEID, MNAME
+	</select>
+
+	<insert id="kakaoJoin" parameterType="com.springboot.catchmind.dto.MemberDto">
+		INSERT INTO MEMBER(MID, MEMBERID, MNAME, KEMAIL, MCREATEDATE, ROLEID, DELETEYN)
+		values('M_'||LTRIM(to_char(SEQU_MEMBER_MID.NEXTVAL,'0000')),
+			   #{memberId},
+			   #{mname},
+			   #{kemail},
+			   sysdate,
+			   'USER',
+			   'N')
+	</insert>
+
+	<select id="roleLogin" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="com.springboot.catchmind.dto.SessionDto">
+		select count(*) loginResult, roleId, memberId, mid, mname, mpass
+		from MEMBER
+		WHERE MEMBERID = #{memberId} AND
+			MPASS = #{mpass} AND
+			ROLEID = 'ADMIN'
+		group by roleId, memberId, mid, mname, mpass
+	</select>
+
+	<select id="memberLogin" parameterType="com.springboot.catchmind.dto.MemberDto" resultType="com.springboot.catchmind.dto.SessionDto">
+		select count(*) loginResult, mid, memberId, roleId, mname
+		from MEMBER
+		WHERE MEMBERID = #{memberId} AND
+			MPASS = #{mpass} AND
+			ROLEID = 'USER'
+		GROUP BY mid, memberId, roleId, mname
+	</select>
+
+	<insert id="join" parameterType="com.springboot.catchmind.dto.MemberDto">
+		insert into MEMBER(MID,MEMBERID, MNAME, MPASS, MEMAIL, TEL, MPHONE, MCREATEDATE, MMODIFYDATE, ROLEID, DELETEYN)
+		values('M_'||LTRIM(to_char(SEQU_MEMBER_MID.NEXTVAL,'0000')),
+			   #{memberId},
+			   #{mname},
+			   #{mpass},
+			   #{memail},
+			   #{tel},
+			   #{mphone},
+			   sysdate,
+			   sysdate,
+			   'USER',
+			   'N')
+	</insert>
+
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(*)
+		from MEMBER
+		where MEMBERID = #{memberId}
+	</select>
+</mapper>

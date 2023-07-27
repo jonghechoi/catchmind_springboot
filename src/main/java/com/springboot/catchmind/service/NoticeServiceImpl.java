@@ -7,6 +7,9 @@ import java.util.Map;
 
 import com.springboot.catchmind.dto.NoticeDto;
 import com.springboot.catchmind.dto.PageDto;
+import com.springboot.catchmind.jpa.entity.NoticeEntity;
+import com.springboot.catchmind.jpa.repository.NoticeRepository;
+import com.springboot.catchmind.jpa.repositoryimpl.NoticeRepositoryImpl;
 import com.springboot.catchmind.repository.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,9 +29,13 @@ public class NoticeServiceImpl {
 	private NoticeDao noticeDao;
 	@Autowired
 	private NoticeMapper noticeMapper;
+	@Autowired
+	private NoticeRepository noticeRepository;
+	@Autowired
+	private NoticeRepositoryImpl noticeRepositoryImpl;
 	
 	public int getTotalRowCount() {	return noticeDao.totalRowCount(); };
-	
+
 	public List<NoticeDto> getNoticeSelectJson(PageDto pageDto) {
 		return noticeMapper.selectList(pageDto);
 	}
