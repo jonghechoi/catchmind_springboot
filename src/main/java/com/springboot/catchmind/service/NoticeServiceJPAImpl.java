@@ -1,14 +1,10 @@
 package com.springboot.catchmind.service;
 
-import com.querydsl.core.Tuple;
 import com.springboot.catchmind.dto.NoticeDto;
 import com.springboot.catchmind.dto.PageDto;
-import com.springboot.catchmind.jpa.entity.NoticeEntity;
-import com.springboot.catchmind.jpa.repository.NoticeRepository;
-import com.springboot.catchmind.jpa.repositoryimpl.NoticeRepositoryImpl;
+import com.springboot.catchmind.jpa.repositoryimpl.NoticeJPARepositoryImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,18 +14,13 @@ import java.util.List;
 public class NoticeServiceJPAImpl {
 
     @Autowired
-    private NoticeRepositoryImpl noticeRepositoryImpl;
+    private NoticeJPARepositoryImpl noticeRepositoryImpl;
 
-    private NoticeRepository noticeRepository;
-
-    public List<Tuple> getNoticeByRownum() {
-        return noticeRepositoryImpl.getNoticeByRownum();
+    public int getTotalRowCount() {
+        return noticeRepositoryImpl.getTotalRowCount();
     }
 
-//    public List<NoticeEntity> getNoticeSelectJson(PageDto pageDto) {
-//        return noticeRepositoryImpl.getNoticeListByPage(pageDto);
-//    }
-    public List<NoticeDto> getNoticeSelectJson(Pageable pageable) {
-        return noticeRepositoryImpl.getNoticeListByPage(pageable);
+    public List<NoticeDto> getNoticeSelectJson(PageDto pageDto) {
+        return noticeRepositoryImpl.getNoticeListByPage(pageDto);
     }
 }

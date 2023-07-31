@@ -18,7 +18,7 @@ import java.util.List;
 @DataJpaTest
 @RunWith(SpringRunner.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) // default is in-memory DB. To use Oracle which is configured in application.properties
-public class NoticeRepositoryTest {
+public class NoticeJPARepositoryTest {
 
     @Autowired
     private com.springboot.catchmind.jpa.repository.NoticeRepositoryTest noticeRepositoryTest;

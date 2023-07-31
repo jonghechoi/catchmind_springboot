@@ -32,26 +32,18 @@ public class NoticeRestController {
     /**
      *	Notice paging
      */
-//    @GetMapping("notice_list_paging/{page}")
-//    public Map<String, Object> notice_list_paging(@PathVariable String page) {
-//        PageDto pageDto = pagingService.getPageResult(new PageDto(page, "notice", ""));
-//        Map<String, Object> response = new HashMap<>();
-//        //response.put("list", noticeService.getNoticeSelectJson(pageDto));
-//        response.put("list", noticeServiceJPA.getNoticeSelectJson(pageDto));
-//        response.put("page", pageDto);
-//        return response;
-//    }
     @GetMapping("notice_list_paging/{serviceName}/{page}")
-    public Map<String, Object> notice_list_paging(PageRequest pageRequest) {
-        Pageable pageable = pageRequest.of();
+    public Map<String, Object> notice_list_paging(PageDto pageDto) {
+        //Pageable pageable = pageRequest.of();
 
-        List<NoticeDto> list = noticeServiceJPA.getNoticeSelectJson(pageable);
-        list.stream().forEach(noticeRow ->
-                                System.out.println("rno --> " + noticeRow + "        ntitle --> " + noticeRow.getNtitle()));
+        PageDto page = pagingService.getPageResult(pageDto);
+        List<NoticeDto> list = noticeServiceJPA.getNoticeSelectJson(page);
+//        list.stream().forEach(noticeRow ->
+//                                System.out.println("rno --> " + noticeRow + "        ntitle --> " + noticeRow.getNtitle()));
 
         Map<String, Object> response = new HashMap<>();
         response.put("list", list);
-        response.put("page", pageable);
+        response.put("page", page);
         return response;
     }
 }

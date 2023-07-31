@@ -1,4 +1,4 @@
-package com.springboot.catchmind.config;
+package com.springboot.catchmind.jpa.factory;
 
 import com.querydsl.jpa.JPQLTemplates;
 import com.querydsl.jpa.impl.JPAQueryFactory;

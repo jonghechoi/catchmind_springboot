@@ -1,11 +1,8 @@
 package com.springboot.catchmind.service;
 
-import com.springboot.catchmind.jpa.repositoryimpl.NoticeRepositoryImpl;
 import com.springboot.catchmind.vo.MemberVo;
 import com.springboot.catchmind.dao.MemberDao;
 import com.springboot.catchmind.dto.PageDto;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.springboot.catchmind.repository.PageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,9 +40,9 @@ public class PagingServiceImpl implements PagingService {
 		int pageCount = 1;
 		int dbCount = 0;
 
-//		if(pageDto.getServiceName().equals("notice")) {
-//			dbCount = (int)noticeServiceJPA.getTotalRowCount();
-//		}
+		if(pageDto.getServiceName().equals("notice")) {
+			dbCount = (int)noticeServiceJPA.getTotalRowCount();
+		}
 //		else if(pageDto.getServiceName().equals("member")) {
 //			dbCount = (int)memberServiceJPA.getTotalRowCount();
 //		}else if(pageDto.getServiceName().equals("review")) {
