@@ -25,8 +25,8 @@ public class NoticeEntity {
     String nmodifyid;
     String ntitle;
 
-    @QueryProjection
     @Builder
+    @QueryProjection
     public NoticeEntity(String nid, String aid, String ncontents, String ncreatedate, String ncreateid,
                         String ndeleteyn, int nhits, String nmodifydate, String nmodifyid, String ntitle) {
         this.nid = nid;

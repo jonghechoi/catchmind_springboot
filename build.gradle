@@ -31,15 +31,14 @@ repositories {
 
 dependencies {
     // QueryDSL
-//    implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0'
-//    implementation group: 'com.querydsl', name: 'querydsl-apt', version: '5.0.0'
-    // QueryDSL
+    //implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0'
+    //implementation group: 'com.querydsl', name: 'querydsl-apt', version: '5.0.0'
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     annotationProcessor(
             "javax.persistence:javax.persistence-api",
             "javax.annotation:javax.annotation-api",
             "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
-    implementation group: 'com.querydsl', name: 'querydsl-sql', version: '5.0.0'
+    implementation group: "com.querydsl", name: "querydsl-sql", version: "${queryDslVersion}"
 
 
     // Spring Data JPA
@@ -100,3 +99,7 @@ tasks.named('test') {
 test {
     useJUnitPlatform()
 }
+
+//clean {
+//    delete file(generated)
+//}
