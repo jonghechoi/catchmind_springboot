@@ -63,6 +63,15 @@
             setInterval(() => {updateData();}, 600000);
         });
         function updateData() {
+        // 8월 9일 할일
+        //      - MSA 변경을 위해 아래 url로 데이터 요청
+        //      - review API 서버(스프링부트로) 만들고
+        //      - 톰캣 컨테이너 하나 더 띄운 다음에 그 컨테이너에 배포
+        //      - review API 서버는 Spring Data JPA로 작성
+            $.ajax({
+                url: "http://review-service-hostname:port/index_review"
+            })
+
             $.ajax({
                 url: "/index_review",
                 success: function(dataList) {
