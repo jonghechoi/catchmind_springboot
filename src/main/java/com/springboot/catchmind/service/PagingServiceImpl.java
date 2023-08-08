@@ -42,6 +42,10 @@ public class PagingServiceImpl implements PagingService {
 
 		if(pageDto.getServiceName().equals("notice")) {
 			dbCount = (int)noticeServiceJPA.getTotalRowCount();
+		}else if(pageDto.getServiceName().equals("member")) {
+			dbCount = memberService.getTotalRowCount();
+		}else if(pageDto.getServiceName().equals("review")) {
+			dbCount = reviewService.getTotalRowCount();
 		}
 //		else if(pageDto.getServiceName().equals("member")) {
 //			dbCount = (int)memberServiceJPA.getTotalRowCount();
@@ -50,8 +54,6 @@ public class PagingServiceImpl implements PagingService {
 //		}
 
 		//dbCount = pageMapper.totalRowCount(pageDto);
-
-
 
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;

@@ -7,8 +7,6 @@ $(document).ready(function() {
 			url: "/notice_list_paging/notice/"+page,
 			success: function(result){
 
-				console.log(result);
-
 				let output = "<table class='notice_list'>";
 				output += "<tr class='adminList'>";
 				output += "<td colspan='3'>";
@@ -42,7 +40,7 @@ $(document).ready(function() {
 				$("h1").after(output);
 
 				pager(result.page.dbCount,  result.page.maxSize, result.page.pageSize, result.page.page);
-	
+
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);

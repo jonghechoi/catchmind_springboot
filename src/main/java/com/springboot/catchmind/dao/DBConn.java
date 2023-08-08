@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DBConn {
 	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
+	String url = "jdbc:oracle:thin:@192.168.50.119:1521/xe";
 	String user = "catchmind";
 	String pass = "tiger";
 	

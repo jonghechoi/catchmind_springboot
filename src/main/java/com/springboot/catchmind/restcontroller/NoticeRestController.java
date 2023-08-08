@@ -38,8 +38,8 @@ public class NoticeRestController {
 
         PageDto page = pagingService.getPageResult(pageDto);
         List<NoticeDto> list = noticeServiceJPA.getNoticeSelectJson(page);
-//        list.stream().forEach(noticeRow ->
-//                                System.out.println("rno --> " + noticeRow + "        ntitle --> " + noticeRow.getNtitle()));
+        list.stream().forEach(noticeRow ->
+                                System.out.println("rno --> " + noticeRow + "        ntitle --> " + noticeRow.getNtitle()));
 
         Map<String, Object> response = new HashMap<>();
         response.put("list", list);

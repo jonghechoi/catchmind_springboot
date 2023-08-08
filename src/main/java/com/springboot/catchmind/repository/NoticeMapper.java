@@ -14,4 +14,5 @@ public interface NoticeMapper {
     int update(NoticeDto noticeDto);
     int upload(NoticeDto noticeDto);
     int delete(String nid);
+    int totalRowCount();
 }

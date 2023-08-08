@@ -198,4 +198,6 @@ public interface MemberMapper {
 
 	 /* Duplicate check */
 	int idCheck(String memberId);
+
+	int totalRowCount();
 }

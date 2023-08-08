@@ -56,10 +56,7 @@ public class MemberServiceImpl{
 //		return memberDao.update(memberVo);
 //	}
 	
-//	public int getTotalRowCount() {
-//		return memberDao.totalRowCount();
-//	}
-
-
-	
+	public int getTotalRowCount() {
+		return memberMapper.totalRowCount();
+	}
 }

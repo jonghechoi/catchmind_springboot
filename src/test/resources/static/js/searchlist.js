@@ -98,7 +98,7 @@ $(document).ready(function() {
         
         
         $.ajax({
-            url: "search_list_proc.do?searchQuery=" + searchQuery,
+            url: "/search_list_proc/" + searchQuery,
             async:false,
             success: function(result) {
             fdata = result;

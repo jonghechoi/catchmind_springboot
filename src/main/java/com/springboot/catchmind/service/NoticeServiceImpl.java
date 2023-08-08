@@ -26,8 +26,11 @@ public class NoticeServiceImpl {
 	@Autowired
 	private NoticeJPARepositoryImpl noticeRepositoryImpl;
 	
-	public int getTotalRowCount() {	return noticeDao.totalRowCount(); };
+	//public int getTotalRowCount() {	return noticeDao.totalRowCount(); };
 
+	public int getTotalRowCount() {	return noticeMapper.totalRowCount(); };
+
+	// JPA 전환중
 	public List<NoticeDto> getNoticeSelectJson(PageDto pageDto) {
 		return noticeMapper.selectList(pageDto);
 	}

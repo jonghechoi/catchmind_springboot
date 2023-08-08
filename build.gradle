@@ -31,7 +31,6 @@ repositories {
 
 dependencies {
     // QueryDSL
-    //implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0'
     //implementation group: 'com.querydsl', name: 'querydsl-apt', version: '5.0.0'
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     annotationProcessor(

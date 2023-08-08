@@ -43,4 +43,6 @@ public class ReviewServiceImpl{
 	public int getUpdateReviewYN(String rid) {
 		return reviewMapper.updateReviewYN(rid);
 	}
+
+	public int getTotalRowCount() { return reviewMapper.totalRowCount(); }
 }

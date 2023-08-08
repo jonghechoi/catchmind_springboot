@@ -35,4 +35,8 @@
         DELETE FROM NOTICE
 		    WHERE NID=#{nid}
     </delete>
+
+    <select id="totalRowCount" resultType="int">
+        SELECT COUNT(*) FROM NOTICE
+    </select>
 </mapper>
