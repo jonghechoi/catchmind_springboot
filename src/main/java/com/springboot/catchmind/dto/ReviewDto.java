@@ -10,4 +10,7 @@ public class ReviewDto {
 	private int rno;
 
 	private MultipartFile reviewfile1;
+
+    public void setId(Long reviewId) {
+    }
 }

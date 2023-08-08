@@ -92,24 +92,33 @@ public class MyPageController {
 		return "/pages/mypage/mypage_review";
 	}
 
-//	public String information_bookmark_proc(HttpSession session, @PathVariable String sid, @PathVariable String rid,
-//											RedirectAttributes redirectAttributes) {
-//		String viewName = "";
-//		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
-//		String mid = sessionVo.getMid();
-//
-//		int count = myDiningService.getBookmarkResult(mid, sid);
-//
-//		if (count == 1) {
-//			int deleteBookmark = myDiningService.getDeleteBookmark(mid, sid);
-//
-//			if (deleteBookmark == 1) {
-//				redirectAttributes.addFlashAttribute("information_bookmark", "delete");
-//				viewName = "redirect:/information/" + sid + "/" + rid;
-//			}
-//		}
-//		return viewName;
+	/**
+	 * 리뷰 업데이트
+	 */
+//	@GetMapping("/edit/{reviewId}")
+//	public String showEditReviewForm(@PathVariable Long reviewId, Model model) {
+//		// 리뷰 정보를 데이터베이스에서 가져와서 model에 추가
+//		ReviewDto reviewDto = reviewService.getReviewById(reviewId);
+//		model.addAttribute("reviewDto", reviewDto);
+//		return "/mypage_review"; // 리뷰 수정 폼을 보여주는 JSP 페이지로 이동
 //	}
+	@PostMapping("/review/update/{reviewId}")
+	public String 리뷰업데이트(
+			@PathVariable String reviewId,
+			@RequestParam String reviewContent,
+			@RequestParam int reviewStar
+	) {
+		int 결과 = reviewService.updateReview(reviewId, reviewContent, reviewStar);
+		if (결과 == 1) {
+			// 리뷰가 성공적으로 업데이트된 경우, 리뷰 목록 또는 리뷰 상세 페이지로 리다이렉트합니다.
+			// 애플리케이션 디자인에 따라 리다이렉트할 페이지를 결정할 수 있습니다.
+			return "redirect:/mypage_review/{mid}";
+		} else {
+			// 업데이트가 실패한 경우, 에러를 처리합니다. (예: 에러 페이지로 리다이렉트하거나 에러 메시지를 표시합니다.)
+			return "redirect:/mypage";
+		}
+	}
+
 }
 
 	

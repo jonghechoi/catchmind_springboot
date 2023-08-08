@@ -147,4 +147,16 @@
         where
             review.mid = #{mid} and review.sid = s.sid
     </select>
+
+
+<!-- 0807일에 추가한 코드  -->
+
+    <update id="updateReview" parameterType="com.springboot.catchmind.dto.ReviewDto">
+        UPDATE REVIEW
+        SET REVIEWCONTENT = #{reviewContent},
+            REVIEWSTAR = #{reviewStar},
+            REVIEWMODIFYDATE = SYSDATE
+        WHERE REVIEWID = #{reviewId}
+    </update>
+
 </mapper>

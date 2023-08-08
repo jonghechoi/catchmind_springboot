@@ -10,24 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ReviewServiceImpl{
+public class ReviewServiceImpl {
 	@Autowired
 	private ReviewMapper reviewMapper;
 
+
 	//start Dayoung
-	public int getStarAvg(String sid){
+	public int getStarAvg(String sid) {
 		return reviewMapper.getStarAvg(sid);
 	}
 
-	public int getTotalReviewCount(String sid){
+	public int getTotalReviewCount(String sid) {
 		return reviewMapper.getTotalReviewCount(sid);
 	}
 
-	public int getTotalReviewPhotoCount(String sid){
+	public int getTotalReviewPhotoCount(String sid) {
 		return reviewMapper.getTotalReviewPhotoCount(sid);
 	}
 
-	public ArrayList<ReviewDto> reviewListSelect(String sid){
+	public ArrayList<ReviewDto> reviewListSelect(String sid) {
 		return reviewMapper.reviewListSelect(sid);
 	}
 	//end Dayoung
@@ -45,5 +46,18 @@ public class ReviewServiceImpl{
 		return reviewMapper.updateReviewYN(rid);
 	}
 
-	public List<ReviewDto> SelectBy(String mid){ return reviewMapper.selectBy(mid); }
+	public List<ReviewDto> SelectBy(String mid) {
+		return reviewMapper.selectBy(mid);
+	}
+
+	//0807 일에 추가 한 코드
+	public int updateReview(String setReviewId, String setReviewContent, int setReviewStar) {
+		ReviewDto Review = new ReviewDto();
+
+
+		return reviewMapper.updateReview();
+	}
+
+
+
 }

@@ -102,7 +102,8 @@
                    	<div class="col-md-6">
                    		<form class="mb-6" name="myform" id="myform" method="post">
 	                    	<fieldset>
-								<span class="text-bold">Flavor</span>
+								<%--@declare id="rate1"--%><%--@declare id="rate2"--%><%--@declare id="rate3"--%><%--@declare id="rate4"--%><%--@declare id="rate5"--%>
+                                    <span class="text-bold">Flavor</span>
 								<input type="radio" name="tasteStar" value="5" id="tasteStar1"><label
 									for="rate1">★</label>
 								<input type="radio" name="tasteStar" value="4" id="tasteStar2"><label

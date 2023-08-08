@@ -103,13 +103,16 @@
                                 <img src="http://localhost:9000/upload/${reviewVo.reviewsphoto }" width="262px"; height="272px"; alt="">
                             </div>
                             <a href="#"><h4 class="sec_h4">${reviewVo.sname}</h4></a>
+
                             <span class="__date">${reviewVo.reviewcreatedate}</span><span class="star">${reviewVo.reviewstar }</span>
                             <h5>${reviewVo.reviewcontent}
                           <small></small></h5>
+                            <a href="/review/edit/${reviewVo.id}" class="btn btn-primary">리뷰 수정</a>
                         </div>
                     </div>
                  </c:forEach>
-                
+
+
                     <!-- <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img"><a href="#" ="btn-bookmark active"></a>

@@ -42,4 +42,7 @@ public interface ReviewMapper{
     int deleteFromMain(String rid);
 
 	List<ReviewDto> selectBy(String mid);
+
+	//0807 일에 추가 한 코드
+    int updateReview();
 }
