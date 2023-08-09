@@ -11,6 +11,11 @@ public class ReviewDto {
 
 	private MultipartFile reviewfile1;
 
-    public void setId(Long reviewId) {
+    public void setReviewId(Long reviewId) {
     }
+
+
+//    public Long getReviewId() {
+//        return null;
+//    }
 }

@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="/css/lsm.css">
         <link rel="stylesheet" href="/css/responsive.css">
 <script>
-	$(document).ready(function(){	
+	$(document).ready(function(){
 		$()
 	});
 </script>
@@ -51,7 +51,7 @@
                                     <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
-                            </li> 
+                            </li>
                             <li class="nav-item"><a class="nav-link active" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
@@ -63,17 +63,17 @@
 	                                    <li class="nav-item"><a class="nav-link" href="shop_reservation?sid=${sessionScope.sessionVo.sid}">Reservation</a></li>
 	                                </ul>
 	                            </li>
-                            </c:if>     
-                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">                
+                            </c:if>
+                            <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
                         	</c:if>
                         </ul>
-                    </div> 
+                    </div>
                 </nav>
             </div>
         </header>
         <!--================Header Area =================-->
-        
+
         <!--================Breadcrumb Area =================-->
         <section class="breadcrumb_area">
             <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
@@ -88,7 +88,7 @@
             </div>
         </section>
         <!--================Breadcrumb Area =================-->
-        
+
         <!--================ Accomodation Area  =================-->
         <section class="accomodation_area section_gap">
             <div class="container">
@@ -100,18 +100,27 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
-                                <img src="http://localhost:9000/upload/${reviewVo.reviewsphoto }" width="262px"; height="272px"; alt="">
+                                <img src="http://localhost:9000/upload/${reviewVo.reviewsphoto }" width="262px" height="272px" alt="">
                             </div>
                             <a href="#"><h4 class="sec_h4">${reviewVo.sname}</h4></a>
 
                             <span class="__date">${reviewVo.reviewcreatedate}</span><span class="star">${reviewVo.reviewstar }</span>
                             <h5>${reviewVo.reviewcontent}
                           <small></small></h5>
-                            <a href="/review/edit/${reviewVo.id}" class="btn btn-primary">리뷰 수정</a>
+                                <a href="/write_review/${reviewVo.rid}">Edit Review</a>
+
                         </div>
                     </div>
                  </c:forEach>
-
+<%--                    <c:if test="${sessionScope.sessionVo.roleId =='mypage_review' or sessionScope.sessionVo.roleId == 'mydining_visited'}">--%>
+<%--                    <li class="nav-item submenu dropdown">--%>
+<%--                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">mypage_review</a>--%>
+<%--                        <ul class="dropdown-menu">--%>
+<%--                            <li class="nav-item active"><a class="nav-link" href="shop_information.do?sid=${sessionScope.sessionVo.sid}">mypage_review</a></li>--%>
+<%--                            <li class="nav-item"><a class="nav-link" href="shop_reservation.do?sid=${sessionScope.sessionVo.sid}">mypage_review</a></li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
+<%--                </c:if>--%>
 
                     <!-- <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
@@ -194,7 +203,7 @@
             </div>
         </section>
         <!--================ Accomodation Area  =================-->
-        <!--================ start footer Area  =================-->   
+        <!--================ start footer Area  =================-->
         <footer class="footer-area section_gap" style="padding:50px 0 0 0; background:rgb(255, 61, 0)">
             <div class="container">
                 <div class="row">
@@ -213,17 +222,17 @@
                      <br>
                      Terms of Service | Privacy policy | Terms of Location Service </p>
                         </div>
-                    </div>                  
+                    </div>
                     <div class="col-lg-3 col-md-6 col-sm-6 footer-widget2" style="width:300px">
                         <div class="single-footer-widget">
                             <h6 class="footer_title">Newsletter</h6>
-                            <p style="color:white">For business professionals caught between high OEM price and mediocre print and graphic output, </p>      
+                            <p style="color:white">For business professionals caught between high OEM price and mediocre print and graphic output, </p>
                             <div id="mc_embed_signup">
                                 <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative">
                                     <div class="input-group d-flex flex-row">
                                         <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '" required="" type="email">
-                                        <button class="btn sub-btn"><span class="lnr lnr-location"></span></button>      
-                                    </div>                           
+                                        <button class="btn sub-btn"><span class="lnr lnr-location"></span></button>
+                                    </div>
                                     <div class="mt-10 info"></div>
                                 </form>
                             </div>
@@ -243,7 +252,7 @@
                                 <li><img src="/image/instagram/Image-08.jpg" alt=""></li>
                             </ul>
                         </div>
-                    </div>                  
+                    </div>
                 </div>
                 <div class="border_line"></div>
                 <div class="row footer-bottom d-flex justify-content-between align-items-center">
@@ -252,8 +261,8 @@
             </div>
         </footer>
       <!--================ End footer Area  =================-->
-        
-        
+
+
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="/js/jquery-3.2.1.min.js"></script>

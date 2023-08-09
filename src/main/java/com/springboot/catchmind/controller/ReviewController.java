@@ -55,4 +55,6 @@ public class ReviewController {
 
 		return "/pages/mydining/write_review";
 	}
+
+
 }

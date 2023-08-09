@@ -3,13 +3,9 @@ package com.springboot.catchmind.repository;
 import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.dto.ReviewDto;
 import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface ReviewMapper{
@@ -44,5 +40,5 @@ public interface ReviewMapper{
 	List<ReviewDto> selectBy(String mid);
 
 	//0807 일에 추가 한 코드
-    int updateReview();
+    int updateReview(ReviewDto updatedReviewDto);
 }

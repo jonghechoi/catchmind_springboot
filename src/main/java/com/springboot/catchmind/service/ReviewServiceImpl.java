@@ -50,14 +50,31 @@ public class ReviewServiceImpl {
 		return reviewMapper.selectBy(mid);
 	}
 
+
+
 	//0807 일에 추가 한 코드
-	public int updateReview(String setReviewId, String setReviewContent, int setReviewStar) {
-		ReviewDto Review = new ReviewDto();
+//	public int updateReview(String setReviewId, String setReviewContent, int setReviewStar) {
+//		ReviewDto Review = new ReviewDto();
+//		return reviewMapper.updateReview();
+//	}
+//
+//	public void updateReview(Long reviewId, ReviewDto updatedReviewDto) {
+//	}
+//
+//	public ReviewDto getReviewById(Long reviewId) {
+//
+//		return null;
+//	}
 
 
-		return reviewMapper.updateReview();
+	public void updateReview(Long reviewId, ReviewDto updatedReviewDto) {
+		reviewMapper.updateReview(updatedReviewDto);
 	}
 
+
+	public ReviewDto getReviewById(Long reviewId) {
+		return reviewMapper.select(String.valueOf(reviewId)); // 리뷰를 가져오는 메서드를 사용자의 실제 구현에 맞게 호출합니다.
+	}
 
 
 }

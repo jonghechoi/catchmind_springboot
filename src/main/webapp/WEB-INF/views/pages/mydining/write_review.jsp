@@ -150,7 +150,20 @@
 								</fieldset>
 								<p class="reviewPolicy">CatchTable Review Policy ></p>
 			                    <p>Contents related to the use of the restaurant,<br> including false and exaggerated contents,<br> unauthorized theft of works, infringement<br> of portrait rights and privacy,<br> and slander may be deleted</p>
-			                    <button type="button" class="btnReview" id="review_registe">Registering</button>
+<%--			                    <button type="button" class="btnReview" id="review_registe">Registering</button>--%>
+
+                                <%-- 0809 추가--%>
+                            <c:if test="${not empty 'updatedReview'}">
+                                <form action="/update_review/${updatedReview.reviewid}" method="post">
+                                    <button type="submit">Update Review</button>
+                                </form>
+                            </c:if>
+                            <c:if test="${empty 'updatedReview'}">
+                                <button type="button" class="btnReview" id="review_registe">Registering</button>
+                            </c:if>
+
+
+
 	                   		</div>
 		                </div>
 		            </div>
