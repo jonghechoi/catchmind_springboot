@@ -47,7 +47,7 @@ public class RestaurantRestController {
      * select_guestnumber.do -  select guest number
      * */
     @PostMapping("select_guestnumber")
-    public Map<String, Integer> select_guestnumber(BookingDto bookingDto) throws ParseException, ParseException {
+    public Map<String, Integer> select_guestnumber(BookingDto bookingDto) throws ParseException {
         Map<String, Integer> param =  new HashMap<String, Integer>();
         ShopDto shopDto = shopServiceImpl.shopSelect(bookingDto.getSid());
         bookingDto.setSopeninghour(shopDto.getSopeninghour());
