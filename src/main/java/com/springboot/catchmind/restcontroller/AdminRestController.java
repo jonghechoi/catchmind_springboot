@@ -105,4 +105,9 @@ public class AdminRestController {
     public String admin_shop_registeration_proc(ShopDto shopDto) {
         return String.valueOf(shopService.getInsert(shopDto));
     }
+
+    @GetMapping("admin_shop_information_waiting_cancel/{sid}")
+    public String admin_shop_information_waiting_cancel(@PathVariable String sid) {
+        return String.valueOf(adminService.getCancelUpdate(sid));
+    }
 }

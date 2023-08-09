@@ -26,7 +26,11 @@ public class MyDiningController {
 
 	@Autowired
 	private MyDiningServiceImpl myDiningService;
-	
+
+	@GetMapping("mydining_cancel_noshow")
+	public String mydining_cancel_noshow() {
+		return "pages/mydining/mydining_cancel_noshow";
+	}
 
 	@GetMapping("mydining_visited")
 	public String mydining_visited() {

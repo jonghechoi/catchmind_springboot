@@ -152,19 +152,6 @@ $(document).ready(function() {
 
 
 
-	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/
-//	$("#btnNoticeModificationUpdate").click(function() {
-//		$.ajax({
-//			url:"notice_update_data.do?nid="+$("#titleInputHidden").val(),
-//			success: function(result) {
-//			  const popup = window.open("member_modify.do?mid="+result, 'Member Modification', 'width=700px,height=700px, scrollbars=yes');
-//			}
-//		});
-// 	});
-	/*======================= member_info -> member_modify로 데이터 넘기기 =======================*/	
-	
-	
-	
 	/*======================= admin 페이지의 notice_update에서 업데이트 성공적으로 되면 확인 alert추가 =======================*/
 	$("#btnNoticeModificationUpdate").click(function() {
 		if($("#titleInput").val() == "") {
@@ -588,7 +575,7 @@ $(document).ready(function() {
 	function adminShopCancel(sid) {
 		$(document).on("click", "#btnCancel_" + sid, function() {
 			$.ajax({
-				url: "admin_shop_information_waiting_cancel.do?sid=" + sid,
+				url: "/admin_shop_information_waiting_cancel/" + sid,
 				success: function(result) {
 					if(result == 1) {
 						alert("Shop Register Canceled.");
@@ -671,10 +658,6 @@ $(document).ready(function() {
 					outputDetail += "</div>";
 					outputDetail += "</div>";
 					outputDetail += "<div class='confirm'>";					
-					//outputDetail += "<form name='confirmForm' action='#' method='get'>";
-					//outputDetail += "<button type='button' class='btnConfirm'>confirm</button>";
-					//outputDetail += "<button type='button' class='btnCancel'>cancel</button>";
-					//outputDetail += "</form>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";
 					outputDetail += "</div>";	
@@ -687,33 +670,34 @@ $(document).ready(function() {
 			}
 		});
 	});	
-	/*======================= admin_shop_information.do 페이지에서 (completed) =======================*/
+	/*======================= admin_shop_information 페이지에서 (completed) =======================*/
+	/*======================= admin_review_detail 페이지에서 'selected review' 버튼 처리 =======================*/
 
 
-
-	/*======================= admin_review_detail.do 페이지에서 'selected review' 버튼 처리 =======================*/
 	$("#adminReviewSelected").click(function() {
 	    window.open("admin_review_selected.do", 'Review For Main', 'width=905px,height=800px, scrollbars=yes');
 	});
 	/*======================= admin_review_detail.do 페이지에서 'selected review' 버튼 처리 =======================*/
 });
 
+
+
 /*======================= index.jsp 페이지에서 book now =======================*/	
 function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
-	console.log(bookNowDate);
-	console.log(bookNowLocation);
-	console.log(bookNowCuisine);
-
 	$.ajax({
-		url: "search_list_book_now_proc.do?date=" + bookNowDate + "&location=" + bookNowLocation + "&cuisine=" + bookNowCuisine,
+		url: "/search_list_book_now_proc",
+		method: "POST",
+		data: {
+			date : bookNowDate,
+			location : bookNowLocation,
+			cuisine : bookNowCuisine
+		},
 		success: function(result) {
-			 let jdata = JSON.parse(result);
-			 if(jdata.jlist != "") {
-			 	console.log("여기 들어옴~~~ search_list_book_now_proc");
-		        $(".rb").empty();
+			 if(result != "") {
+				 $(".rb").empty();
 		        let output = "";
-		        for (const obj of jdata.jlist) {
-		        	output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+		        for (const obj of result) {
+		        	output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -755,28 +739,32 @@ function mainBookNowToSearch(bookNowDate, bookNowLocation, bookNowCuisine) {
 		    }else {
 		    	$(".rb").empty();
 		    }
+		},
+		error: function (xhr) {
+			console.error("xhr --> " + xhr);
+			if (xhr.status == 400) {
+				alert("죄송합니다. \n시간과 장소를 모두 선택해야합니다.");
+				window.location.href = "/";
+			}
 		}
 	})
-
-}	
-	
-	
-/*======================= index.jsp 페이지에서 book now =======================*/	
+}
+/*======================= index.jsp 페이지에서 book now =======================*/
 
 
 
-/*======================= index.jsp 페이지에서 음식 종류 클릭했을때 search 페이지 이동 및 리스팅 =======================*/	
-function mainToSearch(searchQuery, searchUrl) {
+/*======================= index.jsp 페이지에서 음식 종류 클릭했을때 search 페이지 이동 및 리스팅 =======================*/
+function mainToSearch(searchQuery) {
 	 $.ajax({
-	    url: "search_list_proc.do?searchQuery=" + searchQuery,
+	    url: "/search_list_proc/" + searchQuery,
 	    async:false,
 	    success: function(result) {
-	        let jdata = JSON.parse(result);
-	        if(jdata.jlist != "") {
+			console.log(result);
+			if(result != "") {
 		        $(".rb").empty();
 		        let output = "";
-		        for (const obj of jdata.jlist) {
-		        	output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+		        for (const obj of result) {
+		        	output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -840,18 +828,18 @@ function mapMainToSearch() {
 	var lat = localStorage.getItem('lat');
 	var lng = localStorage.getItem('lng');
 	$.ajax({
-		url:"index_mapMarker.do",
+		url:"/index_mapMarker",
+		method: "POST",
 		data: {
 			lat: lat,
 			lng: lng
 		},
 		success: function(result) {
-	        fdata = result;
-	        let jdata = JSON.parse(result);
-	        
+	        console.log(result);
+			let jdata = JSON.parse(result);
 	        let output = "";
 	        for (const obj of jdata.jlist) {
-	            	output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+	            	output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -1037,34 +1025,4 @@ function base64ToByteArray(base64Data) {
     }
     return byteArray;
 }
-/*======================= shop_reservation.jsp 페이지에서 shop photo 등록&프리뷰 =======================*/	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-        	
+/*======================= shop_reservation.jsp 페이지에서 shop photo 등록&프리뷰 =======================*/

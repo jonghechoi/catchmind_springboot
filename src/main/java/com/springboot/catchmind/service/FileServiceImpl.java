@@ -39,7 +39,6 @@ public class FileServiceImpl {
 		}
 	}
 
-
 	/**
 	 * FileChecK
 	 */
@@ -64,9 +63,8 @@ public class FileServiceImpl {
 		return reviewDto;
 	}
 
-
 	/**
-	 *	multiFileCheck - ��Ƽ���� üũ ���
+	 *	multiFileCheck
 	 */
 	public ShopPhotoDto multiFileCheck(ShopPhotoDto shopPhotoDto) throws Exception {
 		for(MultipartFile file : shopPhotoDto.getPhotos()) {

@@ -1,13 +1,11 @@
-package com.springboot.catchmind.controller;
+package com.springboot.catchmind.restcontroller;
 
 import com.springboot.catchmind.dto.PageDto;
 import com.springboot.catchmind.service.NoticeServiceImpl;
 import com.springboot.catchmind.service.PagingServiceImpl;
-import com.springboot.catchmind.vo.NoticeVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;

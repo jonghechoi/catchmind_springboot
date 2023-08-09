@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +43,20 @@ public class MyDiningRestController {
         return mailSendService.findEmail(memail);
     }
 
+    @GetMapping("mydining_cancel_noshow/{page}")
+    public Map mydining_cancel_noshow(@PathVariable String page, HttpSession session) {
+        Map map = new HashMap();
+        SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
+        String mid = sessionVo.getMid();
+
+        PageDto pageDto = pagingService.getVisitedResult(new PageDto(page, "cancel_noshow", mid));
+
+        map.put("list", myDiningService.getCancelNoshow(pageDto));
+        map.put("page", pageDto);
+
+        return map;
+    }
+
     @GetMapping("mydining_visited_paging/{page}")
     public Map mydining_visited_paging(@PathVariable String page, HttpSession session) {
         Map map = new HashMap();
@@ -49,13 +64,8 @@ public class MyDiningRestController {
         String mid = sessionVo.getMid();
 
         PageDto pageDto = pagingService.getVisitedResult(new PageDto(page, "visited", mid));
-        System.out.println("size -->" + pageDto.getPageSize());
-        System.out.println("count ->" + pageDto.getPageCount());
-        System.out.println("req -> " + pageDto.getRegPage());
-        System.out.println("dbcount ->" + pageDto.getDbCount());
 
-        ArrayList<ScheduledDto> list = myDiningService.getVisitedSelect(mid);
-        map.put("list", list);
+        map.put("list", myDiningService.getVisitedSelect(pageDto));
         map.put("page", pageDto);
 
         return map;

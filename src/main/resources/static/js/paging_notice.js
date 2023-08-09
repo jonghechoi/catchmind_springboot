@@ -4,10 +4,9 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "notice_list_paging.do?page="+page,
+			url: "/notice_list_paging/"+page,
 			success: function(result){
-				let jdata = JSON.parse(result);
-				
+
 				let output = "<table class='notice_list'>";
 				output += "<tr class='adminList'>";
 				output += "<td colspan='3'>";
@@ -23,10 +22,10 @@ $(document).ready(function() {
 				output += "<th>Reporting Date</th>";
 				output += "</tr>";
 		
-				for(obj of jdata.jlist) {
+				for(obj of result.list) {
 					output += "<tr>";
 					output += "<td>" + obj.rno + "</td>";
-					output += "<td><a href='admin_notice_content.do?nid=" + obj.nid + "'>" +  obj.ntitle + "</a></td>";
+					output += "<td><a href='/admin_notice_content/" + obj.nid + "'>" +  obj.ntitle + "</a></td>";
 					//output += "<td>" + obj.nhits + "</td>";
 					output += "<td>" + obj.ncreatedate + "</td>";
 					output += "</tr>";
@@ -39,8 +38,8 @@ $(document).ready(function() {
 				
 				$("table.notice_list").remove();
 				$("h1").after(output);
-				
-				pager(jdata.totals, jdata.maxSize, jdata.pageSize, jdata.page);
+
+				pager(result.page.dbCount,  result.page.maxSize, result.page.pageSize, result.page.page);
 	
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){

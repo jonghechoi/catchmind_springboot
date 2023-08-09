@@ -13,5 +13,5 @@ public class PageDto {
     private int dbCount;
     private int pageSize;
     private int pageCount;
-    private int regPage;
+    private int reqPage;
 }

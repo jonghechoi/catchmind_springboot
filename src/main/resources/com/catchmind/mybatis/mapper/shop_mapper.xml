@@ -6,14 +6,36 @@
 <mapper namespace="com.springboot.catchmind.repository.ShopMapper">
     <!-- start Dayoung -->
     <select id="shopSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ShopDto">
-        select sid, roleid, screatedate, sdeleteyn, aconfirmyn, aconfirmfinalyn,
-               sconfirmyn, spass, sname, sphone, sloc, slocx, slocy, slocshort, sintro,
-               smodifydate, sclosingdate, sopeninghour, sclosinghour,
-               sdeposit, smealfee, lunch, dinner, swebsite, sfoodstyle, smphoto,
+        select sid,
+               roleid,
+               screatedate,
+               sdeleteyn,
+               aconfirmyn,
+               aconfirmfinalyn,
+               sconfirmyn,
+               spass,
+               sname,
+               sphone,
+               sloc,
+               slocx,
+               slocy,
+               slocshort,
+               sintro,
+               smodifydate,
+               sclosingdate,
+               sopeninghour,
+               sclosinghour,
+               sdeposit,
+               smealfee,
+               lunch,
+               dinner,
+               swebsite,
+               sfoodstyle,
+               smphoto,
                to_char(sdeposit, 'L999,999') sdepositString,
                to_char(smealfee, 'L999,999') smealfeeString,
-               to_char(lunch, 'L999,999') lunchString,
-               to_char(dinner, 'L999,999') dinnerString
+               to_char(lunch, 'L999,999')    lunchString,
+               to_char(dinner, 'L999,999')   dinnerString
         from shop
         where sid = #{sid}
     </select>
@@ -29,7 +51,7 @@
     <!-- end Dayoung -->
 
 
-	<select id="shopLogin" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="com.springboot.catchmind.dto.SessionDto">
+	<select id="shopLogin" parameterType="com.springboot.catchmind.dto.ShopDto" resultType="com.springboot.catchmind.dto.SessionDto">
 		select count(*) loginResult, SID, SPASS, ROLEID
 		from shop
 		where SID = #{sid} and
@@ -38,7 +60,7 @@
 		group by SID, SPASS, ROLEID
 	</select>
 	
-	<select id="shopIdCheck" parameterType="com.springboot.catchmind.vo.ShopVo" resultType="int">
+	<select id="shopIdCheck" parameterType="com.springboot.catchmind.dto.ShopDto" resultType="int">
 		select count(*)
 		from shop
 		where SID = #{sid} and
@@ -206,5 +228,14 @@
           AND R.SID = #{sid}
           AND R.RMODIFYDATE BETWEEN TO_DATE(#{startDate}, 'YY-MM-DD')
             AND TO_DATE(#{endDate}, 'YY-MM-DD')+1
+    </select>
+
+    <select id="mapSelect" resultType="com.springboot.catchmind.dto.SearchDto">
+        SELECT SID, SNAME, SINTRO, REVIEWSTAR, SLOCSHORT, LUNCH, DINNER, SMPHOTO,  SLOC, SLOCX, SLOCY, SFOODSTYLE, SOPENINGHOUR
+        FROM (SELECT DISTINCT S.SID, S.SNAME, S.SINTRO, TRUNC(AVG(V.REVIEWSTAR),1) REVIEWSTAR, S.SLOCSHORT, S.LUNCH, S.DINNER, S.SMPHOTO,  S.SLOC, S.SLOCX, S.SLOCY, S.SFOODSTYLE, S.SOPENINGHOUR
+              FROM SHOP S
+                       FULL OUTER JOIN REVIEW V
+                                       ON S.SID = V.SID
+              GROUP BY S.SID, S.SNAME, S.SINTRO, S.SLOCSHORT, S.LUNCH, S.DINNER, S.SMPHOTO,  S.SLOC,  S.SLOCX, S.SLOCY, S.SFOODSTYLE, S.SOPENINGHOUR)
     </select>
 </mapper>

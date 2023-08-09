@@ -8,5 +8,8 @@ public class ScheduledDto {
 		 rphone, sloc, sintro, sphone, sopeningHour, sclosingHour, sclosingDate, rstatus, reviewYN, smphoto, fid, fcheck;
 	
 	private int rno, totalMount, sdeposit, guestNumber, startCount, endCount;
-	
+
+	public int getTotalMount() {
+		return totalMount = sdeposit * guestNumber;
+	}
 }
