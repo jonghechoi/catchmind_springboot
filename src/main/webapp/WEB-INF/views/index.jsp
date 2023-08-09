@@ -64,7 +64,8 @@
         });
         function updateData() {
             $.ajax({
-                url: "/index_review",
+                //url: "/index_review",
+                url: "http://review.service:8080/index_review",
                 success: function(dataList) {
                     $(".testimonial_slider.owl-carousel").empty();
 

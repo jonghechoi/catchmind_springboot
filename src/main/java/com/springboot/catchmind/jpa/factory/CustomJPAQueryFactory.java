@@ -1,8 +1,6 @@
 package com.springboot.catchmind.jpa.factory;
 
-import com.querydsl.jpa.JPQLTemplates;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.querydsl.sql.SQLTemplates;
 
 import javax.persistence.EntityManager;
 
