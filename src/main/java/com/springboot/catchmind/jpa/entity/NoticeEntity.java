@@ -20,7 +20,7 @@ public class NoticeEntity {
     String ncreatedate;
     String ncreateid;
     String ndeleteyn;
-    int nhits;
+    //int nhits;
     String nmodifydate;
     String nmodifyid;
     String ntitle;
@@ -28,14 +28,14 @@ public class NoticeEntity {
     @Builder
     @QueryProjection
     public NoticeEntity(String nid, String aid, String ncontents, String ncreatedate, String ncreateid,
-                        String ndeleteyn, int nhits, String nmodifydate, String nmodifyid, String ntitle) {
+                        String ndeleteyn, String nmodifydate, String nmodifyid, String ntitle) {
         this.nid = nid;
         this.aid = aid;
         this.ncontents = ncontents;
         this.ncreatedate = ncreatedate;
         this.ncreateid = ncreateid;
         this.ndeleteyn = ndeleteyn;
-        this.nhits = nhits;
+        //this.nhits = nhits;
         this.nmodifydate = nmodifydate;
         this.nmodifyid = nmodifyid;
         this.ntitle = ntitle;

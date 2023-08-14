@@ -80,11 +80,8 @@ $(document).ready(function() {
 	/*======================= admin 페이지에서 review_detail =======================*/
 	function adminReviewDatail(rid) {
 		$(document).on("click", "#btnReviewDetail_" + rid, function() {
-			const popup = window.open("admin_review_detail.do?goMain=true&rid=" + rid, 'Review Detail', 'width=700px,height=1200px, scrollbars=yes');
+			const popup = window.open("/admin_review_detail/true/" + rid, 'Review Detail', 'width=700px,height=1200px, scrollbars=yes');
 		});		
 	}	
-
-
-  	
   	/*======================= admin 페이지에서 review_detail =======================*/
 });

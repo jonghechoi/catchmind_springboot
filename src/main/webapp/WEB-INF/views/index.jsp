@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="/css/responsive.css">
     <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
-
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>
 
     <script>
         let login_complete = "${login_complete}"
@@ -85,7 +85,6 @@
             })
 
             function updateData() {
-                console.log("22222222");
                 $.ajax({
                     url: "http://localhost:82/index_review",
                     success: function(dataList) {
@@ -479,81 +478,8 @@
 <script src="/js/stellar.js"></script>
 <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
 <script src="/js/custom.js"></script>
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>
+<%--<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>--%>
 <!-- Kako Map -->
 <script src="/js/jonghe.js"></script>
-
-<script>
-    // var container = document.getElementById('map');
-    // var options = {
-    //     center: new kakao.maps.LatLng(37.5517047604094, 127.020792640827),
-    //     level: 3
-    // };
-    //
-    // var map = new kakao.maps.Map(container, options);
-    //
-    // // 지도를 클릭한 위치에 표출할 마커입니다
-    // var marker = new kakao.maps.Marker({
-    //     // 지도 중심좌표에 마커를 생성합니다
-    //     position: map.getCenter()
-    // });
-    // // 지도에 마커를 표시합니다
-    // marker.setMap(map);
-    //
-    // // 지도에 클릭 이벤트를 등록합니다
-    // // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-    // kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
-    //
-    //     // 클릭한 위도, 경도 정보를 가져옵니다
-    //     var latlng = mouseEvent.latLng;
-    //
-    //     // 마커 위치를 클릭한 위치로 옮깁니다
-    //     marker.setPosition(latlng);
-    //     var check = 'kakaoMap';
-    //     localStorage.setItem('check', JSON.stringify(check));
-    //
-    //     localStorage.setItem('lat', JSON.stringify(latlng.getLat()));
-    //     localStorage.setItem('lng', JSON.stringify(latlng.getLng()));
-    //     window.location.href = "/search";
-    // });
-    //
-    // console.log("퀴진 밖에 잘 들어옴~~~~");
-    // $(".cuisine-image").click(function () {
-    //     var cuisine = $(this).attr('alt');
-    //     var check = 'imageClick';
-    //
-    //     localStorage.setItem('check', JSON.stringify(check));
-    //     localStorage.setItem('searchQuery', JSON.stringify(cuisine).replace(/["']/g, ''));
-    //
-    //     console.log("cuisine-image in11111~~~~~~~~~~~~~~~~~~");
-    //     //window.location.href = "/search";
-    // });
-    //
-    // $(".place-image").click(function () {
-    //     var place = $(this).attr('alt');
-    //     var check = 'imageClick';
-    //
-    //     localStorage.setItem('check', JSON.stringify(check));
-    //     localStorage.setItem('searchQuery', JSON.stringify(place).replace(/["']/g, ''));
-    //
-    //     console.log("place-image in11111~~~~~~~~~~~~~~~~~~");
-    //     //window.location.href = "/search";
-    // });
-    //
-    // $(".book_now_btn").click(function () {
-    //     const bookNowDate = document.querySelector('#bookNowDate');
-    //     const bookNowLocation = document.querySelector('#bookNowLocation');
-    //     const bookNowCuisine = document.querySelector('#bookNowCuisine');
-    //
-    //     var check = 'bookNowClick';
-    //     localStorage.setItem('check', JSON.stringify(check));
-    //
-    //     localStorage.setItem('bookNowDate', bookNowDate.value);
-    //     localStorage.setItem('bookNowLocation', bookNowLocation.value);
-    //     localStorage.setItem('bookNowCuisine', bookNowCuisine.value);
-    //
-    //     window.location.href = "/search";
-    // })
-</script>
 </body>
 </html>

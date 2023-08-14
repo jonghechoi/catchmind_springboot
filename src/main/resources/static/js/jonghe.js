@@ -165,7 +165,7 @@ $(document).ready(function() {
 		}else { 
 			var queryString = $("form[name=adminNoticeModificationForm]").serialize() ;
 			$.ajax({
-	            url: "/notice_update_proc",
+	            url: "/admin_notice_update_proc",
 	            method: "POST",
 	            data: queryString,
 //	            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
@@ -173,7 +173,7 @@ $(document).ready(function() {
 	            success: function(result) {
 	                if (result == 1) {
 	                    alert("Success!! - Notice Update");
-	                    $(location).attr('href', '/notice_list');
+	                    $(location).attr('href', '/admin_notice_list');
 	                } else {
 	                    alert("Fail!! - Notice Update");
 	                }
@@ -757,7 +757,6 @@ function mainToSearch(searchQuery) {
 	    url: "/search_list_proc/" + searchQuery,
 	    async:false,
 	    success: function(result) {
-			console.log(result);
 			if(result != "") {
 		        $(".rb").empty();
 		        let output = "";
@@ -833,7 +832,6 @@ function mapMainToSearch() {
 			lng: lng
 		},
 		success: function(result) {
-	        console.log(result);
 			let jdata = JSON.parse(result);
 	        let output = "";
 	        for (const obj of jdata.jlist) {
@@ -1009,9 +1007,6 @@ function bringPhoto(sid, count, photos) {
 function displayImage(previewImg, imageData) {
 	var blob = new Blob([imageData], { type: 'image/jpg' });
 	var imageUrl = URL.createObjectURL(blob);
-	
-	console.log("imageUrl --> " + imageUrl);
-	
 	previewImg.src = imageUrl;
 }
 
