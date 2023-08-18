@@ -15,7 +15,7 @@ $(document).ready(function() {
 					output += "<div class='hotel_img'>";
 					output += "<img src='" + obj.smphoto + "' width='262px' height='272px' alt=''>";
 					if (obj.reviewYN == 'N') {
-					    output += "<a href='/write_review/"+ obj.rid + "' class='btn theme_btn button_hover'>Write Review</a>";
+					    output += "<a href='http://localhost:82/write_review/"+ obj.rid + "' class='btn theme_btn button_hover'>Write Review</a>";
 					} else if (obj.reviewYN == 'Y') {
 					    output += "<a href='/mypage_review' class='btn theme_btn button_hover' style='padding: 5px 1px;'>My Review Check</a>";
 					}

@@ -26,7 +26,6 @@ public class ReviewController {
 	 */
 	@PostMapping("write_review")
 	public String write_review_proc(ReviewDto reviewDto, RedirectAttributes redirectAttributes) throws Exception{
-
 		reviewDto = (ReviewDto)fileService.fileCheck(reviewDto);
 
 		int result = reviewService.getWriteReview(reviewDto);

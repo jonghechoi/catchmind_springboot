@@ -37,6 +37,7 @@ public class ReviewServiceImpl{
 	}
 
 	public int getWriteReview(ReviewDto reviewDto) {
+		reviewDto.setReviewstar(reviewDto);
 		return reviewMapper.writeReview(reviewDto);
 	}
 

@@ -89,6 +89,7 @@
         <!--================ About History Area  =================-->
         <section class="about_history_area section_gap">
       		<form name="writeReviewForm" action="/write_review" method="post" enctype="multipart/form-data">
+<%--            <form name="writeReviewForm" action="http://localhost:82/write_review" method="post" enctype="multipart/form-data">--%>
 	            <div class="container">
 	                <div class="row">
 	                    <div class="col-md-6 d_flex align-items-center">
@@ -111,41 +112,41 @@
 	                   	<div class="col-md-6">
 		                    	<fieldset class="field_star" id="tasteFieldset">
 									<span class="text-bold">맛</span>
-									<input type="radio" name="tasteStar" value="5" id="tasteStar1"><label
+									<input type="radio" name="tasteStar" value="1" id="tasteStar1"><label
 										for="tasteStar1" class="review_label">★</label>
-									<input type="radio" name="tasteStar" value="4" id="tasteStar2"><label
+									<input type="radio" name="tasteStar" value="2" id="tasteStar2"><label
 										for="tasteStar2" class="review_label">★</label>
 									<input type="radio" name="tasteStar" value="3" id="tasteStar3"><label
 										for="tasteStar3" class="review_label">★</label>
-									<input type="radio" name="tasteStar" value="2" id="tasteStar4"><label
+									<input type="radio" name="tasteStar" value="4" id="tasteStar4"><label
 										for="tasteStar4" class="review_label">★</label>
-									<input type="radio" name="tasteStar" value="1" id="tasteStar5"><label
+									<input type="radio" name="tasteStar" value="5" id="tasteStar5"><label
 										for="tasteStar5" class="review_label">★</label>
 								</fieldset>
 								<fieldset class="field_star" id="moodFieldset">
 									<span class="text-bold">분위기</span>
-									<input type="radio" name="moodStar" value="5" id="moodStar1"><label
+									<input type="radio" name="moodStar" value="1" id="moodStar1"><label
 										for="moodStar1" class="review_label">★</label>
-									<input type="radio" name="moodStar" value="4" id="moodStar2"><label
+									<input type="radio" name="moodStar" value="2" id="moodStar2"><label
 										for="moodStar2" class="review_label">★</label>
 									<input type="radio" name="moodStar" value="3" id="moodStar3"><label
 										for="moodStar3" class="review_label">★</label>
-									<input type="radio" name="moodStar" value="2" id="moodStar4"><label
+									<input type="radio" name="moodStar" value="4" id="moodStar4"><label
 										for="moodStar4" class="review_label">★</label>
-									<input type="radio" name="moodStar" value="1" id="moodStar5"><label
+									<input type="radio" name="moodStar" value="5" id="moodStar5"><label
 										for="moodStar5" class="review_label">★</label>
 								</fieldset>
 								<fieldset class="field_star" id="serviceFieldset">
 									<span class="text-bold">서비스</span>
-									<input type="radio" name="serviceStar" value="5" id="serviceStar1"><label
+									<input type="radio" name="serviceStar" value="1" id="serviceStar1"><label
 										for="serviceStar1" class="review_label">★</label>
-									<input type="radio" name="serviceStar" value="4" id="serviceStar2"><label
+									<input type="radio" name="serviceStar" value="2" id="serviceStar2"><label
 										for="serviceStar2" class="review_label">★</label>
 									<input type="radio" name="serviceStar" value="3" id="serviceStar3"><label
 										for="serviceStar3" class="review_label">★</label>
-									<input type="radio" name="serviceStar" value="2" id="serviceStar4"><label
+									<input type="radio" name="serviceStar" value="4" id="serviceStar4"><label
 										for="serviceStar4" class="review_label">★</label>
-									<input type="radio" name="serviceStar" value="1" id="serviceStar5"><label
+									<input type="radio" name="serviceStar" value="5" id="serviceStar5"><label
 										for="serviceStar5" class="review_label">★</label>
 								</fieldset>
 								<p class="reviewPolicy">CatchTable Review Policy ></p>

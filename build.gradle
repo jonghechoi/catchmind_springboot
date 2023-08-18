@@ -30,6 +30,12 @@ repositories {
 }
 
 dependencies {
+    // @Nullable annotation warning supress
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    // Spring Cloud Gateway
+    //implementation 'org.springframework.cloud:spring-cloud-starter-gateway:3.0.0'
+
     // QueryDSL
     implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
     annotationProcessor(
