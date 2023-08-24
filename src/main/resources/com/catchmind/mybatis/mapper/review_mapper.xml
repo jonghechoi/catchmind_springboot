@@ -5,7 +5,7 @@
 <mapper namespace="com.springboot.catchmind.repository.ReviewMapper">
     <!-- start Dayoung -->
     <select id="getStarAvg" parameterType="String" resultType="int">
-        select trunc(avg(reviewstar), 2)
+        select nvl(trunc(avg(reviewstar), 2), 0) as reviewstar
         from review
         where sid=#{sid}
     </select>

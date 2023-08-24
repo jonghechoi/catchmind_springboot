@@ -5,11 +5,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.springboot.catchmind.repository.ReservationMapper">
-	<insert id="insert" parameterType="com.springboot.catchmind.dto.BookingDto">
+	<insert id="insert" parameterType="com.springboot.catchmind.dto.ReservationDto" useGeneratedKeys="true" keyProperty="rid">
 		insert into reservation(rid, rdate, rtime, guestnumber, rmodifydate, rmodifytime,
 		                        rrequest, rphone, deleteyn, sid, mid, rtabletype, rstatus, reviewyn)
 		values('R_'||LTRIM(TO_CHAR(SEQU_RESERVATION_RID.NEXTVAL,'0000')), #{rdate}, #{rtime}, #{guestnumber},
-			   #{rdate}, #{rtime}, #{rrequest}, #{contact}, 'N', #{sid}, #{mid}, #{rtabletype}, 'ACTIVE', 'N')
+			   #{rdate}, #{rtime}, #{rrequest}, #{rphone}, 'N', #{sid}, #{mid}, #{rtabletype}, 'ACTIVE', 'N')
 	</insert>
 
 	<insert id="insertPayment" parameterType="com.springboot.catchmind.dto.BookingDto">
