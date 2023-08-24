@@ -18,8 +18,8 @@ public class ReservationService {
     @Autowired
     ReservationMapper reservationMapper;
 
-    public int insert(BookingDto bookingDto){
-        return reservationMapper.insert(bookingDto);
+    public int insert(ReservationDto reservationDto){
+        return reservationMapper.insert(reservationDto);
     }
 
     public int insertPayment(BookingDto bookingDto){

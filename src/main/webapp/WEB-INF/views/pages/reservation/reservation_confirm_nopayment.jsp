@@ -55,6 +55,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="nav-item active"><a class="nav-link" href="mydining_scheduled">Scheduled</a></li>
                                     <li class="nav-item"><a class="nav-link" href="mydining_visited">Visited</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
@@ -96,13 +97,14 @@
         <!--================ Reservation Confirm Area  =================-->
         <section class="facilities_area section_gap">
 	        <!-- Start form -->
-	        <form name="bookingForm" action="booking_without_payment.do" method="post">
+	        <form name="bookingForm" action="/booking_without_payment" method="post">
 				<input type="hidden" id="sid" name="sid" value="${bookingDto.sid}">
 				<input type="hidden" id="rdate" name="rdate" value="${bookingDto.rdate}">
 				<input type="hidden" id="rtabletype" name="rtabletype" value="${bookingDto.rtabletype}">
 				<input type="hidden" id="rtime" name="rtime" value="${bookingDto.rtime}">
 				<input type="hidden" id="guestnumber" name="guestnumber" value="${bookingDto.guestnumber}">
-	            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="">  
+				<input type="hidden" id="mid" name="mid" value="${bookingDto.mid}">
+	            <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="">
 	            </div>
 	            <div class="container">
 	                <!-- Start select menu -->
@@ -175,7 +177,7 @@
 	                </div>
 	                <div class="section-body">
 	                    <input type="text"
-	                    	   name="contact"
+	                    	   name="rphone"
 	                           class="form-input __active"
 	                           placeholder="     Please write down your email address / phone number"
 	                           style="width: 80%;">

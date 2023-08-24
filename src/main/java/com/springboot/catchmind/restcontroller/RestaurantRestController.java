@@ -3,6 +3,7 @@ package com.springboot.catchmind.restcontroller;
 import com.springboot.catchmind.dto.BookingDto;
 import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.dto.TabletypeDto;
+import com.springboot.catchmind.exception.RestaurantException;
 import com.springboot.catchmind.service.ReservationService;
 import com.springboot.catchmind.service.ShopService;
 import com.springboot.catchmind.service.ShopServiceImpl;
@@ -47,7 +48,7 @@ public class RestaurantRestController {
      * select_guestnumber.do -  select guest number
      * */
     @PostMapping("select_guestnumber")
-    public Map<String, Integer> select_guestnumber(BookingDto bookingDto) throws ParseException, ParseException {
+    public Map<String, Integer> select_guestnumber(BookingDto bookingDto) throws ParseException {
         Map<String, Integer> param =  new HashMap<String, Integer>();
         ShopDto shopDto = shopServiceImpl.shopSelect(bookingDto.getSid());
         bookingDto.setSopeninghour(shopDto.getSopeninghour());

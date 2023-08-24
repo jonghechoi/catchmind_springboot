@@ -7,6 +7,7 @@ import com.springboot.catchmind.service.RestaurantPolicyService;
 import com.springboot.catchmind.service.ShopPhotoService;
 import com.springboot.catchmind.service.ShopServiceImpl;
 import com.springboot.catchmind.service.TabletypeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,27 +21,21 @@ import java.util.ArrayList;
 
 
 @Controller
+@RequiredArgsConstructor
 public class RestaurantController {
-	@Autowired
-	ShopServiceImpl shopServiceImpl;
-	@Autowired
-	ReviewServiceImpl reviewServiceImpl;
-	@Autowired
-	ShopPhotoService shopPhotoService;
-	@Autowired
-	RestaurantPolicyService restaurantPolicyService;
-	@Autowired
-	FacilityService facilityService;
-	@Autowired
-	TabletypeService tabletypeService;
-
+	private final ShopServiceImpl shopServiceImpl;
+	private final ReviewServiceImpl reviewServiceImpl;
+	private final ShopPhotoService shopPhotoService;
+	private final RestaurantPolicyService restaurantPolicyService;
+	private final FacilityService facilityService;
+	private final TabletypeService tabletypeService;
 	
 	/**
 	 * restaurant
 	 */
 	//@RequestMapping(value="/restaurant.do", method=RequestMethod.GET)
 	@GetMapping("restaurant/{sid}")
-	public String restaurant(@PathVariable String sid, Model model) {
+	public String restaurant(@PathVariable String sid, Model model) throws Exception{
 		ShopDto shopDto = shopServiceImpl.shopSelect(sid);
 		int starAvg = reviewServiceImpl.getStarAvg(sid);
 		int totalReviewCount = reviewServiceImpl.getTotalReviewCount(sid);

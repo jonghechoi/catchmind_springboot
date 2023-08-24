@@ -1,8 +1,6 @@
 package com.springboot.catchmind.controller;
 
-import com.springboot.catchmind.dto.BookingDto;
-import com.springboot.catchmind.dto.RestaurantPolicyDto;
-import com.springboot.catchmind.dto.ShopDto;
+import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.service.ReservationService;
 import com.springboot.catchmind.service.RestaurantPolicyService;
 import com.springboot.catchmind.service.ShopServiceImpl;
@@ -11,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,25 +33,14 @@ public class ReservationController {
      * booking_without_payment.do
      */
     @PostMapping("booking_without_payment")
-    public String booking_without_payment(BookingDto bookingDto)
+    public String booking_without_payment(ReservationDto reservationDto, HttpSession session)
             throws ParseException {
-        //Map<String, String> param = new HashMap<String, String>();
+        SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
+        String mid = sessionVo.getMid();
+
         String route = null;
-//        SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
-//        String mid = sessionVo.getMid();
-        //System.out.println(rrequest);
-        //System.out.println(rphone);
-
-//        param.put("sid", sid);
-//        param.put("rdate", rdate);
-//        param.put("rtabletype", rtabletype);
-//        param.put("rtime", rtime);
-//        param.put("rrequest", rrequest);
-//        param.put("rphone", contact);
-//        param.put("mid", mid);
-
-        //ReservationDao reservationDao = new ReservationDao();
-        int result = reservationService.insert(bookingDto);
+        reservationDto.setMid(mid);
+        int result = reservationService.insert(reservationDto);
 
         if(result == 1) {
             route = "redirect:/mydining_scheduled";

@@ -33,14 +33,15 @@ $(document).ready(function() {
 	}
 
 
+
+	$('select').niceSelect(); // 모든 nice-select 초기화
+
 	/*
 	 * date picker
 	 */
 	$("#rdate").change(function () {
 		sid = $("#sid").val();
 		rdate = $("#rdate").val();
-		//alert(sid);
-		//alert(rdate);
 
 		var objParams = {
 			"sid"  : sid,
@@ -55,7 +56,6 @@ $(document).ready(function() {
 			cache: false,
 			success : function (result) {
 				let output = "";
-				//alert(result.terrace);
 
 				if (result.rooftop > 0) {
 					output += "<option name = 'rtabletype' value='ROOFTOP'>Rooftop</option>";
@@ -79,15 +79,39 @@ $(document).ready(function() {
 					output += "<option name = 'rtabletype' value='RENTAL'>Rental</option>";
 				}
 
+				// $("#rtabletype").append(output);
+				// $("#rtabletype").niceSelect('destroy');
+				// $("#rtabletype").niceSelect();
+
+				// 뒤에 옵션들 전부 디폴트 값으로 변경
+				rtabletype = "default";
+				guestnumber = "default";
+				rtime = "default";
+
+				// 선택 상자 내부의 기존 옵션을 삭제
+				$("#rtabletype").empty();
+				$("#guestnumber").empty();
+				$("#rtime").empty();
+
+				// 새로운 옵션 추가
 				$("#rtabletype").append(output);
-				$("#rtabletype").niceSelect('destroy');
-				$("#rtabletype").niceSelect();
+				$("#guestnumber").append("<option data-display='Party Size' value='default'>Party Size</option>");
+				$("#rtime").append("<option value='default' data-display='Time'>Time</option>");
+
+				// Nice Select 업데이트
+				$("#rtabletype").niceSelect('update');
+				$("#guestnumber").niceSelect('update');
+				$("#rtime").niceSelect('update');
+
 			},
 			error   : function () {
-				alert("errorrrrr-rdate");
+				console("datepicker error");
 			}
 		});
+
+
 	});
+
 
 
 	$("#rtabletype").on('change', selectBoxRtabletype);
@@ -96,7 +120,7 @@ $(document).ready(function() {
 	 * select rtabletype
 	 */
 	function selectBoxRtabletype() {
-		if (rdate == "") {
+		if (rdate === null) {
 			alert("Please select a date first");
 			return false;
 		} else {
@@ -126,16 +150,33 @@ $(document).ready(function() {
 						output += "<option name = 'guestnumber' value = '" + i + "'>" + i + "</option>";
 					}
 
-					$("#guestnumber").append(output);
-					$("#guestnumber").niceSelect('destroy');
-					$("#guestnumber").niceSelect();
+					// $("#guestnumber").append(output);
+					// $("#guestnumber").niceSelect('destroy');
+					// $("#guestnumber").niceSelect();
 
+					// 뒤에 옵션들 전부 디폴트 값으로 변경
+					guestnumber = "default";
+					rtime = "default";
+
+					// 선택 상자 내부의 기존 옵션을 삭제
+					$("#guestnumber").empty();
+					$("#rtime").empty();
+
+					// 새로운 옵션 추가
+					$("#guestnumber").append(output);
+					$("#rtime").append("<option value='default' data-display='Time'>Time</option>");
+
+					// Nice Select 업데이트
+					$("#guestnumber").niceSelect('update');
+					$("#rtime").niceSelect('update');
 				},
 				error   : function () {
-					alert("errorrrrr-rtabletype");
+					console("tabletype error");
 				}
 			});
 		}
+
+		$('.nice-select').removeClass('open');
 	}
 
 
@@ -146,7 +187,7 @@ $(document).ready(function() {
 	 * select guestnumber
 	 */
 	function selectBoxGuestnumber(){
-		if(rdate==""){
+		if(rdate === null){
 			alert("Please select a date first");
 			return false;
 		}
@@ -179,16 +220,31 @@ $(document).ready(function() {
 						output += "<option name='rtime' value='" + this + "'>" + this + "</option>"
 					});
 
+					// $("#rtime").append(output);
+					// $("#rtime").niceSelect('destroy');
+					// $("#rtime").niceSelect();
+
+					// 뒤에 옵션들 전부 디폴트 값으로 변경
+					rtime = "default";
+
+					// 선택 상자 내부의 기존 옵션을 삭제
+					$("#rtime").empty();
+
+					// 새로운 옵션 추가
 					$("#rtime").append(output);
-					$("#rtime").niceSelect('destroy');
-					$("#rtime").niceSelect();
+
+					// Nice Select 업데이트
+					$("#rtime").niceSelect('update');
 				},
 				error   : function () {
-					alert("errorrrrr-guestnumber");
+					console("guestnumber error");
 				}
 			}); //ajax
 		}
+
+		$('.nice-select').removeClass('open');
 	} //function
+
 
 
 
@@ -198,7 +254,7 @@ $(document).ready(function() {
 	 * select rtime
 	 */
 	function selectBoxRtime() {
-		if (rdate == "") {
+		if (rdate === null) {
 			alert("Please select a date first");
 			return false;
 		}
@@ -211,8 +267,10 @@ $(document).ready(function() {
 			return false;
 		}
 		else{
+			$('.nice-select').removeClass('open');
 			return true;
 		}
+
 	}
 
 
@@ -220,29 +278,57 @@ $(document).ready(function() {
 	 * 예약버튼
 	 */
 	$("#btnReservation").click(function(){
-		if($("#rdate").val() == ""){
+		rtime = $("#rtime").val();
+
+		if(rdate === null){
 			alert("Please select a date");
 			$("#rdate").focus();
 			return false;
-		}else if($("#rtabletype").val() == "default"){
+		}else if(rtabletype == "default"){
 			alert("Please select a 'Seating Options'");
 			$("#rtabletype").focus();
 			return false;
-		}else if($("#guestnumber").val() == "default"){
+		}else if(guestnumber == "default"){
 			alert("Please select a 'Party Size'");
 			$("#guestnumber").focus();
 			return false;
-		}else if($("#rtime").val() == "default"){
+		}else if(rtime == "default"){
 			alert("Please select a 'Time'");
 			$("#rtime").focus();
 			return false;
 		}
 		else{
+			alert(rdate);
+			alert(rtabletype);
+			alert(guestnumber);
+			alert(rtime);
+
 			reservationForm.submit();
 		}
 	});
-	
-	
+
+
+
+	/*
+	 * requestBooking btn - booking without payment
+	 */
+
+	$("#requestBooking").click(function() {
+		alert("booking without payment");
+		// var mid = $("#mid").val();
+		// var contact = $("#contact").val();
+		// var kemail = $("#kemail").val();
+
+		//notes 유효성검사
+		if($("input:checkbox[name='notes']:checked").length !== $("input:checkbox[name='notes']").length){
+			alert('Please check notes if you want to proceed');
+			return false;
+		}
+		else{
+			bookingForm.submit();
+		}
+	});
+
 	/*
 	function orderProcess(rsp){
 		alert("sid--->" + sid);
@@ -256,46 +342,118 @@ $(document).ready(function() {
 		alert("imp_uid--->" + rsp.imp_uid);
 		alert("merchant_uid--->" + rsp.merchant_uid);
 		alert("name--->" + rsp.name);
-	    $.ajax({
-			url: "booking_with_payment.do", 
-    		type: 'POST',
-    		dataType: 'json',
-    		data: {
-    			sid : sid,
+		$.ajax({
+			url: "booking_with_payment.do",
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				sid : sid,
 				rdate : rdate,
 				rtime : rtime,
 				rtabletype : rtabletype,
 				guestnumber : guestnumber,
-				amount : rsp.amount, 
+				amount : rsp.amount,
 				rrequest : rrequest,
-	    		contact : rsp.buyer_tel,
-	    		imp_uid : rsp.imp_uid, // 결제 고유번호
-	    		merchant_uid : rsp.merchant_uid, // 주문번호
-	    		name : rsp.name
-	    		//기타 필요한 데이터가 있으면 추가 전달
-    		},
+				contact : rsp.buyer_tel,
+				imp_uid : rsp.imp_uid, // 결제 고유번호
+				merchant_uid : rsp.merchant_uid, // 주문번호
+				name : rsp.name
+				//기타 필요한 데이터가 있으면 추가 전달
+			},
 			success: function (result) {
-	            alert("결제되었습니다.");
+				alert("결제되었습니다.");
 				location.href = "http://localhost:9000/catchmind/mydining_scheduled.do";
-	        },
+			},
 			error: function(){
 				alert("errorrrrr on saving data into DB");
 				// 결제 취소 요청
-	            //cancelPayment(rsp.imp_uid);
+				//cancelPayment(rsp.imp_uid);
 			}
 		}); //ajax
 	}
 	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+	/*
+	* requestPay btn - booking with payment
+	*/
+	// $("#requestPay").click(function(){
+	// 	alert("payment?????");
+	// 	var mid = $("#mid").val();
+	// 	rrequest = $("#rrequest").val();
+	// 	var contact = $("#contact").val();
+	// 	var kemail = $("#kemail").val();
+	// 	var paymentAmount = $("#paymentAmount").val();
+	// 	alert(paymentAmount);
+	//
+	// 	//notes 유효성검사
+	// 	if($("input:checkbox[name='notes']:checked").length !== $("input:checkbox[name='notes']").length){
+	// 		alert('Please check notes if you want to proceed');
+	// 		return false;
+	// 	}
+	// 	//Email / rphone 유효성 검사
+	// 	else if(contact.trim().length === 0){
+	// 		alert('Please write down your email address or phone number if you want to proceed');
+	// 		return false;
+	// 	}
+	// 	//Agreement with Order details & Payment 유효성검사
+	// 	else if($("input:checkbox[name='orderDetailsRequired']:checked").length != $("input:checkbox[name='orderDetailsRequired']").length){
+	// 		alert('Please check payment details if you want to proceed');
+	// 		return false;
+	// 	}
+	// 	else{
+	// 		var IMP = window.IMP;
+	// 		IMP.init("imp65513454");
+	// 		let uuid = window.crypto.randomUUID();
+	//
+	// 		IMP.request_pay({
+	// 			pg: "html5_inicis",
+	// 			pay_method: "card",
+	// 			merchant_uid: mid + "_" + rdate + "_" + uuid,
+	// 			name: "결제테스트 : " + mid + "_" + rdate + "_" + uuid,
+	// 			amount: 500,
+	// 			buyer_email: kemail,
+	// 			buyer_name: mid,
+	// 			buyer_tel: contact,
+	// 			buyer_addr: " ",
+	// 			buyer_postcode: " ",
+	// 		}, function (rsp) {
+	// 			if (rsp.success) {
+	// 				alert("rsp.success");
+	// 				$.ajax({
+	// 					type: 'POST',
+	// 					url: "/verifyIamport/" + rsp.imp_uid
+	// 				}).done(function(data) {
+	// 					alert("data.success");
+	// 					if (rsp.paid_amount == data.response.amount) {
+	// 						var msg = '결제가 완료되었습니다.';
+	// 						msg += '\n고유ID : ' + rsp.imp_uid;
+	// 						msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+	// 						msg += '\n결제 금액 : ' + rsp.amount;
+	// 						//msg += '카드 승인번호 : ' + rsp.apply_num;
+	// 						alert(msg);
+	//
+	// 						payForm.submit();
+	// 					}
+	// 					else {
+	// 						alert("An error occurred, please try again later");
+	// 					}
+	// 				});
+	//
+	// 				payForm.submit();
+	// 			}
+	// 			else {
+	// 				var msg = '결제에 실패하였습니다.';
+	// 				msg += '에러내용 : ' + rsp.error_msg;
+	//
+	// 				alert(msg);
+	// 			}
+	// 		});
+	// 	}
+	// });
 	
 	
 	
