@@ -3,7 +3,6 @@ package com.springboot.catchmind.repository;
 import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.SessionDto;
 import org.apache.ibatis.annotations.Mapper;
-import com.springboot.catchmind.dao.DBConn;
 import com.springboot.catchmind.dto.PageDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

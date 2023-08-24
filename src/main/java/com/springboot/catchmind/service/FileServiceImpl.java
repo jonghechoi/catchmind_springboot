@@ -15,17 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.springboot.catchmind.dao.ShopPhotoDao;
-import com.springboot.catchmind.vo.ShopPhotoVo;
-
 @Service("fileService")
 @Slf4j
 public class FileServiceImpl {
 	
 	@Autowired
 	private ShopServiceImpl shopService;
-	@Autowired
-	private ShopPhotoDao shopPhotoDao;
 
 	/**
 	 * FileSave

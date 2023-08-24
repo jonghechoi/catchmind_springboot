@@ -1,9 +1,6 @@
 package com.springboot.catchmind.service;
 
-import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.dao.MemberDao;
 import com.springboot.catchmind.dto.PageDto;
-
 import com.springboot.catchmind.repository.PageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,16 +17,12 @@ public class PagingServiceImpl implements PagingService {
 	@Autowired
 	private MyDiningServiceImpl myDiningService;
 	@Autowired
-	private MemberDao memberdao;
-
-	@Autowired
 	PageMapper pageMapper;
-
 	@Autowired
 	private NoticeServiceJPAImpl noticeServiceJPA;
 
-	@Override
-	public MemberVo getCertainMemberSelect(String mid) { return memberdao.select(mid); }
+//	@Override
+//	public MemberVo getCertainMemberSelect(String mid) { return memberdao.select(mid); }
 
 	@Override
 	public PageDto getPageResult(PageDto pageDto) {

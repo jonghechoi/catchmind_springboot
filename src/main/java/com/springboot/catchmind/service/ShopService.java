@@ -9,7 +9,6 @@ import com.springboot.catchmind.dto.BookingDto;
 import com.springboot.catchmind.dto.FacilityDto;
 import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.dto.ShopPhotoDto;
-import com.springboot.catchmind.vo.ShopVo;
 
 public interface ShopService {
 
@@ -23,7 +22,7 @@ public interface ShopService {
 		
 		public FacilityDto getShopFacilitySelect(String sid);
 		
-		public int getConfirmUpdate(String sid);
+//		public int getConfirmUpdate(String sid);
 		
 		public ShopDto getShopInfoSelect(String sid);
 		

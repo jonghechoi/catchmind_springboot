@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.springboot.catchmind.service.AdminServiceImpl;
 import com.springboot.catchmind.service.NoticeServiceImpl;
-import com.springboot.catchmind.vo.NoticeVo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,14 +7,8 @@ import com.springboot.catchmind.repository.ReviewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.ReviewDao;
-
-
 @Service("reviewSchedulerService")
 public class Scheduler {
-	
-	@Autowired
-	private ReviewDao reviewDao;
 	@Autowired
 	private ReviewMapper reviewMapper;
 

@@ -10,15 +10,11 @@ import com.springboot.catchmind.repository.NoticeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.catchmind.dao.NoticeDao;
-
 @Service("noticeService")
 public class NoticeServiceImpl {
 
 /*	@Autowired
 	private PagingServiceImpl pagingService;*/
-	@Autowired
-	private NoticeDao noticeDao;
 	@Autowired
 	private NoticeMapper noticeMapper;
 	@Autowired
