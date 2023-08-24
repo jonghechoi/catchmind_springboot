@@ -3,6 +3,7 @@ package com.springboot.catchmind.restcontroller;
 import com.springboot.catchmind.dto.BookingDto;
 import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.dto.TabletypeDto;
+import com.springboot.catchmind.exception.RestaurantException;
 import com.springboot.catchmind.service.ReservationService;
 import com.springboot.catchmind.service.ShopService;
 import com.springboot.catchmind.service.ShopServiceImpl;

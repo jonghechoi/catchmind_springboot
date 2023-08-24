@@ -54,12 +54,13 @@
                                     <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">
 										Scheduled</a></li>
                                     <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
-									<li class="nav-item"><a class="nav-link" href="/mydining/cancle_noshow">Cancel /
+									<li class="nav-item"><a class="nav-link"
+															href="/mydining_cancel_noshow">Cancel /
 																											 No-Show</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="mypage">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="notice">Notice</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionDto.roleId =='SHOP' or sessionScope.sessionDto.roleId ==
                             'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
@@ -373,7 +374,7 @@
 														<div class="form-group">
 															<div class="input-group date" id="datepicker">
 																<input type="text" class="form-control" placeholder="Date"
-																	name="rdate" value="rdate" id="rdate"/>
+																	name="rdate" id="rdate"/>
 																<span class="input-group-addon">
 																	<i class="fa fa-calendar" aria-hidden="true"></i>
 																</span>
@@ -698,11 +699,14 @@
 
 				$('#datepicker').datepicker({
 					format : "yyyy-mm-dd",
+					defaultDate : null,
 					startDate: '0d',
 					endDate: '+1m',
 					todayHighlight: true,
+					showOn: "both",
 					daysOfWeekDisabled: [dayoffnum] // 월요일(1) 비활성화
-				}).datepicker("setDate", new Date());
+				})
+						//.datepicker("setDate", new Date()); //new Date()
 
 			});
 		</script>

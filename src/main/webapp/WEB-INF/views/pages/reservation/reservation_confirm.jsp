@@ -32,93 +32,88 @@
     	<!-- iamport.payment.js -->
 	    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	    <script src="/js/catchmind_dayoung.js"></script>
-	    <script>
-	    $(document).ready(function() {
-	    	$("#requestPay").click(function(){
-	    		var mid = $("#mid").val();
-	    		var sid = $("#sid").val();
-	    		var rdate = $("#rdate").val();
-	    		var rtime = $("#rtime").val();
-	    		var rtabletype = $("#rtabletype").val();
-	    		var guestnumber = $("#guestnumber").val();
-	    		rrequest = $("#rrequest").val();
-	    		var contact = $("#contact").val();
-	    		var kemail = $("#kemail").val();
-	    		var paymentAmount = $("#paymentAmount").val();
-	    		//alert(paymentAmount);
-	    		
-	    		//notes 유효성검사	
-	    		if($("input:checkbox[name='notes']:checked").length !== $("input:checkbox[name='notes']").length){
-	    			alert('Please check notes if you want to proceed');
-	    			return false;
-	    		}
-	    		//Email / rphone 유효성 검사
-	    		else if(contact.trim().length === 0){
-	    			alert('Please write down your email address or phone number if you want to proceed');
-	    			return false;
-	    		}
-	    		//Agreement with Order details & Payment 유효성검사	
-	    		else if($("input:checkbox[name='orderDetailsRequired']:checked").length != $("input:checkbox[name='orderDetailsRequired']").length){
-	    			alert('Please check payment details if you want to proceed');
-	    			return false;
-	    		}
-	    		else{
-	    			var IMP = window.IMP; // 생략 가능
-	    			IMP.init("imp65513454"); // 예: imp00000000a
-	    			let uuid = window.crypto.randomUUID();
-	    			//alert(uuid);
-	    			//alert(mid + "_" + rdate + "_" + uuid);
-	    			
-	    			IMP.request_pay({
-	    				pg: "html5_inicis",
-	    				pay_method: "card",
-	    				merchant_uid: mid + "_" + rdate + "_" + uuid,
-	    				name: "결제테스트 : " + mid + "_" + rdate + "_" + uuid,
-	    				amount: 500,
-	    				buyer_email: kemail,
-	    				buyer_name: mid,
-	    				buyer_tel: contact,
-	    				buyer_addr: " ",
-	    				buyer_postcode: " ",				
-	    			}, function (rsp) {
-	    			    if (rsp.success) {
-	    			    	alert("rsp.success");
-	    	    			$.ajax({
-	    			    		type: 'POST',
-	    			    		url: "/verifyIamport/" + rsp.imp_uid  
-	    			    	}).done(function(data) {
-	    			    		alert("data.success");
-	    			    		if (rsp.paid_amount == data.response.amount) {
-	    			    			var msg = '결제가 완료되었습니다.';
-	    			    			msg += '\n고유ID : ' + rsp.imp_uid;
-	    			    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	    			    			msg += '\n결제 금액 : ' + rsp.amount;
-	    			    			//msg += '카드 승인번호 : ' + rsp.apply_num;
-	    			    			alert(msg);
-	    			    			
-	    	    					payForm.submit();	
-	    			    		} 
-	    			    		else {
-	    			    			alert("An error occurred, please try again later");
-	    			    		}
-	    			    	});
-	    	    			
-	    	    			
-	    	    			payForm.submit();	
-	    			    } 
-	    			    else {
-	    			        var msg = '결제에 실패하였습니다.';
-	    			        msg += '에러내용 : ' + rsp.error_msg;
-	    			        
-	    			        alert(msg);
-	    				}
-	    			});
-	    		}
-	    	});
-	    })
-	    
-	    
-	    </script>
+		<script>
+			$(document).ready(function(){
+				$("#requestPay").click(function(){
+					var mid = $("#mid").val();
+					var sid = $("#sid").val();
+					var rdate = $("#rdate").val();
+					var rtime = $("#rtime").val();
+					var rtabletype = $("#rtabletype").val();
+					var guestnumber = $("#guestnumber").val();
+					rrequest = $("#rrequest").val();
+					var contact = $("#contact").val();
+					var kemail = $("#kemail").val();
+					var paymentAmount = $("#paymentAmount").val();
+
+					//notes 유효성검사
+					if($("input:checkbox[name='notes']:checked").length !== $("input:checkbox[name='notes']").length){
+						alert('Please check notes if you want to proceed');
+						return false;
+					}
+					//Email / rphone 유효성 검사
+					else if(contact.trim().length === 0){
+						alert('Please write down your email address or phone number if you want to proceed');
+						return false;
+					}
+					//Agreement with Order details & Payment 유효성검사
+					else if($("input:checkbox[name='orderDetailsRequired']:checked").length != $("input:checkbox[name='orderDetailsRequired']").length){
+						alert('Please check payment details if you want to proceed');
+						return false;
+					}
+					else{
+						var IMP = window.IMP;
+						IMP.init("imp65513454");
+						let uuid = window.crypto.randomUUID();
+
+						IMP.request_pay({
+							pg: "html5_inicis",
+							pay_method: "card",
+							merchant_uid: mid + "_" + rdate + "_" + uuid,
+							name: "결제테스트 : " + mid + "_" + rdate + "_" + uuid,
+							amount: 500,
+							buyer_email: kemail,
+							buyer_name: mid,
+							buyer_tel: contact,
+							buyer_addr: " ",
+							buyer_postcode: " ",
+						}, function (rsp) {
+							if (rsp.success) {
+								alert("rsp.success");
+								$.ajax({
+									type: 'POST',
+									url: "/verifyIamport/" + rsp.imp_uid
+								}).done(function(data) {
+									alert("data.success");
+									if (rsp.paid_amount == data.response.amount) {
+										var msg = '결제가 완료되었습니다.';
+										msg += '\n고유ID : ' + rsp.imp_uid;
+										msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+										msg += '\n결제 금액 : ' + rsp.amount;
+										//msg += '카드 승인번호 : ' + rsp.apply_num;
+										alert(msg);
+
+										payForm.submit();
+									}
+									else {
+										alert("An error occurred, please try again later");
+									}
+								});
+
+
+								payForm.submit();
+							}
+							else {
+								var msg = '결제에 실패하였습니다.';
+								msg += '에러내용 : ' + rsp.error_msg;
+
+								alert(msg);
+							}
+						});
+					}
+				});
+			});
+		</script>
     </head>
     <body>
         <!--================Header Area =================-->
