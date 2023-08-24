@@ -1,10 +1,8 @@
 package com.springboot.catchmind.service;
 
-import com.springboot.catchmind.dao.MemberDao;
 import com.springboot.catchmind.dto.MemberDto;
 import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.repository.MemberMapper;
-import com.springboot.catchmind.vo.MemberVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +11,6 @@ public class MemberServiceImpl{
 	@Autowired
 	private MemberMapper memberMapper;
 
-	@Autowired
-	private MemberDao memberDao;
-	
 	public int getRoleIdCheck(MemberDto memberDto) {
 		return memberMapper.roleIdCheck(memberDto);
 	}
@@ -56,10 +51,7 @@ public class MemberServiceImpl{
 //		return memberDao.update(memberVo);
 //	}
 	
-//	public int getTotalRowCount() {
-//		return memberDao.totalRowCount();
-//	}
-
-
-	
+	public int getTotalRowCount() {
+		return memberMapper.totalRowCount();
+	}
 }

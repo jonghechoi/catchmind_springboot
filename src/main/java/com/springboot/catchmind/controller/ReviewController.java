@@ -3,7 +3,6 @@ package com.springboot.catchmind.controller;
 import com.springboot.catchmind.dto.ReviewDto;
 import com.springboot.catchmind.service.FileServiceImpl;
 import com.springboot.catchmind.service.ReviewServiceImpl;
-import com.springboot.catchmind.vo.ReviewVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,6 @@ public class ReviewController {
 	 */
 	@PostMapping("write_review")
 	public String write_review_proc(ReviewDto reviewDto, RedirectAttributes redirectAttributes) throws Exception{
-
 		reviewDto = (ReviewDto)fileService.fileCheck(reviewDto);
 
 		int result = reviewService.getWriteReview(reviewDto);

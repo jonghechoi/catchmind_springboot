@@ -99,4 +99,9 @@
 		from MEMBER
 		where MEMBERID = #{memberId}
 	</select>
+
+	<select id="totalRowCount" resultType="int">
+		select count(*)
+			from MEMBER
+	</select>
 </mapper>

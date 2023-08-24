@@ -5,7 +5,6 @@ import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.service.MemberServiceImpl;
 import com.springboot.catchmind.service.ShopService;
-import com.springboot.catchmind.vo.ShopVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

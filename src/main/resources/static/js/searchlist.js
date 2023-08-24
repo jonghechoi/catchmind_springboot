@@ -98,16 +98,14 @@ $(document).ready(function() {
 
 
         $.ajax({
-            url: "search_list_proc/"+searchQuery+"/",
+            url: "/search_list_proc/" + searchQuery,
             async:false,
             success: function(result) {
-                fdata = result;
-                //let jdata = JSON.parse(result);
-                let output = "";
-                //alert(result);
+                                let output = "";
+                
                 for (const obj of result) {
                     //console.log(obj.sid);
-                    output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+                    output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -155,9 +153,8 @@ $(document).ready(function() {
     $(".d_p1").click(function(){
         //alert($(this).attr("id"));
         let locname = $(this).attr("id");
-
-        console.log(fdata);
-        const searchData =fdata.filter(object => {
+const jdata = JSON.parse(fdata);
+        const searchData =jdata.jlist.filter(object => {
             if(object.sloc.indexOf(locname) > -1){
                 return object;
             }
@@ -165,10 +162,11 @@ $(document).ready(function() {
         }); //searchData
 
 
+
         let output = "";
 
         for (const obj of searchData) {
-            output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+            output += "<a href='/restaurant/" + obj.sid + "'>";
             output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
             output += "<div class='restaurant-info'>";
             output += "<div class='tb'>";
@@ -217,7 +215,8 @@ $(document).ready(function() {
         //alert($(this).attr("id"));
         let cuisinename = $(this).attr("id");
         //alert(fdata);
-        const searchData =fdata.filter(object => {
+        const jdata = JSON.parse(fdata);
+        const searchData =jdata.jlist.filter(object => {
             if(object.sfoodstyle.indexOf(cuisinename) > -1){
                 return object;
             }
@@ -229,7 +228,7 @@ $(document).ready(function() {
         let output = "";
 
         for (const obj of searchData) {
-            output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+            output += "<a href='/restaurant/" + obj.sid + "'>";
             output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
             output += "<div class='restaurant-info'>";
             output += "<div class='tb'>";
@@ -307,7 +306,8 @@ $(document).ready(function() {
         //alert($(this).attr("id"));
         let pricescope = $(this).attr("id");
 
-        const pricedata = fdata; //Price filtering Data
+        const jdata = JSON.parse(fdata);
+		const pricedata = jdata.jlist; //Price filtering Data
 
         const filterData = (pricedata, contractAmountRange, rangeSelected) => {
             const foundRange = contractAmountRange.find((x) => x.id === rangeSelected);
@@ -331,7 +331,7 @@ $(document).ready(function() {
         let output = "";
 
         for (const obj of searchData) {
-            output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+            output += "<a href='/restaurant/" + obj.sid + "'>";
             output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
             output += "<div class='restaurant-info'>";
             output += "<div class='tb'>";

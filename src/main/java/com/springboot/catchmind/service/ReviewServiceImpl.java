@@ -37,10 +37,13 @@ public class ReviewServiceImpl{
 	}
 
 	public int getWriteReview(ReviewDto reviewDto) {
+		reviewDto.setReviewstar(reviewDto);
 		return reviewMapper.writeReview(reviewDto);
 	}
 
 	public int getUpdateReviewYN(String rid) {
 		return reviewMapper.updateReviewYN(rid);
 	}
+
+	public int getTotalRowCount() { return reviewMapper.totalRowCount(); }
 }

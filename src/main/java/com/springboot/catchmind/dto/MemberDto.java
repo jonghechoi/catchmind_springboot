@@ -12,11 +12,11 @@ public class MemberDto {
 
 	private int rno, loginResult;
 	
-	public String getMemail() {
-		return memail = memail1 + "@" + memail2;
-	}
-
-	public String getMphone() {
-		return mphone = mphone1 + "-" + mphone2 + "-" + mphone3;
-	}
+//	public String getMemail() {
+//		return memail = memail1 + "@" + memail2;
+//	}
+//
+//	public String getMphone() {
+//		return mphone = mphone1 + "-" + mphone2 + "-" + mphone3;
+//	}
 }

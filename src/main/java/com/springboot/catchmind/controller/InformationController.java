@@ -15,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springboot.catchmind.service.MyDiningService;
-import com.springboot.catchmind.vo.ScheduledVo;
-import com.springboot.catchmind.vo.SessionVo;
 import retrofit2.http.GET;
 @Slf4j
 @Controller

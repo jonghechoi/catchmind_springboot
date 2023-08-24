@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.springboot.catchmind.dto.*;
-import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.vo.NoticeVo;
-import com.springboot.catchmind.vo.ReviewVo;
 
 public interface AdminService {
 	

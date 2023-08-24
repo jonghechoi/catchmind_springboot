@@ -5,13 +5,13 @@
     
     
 <mapper namespace="mapper.admin">
-	<update id="confirmUpdate" parameterType="java.lang.String">
+	<update id="update" parameterType="java.lang.String">
 		UPDATE SHOP SET
 				ACONFIRMFINALYN='Y'
 			WHERE SID=#{sid}
 	</update>
 	
-	<update id="CancelUpdate" parameterType="java.lang.String">
+	<update id="cancle" parameterType="java.lang.String">
 		UPDATE SHOP SET
 				SCONFIRMYN='N'
 			WHERE SID=#{sid}

@@ -36,10 +36,6 @@
     </select>
     <!-- end Dayoung -->
 
-
-
-
-
     <select id="selectList" parameterType="com.springboot.catchmind.dto.PageDto" resultType="com.springboot.catchmind.dto.ReviewDto">
         select rno, mname, SID, REVIEWCONTENT, REVIEWSTAR, REVIEWCREATEDATE, RID
             from(select rownum rno, REVIEWID, REVIEWCONTENT, REVIEWSTAR,
@@ -136,4 +132,9 @@
         DELETE FROM REVIEW
         WHERE RID=#{rid}
     </delete>
+
+    <select id="totalRowCount" resultType="int">
+        select count(*)
+            from review
+    </select>
 </mapper>

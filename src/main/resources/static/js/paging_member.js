@@ -23,7 +23,7 @@ $(document).ready(function() {
 					output += "<td>" + obj.rno + "</td>";
 					output += "<td>" + obj.mid + "</td>";
 					output += "<td>" + obj.mname + "</td>";
-					output += "<td>" + obj.memberid + "</td>";
+					output += "<td>" + obj.memberId + "</td>";
 					output += "<td>" + obj.memail + "</td>";
 					output += "<td>" + obj.mphone + "</td>";
 					output += "<td><button type='button' name='name' id='btnMemberDetail" + obj.rno + "'><a href='/admin_member_info/" + obj.mid + "'>Detail</a></button></td>";
@@ -39,7 +39,7 @@ $(document).ready(function() {
 				$("h1").after(output);
 				
 				pager(result.page.dbCount,  result.page.maxSize, result.page.pageSize, result.page.page);
-	
+
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);

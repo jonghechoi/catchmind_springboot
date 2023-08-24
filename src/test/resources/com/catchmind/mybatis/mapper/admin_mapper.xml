@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.catchmind.repository.AdminMapper">
+    <update id="update" parameterType="String">
+        UPDATE SHOP SET
+            ACONFIRMFINALYN='Y'
+        WHERE SID=#{sid}
+    </update>
+
+    <update id="cancle" parameterType="String">
+        UPDATE SHOP SET
+            SCONFIRMYN='N'
+        WHERE SID=#{sid}
+    </update>
+</mapper>

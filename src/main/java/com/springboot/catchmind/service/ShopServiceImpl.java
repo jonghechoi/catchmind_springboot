@@ -1,7 +1,7 @@
 package com.springboot.catchmind.service;
 
-import com.springboot.catchmind.dao.ShopDao;
-import com.springboot.catchmind.dao.ShopPhotoDao;
+//import com.springboot.catchmind.dao.ShopDao;
+//import com.springboot.catchmind.dao.ShopPhotoDao;
 import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.repository.ShopMapper;
 import com.springboot.catchmind.repository.ShopPhotoMapper;
@@ -16,11 +16,8 @@ import java.util.Map;
 
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
-	
-	@Autowired
-	private ShopDao shopDao;
-	@Autowired
-	private ShopPhotoDao shopPhotoDao;
+//	@Autowired
+//	private ShopDao shopDao;
 	@Autowired
 	private ShopMapper shopMapper;
 	@Autowired
@@ -63,7 +60,6 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Override
 	public int getDetailFacilityUpdate(FacilityDto facilityDto) {
-
 		int facilityExisting = shopMapper.facilityCheck(facilityDto.getSid());
 
 		int result = 0;
@@ -85,10 +81,10 @@ public class ShopServiceImpl implements ShopService {
 		return shopMapper.photoSelect(sid);
 	}
 	
-	@Override
-	public int getConfirmUpdate(String sid) {
-		return shopDao.update(sid);
-	}
+//	@Override
+//	public int getConfirmUpdate(String sid) {
+//		return shopDao.update(sid);
+//	}
 	
 	@Override
 	public ShopDto getShopInfoSelect(String sid) {
