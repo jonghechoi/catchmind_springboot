@@ -43,7 +43,9 @@ public class MyDiningController {
 	@GetMapping("mydining_scheduled")
 	public String mydining_scheduled(HttpSession session, Model model) {
 		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
-		
+
+
+
 		String mid = sessionVo.getMid();
 		
 		ArrayList<ScheduledDto> list = myDiningService.getScheduled(mid);

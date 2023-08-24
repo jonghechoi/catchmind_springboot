@@ -1,9 +1,6 @@
 package com.springboot.catchmind.restcontroller;
 
-import com.springboot.catchmind.dto.MemberDto;
-import com.springboot.catchmind.dto.NoticeDto;
-import com.springboot.catchmind.dto.PageDto;
-import com.springboot.catchmind.dto.ShopDto;
+import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.service.AdminServiceImpl;
 import com.springboot.catchmind.service.NoticeServiceImpl;
 import com.springboot.catchmind.service.PagingServiceImpl;
@@ -40,6 +37,7 @@ public class AdminRestController {
     public Map<String, Object> admin_review_list(@PathVariable String page) {
         PageDto pageDto = pagingService.getPageResult(new PageDto(page, "review", ""));
         Map<String, Object> response = new HashMap<>();
+
         response.put("list", adminService.getReviewSelectJson(pageDto));
         response.put("page", pageDto);
         return response;

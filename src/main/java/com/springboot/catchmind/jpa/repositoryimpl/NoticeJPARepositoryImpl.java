@@ -11,6 +11,7 @@ import com.springboot.catchmind.jpa.entity.QNoticeEntity;
 import com.springboot.catchmind.jpa.repository.NoticeJPARepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Transactional(readOnly=true)
 public class NoticeJPARepositoryImpl implements NoticeJPARepository {
     private final CustomJPAQueryFactory jpaQueryFactory;
     private final QNoticeEntity qNoticeEntity;

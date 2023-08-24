@@ -86,7 +86,10 @@
 
             function updateData() {
                 $.ajax({
-                    url: "http://localhost:82/index_review",
+                    // 도커로 띄웠을 때 사용
+                    // url: "http://localhost:82/index_review",
+                    // 인텔리제이 내장으로 띄웠을 때 사용
+                    url: "http://localhost:9001/index_review",
                     success: function(dataList) {
                         $(".testimonial_slider.owl-carousel").empty();
 
@@ -165,55 +168,54 @@
                 window.location.href = "/search";
             });
         });
-<<<<<<< HEAD
-=======
-        function updateData() {
-        // 8월 9일 할일
-        //      - MSA 변경을 위해 아래 url로 데이터 요청
-        //      - review API 서버(스프링부트로) 만들고
-        //      - 톰캣 컨테이너 하나 더 띄운 다음에 그 컨테이너에 배포
-        //      - review API 서버는 Spring Data JPA로 작성
-            $.ajax({
-                url: "http://review-service-hostname:port/index_review"
-            })
 
-            $.ajax({
-                url: "/index_review",
-                success: function(dataList) {
-                    $(".testimonial_slider.owl-carousel").empty();
+        // function updateData() {
+        // // 8월 9일 할일
+        // //      - MSA 변경을 위해 아래 url로 데이터 요청
+        // //      - review API 서버(스프링부트로) 만들고
+        // //      - 톰캣 컨테이너 하나 더 띄운 다음에 그 컨테이너에 배포
+        // //      - review API 서버는 Spring Data JPA로 작성
+        //     $.ajax({
+        //         url: "http://review-service-hostname:port/index_review"
+        //     })
+        //
+        //     $.ajax({
+        //         url: "/index_review",
+        //         success: function(dataList) {
+        //             $(".testimonial_slider.owl-carousel").empty();
+        //
+        //             var output = "";
+        //
+        //             for(obj of dataList) {
+        //                 output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
+        //
+        //                 output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>";
+        //                 output += "<img style='margin-right:0px;width:100px; height:100px; text-align:center' class='rounded-circle' src='/upload/" + obj.reviewphoto + "' alt=''>";
+        //                 output += "<div class='media-body' style='text-align:center'>";
+        //                 output += "<a href='#'><h4 class='sec_h4'>" + obj.mname + "</h4></a>";
+        //                 output += "<div class='star' style='text-align:center'>";
+        //
+        //                 for(i=0; i<obj.reviewstar; i++) {
+        //                     output += "<a href='#'><i class='fa fa-star'></i></a>";
+        //                 };
+        //                 output += "</div>";
+        //                 output += "</div>";
+        //                 output += "</div>";
+        //
+        //
+        //                 output += "<div style='float: left; padding-left:70px;'>";
+        //                 output += "<p>" + obj.reviewcontent + "</p>";
+        //                 output += "</div>";
+        //
+        //                 output += "</div>";
+        //
+        //             };
+        //
+        //             $(".testimonial_slider.owl-carousel").append(output);
+        //         } //success
+        //     }) //ajax
+        // } //function
 
-                    var output = "";
-
-                    for(obj of dataList) {
-                        output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
-
-                        output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>";
-                        output += "<img style='margin-right:0px;width:100px; height:100px; text-align:center' class='rounded-circle' src='/upload/" + obj.reviewphoto + "' alt=''>";
-                        output += "<div class='media-body' style='text-align:center'>";
-                        output += "<a href='#'><h4 class='sec_h4'>" + obj.mname + "</h4></a>";
-                        output += "<div class='star' style='text-align:center'>";
-
-                        for(i=0; i<obj.reviewstar; i++) {
-                            output += "<a href='#'><i class='fa fa-star'></i></a>";
-                        };
-                        output += "</div>";
-                        output += "</div>";
-                        output += "</div>";
-
-
-                        output += "<div style='float: left; padding-left:70px;'>";
-                        output += "<p>" + obj.reviewcontent + "</p>";
-                        output += "</div>";
-
-                        output += "</div>";
-
-                    };
-
-                    $(".testimonial_slider.owl-carousel").append(output);
-                } //success
-            }) //ajax
-        } //function
->>>>>>> d0e0476c9e5ed614afe87fa00cb18c32d679edd7
     </script>
     </head>
     <body>
@@ -345,7 +347,7 @@
                 <div class="accomodation_item text-center">
                     <div class="hotel_img">
                         <!--<img src="image/room1.jpg" alt="">-->
-                        <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/sz7PepEw6dYzPacOpI-IvAQ/z7pepew6dyzpacopi-ivaq_2362011453534440.jpeg" alt="">
+                        <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/sz7PepEw6dYzPacOpI-IvAQ/z7pepew6dyzpacopi-ivaq_2382322351679730.jpeg" alt="">
                         <a href="/restaurant/S_0001" class="btn theme_btn button_hover">BOOK NOW</a>
                     </div>
                     <a href="#"><h4 class="sec_h4">ZERO COMPLEX</h4></a>

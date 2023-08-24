@@ -35,6 +35,7 @@ public class NoticeRestController {
     @GetMapping("notice_list_paging/{serviceName}/{page}")
     public Map<String, Object> notice_list_paging(PageDto pageDto) {
         //Pageable pageable = pageRequest.of();
+        System.out.println("pageDto --> " + pageDto);
 
         PageDto page = pagingService.getPageResult(pageDto);
         List<NoticeDto> list = noticeServiceJPA.getNoticeSelectJson(page);
