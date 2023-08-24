@@ -84,6 +84,10 @@ $(document).ready(function() {
 		$(document).on("click", "#btnReviewDetail_" + rid, function() {
 			const popup = window.open("/admin_review_detail/true/" + rid, 'Review Detail', 'width=700px,height=1200px, scrollbars=yes');
 		});		
+<<<<<<< HEAD
 	}	
+=======
+	}
+>>>>>>> d0e0476c9e5ed614afe87fa00cb18c32d679edd7
   	/*======================= admin 페이지에서 review_detail =======================*/
 });
