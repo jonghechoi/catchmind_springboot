@@ -21,8 +21,67 @@
         <!-- main css -->
         <link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="/css/jhsStyle.css">
+        <link rel="stylesheet" href="/css/lsm.css">
         <link rel="stylesheet" href="/css/responsive.css">
-        
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+        <script>
+            // 카카오 JavaScript 키 설정
+            Kakao.init('adacb7319ef90251f888ca7acb9c479d');
+
+            // 카카오 공유하기 함수
+            function shareKakao() {
+                Kakao.Link.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: '',
+                        description: 'ZERO COMPLEX',
+                        imageUrl: 'https://image.toast.com/aaaaaqx/catchtable/shopinfo/s716/716_19112817413723085.jpg',
+                        link: {
+                            webUrl: 'https://www.catchtable.net/shop/zerocomplex',
+                            mobileWebUrl: '모바일 웹사이트 URL'
+                        }
+                    }
+                });
+            }
+            function shareKakao() {
+                Kakao.Link.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: '',
+                        description: 'On6.5',
+                        imageUrl: 'https://image.toast.com/aaaaaqx/catchtable/shopinfo/s47jHT01fp_nCI0cT-mo03Q/47jht01fp_nci0ct-mo03q_2210422223601797.png',
+                        link: {
+                            webUrl: 'https://www.catchtable.net/shop/on65',
+                            mobileWebUrl: '모바일 웹사이트 URL'
+                        }
+                    }
+                });
+            }
+            function shareKakao() {
+                Kakao.Link.sendDefault({
+                    objectType: 'feed',
+                    content: {
+                        title: '',
+                        description: 'JL Dessert Bar',
+                        imageUrl: 'https://image.toast.com/aaaaaqx/catchtable/shopinfo/soBe_yC58BHX5nFzOdCBvkg/obe_yc58bhx5nfzodcbvkg_22122915183140452.jpg',
+                        link: {
+                            webUrl: 'https://www.catchtable.net/shop/jldessertbar',
+                            mobileWebUrl: '모바일 웹사이트 URL'
+                        }
+                    }
+                });
+            }
+        </script>
+        <script>
+            let information_bookmark = "${information_bookmark}";
+
+            if(information_bookmark == "delete") {
+                alert("Delete Favorite Restaurant Registration");
+
+            }else if(information_bookmark == "insert") {
+                alert("Favorite Restaurant Registration Completed");
+            }
+        </script>
 
     </head>
     <body>
@@ -100,6 +159,8 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
+<%--                                <button type="button" id = "bookmark" onclick = "bookmark('${favorites.fid}')" class="btnMark"><img src="/image/catch/free-icon-bookmark-4436444.png"></button>--%>
+<%--                                <a id="kakao-share-btn" href="javascript:;" onclick="shareKakao()"><img src="/image/catch/free-icon-kakao-talk-3669973 (1).png" alt="카카오 공유하기" style="float: right;"></a>--%>
                                 <img src="${scheduledVo.smphoto}" width="262px"; height="272px"; alt="">
                                 <a href="/information/${scheduledVo.sid}/${scheduledVo.rid}"
                                 	class="btn theme_btn button_hover" target="_parent">Information</a>

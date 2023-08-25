@@ -6,11 +6,14 @@ import com.springboot.catchmind.repository.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberServiceImpl{
 	@Autowired
 	private MemberMapper memberMapper;
 
+	public MemberDto selectBy(String mid) { return memberMapper.select(mid); }
 	public int getRoleIdCheck(MemberDto memberDto) {
 		return memberMapper.roleIdCheck(memberDto);
 	}

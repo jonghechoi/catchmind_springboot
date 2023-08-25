@@ -16,6 +16,7 @@ import java.util.Map;
 @Mapper
 public interface MemberMapper {
 	List<MemberDto> selectList(PageDto pageDto);
+
 	MemberDto select(String mid);
 	
 	 /* ADMIN/SHOP 로그인타입 체크 */

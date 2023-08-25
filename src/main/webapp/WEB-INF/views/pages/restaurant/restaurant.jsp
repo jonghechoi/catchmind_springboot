@@ -116,7 +116,7 @@
 							</div>
 							<nav class="res_menu">
 								<div class="res_menu_left">
-									<a href="#"> <i class="res_menu_save">저장</i></a>
+<%--									<a href="#"> <i class="res_menu_save">저장</i></a>--%>
 									<a id="kakao-share-btn" href="javascript:;" onclick="shareKakao()">
 	                           			<img src="/image/dayoung_img/share.png" alt="카카오 공유하기"
 	                           				style="float: right;">

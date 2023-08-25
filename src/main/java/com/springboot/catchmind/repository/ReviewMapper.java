@@ -40,4 +40,6 @@ public interface ReviewMapper{
     int deleteFromMain(String rid);
 
 	int totalRowCount();
+
+	List<ReviewDto> selectBy(String mid);
 }

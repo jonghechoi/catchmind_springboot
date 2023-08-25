@@ -171,66 +171,66 @@
 		        	 <!-- <div id="ww_4ba0b9170f70e" v='1.3' loc='id' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","el_phw":3}'>Weather Data Source: <a href="https://wetterlang.de/seoul_wetter_30_tage/" id="ww_4ba0b9170f70e_u" target="_blank">30 tage Seoul wetter</a></div><script async 
 ="https://app1.weatherwidget.org/js/?id=ww_4ba0b9170f70e"></script> -->
 		       	 	</div>
-		       	 	<div class="calendar">
-		       	 		<div class="col-md-99">
-                                    <h2>BookYourTable</h2>
-                                    </div>
-                                <div class="col-md-9">
-                                    <div class="booking_table1">
-                                            <div class="col-md-4">
-                                                <div class="book_tabel_item">
-                                                    <div class="form-group">
-                                                        <div class="input-group date" id="datepicker">
-                                                            <input type="text" class="form-control" placeholder="Date" 
-																	name="rdate" value="rdate" id="rdate"/>
-                                                            <span class="input-group-addon">
-                                                                <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>  
-                                                  <div class="input-group">
-                                                        <select class="wide">
-                                                            <option data-display="Seating Options">Seating Options</option>
-                                                            <option value="all">All</option>
-                                                            <option value="roofTop">Rooftop</option>
-                                                            <option value="terrace">Terrace</option>
-                                                            <option value="bar">Bar</option>
-                                                            <option value="diningHall">Dining Hall</option>
-                                                            <option value="windowSeat">Window Seat</option>
-                                                            <option value="privateRoom">Private Room</option>
-                                                            <option value="Rental">Rental</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>  
-                                            <div class="col-md-4">
-                                                <div class="book_tabel_item">
-                                                   <div class="input-group reservation-page">
-                                                        <select class="wide">
-                                                            <option data-display="Party Size">Party Size</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                            <option value="6">6</option>
-                                                            <option value="7">7</option>
-                                                            <option value="8">8</option>
-                                                            <option value="9">9</option>
-                                                            <option value="10">10</option>
-                                                        </select>
-                                                    </div>
-                                                   <div class="input-group">
-															<select class="wide" name = "rtime" id="rtime"
-																onchange="selectBoxRtime()">
-																<option value = "rtime" data-display="Time">Time</option>
-															</select>
-														</div>
-                                                </div>
-                                        </div>
-                                   </div>
-                            </div> 
-		        	</div>  
+<%--		       	 	<div class="calendar">--%>
+<%--		       	 		<div class="col-md-99">--%>
+<%--                                    <h2>BookYourTable</h2>--%>
+<%--                                    </div>--%>
+<%--                                <div class="col-md-9">--%>
+<%--                                    <div class="booking_table1">--%>
+<%--                                            <div class="col-md-4">--%>
+<%--                                                <div class="book_tabel_item">--%>
+<%--                                                    <div class="form-group">--%>
+<%--                                                        <div class="input-group date" id="datepicker">--%>
+<%--                                                            <input type="text" class="form-control" placeholder="Date" --%>
+<%--																	name="rdate" value="rdate" id="rdate"/>--%>
+<%--                                                            <span class="input-group-addon">--%>
+<%--                                                                <i class="fa fa-calendar" aria-hidden="true"></i>--%>
+<%--                                                            </span>--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>  --%>
+<%--                                                  <div class="input-group">--%>
+<%--                                                        <select class="wide">--%>
+<%--                                                            <option data-display="Seating Options">Seating Options</option>--%>
+<%--                                                            <option value="all">All</option>--%>
+<%--                                                            <option value="roofTop">Rooftop</option>--%>
+<%--                                                            <option value="terrace">Terrace</option>--%>
+<%--                                                            <option value="bar">Bar</option>--%>
+<%--                                                            <option value="diningHall">Dining Hall</option>--%>
+<%--                                                            <option value="windowSeat">Window Seat</option>--%>
+<%--                                                            <option value="privateRoom">Private Room</option>--%>
+<%--                                                            <option value="Rental">Rental</option>--%>
+<%--                                                        </select>--%>
+<%--                                                    </div>--%>
+<%--                                                </div>--%>
+<%--                                            </div>  --%>
+<%--                                            <div class="col-md-4">--%>
+<%--                                                <div class="book_tabel_item">--%>
+<%--                                                   <div class="input-group reservation-page">--%>
+<%--                                                        <select class="wide">--%>
+<%--                                                            <option data-display="Party Size">Party Size</option>--%>
+<%--                                                            <option value="1">1</option>--%>
+<%--                                                            <option value="2">2</option>--%>
+<%--                                                            <option value="3">3</option>--%>
+<%--                                                            <option value="4">4</option>--%>
+<%--                                                            <option value="5">5</option>--%>
+<%--                                                            <option value="6">6</option>--%>
+<%--                                                            <option value="7">7</option>--%>
+<%--                                                            <option value="8">8</option>--%>
+<%--                                                            <option value="9">9</option>--%>
+<%--                                                            <option value="10">10</option>--%>
+<%--                                                        </select>--%>
+<%--                                                    </div>--%>
+<%--                                                   <div class="input-group">--%>
+<%--															<select class="wide" name = "rtime" id="rtime"--%>
+<%--																onchange="selectBoxRtime()">--%>
+<%--																<option value = "rtime" data-display="Time">Time</option>--%>
+<%--															</select>--%>
+<%--														</div>--%>
+<%--                                                </div>--%>
+<%--                                        </div>--%>
+<%--                                   </div>--%>
+<%--                            </div> --%>
+<%--		        	</div>  --%>
 		        	   </div>
 						      <form id="catch-form" class="form">
                     	<div class="softsearch">

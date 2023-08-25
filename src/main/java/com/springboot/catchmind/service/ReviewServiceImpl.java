@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ReviewServiceImpl{
@@ -46,4 +47,7 @@ public class ReviewServiceImpl{
 	}
 
 	public int getTotalRowCount() { return reviewMapper.totalRowCount(); }
+
+	public List<ReviewDto> selectBy(String mid) { return reviewMapper.selectBy(mid); }
+
 }

@@ -34,7 +34,7 @@
     </appender>
 
     <!-- Logger -->
-    <logger name="com.springboot.catchmind" level="DEBUG" appender-ref="FILE" />
+    <logger name="com.springboot.catchmind" level="WARN" appender-ref="FILE" />
     <logger name="jdbc.sqlonly" level="WARN" appender-ref="console-infolog" />
     <logger name="jdbc.resultsettable" level="WARN" appender-ref="console-infolog" />
 
