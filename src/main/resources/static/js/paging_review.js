@@ -13,7 +13,7 @@ $(document).ready(function() {
 				output += "<th>No</th>";
 				output += "<th>Name</th>";
 				output += "<th>Restaurant</th>";
-				output += "<th>Riview</th>";
+				output += "<th>Review</th>";
 				output += "<th>Star</th>";
 				output += "<th>Date</th>";
 				output += "<th></th>";
