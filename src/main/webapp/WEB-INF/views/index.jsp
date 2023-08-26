@@ -187,25 +187,30 @@
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                            <li class="nav-item submenu dropdown">
-                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
-                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
+
+                            <c:if test="${sessionScope.sessionVo.roleId !='SHOP' || sessionScope.sessionVo.roleId !='ADMIN'}">
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                    <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                     </ul>
                                 </li>
                             </c:if>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP'}">
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                    <ul class="dropdown-menu">
+<%--                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>--%>
+<%--                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>--%>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
+                                    </ul>
+                                </li>
+                            </c:if>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
                                 <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                             </c:if>

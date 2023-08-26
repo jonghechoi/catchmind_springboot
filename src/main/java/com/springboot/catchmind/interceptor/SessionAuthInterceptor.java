@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class SessionAuthInterceptor implements HandlerInterceptor {
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-		throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
 

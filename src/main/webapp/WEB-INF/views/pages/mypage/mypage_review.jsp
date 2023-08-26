@@ -107,7 +107,7 @@
                         <span class="__date">${reviewVo.reviewcreatedate}</span><span class="star">${reviewVo.reviewstar }</span>
                         <h5>${reviewVo.reviewcontent}
                             <small></small></h5>
-                        <a href="/write_review/${reviewVo.rid}">Edit Review</a>
+<%--                        <a href="/write_review/${reviewVo.rid}">Edit Review</a>--%>
 
                     </div>
                 </div>

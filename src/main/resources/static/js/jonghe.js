@@ -452,7 +452,7 @@ $(document).ready(function() {
 	/*======================= shop_information 페이지에서 shop facility 진입 버튼  =======================*/	
 	$("#btnShopFacilityDetail").click(function() {
 		const sidValue = $('#sid').val();
-  		const queryString = "?sid=" + encodeURIComponent(sidValue);
+  		const queryString = "/" + encodeURIComponent(sidValue);
 		const popup = window.open("/shop_information_facility" + queryString, 'Facility Information', 'width=700px,height=1200px, scrollbars=yes');
 	});
 	/*======================= shop_information 페이지에서 shop facility 진입 버튼  =======================*/	

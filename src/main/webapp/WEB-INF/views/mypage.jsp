@@ -94,14 +94,21 @@
 <section class="mypage">
     <div class="accomodation_item text-center">
         <div>
-
-<%--            <h4 class="name username">${memberList[0].mname}</h4>--%>
-            <h4 class="name username">${memberList.mname}</h4>
-            <p id="introduce_p" class="expand"> Catch Mind <br></p>
             <body>
-            <!-- <button class="btn btn-edit-profile">Edit Profile</button> -->
-            <button class="btn btn-favorites">Favorites</button>
-            <button class="btn btn-my-review">My Review</button>
+            <c:choose>
+                <c:when test = "${sessionScope.sessionVo.roleId =='SHOP'}">
+                    <h4 class="name username">${memberOrShop.sname}</h4>
+                </c:when>
+                <c:when test = "${sessionScope.sessionVo.roleId =='USER' || sessionScope.sessionVo.roleId =='ADMIN'}">
+                    <h4 class="name username">${memberOrShop.mname}</h4>
+                </c:when>
+            </c:choose>
+            <c:choose>
+                <c:when test = "${sessionScope.sessionVo.roleId =='USER'}">
+                    <button class="btn btn-favorites">Favorites</button>
+                    <button class="btn btn-my-review">My Review</button>
+                </c:when>
+            </c:choose>
             <br>
             <br>
             <br>

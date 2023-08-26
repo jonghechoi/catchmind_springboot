@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.springboot.catchmind.dto.MemberDto;
-import com.springboot.catchmind.dto.ReviewDto;
-import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springboot.catchmind.dto.FavoritesDto;
 import com.springboot.catchmind.vo.MemberVo;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,6 +24,8 @@ public class MyPageController {
 	private FavoritesServiceImpl favoritesService;
 	@Autowired
 	private MemberServiceImpl memberService;
+	@Autowired
+	private ShopServiceImpl shopService;
 
 
 	//	@PostMapping("/update_review/{reviewId}")
@@ -87,15 +86,18 @@ public class MyPageController {
 	 */
 	@GetMapping("mypage")
 	public String mypage(HttpSession session, Model model) {
-		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
-		String mid = sessionVo.getMid();
+		SessionDto sessionDto = (SessionDto) session.getAttribute("sessionVo");
+		String mid = sessionDto.getMid();
+		String sid = sessionDto.getSid();
 
-		MemberDto member = memberService.selectBy(mid);
-
-		model.addAttribute("memberList", member);
-		//model.addObject("mid", mid);
-		//model.setViewName("mypage");
-
+		if (mid != null) {
+			MemberDto member = memberService.selectBy(mid);
+			model.addAttribute("memberOrShop", member);
+		}
+		if (sid != null) {
+			ShopDto shop = shopService.shopSelect(sid);
+			model.addAttribute("memberOrShop", shop);
+		}
 		return "/mypage";
 	}
 

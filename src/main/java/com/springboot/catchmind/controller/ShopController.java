@@ -38,7 +38,7 @@ public class ShopController {
 
 	@GetMapping("shop_information_facility/{sid}")
 	public String shop_information_facility(HttpSession session,@PathVariable String sid, Model model) {
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+//		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
 		FacilityDto facilityDto = shopService.getShopFacilitySelect(sid);
 		model.addAttribute("FacilityVo", facilityDto);
 		return "/pages/shop/shop_information_facility";
