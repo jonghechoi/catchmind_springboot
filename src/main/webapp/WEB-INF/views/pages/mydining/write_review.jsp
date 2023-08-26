@@ -111,7 +111,7 @@
 	                    </div>
 	                   	<div class="col-md-6">
 		                    	<fieldset class="field_star" id="tasteFieldset">
-									<span class="text-bold">맛</span>
+									<span class="text-bold">Taste</span>
 									<input type="radio" name="tasteStar" value="1" id="tasteStar1"><label
 										for="tasteStar1" class="review_label">★</label>
 									<input type="radio" name="tasteStar" value="2" id="tasteStar2"><label
@@ -124,7 +124,7 @@
 										for="tasteStar5" class="review_label">★</label>
 								</fieldset>
 								<fieldset class="field_star" id="moodFieldset">
-									<span class="text-bold">분위기</span>
+									<span class="text-bold">Mood</span>
 									<input type="radio" name="moodStar" value="1" id="moodStar1"><label
 										for="moodStar1" class="review_label">★</label>
 									<input type="radio" name="moodStar" value="2" id="moodStar2"><label
@@ -137,7 +137,7 @@
 										for="moodStar5" class="review_label">★</label>
 								</fieldset>
 								<fieldset class="field_star" id="serviceFieldset">
-									<span class="text-bold">서비스</span>
+									<span class="text-bold">Service</span>
 									<input type="radio" name="serviceStar" value="1" id="serviceStar1"><label
 										for="serviceStar1" class="review_label">★</label>
 									<input type="radio" name="serviceStar" value="2" id="serviceStar2"><label

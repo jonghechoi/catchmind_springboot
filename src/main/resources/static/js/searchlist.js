@@ -98,11 +98,13 @@ $(document).ready(function() {
 
 
         $.ajax({
-            url: "/search_list_proc/" + searchQuery,
+            url: "search_list_proc/"+searchQuery+"/",
             async:false,
             success: function(result) {
-                                let output = "";
-                
+                fdata = result;
+                //let jdata = JSON.parse(result);
+                let output = "";
+                //alert(result);
                 for (const obj of result) {
                     //console.log(obj.sid);
                     output += "<a href='/restaurant/" + obj.sid + "'>";
@@ -132,11 +134,11 @@ $(document).ready(function() {
                     //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
                     output += "</span>";
                     output += "</div>";
-                    output += "<div class='timetable-list timetable-list-sm'>";
-                    output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-                    output += "<span class='time'>" + obj.sopeninghour + "</span>";
-                    output += "</a>";
-                    output += "</div>";
+                    // output += "<div class='timetable-list timetable-list-sm'>";
+                    // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+                    // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+                    // output += "</a>";
+                    // output += "</div>";
                     output += "</div>";
                     output += "</div>";
                     output += "</div>";
@@ -153,14 +155,14 @@ $(document).ready(function() {
     $(".d_p1").click(function(){
         //alert($(this).attr("id"));
         let locname = $(this).attr("id");
-const jdata = JSON.parse(fdata);
-        const searchData =jdata.jlist.filter(object => {
+
+        console.log(fdata);
+        const searchData =fdata.filter(object => {
             if(object.sloc.indexOf(locname) > -1){
                 return object;
             }
             return null;
         }); //searchData
-
 
 
         let output = "";
@@ -193,11 +195,11 @@ const jdata = JSON.parse(fdata);
             //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
             output += "</span>";
             output += "</div>";
-            output += "<div class='timetable-list timetable-list-sm'>";
-            output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-            output += "<span class='time'>" + obj.sopeninghour + "</span>";
-            output += "</a>";
-            output += "</div>";
+            // output += "<div class='timetable-list timetable-list-sm'>";
+            // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+            // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+            // output += "</a>";
+            // output += "</div>";
             output += "</div>";
             output += "</div>";
             output += "</div>";
@@ -215,8 +217,7 @@ const jdata = JSON.parse(fdata);
         //alert($(this).attr("id"));
         let cuisinename = $(this).attr("id");
         //alert(fdata);
-        const jdata = JSON.parse(fdata);
-        const searchData =jdata.jlist.filter(object => {
+        const searchData =fdata.filter(object => {
             if(object.sfoodstyle.indexOf(cuisinename) > -1){
                 return object;
             }
@@ -255,11 +256,11 @@ const jdata = JSON.parse(fdata);
             //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
             output += "</span>";
             output += "</div>";
-            output += "<div class='timetable-list timetable-list-sm'>";
-            output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-            output += "<span class='time'>" + obj.sopeninghour + "</span>";
-            output += "</a>";
-            output += "</div>";
+            // output += "<div class='timetable-list timetable-list-sm'>";
+            // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+            // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+            // output += "</a>";
+            // output += "</div>";
             output += "</div>";
             output += "</div>";
             output += "</div>";
@@ -306,8 +307,7 @@ const jdata = JSON.parse(fdata);
         //alert($(this).attr("id"));
         let pricescope = $(this).attr("id");
 
-        const jdata = JSON.parse(fdata);
-		const pricedata = jdata.jlist; //Price filtering Data
+        const pricedata = fdata; //Price filtering Data
 
         const filterData = (pricedata, contractAmountRange, rangeSelected) => {
             const foundRange = contractAmountRange.find((x) => x.id === rangeSelected);
@@ -358,11 +358,11 @@ const jdata = JSON.parse(fdata);
             //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
             output += "</span>";
             output += "</div>";
-            output += "<div class='timetable-list timetable-list-sm'>";
-            output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-            output += "<span class='time'>" + obj.sopeninghour + "</span>";
-            output += "</a>";
-            output += "</div>";
+            // output += "<div class='timetable-list timetable-list-sm'>";
+            // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+            // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+            // output += "</a>";
+            // output += "</div>";
             output += "</div>";
             output += "</div>";
             output += "</div>";
