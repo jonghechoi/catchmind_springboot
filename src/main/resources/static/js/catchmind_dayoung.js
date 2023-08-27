@@ -298,11 +298,6 @@ $(document).ready(function() {
 			return false;
 		}
 		else{
-			alert(rdate);
-			alert(rtabletype);
-			alert(guestnumber);
-			alert(rtime);
-
 			reservationForm.submit();
 		}
 	});
