@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.catchmind.repository.ShopPhotoMapper">
+    <!-- start Dayoung -->
+    <select id="shopPhotoSelect" parameterType="String" resultType="com.springboot.catchmind.dto.ShopPhotoDto">
+        select sid, photo1, photo2, photo3, photo4, photo5,
+               sphoto1, sphoto2, sphoto3, sphoto4, sphoto5
+        from shop_photo
+        where sid=#{sid}
+    </select>
+    <!-- end Dayoung -->
+
+
+    <select id="selectCheck" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+            FROM SHOP_PHOTO
+            WHERE SID=#{sid}
+    </select>
+
+    <insert id="insert" parameterType="map">
+        INSERT INTO SHOP_PHOTO(SID
+        <if test='shopPhotoDto.photo1 != null'>,PHOTO1, SPHOTO1</if>
+        <if test='shopPhotoDto.photo2 != null'>,PHOTO2, SPHOTO2</if>
+        <if test='shopPhotoDto.photo3 != null'>,PHOTO3, SPHOTO3</if>
+        <if test='shopPhotoDto.photo4 != null'>,PHOTO4, SPHOTO4</if>
+        <if test='shopPhotoDto.photo5 != null'>,PHOTO5, SPHOTO5</if>
+        )
+        VALUES(#{sid}
+        <if test='shopPhotoDto.photo1 != null'>,#{shopPhotoDto.photo1}, #{shopPhotoDto.sphoto1}</if>
+        <if test='shopPhotoDto.photo2 != null'>,#{shopPhotoDto.photo2}, #{shopPhotoDto.sphoto2}</if>
+        <if test='shopPhotoDto.photo3 != null'>,#{shopPhotoDto.photo3}, #{shopPhotoDto.sphoto3}</if>
+        <if test='shopPhotoDto.photo4 != null'>,#{shopPhotoDto.photo4}, #{shopPhotoDto.sphoto4}</if>
+        <if test='shopPhotoDto.photo5 != null'>,#{shopPhotoDto.photo5}, #{shopPhotoDto.sphoto5}</if>
+        )
+    </insert>
+
+    <update id="update" parameterType="map">
+        UPDATE SHOP_PHOTO SET
+        SID=#{shopPhotoDto.sid}
+        <if test='shopPhotoDto.photo1 != null'>,PHOTO1=#{shopPhotoDto.photo1, jdbcType=VARCHAR}, SPHOTO1=#{shopPhotoDto.sphoto1, jdbcType=VARCHAR}</if>
+        <if test='shopPhotoDto.photo2 != null'>,PHOTO2=#{shopPhotoDto.photo2, jdbcType=VARCHAR}, SPHOTO2=#{shopPhotoDto.sphoto2, jdbcType=VARCHAR}</if>
+        <if test='shopPhotoDto.photo3 != null'>,PHOTO3=#{shopPhotoDto.photo3, jdbcType=VARCHAR}, SPHOTO3=#{shopPhotoDto.sphoto3, jdbcType=VARCHAR}</if>
+        <if test='shopPhotoDto.photo4 != null'>,PHOTO4=#{shopPhotoDto.photo4, jdbcType=VARCHAR}, SPHOTO4=#{shopPhotoDto.sphoto4, jdbcType=VARCHAR}</if>
+        <if test='shopPhotoDto.photo5 != null'>,PHOTO5=#{shopPhotoDto.photo5, jdbcType=VARCHAR}, SPHOTO5=#{shopPhotoDto.sphoto5, jdbcType=VARCHAR}</if>
+        WHERE SID=#{shopPhotoDto.sid}
+    </update>
+</mapper>

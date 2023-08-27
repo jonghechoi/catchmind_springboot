@@ -1,3 +1,9 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
 plugins {
     id 'java'
     id 'war'
@@ -24,18 +30,35 @@ repositories {
 }
 
 dependencies {
+    // @Nullable annotation warning supress
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+
+    // Spring Cloud Gateway
+    //implementation 'org.springframework.cloud:spring-cloud-starter-gateway:3.0.0'
+
+    // QueryDSL
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    annotationProcessor(
+            "javax.persistence:javax.persistence-api",
+            "javax.annotation:javax.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
+    implementation group: "com.querydsl", name: "querydsl-sql", version: "${queryDslVersion}"
+
+    // Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Spring Data JPA - Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
     // oracle
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.3.0.0'
 
     // mybatis
-//    implementation group: 'org.mybatis', name: 'mybatis', version: '3.3.1'
-//    implementation group: 'org.mybatis', name: 'mybatis-spring', version: '1.2.4'
     implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.4'
 
     // mail
-//    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
-//    implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
-//    implementation group: 'org.springframework', name: 'spring-context-support', version: '5.1.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
     // gson
@@ -62,9 +85,25 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// QueryDSL
+sourceSets {
+    main {
+        java {
+            srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
+        }
+    }
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+test {
+    useJUnitPlatform()
+}
+
+//clean {
+//    delete file(generated)
+//}

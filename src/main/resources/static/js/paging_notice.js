@@ -4,13 +4,13 @@ $(document).ready(function() {
 	
 	function initAjax(page) {
 		$.ajax({
-			url: "/notice_list_paging/"+page,
+			url: "/notice_list_paging/notice/"+page,
 			success: function(result){
 
 				let output = "<table class='notice_list'>";
 				output += "<tr class='adminList'>";
 				output += "<td colspan='3'>";
-				output += "<a href='notice_write.do'>";
+				output += "<a href='/notice_write'>";
 				output += "<button type='button'>register</button>";
 				output += "</a>";
 				output += "</td>";
@@ -40,7 +40,7 @@ $(document).ready(function() {
 				$("h1").after(output);
 
 				pager(result.page.dbCount,  result.page.maxSize, result.page.pageSize, result.page.page);
-	
+
 				//페이지 번호 클릭 이벤트 처리
 				jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   		jQuery('.showlabelsm').text('The selected page no: '+e.page);

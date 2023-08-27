@@ -15,17 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.springboot.catchmind.dao.ShopPhotoDao;
-import com.springboot.catchmind.vo.ShopPhotoVo;
-
 @Service("fileService")
 @Slf4j
 public class FileServiceImpl {
 	
 	@Autowired
 	private ShopServiceImpl shopService;
-	@Autowired
-	private ShopPhotoDao shopPhotoDao;
 
 	/**
 	 * FileSave
@@ -179,34 +174,39 @@ public class FileServiceImpl {
 		//String attach_path = "\\resources\\upload\\";
 		//String attach_path = "\\upload\\";
 		
-		ShopPhotoDto shopPhotoVo = shopService.getShopPhotoSelect(sid);
+		ShopPhotoDto shopPhotoDto = shopService.getShopPhotoSelect(sid);
 		Map<String, String> mapDelete = new HashMap<String, String>();
 		
 		if(map.get("file1") == 1) {
-			mapDelete.put("file1", shopPhotoVo.getSphoto1());
+			mapDelete.put("file1", shopPhotoDto.getSphoto1());
 		}
 		if(map.get("file2") == 1) {
-			mapDelete.put("file2", shopPhotoVo.getSphoto2());
+			mapDelete.put("file2", shopPhotoDto.getSphoto2());
 		}
 		if(map.get("file3") == 1) {
-			mapDelete.put("file3", shopPhotoVo.getSphoto3());
+			mapDelete.put("file3", shopPhotoDto.getSphoto3());
 		}
 		if(map.get("file4") == 1) {
-			mapDelete.put("file4", shopPhotoVo.getSphoto4());
+			mapDelete.put("file4", shopPhotoDto.getSphoto4());
 		}
 		if(map.get("file5") == 1) {
-			mapDelete.put("file5", shopPhotoVo.getSphoto5());
+			mapDelete.put("file5", shopPhotoDto.getSphoto5());
 		}
 		
 		for (Map.Entry<String, String> entry : mapDelete.entrySet()) {
 		    String fileName = entry.getValue();
-		    //String imgPath = root_path + attach_path + fileName;
-			String imgPath = fileName;
-		    File file = new File(imgPath);
+
+			String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\upload\\";
+			String filePath = projectPath + fileName;
+
+		    File file = new File(filePath);
 		    
 		    if(file.exists()) {
-		    	try {
-		    		if(file.delete()) {
+				String path = file.getPath();
+				try {
+					System.gc();
+					System.runFinalization();
+					if(file.delete()) {
 		    			System.out.println("File deleted successfully.");
 		    		} else {
 		    			System.out.println("Failed to delete the file.");

@@ -21,36 +21,110 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/style_jonghe.css">
     <link rel="stylesheet" href="/css/responsive.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/jquery-3.2.1.min.js"></script>
     <script src="/vendors/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>
 
-        
-        <script>
-			let login_complete = "${login_complete}"
-			let loginRole_complete = "${loginRole_complete}"
-			let kakaoLogin = "${kakoLogin_complete}"
-			let logout = "${logout_result}"
-        	
-        	if(login_complete == "ok") {
-        		alert("Sign In Complete");
-        	}
-			
-	    	if(loginRole_complete == "ok") {
-	    		alert("Sign In Complete");
-	    	}
-	    	
-	    	if(kakaoLogin == "ok") {
-	    		alert("Sign In Kakao Complete");
-	    	}
-	    	
-	    	if(logout == "ok") {
-	    		alert("Logout Complete");
-	    	}
-        </script>
-        
-        <!-- script -->
+    <script>
+        let login_complete = "${login_complete}"
+        let loginRole_complete = "${loginRole_complete}"
+        let kakaoLogin = "${kakoLogin_complete}"
+        let logout = "${logout_result}"
+
+        if(login_complete == "ok") {
+            alert("Sign In Complete");
+        }
+
+        if(loginRole_complete == "ok") {
+            alert("Sign In Complete");
+        }
+
+        if(kakaoLogin == "ok") {
+            alert("Sign In Kakao Complete");
+        }
+
+        if(logout == "ok") {
+            alert("Logout Complete");
+        }
+    </script>
     <script>
         $(document).ready(function() {
+            $(".cuisine-image").click(function () {
+                var cuisine = $(this).attr('alt');
+                var check = 'imageClick';
+
+                localStorage.setItem('check', JSON.stringify(check));
+                localStorage.setItem('searchQuery', JSON.stringify(cuisine).replace(/["']/g, ''));
+
+                window.location.href = "/search";
+            });
+
+            $(".place-image").click(function () {
+                var place = $(this).attr('alt');
+                var check = 'imageClick';
+
+                localStorage.setItem('check', JSON.stringify(check));
+                localStorage.setItem('searchQuery', JSON.stringify(place).replace(/["']/g, ''));
+
+                window.location.href = "/search";
+            });
+
+            $(".book_now_btn").click(function () {
+                const bookNowDate = document.querySelector('#bookNowDate');
+                const bookNowLocation = document.querySelector('#bookNowLocation');
+                const bookNowCuisine = document.querySelector('#bookNowCuisine');
+
+                var check = 'bookNowClick';
+                localStorage.setItem('check', JSON.stringify(check));
+
+                localStorage.setItem('bookNowDate', bookNowDate.value);
+                localStorage.setItem('bookNowLocation', bookNowLocation.value);
+                localStorage.setItem('bookNowCuisine', bookNowCuisine.value);
+
+                window.location.href = "/search";
+            })
+
+            function updateData() {
+                $.ajax({
+                    // 도커로 띄웠을 때 사용
+                    // url: "http://localhost:82/index_review",
+                    // 인텔리제이 내장으로 띄웠을 때 사용
+                    url: "http://localhost:9001/index_review",
+                    success: function(dataList) {
+                        $(".testimonial_slider.owl-carousel").empty();
+
+                        var output = "";
+
+                        for(obj of dataList) {
+                            output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
+
+                            output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>";
+                            output += "<img style='margin-right:0px;width:100px; height:100px; text-align:center' class='rounded-circle' src='/upload/" + obj.reviewphoto + "' alt=''>";
+                            output += "<div class='media-body' style='text-align:center'>";
+                            output += "<a href='#'><h4 class='sec_h4'>" + obj.mname + "</h4></a>";
+                            output += "<div class='star' style='text-align:center'>";
+
+                            for(i=0; i<obj.reviewstar; i++) {
+                                output += "<a href='#'><i class='fa fa-star'></i></a>";
+                            };
+                            output += "</div>";
+                            output += "</div>";
+                            output += "</div>";
+
+
+                            output += "<div style='float: left; padding-left:70px;'>";
+                            output += "<p>" + obj.reviewcontent + "</p>";
+                            output += "</div>";
+
+                            output += "</div>";
+
+                        };
+
+                        $(".testimonial_slider.owl-carousel").append(output);
+                    } //success
+                }) //ajax
+            } //function
+
             $('#datepicker').datepicker({
                 format : "yyyy-mm-dd",
                 startDate: '0d',
@@ -58,47 +132,42 @@
                 todayHighlight: true,
                 //daysOfWeekDisabled: [dayoffnum] // 월요일(1) 비활성화
             }).datepicker("setDate", new Date());
-
             updateData();
             setInterval(() => {updateData();}, 600000);
+
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(37.5517047604094, 127.020792640827),
+                level: 3
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+            // 지도를 클릭한 위치에 표출할 마커입니다
+            var marker = new kakao.maps.Marker({
+                // 지도 중심좌표에 마커를 생성합니다
+                position: map.getCenter()
+            });
+            // 지도에 마커를 표시합니다
+            marker.setMap(map);
+
+            // 지도에 클릭 이벤트를 등록합니다
+            // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+            kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+
+                // 클릭한 위도, 경도 정보를 가져옵니다
+                var latlng = mouseEvent.latLng;
+
+                // 마커 위치를 클릭한 위치로 옮깁니다
+                marker.setPosition(latlng);
+                var check = 'kakaoMap';
+                localStorage.setItem('check', JSON.stringify(check));
+
+                localStorage.setItem('lat', JSON.stringify(latlng.getLat()));
+                localStorage.setItem('lng', JSON.stringify(latlng.getLng()));
+                window.location.href = "/search";
+            });
         });
-        function updateData() {
-            $.ajax({
-                url: "/index_review",
-                success: function(dataList) {
-                    $(".testimonial_slider.owl-carousel").empty();
-
-                    var output = "";
-
-                    for(obj of dataList) {
-                        output += "<div class='media testimonial_item' style='display: flex; align-items: center;'>";
-
-                        output += "<div style='float: left; padding:0px 70px 0px 40px; border-right:2px solid lightgray'>";
-                        output += "<img style='margin-right:0px;width:100px; height:100px; text-align:center' class='rounded-circle' src='/upload/" + obj.reviewphoto + "' alt=''>";
-                        output += "<div class='media-body' style='text-align:center'>";
-                        output += "<a href='#'><h4 class='sec_h4'>" + obj.mname + "</h4></a>";
-                        output += "<div class='star' style='text-align:center'>";
-
-                        for(i=0; i<obj.reviewstar; i++) {
-                            output += "<a href='#'><i class='fa fa-star'></i></a>";
-                        };
-                        output += "</div>";
-                        output += "</div>";
-                        output += "</div>";
-
-
-                        output += "<div style='float: left; padding-left:70px;'>";
-                        output += "<p>" + obj.reviewcontent + "</p>";
-                        output += "</div>";
-
-                        output += "</div>";
-
-                    };
-
-                    $(".testimonial_slider.owl-carousel").append(output);
-                } //success
-            }) //ajax
-        } //function
     </script>
     </head>
     <body>
@@ -118,24 +187,30 @@
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                            <li class="nav-item submenu dropdown">
-                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
-                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
+
+                            <c:if test="${sessionScope.sessionVo.roleId !='SHOP' || sessionScope.sessionVo.roleId !='ADMIN'}">
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                    <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
+                                        <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                     </ul>
                                 </li>
                             </c:if>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
+                            <c:if test="${sessionScope.sessionVo.roleId =='SHOP'}">
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
+                                    <ul class="dropdown-menu">
+<%--                                        <li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>--%>
+<%--                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>--%>
+                                        <li class="nav-item active"><a class="nav-link" href="/shop_information">Register</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/shop_reservation">Reservation</a></li>
+                                    </ul>
+                                </li>
+                            </c:if>
+                            <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId == 'ADMIN'}">
                                 <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                             </c:if>
@@ -229,7 +304,7 @@
                 <div class="accomodation_item text-center">
                     <div class="hotel_img">
                         <!--<img src="image/room1.jpg" alt="">-->
-                        <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/sz7PepEw6dYzPacOpI-IvAQ/z7pepew6dyzpacopi-ivaq_2362011453534440.jpeg" alt="">
+                        <img class="AccomodationImg" src="https://image.toast.com/aaaaaqx/catchtable/shopinfo/sz7PepEw6dYzPacOpI-IvAQ/z7pepew6dyzpacopi-ivaq_2382322351679730.jpeg" alt="">
                         <a href="/restaurant/S_0001" class="btn theme_btn button_hover">BOOK NOW</a>
                     </div>
                     <a href="#"><h4 class="sec_h4">ZERO COMPLEX</h4></a>
@@ -411,79 +486,8 @@
 <script src="/js/stellar.js"></script>
 <script src="/vendors/lightbox/simpleLightbox.min.js"></script>
 <script src="/js/custom.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>
+<%--<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>--%>
 <!-- Kako Map -->
 <script src="/js/jonghe.js"></script>
-
-<script>
-    var container = document.getElementById('map');
-    var options = {
-        center: new kakao.maps.LatLng(37.5517047604094, 127.020792640827),
-        level: 3
-    };
-
-    var map = new kakao.maps.Map(container, options);
-
-    // 지도를 클릭한 위치에 표출할 마커입니다
-    var marker = new kakao.maps.Marker({
-        // 지도 중심좌표에 마커를 생성합니다
-        position: map.getCenter()
-    });
-    // 지도에 마커를 표시합니다
-    marker.setMap(map);
-
-    // 지도에 클릭 이벤트를 등록합니다
-    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-
-        // 클릭한 위도, 경도 정보를 가져옵니다
-        var latlng = mouseEvent.latLng;
-
-        // 마커 위치를 클릭한 위치로 옮깁니다
-        marker.setPosition(latlng);
-        var check = 'kakaoMap';
-        localStorage.setItem('check', JSON.stringify(check));
-
-        localStorage.setItem('lat', JSON.stringify(latlng.getLat()));
-        localStorage.setItem('lng', JSON.stringify(latlng.getLng()));
-        window.location.href = "/search";
-    });
-
-
-    $(".cuisine-image").click(function() {
-        var cuisine = $(this).attr('alt');
-        var check = 'imageClick';
-
-        localStorage.setItem('check', JSON.stringify(check));
-        localStorage.setItem('searchQuery', JSON.stringify(cuisine).replace(/["']/g, ''));
-
-        window.location.href = "/search";
-    });
-
-    $(".place-image").click(function() {
-        var place = $(this).attr('alt');
-        var check = 'imageClick';
-
-        localStorage.setItem('check', JSON.stringify(check));
-        localStorage.setItem('searchQuery', JSON.stringify(place).replace(/["']/g, ''));
-
-        window.location.href = "/search";
-    });
-
-    $(".book_now_btn").click(function() {
-        const bookNowDate = document.querySelector('#bookNowDate');
-        const bookNowLocation = document.querySelector('#bookNowLocation');
-        const bookNowCuisine = document.querySelector('#bookNowCuisine');
-
-        var check = 'bookNowClick';
-        localStorage.setItem('check', JSON.stringify(check));
-
-        localStorage.setItem('bookNowDate', bookNowDate.value);
-        localStorage.setItem('bookNowLocation', bookNowLocation.value);
-        localStorage.setItem('bookNowCuisine', bookNowCuisine.value);
-
-        window.location.href = "/search";
-    })
-</script>
 </body>
 </html>

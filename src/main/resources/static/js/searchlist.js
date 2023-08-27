@@ -107,7 +107,7 @@ $(document).ready(function() {
                 //alert(result);
                 for (const obj of result) {
                     //console.log(obj.sid);
-                    output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+                    output += "<a href='/restaurant/" + obj.sid + "'>";
                     output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
                     output += "<div class='restaurant-info'>";
                     output += "<div class='tb'>";
@@ -134,11 +134,11 @@ $(document).ready(function() {
                     //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
                     output += "</span>";
                     output += "</div>";
-                    output += "<div class='timetable-list timetable-list-sm'>";
-                    output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-                    output += "<span class='time'>" + obj.sopeninghour + "</span>";
-                    output += "</a>";
-                    output += "</div>";
+                    // output += "<div class='timetable-list timetable-list-sm'>";
+                    // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+                    // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+                    // output += "</a>";
+                    // output += "</div>";
                     output += "</div>";
                     output += "</div>";
                     output += "</div>";
@@ -168,7 +168,7 @@ $(document).ready(function() {
         let output = "";
 
         for (const obj of searchData) {
-            output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+            output += "<a href='/restaurant/" + obj.sid + "'>";
             output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
             output += "<div class='restaurant-info'>";
             output += "<div class='tb'>";
@@ -195,11 +195,11 @@ $(document).ready(function() {
             //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
             output += "</span>";
             output += "</div>";
-            output += "<div class='timetable-list timetable-list-sm'>";
-            output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-            output += "<span class='time'>" + obj.sopeninghour + "</span>";
-            output += "</a>";
-            output += "</div>";
+            // output += "<div class='timetable-list timetable-list-sm'>";
+            // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+            // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+            // output += "</a>";
+            // output += "</div>";
             output += "</div>";
             output += "</div>";
             output += "</div>";
@@ -229,7 +229,7 @@ $(document).ready(function() {
         let output = "";
 
         for (const obj of searchData) {
-            output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+            output += "<a href='/restaurant/" + obj.sid + "'>";
             output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
             output += "<div class='restaurant-info'>";
             output += "<div class='tb'>";
@@ -256,11 +256,11 @@ $(document).ready(function() {
             //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
             output += "</span>";
             output += "</div>";
-            output += "<div class='timetable-list timetable-list-sm'>";
-            output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-            output += "<span class='time'>" + obj.sopeninghour + "</span>";
-            output += "</a>";
-            output += "</div>";
+            // output += "<div class='timetable-list timetable-list-sm'>";
+            // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+            // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+            // output += "</a>";
+            // output += "</div>";
             output += "</div>";
             output += "</div>";
             output += "</div>";
@@ -331,7 +331,7 @@ $(document).ready(function() {
         let output = "";
 
         for (const obj of searchData) {
-            output += "<a href='restaurant.do?sid=" + obj.sid + "'>";
+            output += "<a href='/restaurant/" + obj.sid + "'>";
             output += "<div class='saved-restaurant-list-item' style='margin-bottom: 20px; padding-bottom: 10px;' >";
             output += "<div class='restaurant-info'>";
             output += "<div class='tb'>";
@@ -358,11 +358,11 @@ $(document).ready(function() {
             //output += "<span class='price'>" + obj.lunch + "<br>" + obj.dinner + "<br>";
             output += "</span>";
             output += "</div>";
-            output += "<div class='timetable-list timetable-list-sm'>";
-            output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
-            output += "<span class='time'>" + obj.sopeninghour + "</span>";
-            output += "</a>";
-            output += "</div>";
+            // output += "<div class='timetable-list timetable-list-sm'>";
+            // output += "<a href='#' id='DEFAULT_itemElem_1830' class='timetable-list-item'style='margin-bottom: auto; margin-top: auto; min-width: 70px;'>";
+            // output += "<span class='time'>" + obj.sopeninghour + "</span>";
+            // output += "</a>";
+            // output += "</div>";
             output += "</div>";
             output += "</div>";
             output += "</div>";

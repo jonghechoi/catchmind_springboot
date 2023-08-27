@@ -20,7 +20,6 @@ public interface ReviewMapper{
 	ArrayList<ReviewDto> reviewListSelect(String sid);
 	//end Dayoung
 
-
 	 /* REVIEWYN : N -> Y */
 	int updateReviewYN(String rid);
 
@@ -29,7 +28,6 @@ public interface ReviewMapper{
 
 	 /* write_review form Data */
 	ReviewDto reviewSelect(String rid);
-
 
     List<ReviewDto> selectList(PageDto pageDto);
 
@@ -40,4 +38,8 @@ public interface ReviewMapper{
     List<ReviewDto> reviewMainList();
 
     int deleteFromMain(String rid);
+
+	int totalRowCount();
+
+	List<ReviewDto> selectBy(String mid);
 }

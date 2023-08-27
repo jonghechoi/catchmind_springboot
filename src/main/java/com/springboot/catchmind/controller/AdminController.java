@@ -10,11 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.vo.NoticeVo;
-import com.springboot.catchmind.vo.ReviewVo;
-import com.springboot.catchmind.vo.ShopVo;
-
 @Controller
 public class AdminController {
 

@@ -38,11 +38,11 @@
 							<span>${member.mphone}</span>
 						</div>
 					</div>
-					<div class="memberModification">
-						<form name="memberModificationForm" action="#" method="get">
-							<button type="button" id="btnMemberModification">modification</button>
-						</form>
-					</div>
+<%--					<div class="memberModification">--%>
+<%--						<form name="memberModificationForm" action="#" method="get">--%>
+<%--							<button type="button" id="btnMemberModification">modification</button>--%>
+<%--						</form>--%>
+<%--					</div>--%>
 				</div>
 		</div>
 	</div>

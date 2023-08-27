@@ -1,113 +1,136 @@
 package com.springboot.catchmind.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.springboot.catchmind.dto.SessionDto;
+import com.springboot.catchmind.dto.*;
+import com.springboot.catchmind.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springboot.catchmind.dao.FavoritesDao;
-import com.springboot.catchmind.dao.MemberDao;
-import com.springboot.catchmind.dao.ReviewDao;
-import com.springboot.catchmind.vo.FavoritesVo;
 import com.springboot.catchmind.vo.MemberVo;
-import com.springboot.catchmind.vo.ReviewVo;
-import com.springboot.catchmind.vo.SessionVo;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
 public class MyPageController {
 	@Autowired
-	private ReviewDao reviewDao;
+	private ReviewServiceImpl reviewService;
 	@Autowired
-	private FavoritesDao favoritesDao;
+	private FavoritesServiceImpl favoritesService;
 	@Autowired
-	private MemberDao memberDao;
-	/**
-	 * mypage
-	 */
-
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public ModelAndView mypage(HttpSession session) {
-		ModelAndView model = new ModelAndView();
-		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
-		String mid = sessionVo.getMid();
-		MemberVo memberList = memberDao.nameSelect(mid);
-
-		model.addObject("memberList", memberList);
-		model.addObject("mid", mid);
-        model.setViewName("mypage");
-
-        return model;
-	}
-	
-	/**
-	 *  mypage_favorites
-	 */
-	@RequestMapping(value = "/mypage_favorites", method = RequestMethod.GET)
-	public ModelAndView mypage_favorites(String mid) {
-		ModelAndView model = new ModelAndView();
-		ArrayList<FavoritesVo> favoritesList = favoritesDao.select(mid);
+	private MemberServiceImpl memberService;
+	@Autowired
+	private ShopServiceImpl shopService;
 
 
-        model.addObject("favoritesList", favoritesList);
-        model.addObject("mid", mid);
-        model.setViewName("mypage_favorites");
+	//	@PostMapping("/update_review/{reviewId}")
+//	public String updateReview(@PathVariable Long reviewId, @ModelAttribute ReviewDto updatedReviewDto) {
+//		reviewService.updateReview(reviewId, updatedReviewDto);
+//		return "redirect:/view_review/{reviewId}";
+//	}
 
-        return model;
-	}
-	
+//	@PostMapping("/update_review")
+//	public String updateReview(@ModelAttribute ReviewDto updatedReviewDto) {
+//		reviewService.updateReview(updatedReviewDto.getReviewId(), updatedReviewDto);
+//		return "redirect:/view_review/" + updatedReviewDto.getReviewId();
+//	}
+
+	//	@PostMapping("/update_review/{reviewId}")
+//	public String updateReview(@PathVariable Long reviewId, @ModelAttribute ReviewDto updatedReviewDto) {
+//		reviewService.updateReview(reviewId, updatedReviewDto);
+//		return "redirect:/view_review/" + reviewId;
+//	}
+
+
+//	/**
+//	 * 리뷰 업데이트
+//	 */
+//	@GetMapping("/write_review")
+//	public String showEditReviewForm(@RequestParam String reviewId, Model model) {
+//		Long reviewIdLong = Long.parseLong(reviewId.substring(2));
+//		ReviewDto reviewDto = reviewService.getReviewById(reviewIdLong);
+//		model.addAttribute("reviewVo", reviewDto);
+//		return "pages/mypage/mypage_review";
+//	}
+//
+//	@PostMapping("/update_review/{reviewId}")
+//	public String updateReview(@PathVariable Long reviewId, @ModelAttribute ReviewDto updatedReviewDto, Model model) {
+//		reviewService.updateReview(reviewId, updatedReviewDto);
+//		ReviewDto updatedReview = reviewService.getReviewById(reviewId);
+//		model.addAttribute("updatedReview", updatedReview);
+//
+//		return "redirect:/view_review/" + reviewId; // view_review 페이지로 리디렉션
+//	}
+
 	/**
 	 * bookmark_delete_proc
 	 */
-	@RequestMapping(value = "/bookmark_delete_proc", method = RequestMethod.GET)
-	public String bookmark_delete_proc(String fid, String mid) {
-		
+	@GetMapping("bookmark_delete_proc/{fid}/{mid}/")
+	public String bookmarkDeleteProc(@PathVariable String fid,@PathVariable String mid) {
 		String viewName = "";
-		int result = favoritesDao.deleteFavorites(fid);
-		if(result == 1) {
-			viewName = "redirect:/mypage_favorites?mid="+mid;
+		int result = favoritesService.deleteFavorites(fid);
+		if (result == 1) {
+			viewName = "redirect:/mypage_favorites/" + mid;
 		}
-        return viewName;  
+		return viewName;
 	}
 
-	/** 
+
+	/**
+	 * mypage
+	 */
+	@GetMapping("mypage")
+	public String mypage(HttpSession session, Model model) {
+		SessionDto sessionDto = (SessionDto) session.getAttribute("sessionVo");
+		String mid = sessionDto.getMid();
+		String sid = sessionDto.getSid();
+
+		if (mid != null) {
+			MemberDto member = memberService.selectBy(mid);
+			model.addAttribute("memberOrShop", member);
+		}
+		if (sid != null) {
+			ShopDto shop = shopService.shopSelect(sid);
+			model.addAttribute("memberOrShop", shop);
+		}
+		return "/mypage";
+	}
+
+	/**
+	 * mypage_favorites
+	 */
+	@GetMapping("mypage_favorites/{mid}")
+	public String mypage_Favorites(@PathVariable String mid, Model model) {
+
+		System.out.println("mid ---> " + mid);
+
+		List<FavoritesDto> favoritesList = favoritesService.select(mid);
+		model.addAttribute("favoritesList", favoritesList);
+		model.addAttribute("mid", mid);
+		//model.addObject("mid", mid);
+		//model.setViewName("/pages/mypage/mypage_favorites");
+		return "/pages/mypage/mypage_favorites";
+	}
+
+	/**
 	 * mypage_review
 	 */
-	@RequestMapping(value = "/mypage_review", method = RequestMethod.GET)
-	public ModelAndView mypage_review(String mid, String sid) {
-		ModelAndView model = new ModelAndView();
-		ArrayList<ReviewVo> reviewList = reviewDao.selectMid(mid);
-        model.addObject("reviewList", reviewList);
-        model.addObject("mid", mid);
-        model.setViewName("/mypage_review");
-        
-        return model;
+	@GetMapping("mypage_review/{mid}")
+	public String mypage_Review(HttpSession session, Model model) {
+		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
+		String mid = sessionVo.getMid();
+		List<ReviewDto> reviewList = reviewService.selectBy(mid);
+		model.addAttribute("reviewList", reviewList);
+		//model.addAttribute("mid", mid);
+		//model.addAttribute("sid", sid);
+		return "/pages/mypage/mypage_review";
 	}
 
-
-//	@GetMapping("mypage")
-//	public String mypage(){
-//		return "/mypage/mypage";
-//	}
-//
-//	@GetMapping("mypage_favorites")
-//	public String mypage_favorites(){
-//		return "mypage_favorites/mypage_favorites";
-//	}
-//
-//	@GetMapping("mypage_review")
-//	public String mypage_review(){
-//		return "mypage_review/mypage_review";
-//	}
 }
 
-	
-	
+

@@ -3,13 +3,13 @@ package com.springboot.catchmind.controller;
 import javax.servlet.http.HttpSession;
 
 import com.springboot.catchmind.dto.*;
+import com.springboot.catchmind.vo.SessionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.springboot.catchmind.service.ShopServiceImpl;
-import com.springboot.catchmind.vo.SessionVo;
 
 @Controller
 public class ShopController {
@@ -38,7 +38,7 @@ public class ShopController {
 
 	@GetMapping("shop_information_facility/{sid}")
 	public String shop_information_facility(HttpSession session,@PathVariable String sid, Model model) {
-		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
+//		SessionVo sessionVo = (SessionVo)session.getAttribute("sessionVo");
 		FacilityDto facilityDto = shopService.getShopFacilitySelect(sid);
 		model.addAttribute("FacilityVo", facilityDto);
 		return "/pages/shop/shop_information_facility";

@@ -51,30 +51,24 @@
                                 <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown"
 								   role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">
-										Scheduled</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
-									<li class="nav-item"><a class="nav-link"
-															href="/mydining_cancel_noshow">Cancel /
-																											 No-Show</a></li>
+									<li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+									<li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+									<li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
-                            <c:if test="${sessionScope.sessionDto.roleId =='SHOP' or sessionScope.sessionDto.roleId ==
-                            'ADMIN'}">
+                            <c:if test="${sessionScope.sessionDto.roleId =='SHOP' or sessionScope.sessionDto.roleId == 'ADMIN'}">
 	                            <li class="nav-item submenu dropdown">
 	                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
-	                                <ul class="dropdown-menu">
-	                                    <li class="nav-item active"><a class="nav-link"
-																	   href="shop_information?sid=${sessionScope.sessionDto.sid}">Register</a></li>
-	                                    <li class="nav-item"><a class="nav-link"
-																href="shop_reservation?sid=${sessionScope.sessionDto.sid}">Reservation</a></li>
-	                                </ul>
+									<ul class="dropdown-menu">
+										<li class="nav-item active"><a class="nav-link" href="/shop_information/${sessionScope.sessionVo.sid}">Register</a></li>
+										<li class="nav-item"><a class="nav-link" href="/shop_reservation/${sessionScope.sessionVo.sid}">Reservation</a></li>
+									</ul>
 	                            </li>
                             </c:if>
                             <c:if test="${sessionScope.sessionDto.roleId == 'ADMIN'}">
-                            	<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
                         	</c:if>
                         </ul>
                     </div>
@@ -122,7 +116,7 @@
 							</div>
 							<nav class="res_menu">
 								<div class="res_menu_left">
-									<a href="#"> <i class="res_menu_save">저장</i></a>
+<%--									<a href="#"> <i class="res_menu_save">저장</i></a>--%>
 									<a id="kakao-share-btn" href="javascript:;" onclick="shareKakao()">
 	                           			<img src="/image/dayoung_img/share.png" alt="카카오 공유하기"
 	                           				style="float: right;">

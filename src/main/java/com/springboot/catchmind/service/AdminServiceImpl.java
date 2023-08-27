@@ -72,7 +72,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int getNoticeUpload(NoticeDto noticeDto) {	return noticeMapper.upload(noticeDto); }
+	public int getNoticeUpload(NoticeDto noticeDto) { return noticeMapper.upload(noticeDto); }
 
 	/**
 	 *	Review

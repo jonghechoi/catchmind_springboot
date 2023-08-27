@@ -9,9 +9,6 @@ import com.springboot.catchmind.dto.ShopDto;
 import com.springboot.catchmind.dto.ShopPhotoDto;
 import com.springboot.catchmind.service.FileServiceImpl;
 import com.springboot.catchmind.service.ShopServiceImpl;
-import com.springboot.catchmind.vo.FacilityVo;
-import com.springboot.catchmind.vo.ShopPhotoVo;
-import com.springboot.catchmind.vo.ShopVo;
 import oracle.jdbc.proxy.annotation.Post;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -72,10 +69,8 @@ public class ShopRestController {
     public String shop_information_proc(ShopDto shopDto) {
         int InsertOrUpdate = shopService.getRegistrationCheck(shopDto);
         if(InsertOrUpdate == 0) {
-            System.out.println("shop_information_proc InsertOrUpdate --> " + InsertOrUpdate);
             String.valueOf(shopService.getDetailInsert(shopDto));
         }else {
-            System.out.println("shop_information_proc InsertOrUpdate --> " + InsertOrUpdate);
             String.valueOf(shopService.getDetailUpdate(shopDto));
         }
 
@@ -87,13 +82,14 @@ public class ShopRestController {
         return String.valueOf(shopService.getDetailFacilityUpdate(facilityDto));
     }
 
-    @PostMapping("shop_information_photoBring")
+    @GetMapping("shop_information_photoBring")
     public ResponseEntity<String> shop_information_photoBring(@RequestParam("sid") String sid,
                                                               @RequestParam("count") int count,
                                                               @RequestParam("photos") String photos,
                                                               HttpServletRequest request,
                                                               HttpServletResponse response) throws Exception {
         String imgPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\upload\\";
+
         Gson gson = new Gson();
 
         Map<String, Integer> photosMap = gson.fromJson(photos, new TypeToken<HashMap<String, Integer>>() {}.getType());

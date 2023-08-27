@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.springboot.catchmind.dto.ScheduledDto;
-import com.springboot.catchmind.vo.ScheduledVo;
+//import com.springboot.catchmind.vo.ScheduledVo;
 
 public interface MyDiningService {
 //	void getUpdateStatus();

@@ -7,7 +7,6 @@ import com.springboot.catchmind.dto.ScheduledDto;
 import com.springboot.catchmind.dto.SessionDto;
 import com.springboot.catchmind.service.MyDiningServiceImpl;
 import com.springboot.catchmind.service.PagingServiceImpl;
-import com.springboot.catchmind.vo.SessionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +43,9 @@ public class MyDiningController {
 	@GetMapping("mydining_scheduled")
 	public String mydining_scheduled(HttpSession session, Model model) {
 		SessionDto sessionVo = (SessionDto)session.getAttribute("sessionVo");
-		
+
+
+
 		String mid = sessionVo.getMid();
 		
 		ArrayList<ScheduledDto> list = myDiningService.getScheduled(mid);
