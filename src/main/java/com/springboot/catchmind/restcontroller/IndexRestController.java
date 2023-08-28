@@ -21,14 +21,14 @@ public class IndexRestController {
     /**
      *	Index review
      */
-//    @GetMapping("index_review")
-//    public List<ReviewDto> index_review() {
-//
-//        List<ReviewDto> list = reviewSchedulerService.reviewMainChange();
-//        //list.stream().forEach(review -> System.out.println(review.getRid()));
-//
-//        return reviewSchedulerService.reviewMainChange();
-//    }
+    @GetMapping("index_review")
+    public List<ReviewDto> index_review() {
+
+        //List<ReviewDto> list = reviewSchedulerService.reviewMainChange();
+        //list.stream().forEach(review -> System.out.println(review.getRid()));
+
+        return reviewSchedulerService.reviewMainChange();
+    }
 
     /**
      *	Index mapMarker

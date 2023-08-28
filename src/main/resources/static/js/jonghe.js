@@ -891,12 +891,12 @@ function reservationListing() {
 			endDate : $("#endDate").val()
 		},
 		success: function(result) {
-			let jdata = JSON.parse(result);
+			// let jdata = JSON.parse(result);
 			
 			$("#reserveDetail").empty();
 			
 			let output = "";	
-			for(obj of jdata.jlist) {
+			for(obj of result) {
 				output += "<div>"; 
 				output += "<div class='reserveDetail'>";
 				output += "<div>";

@@ -36,7 +36,8 @@ public class ReviewController {
 				redirectAttributes.addFlashAttribute("reviewWrite", "ok");
 				return "redirect:/mydining_visited";
 			}
-		}else {
+		}
+		else {
 			
 		}
 

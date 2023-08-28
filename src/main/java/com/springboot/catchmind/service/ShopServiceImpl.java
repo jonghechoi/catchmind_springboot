@@ -92,7 +92,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<BookingDto> getShopReservationSelectJson(String sid, String startDate, String endDate) {
+	public List<ReservationDto> getShopReservationSelectJson(String sid, String startDate, String endDate) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("sid", sid);
 		map.put("startDate", startDate);

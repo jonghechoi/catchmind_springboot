@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-/*************************
-	예약 취소 처리 폼
-*************************/
-$("#btn_cancleReservation").click(function(){
+	/*************************
+		예약 취소 처리 폼
+	*************************/
+	$("#btn_cancleReservation").click(function(){
 
 		if($("input[id='chk1']:checked").length == 0){
 			alert("Please check the terms and conditions of cancellation of the reservation");
@@ -17,6 +17,7 @@ $("#btn_cancleReservation").click(function(){
 			cancelReservationForm.submit();
 		}
 	});
+
 	$("#conset_disagree").click(function(){
 		window.close();
 	});
@@ -73,42 +74,42 @@ $("#btn_cancleReservation").click(function(){
 	비밀번호찾기 - 이메일 전송
 ****************************/
 	$("#btnRequest").click(function(){
-		const memail = $('#email1').val() +"@"+ $('#email2').val(); //
-				console.log('완성된 이메일 : ' + memail); // 이메일 오는지 확인
-				const checkInput = $('#find_request') // 인증번호 text
-				
-				$.ajax({
-					type : 'get',
-					url : "/find_pass_emailCheck/"+memail,
-					success : function (data) {
-						console.log("data : " +  data);
-						checkInput.attr('disabled',false);
-						code = data;
-						alert('Authentication number sent.')
-					}			
+		const memail = $("#email1").val() + "@" + $("#email2").val();
+		console.log('완성된 이메일 : ' + memail); // 이메일 오는지 확인
+		const checkInput = $('#find_request') // 인증번호 text
+
+		$.ajax({
+			type : "GET",
+			url : "/find_pass_emailCheck/" + memail,
+			success : function(data) {
+				console.log("data : " + data);
+				checkInput.attr('disabled',false);
+				code = data;
+				alert('Authentication number sent.')
+			}
 		}); // ajax
 	});
 /**************************
 	비밀번호 찾기 이메일 인증 값 체크
 ***************************/
-	/*$("#btnRequestCheck").click(function () {
-		const inputCode = $("#find_request").val();
-		const $resultMsg = $('#mail-check-warn');
-		if(inputCode === code){
-			$resultMsg.html('인증번호가 일치합니다.');
-			$resultMsg.css('color','green');
-			$('#mail-Check-Btn').attr('disabled',true);
-			$('#email1').attr('readonly',true);
-			$('#email1').attr('readonly',true);
-			$('#email2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
-	        $('#email2').attr('onChange', 'this.selectedIndex = this.initialSelect');
-	        
-		}else{
-			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
-			$resultMsg.css('color','red');
-			return false;
-		}
-	});*/
+	// $("#btnRequestCheck").click(function () {
+	// 	const inputCode = $("#find_request").val();
+	// 	const $resultMsg = $('#mail-check-warn');
+	// 	if(inputCode === code){
+	// 		$resultMsg.html('인증번호가 일치합니다.');
+	// 		$resultMsg.css('color','green');
+	// 		$('#mail-Check-Btn').attr('disabled',true);
+	// 		$('#email1').attr('readonly',true);
+	// 		$('#email1').attr('readonly',true);
+	// 		$('#email2').attr('onFocus', 'this.initialSelect = this.selectedIndex');
+	//         $('#email2').attr('onChange', 'this.selectedIndex = this.initialSelect');
+	//
+	// 	}else{
+	// 		$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+	// 		$resultMsg.css('color','red');
+	// 		return false;
+	// 	}
+	// });
 /**************************
 	비밀번호 찾기 폼 - 유효성 체크
 **************************/
@@ -380,11 +381,11 @@ $(document).ready(function(){
 	$("#cpass").on("blur", function(){
 		if($("#pass1").val() != "" && $("#cpass").val() != ""){
 			if($("#pass1").val() == $("#cpass").val()){
-				$("#cmsg").text("The password is the same").css("color","mediumseagreen")
+				$("#cmsg").text("Same password approved").css("color","mediumseagreen")
 					.css("font-size","11px").css("display","block");
 				$("#name").focus();
 			}else{
-				$("#cmsg").text("Password is not the same. Please enter it again")
+				$("#cmsg").text("Password is not same. Please enter it again")
 				.css("color","red").css("font-size","11px").css("display","block");
 				
 				$("#cpass").val("").focus();

@@ -45,17 +45,18 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="/index">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                            <li class="nav-item submenu dropdown">
-                                <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown"
-								   role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
-                                <ul class="dropdown-menu">
-									<li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
-									<li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
-									<li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
-                                </ul>
-                            </li>
+							<c:if test="${sessionScope.sessionVo.roleId == 'USER'}">
+								<li class="nav-item submenu dropdown">
+									<a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item active"><a class="nav-link" href="/mydining_scheduled">Scheduled</a></li>
+										<li class="nav-item"><a class="nav-link" href="/mydining_visited">Visited</a></li>
+										<li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
+									</ul>
+								</li>
+							</c:if>
                             <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionDto.roleId =='SHOP' or sessionScope.sessionDto.roleId == 'ADMIN'}">
@@ -521,7 +522,7 @@
 							<div class="location-map">
 								<div class="addr" style="padding: 0px 20px;">
 									<br>
-									<p>${shopDto.sloc}</p>
+									<p id="locationText">${shopDto.sloc}</p>
 									<a href="#" class="btn-copy" style="padding-top: 4px;">Copy</a>
 								</div>
 							</div>
@@ -708,12 +709,20 @@
 		<!-- Kako Map -->
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb222ca455cfb2afe3fb2c4341112dbb"></script>
         <script>
+			var slocx = "${shopDto.slocx}";
+			var slocy = "${shopDto.slocy}";
 	        var container = document.getElementById('map');
 	        var options = {
-	            center: new kakao.maps.LatLng(33.450701, 126.570667),
+	            center: new kakao.maps.LatLng(slocy, slocx),
 	            level: 3
 	        	};
 	        var map = new kakao.maps.Map(container, options);
+			var marker = new kakao.maps.Marker({
+				// 지도 중심좌표에 마커를 생성합니다
+				position: map.getCenter()
+			});
+			// 지도에 마커를 표시합니다
+			marker.setMap(map);
         </script>
 	</body>
 </html>
