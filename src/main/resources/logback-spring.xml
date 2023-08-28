@@ -39,7 +39,7 @@
     <logger name="jdbc.resultsettable" level="WARN" appender-ref="console-infolog" />
 
     <!-- Root Logger -->
-    <root level="OFF">
-        <appender-ref ref="CONSOLE" />
+    <root level="WARN">
+        <appender-ref ref="FILE" />
     </root>
 </configuration>

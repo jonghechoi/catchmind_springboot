@@ -3,10 +3,7 @@ package com.springboot.catchmind.restcontroller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.springboot.catchmind.controller.ShopController;
-import com.springboot.catchmind.dto.BookingDto;
-import com.springboot.catchmind.dto.FacilityDto;
-import com.springboot.catchmind.dto.ShopDto;
-import com.springboot.catchmind.dto.ShopPhotoDto;
+import com.springboot.catchmind.dto.*;
 import com.springboot.catchmind.service.FileServiceImpl;
 import com.springboot.catchmind.service.ShopServiceImpl;
 import oracle.jdbc.proxy.annotation.Post;
@@ -147,10 +144,10 @@ public class ShopRestController {
         return new ResponseEntity<String>(json, headers, HttpStatus.OK);
     }
 
-    @PostMapping("shop_reservation_proc")
-    public List<BookingDto> shop_reservation_proc(@RequestParam("sid") String sid,
-                                                  @RequestParam("startDate") String startDate,
-                                                  @RequestParam("endDate") String endDate) {
+    @GetMapping("shop_reservation_proc")
+    public List<ReservationDto> shop_reservation_proc(@RequestParam("sid") String sid,
+                                                      @RequestParam("startDate") String startDate,
+                                                      @RequestParam("endDate") String endDate) {
         try {
             shopService.dateCheck(startDate, endDate);
         } catch (Exception e) {
@@ -158,6 +155,10 @@ public class ShopRestController {
             logger.error("loooooooooooooog", e);
         }
 
+        List<ReservationDto> entity = shopService.getShopReservationSelectJson(sid, startDate, endDate);
+        System.out.println(entity.get(0).getRdate());
+        System.out.println(entity.get(0).getRtime());
+        System.out.println(entity.get(0).getMname());
         return shopService.getShopReservationSelectJson(sid, startDate, endDate);
     }
 }

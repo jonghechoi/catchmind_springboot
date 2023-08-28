@@ -10,10 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.springboot.catchmind.vo.MemberVo;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -125,6 +121,8 @@ public class MyPageController {
 		SessionDto sessionVo = (SessionDto) session.getAttribute("sessionVo");
 		String mid = sessionVo.getMid();
 		List<ReviewDto> reviewList = reviewService.selectBy(mid);
+		System.out.println(reviewList.get(0).getReviewcreatedate());
+		System.out.println(reviewList.get(0).getReviewcreatedate());
 		model.addAttribute("reviewList", reviewList);
 		//model.addAttribute("mid", mid);
 		//model.addAttribute("sid", sid);

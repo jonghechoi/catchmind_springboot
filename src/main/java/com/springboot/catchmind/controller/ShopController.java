@@ -3,7 +3,6 @@ package com.springboot.catchmind.controller;
 import javax.servlet.http.HttpSession;
 
 import com.springboot.catchmind.dto.*;
-import com.springboot.catchmind.vo.SessionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

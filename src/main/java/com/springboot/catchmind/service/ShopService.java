@@ -4,11 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.springboot.catchmind.dto.SessionDto;
-import com.springboot.catchmind.dto.BookingDto;
-import com.springboot.catchmind.dto.FacilityDto;
-import com.springboot.catchmind.dto.ShopDto;
-import com.springboot.catchmind.dto.ShopPhotoDto;
+import com.springboot.catchmind.dto.*;
 
 public interface ShopService {
 
@@ -26,7 +22,7 @@ public interface ShopService {
 		
 		public ShopDto getShopInfoSelect(String sid);
 		
-		public List<BookingDto> getShopReservationSelectJson(String sid, String startDate, String endDate);
+		public List<ReservationDto> getShopReservationSelectJson(String sid, String startDate, String endDate);
 		
 		public int getPhotoSelectCheck(String sid);
 		

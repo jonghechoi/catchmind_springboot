@@ -63,7 +63,7 @@
                                     <li class="nav-item"><a class="nav-link" href="/mydining_cancel_noshow">Cancel / No-Show</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href=/mypage">My Page</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/mypage">My Page</a></li>
                             <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                             <c:if test="${sessionScope.sessionVo.roleId =='SHOP' or sessionScope.sessionVo.roleId == 'ADMIN'}">
                             	<li class="nav-item submenu dropdown">

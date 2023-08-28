@@ -33,8 +33,28 @@ $(document).ready(function() {
 	}
 
 
+	/*
+	 Information - 식당 주소 복사
+	 */
+	function copyToClipboard(text) {
+		var textField = $('<textarea>');
+		textField.text(text);
+		$('body').append(textField);
+		textField.select();
+		document.execCommand('copy');
+		textField.remove();
+	}
 
-	$('select').niceSelect(); // 모든 nice-select 초기화
+	$('.btn-copy').on('click', function() {
+		var locationText = $('#locationText').text();
+		copyToClipboard(locationText);
+		alert('Address copied');
+	});
+
+
+
+	// 모든 nice-select 초기화
+	$('select').niceSelect();
 
 	/*
 	 * date picker

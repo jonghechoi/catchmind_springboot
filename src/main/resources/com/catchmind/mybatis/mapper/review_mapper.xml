@@ -75,8 +75,8 @@
 				 VALUES('REVIEW_'||LTRIM(TO_CHAR(SEQU_REVIEW_RID.NEXTVAL,'0000')),
 				 #{reviewcontent},
 				 #{reviewstar},
-				 SYSDATE,
-				 SYSDATE,
+                 to_char(SYSDATE, 'yyyy-mm-dd'),
+                 to_char(SYSDATE, 'yyyy-mm-dd'),
 				 #{sid},
 				 #{mid},
 				 #{rid},
@@ -140,7 +140,7 @@
 
     <select id="selectBy" parameterType="java.lang.String" resultType="com.springboot.catchmind.dto.ReviewDto">
         select
-            review.reviewid, review.reviewcontent, review.reviewstar, review.reviewcreatedate, review.reviewmodifydate,
+            review.reviewid, review.reviewcontent, review.reviewstar, to_char(review.reviewcreatedate, 'yyyy-mm-dd') reviewcreatedate, to_char(review.reviewmodifydate, 'yyyy-mm-dd') reviewmodifydate,
             review.sid, review.mid, review.rid, review.reviewphoto, review.reviewsphoto,
             s.sname
         from

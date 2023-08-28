@@ -83,7 +83,7 @@ public class ReservationController {
         int result = reservationService.insertPayment(bookingDto);
 
         if(result == 1) {
-            route = "redirect:/mydining_scheduled.do";
+            route = "redirect:/mydining_scheduled";
         }
         else {
             //예약 실패 - 에러페이지 호출 필요

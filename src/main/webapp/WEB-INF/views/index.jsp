@@ -89,7 +89,7 @@
                     // 도커로 띄웠을 때 사용
                     // url: "http://localhost:82/index_review",
                     // 인텔리제이 내장으로 띄웠을 때 사용
-                    url: "http://localhost:9001/index_review",
+                    url: "/index_review",
                     success: function(dataList) {
                         $(".testimonial_slider.owl-carousel").empty();
 
@@ -188,7 +188,8 @@
                             <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
 
-                            <c:if test="${sessionScope.sessionVo.roleId !='SHOP' || sessionScope.sessionVo.roleId !='ADMIN'}">
+<%--                            <c:if test="${sessionScope.sessionVo.roleId !='SHOP' || sessionScope.sessionVo.roleId !='ADMIN'}">--%>
+                            <c:if test="${sessionScope.sessionVo.roleId == 'USER'}">
                                 <li class="nav-item submenu dropdown">
                                     <a href="/mydining_scheduled" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MY DINING</a>
                                     <ul class="dropdown-menu">

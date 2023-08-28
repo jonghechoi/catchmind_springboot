@@ -41,7 +41,7 @@ public interface ShopMapper {
 
     int detailUpdate(ShopDto shopDto);
 
-    List<BookingDto> reservationSelect(Map map);
+    List<ReservationDto> reservationSelect(Map map);
 
     /* Login - Shop ID Check */
     int shopIdCheck(ShopDto shopDto);

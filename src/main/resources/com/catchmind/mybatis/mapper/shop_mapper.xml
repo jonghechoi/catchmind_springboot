@@ -221,8 +221,8 @@
         WHERE SID=#{sid}
     </update>
 
-    <select id="reservationSelect" parameterType="map" resultType="com.springboot.catchmind.dto.BookingDto">
-        SELECT R.RID, R.RMODIFYDATE, R.RMODIFYTIME, R.RTABLETYPE, R.GUESTNUMBER, R.RREQUEST, R.RPHONE, R.MID, M.MNAME
+    <select id="reservationSelect" parameterType="map" resultType="com.springboot.catchmind.dto.ReservationDto">
+        SELECT R.RID, to_char(R.RMODIFYDATE, 'yyyy-mm-dd') RMODIFYDATE, R.RMODIFYTIME, R.RTABLETYPE, R.GUESTNUMBER, R.RREQUEST, R.RPHONE, R.MID, M.MNAME
         FROM RESERVATION R, MEMBER M
         WHERE R.MID = M.MID
           AND R.SID = #{sid}

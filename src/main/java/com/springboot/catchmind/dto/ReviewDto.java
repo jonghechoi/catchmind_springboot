@@ -12,6 +12,6 @@ public class ReviewDto {
 	private MultipartFile reviewfile1;
 
 	public void setWriteReviewstar(ReviewDto reviewDto) {
-		this.reviewstar = Math.round((reviewDto.getTasteStar() + reviewDto.getMoodStar() + reviewDto.getServiceStar() / 3.0 * 10)) / 10.0;
+		this.reviewstar = Math.round((reviewDto.getTasteStar() + reviewDto.getMoodStar() + reviewDto.getServiceStar()) / 3.0 * 10) / 10.0;
 	}
 }

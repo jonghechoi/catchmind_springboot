@@ -26,8 +26,7 @@ public class FileServiceImpl {
 	 * FileSave
 	 */
 	public void fileSave(ReviewDto reviewDto) throws Exception {
-		String projectPath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\upload\\";
-
+		String projectPath = System.getProperty("user.dir")+"/src/main/resources/static/upload/";
 		if(reviewDto.getReviewfile1().getOriginalFilename() != null && !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
 			File saveFile = new File(projectPath + reviewDto.getReviewsphoto());
 			reviewDto.getReviewfile1().transferTo(saveFile);
