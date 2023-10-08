@@ -8,7 +8,7 @@
 # Catchmind 프로젝트 개요
 레스토랑 예약 웹 서비스 Catchmind는 모바일 전용 애플리케이션 CatchTable을 모티브로 했습니다. <br/>
 사용자-판매자를 연결하는 플랫폼이므로 일반 <span style='background-color: #FF3D00'>사용자</span>와 <span style='background-color: #FF3D00'>레스토랑 점주</span>가 사용할 수 있는 페이지를 구분하여 다양한 참여자의 시각에서 기능 구현을 했습니다. <br/>
-<img src="https://github.com/jonghechoi/catchmind_springboot/issues/18#issue-1931756093" width="800" height="400">
+<img src="https://github.com/jonghechoi/catchmind_springboot/assets/57426066/be1029a2-587d-446f-839b-885499b9fe2d" width="800" height="400">
 
 <br/><br/>
 
