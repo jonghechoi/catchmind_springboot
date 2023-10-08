@@ -16,19 +16,19 @@
 총 3개의 페이지를 담당했습니다. 
 
 - ### Index
-  <img src="index-1.png" width="400" height="200">
+  <img src="https://github.com/jonghechoi/catchmind_springboot/assets/57426066/5983b97e-7530-4869-bdb8-b32acf011741" width="400" height="200">
 
 - ### 레스토랑 점주 페이지
-  <img src="restaurant.png" width="400" height="200">
-  <img src="restaurnat_check.png" width="400" height="200">
+  <img src="https://github.com/jonghechoi/catchmind_springboot/assets/57426066/f6030a04-f2c8-4290-8e7e-1d14d7735c82" width="400" height="200">
+  <img src="https://github.com/jonghechoi/catchmind_springboot/assets/57426066/a7c65cc4-17dd-4cdf-9e57-85ec8b6b7a82" width="400" height="200">
 
 - ### 관리자
-  <img src="admin.png" width="400" height="200">
+  <img src="https://github.com/jonghechoi/catchmind_springboot/assets/57426066/904b10a1-b535-42ca-958b-76ac6e5ce35e" width="400" height="200">
 
 <br/><br/>
 
 # 🚀 고도화
-![msa png](msa.png)
+![msa](https://github.com/jonghechoi/catchmind_springboot/assets/57426066/089694da-8f23-4b24-8fca-13b1001ea574)
   - CI/CD  
     1. 도커 컴포트로 web, was 컨테이너 배포
     2. Github Actions로 파이프라인 구성 → [링크](https://github.com/jonghechoi/review_msa/blob/master/.github/workflows/gradle.yml)
